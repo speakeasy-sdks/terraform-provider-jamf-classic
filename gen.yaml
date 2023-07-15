@@ -1,4 +1,9 @@
 configVersion: 1.0.0
+management:
+  docChecksum: da61342f3bda819c1907d5fb1a3300ec
+  docVersion: 10.48.0
+  speakeasyVersion: 1.59.0
+  generationVersion: 2.65.0
 generation:
   comments:
     disableComments: false
@@ -8,6 +13,6 @@ generation:
   singleTagPerOp: false
   tagNamespacingDisabled: false
 terraform:
-  version: 0.0.1
+  version: 1.0.0
   author: halosync
   packageName: jamf
