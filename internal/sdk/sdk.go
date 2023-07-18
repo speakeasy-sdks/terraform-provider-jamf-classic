@@ -196,8 +196,8 @@ func New(opts ...SDKOption) *Jamf {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "terraform",
 			OpenAPIDocVersion: "10.48.0",
-			SDKVersion:        "1.0.0",
-			GenVersion:        "2.65.0",
+			SDKVersion:        "1.1.0",
+			GenVersion:        "2.70.0",
 		},
 	}
 	for _, opt := range opts {
