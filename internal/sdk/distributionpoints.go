@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"io"
 	"jamf/internal/sdk/pkg/models/operations"
-	"jamf/internal/sdk/pkg/models/shared"
 	"jamf/internal/sdk/pkg/utils"
 	"net/http"
 	"strings"
@@ -202,12 +201,12 @@ func (s *distributionpoints) FindDistributionPoints(ctx context.Context) (*opera
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.DistributionPoints
+			var out []operations.FindDistributionPoints200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.DistributionPoints = out
+			res.FindDistributionPoints200ApplicationJSONObjects = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -259,12 +258,12 @@ func (s *distributionpoints) FindDistributionPointsByID(ctx context.Context, req
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.DistributionPoint
+			var out *operations.FindDistributionPointsByID200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.DistributionPoint = out
+			res.FindDistributionPointsByID200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -316,12 +315,12 @@ func (s *distributionpoints) FindDistributionPointsByName(ctx context.Context, r
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.DistributionPoint
+			var out *operations.FindDistributionPointsByName200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.DistributionPoint = out
+			res.FindDistributionPointsByName200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}

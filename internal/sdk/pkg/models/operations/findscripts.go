@@ -3,9 +3,28 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindScripts200ApplicationXMLScript struct {
+	ID   *int64
+	Name *string
+}
+
+type FindScripts200ApplicationXML struct {
+	Script *FindScripts200ApplicationXMLScript
+	Size   *int64
+}
+
+type FindScripts200ApplicationJSONScript struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindScripts200ApplicationJSON struct {
+	Script *FindScripts200ApplicationJSONScript `json:"script,omitempty"`
+	Size   *int64                               `json:"size,omitempty"`
+}
 
 type FindScriptsResponse struct {
 	Body        []byte
@@ -13,5 +32,5 @@ type FindScriptsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Scripts []shared.Scripts
+	FindScripts200ApplicationJSONObjects []FindScripts200ApplicationJSON
 }

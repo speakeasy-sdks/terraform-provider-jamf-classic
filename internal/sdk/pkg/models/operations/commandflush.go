@@ -3,8 +3,53 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
+
+type CommandFlushRequestBodyMobileDevicesMobileDevice struct {
+	ID int64
+}
+
+type CommandFlushRequestBodyMobileDevices struct {
+	MobileDevice *CommandFlushRequestBodyMobileDevicesMobileDevice
+}
+
+type CommandFlushRequestBodyStatus string
+
+const (
+	CommandFlushRequestBodyStatusPending           CommandFlushRequestBodyStatus = "Pending"
+	CommandFlushRequestBodyStatusFailed            CommandFlushRequestBodyStatus = "Failed"
+	CommandFlushRequestBodyStatusPendingPlusFailed CommandFlushRequestBodyStatus = "Pending+Failed"
+)
+
+func (e CommandFlushRequestBodyStatus) ToPointer() *CommandFlushRequestBodyStatus {
+	return &e
+}
+
+func (e *CommandFlushRequestBodyStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Pending":
+		fallthrough
+	case "Failed":
+		fallthrough
+	case "Pending+Failed":
+		*e = CommandFlushRequestBodyStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CommandFlushRequestBodyStatus: %v", v)
+	}
+}
+
+type CommandFlushRequestBody struct {
+	MobileDevices *CommandFlushRequestBodyMobileDevices
+	Status        CommandFlushRequestBodyStatus
+}
 
 type CommandFlushResponse struct {
 	ContentType string

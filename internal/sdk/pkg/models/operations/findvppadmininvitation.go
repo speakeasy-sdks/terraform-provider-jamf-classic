@@ -3,9 +3,28 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindVPPAdminInvitation200ApplicationXMLVPPInvitation struct {
+	ID   *int64
+	Name *string
+}
+
+type FindVPPAdminInvitation200ApplicationXML struct {
+	Size          *int64
+	VppInvitation *FindVPPAdminInvitation200ApplicationXMLVPPInvitation
+}
+
+type FindVPPAdminInvitation200ApplicationJSONVPPInvitation struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindVPPAdminInvitation200ApplicationJSON struct {
+	Size          *int64                                                 `json:"size,omitempty"`
+	VppInvitation *FindVPPAdminInvitation200ApplicationJSONVPPInvitation `json:"vpp_invitation,omitempty"`
+}
 
 type FindVPPAdminInvitationResponse struct {
 	Body        []byte
@@ -13,5 +32,5 @@ type FindVPPAdminInvitationResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	VppInvitations []shared.VppInvitations
+	FindVPPAdminInvitation200ApplicationJSONObjects []FindVPPAdminInvitation200ApplicationJSON
 }

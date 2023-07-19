@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,79 @@ type FindComputerInvitationsByInvitationRequest struct {
 	Invitation int64 `pathParam:"style=simple,explode=false,name=invitation"`
 }
 
+type FindComputerInvitationsByInvitation200ApplicationXMLEnrollIntoSite struct {
+	ID   *int64
+	Name *string
+}
+
+type FindComputerInvitationsByInvitation200ApplicationXMLSite struct {
+	ID *int64
+	// Name of the site
+	Name string
+}
+
+// FindComputerInvitationsByInvitation200ApplicationXML - OK
+type FindComputerInvitationsByInvitation200ApplicationXML struct {
+	CreateAccountIfDoesNotExist *bool
+	EnrollIntoSite              *FindComputerInvitationsByInvitation200ApplicationXMLEnrollIntoSite
+	// Use 'Unlimited' to specify no expiration date
+	ExpirationDate             *string
+	ExpirationDateEpoch        *int64
+	ExpirationDateUtc          *string
+	HideAccount                *bool
+	ID                         *int64
+	Invitation                 *int64
+	InvitationStatus           *string
+	InvitationType             *string
+	InvitedUserUUID            *string
+	KeepExistingSiteMembership *bool
+	LockDownSSH                *bool
+	MultipleUsersAllowed       *bool
+	Site                       *FindComputerInvitationsByInvitation200ApplicationXMLSite
+	SSHPassword                *string
+	SSHUsername                *string
+	TimesUsed                  *int64
+}
+
+type FindComputerInvitationsByInvitation200ApplicationJSONEnrollIntoSite struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindComputerInvitationsByInvitation200ApplicationJSONSite struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the site
+	Name string `json:"name"`
+}
+
+// FindComputerInvitationsByInvitation200ApplicationJSON - OK
+type FindComputerInvitationsByInvitation200ApplicationJSON struct {
+	CreateAccountIfDoesNotExist *bool                                                                `json:"create_account_if_does_not_exist,omitempty"`
+	EnrollIntoSite              *FindComputerInvitationsByInvitation200ApplicationJSONEnrollIntoSite `json:"enroll_into_site,omitempty"`
+	// Use 'Unlimited' to specify no expiration date
+	ExpirationDate             *string                                                    `json:"expiration_date,omitempty"`
+	ExpirationDateEpoch        *int64                                                     `json:"expiration_date_epoch,omitempty"`
+	ExpirationDateUtc          *string                                                    `json:"expiration_date_utc,omitempty"`
+	HideAccount                *bool                                                      `json:"hide_account,omitempty"`
+	ID                         *int64                                                     `json:"id,omitempty"`
+	Invitation                 *int64                                                     `json:"invitation,omitempty"`
+	InvitationStatus           *string                                                    `json:"invitation_status,omitempty"`
+	InvitationType             *string                                                    `json:"invitation_type,omitempty"`
+	InvitedUserUUID            *string                                                    `json:"invited_user_uuid,omitempty"`
+	KeepExistingSiteMembership *bool                                                      `json:"keep_existing_site_membership,omitempty"`
+	LockDownSSH                *bool                                                      `json:"lock_down_ssh,omitempty"`
+	MultipleUsersAllowed       *bool                                                      `json:"multiple_users_allowed,omitempty"`
+	Site                       *FindComputerInvitationsByInvitation200ApplicationJSONSite `json:"site,omitempty"`
+	SSHPassword                *string                                                    `json:"ssh_password,omitempty"`
+	SSHUsername                *string                                                    `json:"ssh_username,omitempty"`
+	TimesUsed                  *int64                                                     `json:"times_used,omitempty"`
+}
+
 type FindComputerInvitationsByInvitationResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ComputerInvitation *shared.ComputerInvitation
+	FindComputerInvitationsByInvitation200ApplicationJSONObject *FindComputerInvitationsByInvitation200ApplicationJSON
 }

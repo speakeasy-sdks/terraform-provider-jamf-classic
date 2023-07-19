@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,25 @@ type FindRemovableMacAddressesByNameRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+// FindRemovableMacAddressesByName200ApplicationXML - OK
+type FindRemovableMacAddressesByName200ApplicationXML struct {
+	ID *int64
+	// MAC address to ignore when identifying computers
+	Name *string
+}
+
+// FindRemovableMacAddressesByName200ApplicationJSON - OK
+type FindRemovableMacAddressesByName200ApplicationJSON struct {
+	ID *int64 `json:"id,omitempty"`
+	// MAC address to ignore when identifying computers
+	Name *string `json:"name,omitempty"`
+}
+
 type FindRemovableMacAddressesByNameResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	RemovableMacAddress *shared.RemovableMacAddress
+	FindRemovableMacAddressesByName200ApplicationJSONObject *FindRemovableMacAddressesByName200ApplicationJSON
 }

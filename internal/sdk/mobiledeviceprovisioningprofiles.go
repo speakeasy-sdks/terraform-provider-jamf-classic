@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"io"
 	"jamf/internal/sdk/pkg/models/operations"
-	"jamf/internal/sdk/pkg/models/shared"
 	"jamf/internal/sdk/pkg/utils"
 	"net/http"
 	"strings"
@@ -340,12 +339,12 @@ func (s *mobiledeviceprovisioningprofiles) FindMobileDeviceProvisioningProfiles(
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.MobileDeviceProvisioningProfiles
+			var out []operations.FindMobileDeviceProvisioningProfiles200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.MobileDeviceProvisioningProfiles = out
+			res.FindMobileDeviceProvisioningProfiles200ApplicationJSONObjects = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -397,12 +396,12 @@ func (s *mobiledeviceprovisioningprofiles) FindMobileDeviceProvisioningProfilesB
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.MobileDeviceProvisioningProfile
+			var out *operations.FindMobileDeviceProvisioningProfilesByID200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.MobileDeviceProvisioningProfile = out
+			res.FindMobileDeviceProvisioningProfilesByID200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -454,12 +453,12 @@ func (s *mobiledeviceprovisioningprofiles) FindMobileDeviceProvisioningProfilesB
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.MobileDeviceProvisioningProfile
+			var out *operations.FindMobileDeviceProvisioningProfilesByName200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.MobileDeviceProvisioningProfile = out
+			res.FindMobileDeviceProvisioningProfilesByName200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -511,12 +510,12 @@ func (s *mobiledeviceprovisioningprofiles) FindMobileDeviceProvisioningProfilesB
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.MobileDeviceProvisioningProfile
+			var out *operations.FindMobileDeviceProvisioningProfilesByUUID200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.MobileDeviceProvisioningProfile = out
+			res.FindMobileDeviceProvisioningProfilesByUUID200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -568,12 +567,12 @@ func (s *mobiledeviceprovisioningprofiles) UpdateMobileDeviceProvisioningProfile
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.MobileDeviceProvisioningProfile
+			var out *operations.UpdateMobileDeviceProvisioningProfilesByID200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.MobileDeviceProvisioningProfile = out
+			res.UpdateMobileDeviceProvisioningProfilesByID200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -625,12 +624,12 @@ func (s *mobiledeviceprovisioningprofiles) UpdateMobileDeviceProvisioningProfile
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.MobileDeviceProvisioningProfile
+			var out *operations.UpdateMobileDeviceProvisioningProfilesByName200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.MobileDeviceProvisioningProfile = out
+			res.UpdateMobileDeviceProvisioningProfilesByName200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -682,12 +681,12 @@ func (s *mobiledeviceprovisioningprofiles) UpdateMobileDeviceProvisioningProfile
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.MobileDeviceProvisioningProfile
+			var out *operations.UpdateMobileDeviceProvisioningProfilesByUUID200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.MobileDeviceProvisioningProfile = out
+			res.UpdateMobileDeviceProvisioningProfilesByUUID200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}

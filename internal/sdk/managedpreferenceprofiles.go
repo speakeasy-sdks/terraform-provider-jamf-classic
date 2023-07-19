@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"io"
 	"jamf/internal/sdk/pkg/models/operations"
-	"jamf/internal/sdk/pkg/models/shared"
 	"jamf/internal/sdk/pkg/utils"
 	"net/http"
 	"strings"
@@ -202,12 +201,12 @@ func (s *managedpreferenceprofiles) FindManagedPreferenceProfiles(ctx context.Co
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.ManagedPreferenceProfiles
+			var out []operations.FindManagedPreferenceProfiles200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ManagedPreferenceProfiles = out
+			res.FindManagedPreferenceProfiles200ApplicationJSONObjects = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -259,12 +258,12 @@ func (s *managedpreferenceprofiles) FindManagedPreferenceProfilesByID(ctx contex
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ManagedPreferenceProfile
+			var out *operations.FindManagedPreferenceProfilesByID200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ManagedPreferenceProfile = out
+			res.FindManagedPreferenceProfilesByID200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -363,12 +362,12 @@ func (s *managedpreferenceprofiles) FindManagedPreferenceProfilesByName(ctx cont
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ManagedPreferenceProfile
+			var out *operations.FindManagedPreferenceProfilesByName200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ManagedPreferenceProfile = out
+			res.FindManagedPreferenceProfilesByName200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -421,12 +420,12 @@ func (s *managedpreferenceprofiles) FindManagedPreferenceProfilesByNameSubset(ct
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ManagedPreferenceProfile
+			var out *operations.FindManagedPreferenceProfilesByNameSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ManagedPreferenceProfile = out
+			res.FindManagedPreferenceProfilesByNameSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}

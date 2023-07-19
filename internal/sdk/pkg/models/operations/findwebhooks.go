@@ -3,9 +3,28 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindWebhooks200ApplicationXMLWebhook struct {
+	ID   *int64
+	Name *string
+}
+
+type FindWebhooks200ApplicationXML struct {
+	Size    *int64
+	Webhook *FindWebhooks200ApplicationXMLWebhook
+}
+
+type FindWebhooks200ApplicationJSONWebhook struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindWebhooks200ApplicationJSON struct {
+	Size    *int64                                 `json:"size,omitempty"`
+	Webhook *FindWebhooks200ApplicationJSONWebhook `json:"webhook,omitempty"`
+}
 
 type FindWebhooksResponse struct {
 	Body        []byte
@@ -13,5 +32,5 @@ type FindWebhooksResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Webhooks []shared.Webhooks
+	FindWebhooks200ApplicationJSONObjects []FindWebhooks200ApplicationJSON
 }

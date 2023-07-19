@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,163 @@ type FindComputerGroupsByIDRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+type FindComputerGroupsByID200ApplicationXMLComputersComputer struct {
+	AltMacAddress *string
+	ID            *int64
+	MacAddress    *string
+	// Name of the computer
+	Name         *string
+	SerialNumber *string
+}
+
+type FindComputerGroupsByID200ApplicationXMLComputers struct {
+	Computer *FindComputerGroupsByID200ApplicationXMLComputersComputer
+	Size     *int64
+}
+
+type FindComputerGroupsByID200ApplicationXMLCriteriaCriterionAndOr string
+
+const (
+	FindComputerGroupsByID200ApplicationXMLCriteriaCriterionAndOrAnd FindComputerGroupsByID200ApplicationXMLCriteriaCriterionAndOr = "and"
+	FindComputerGroupsByID200ApplicationXMLCriteriaCriterionAndOrOr  FindComputerGroupsByID200ApplicationXMLCriteriaCriterionAndOr = "or"
+)
+
+func (e FindComputerGroupsByID200ApplicationXMLCriteriaCriterionAndOr) ToPointer() *FindComputerGroupsByID200ApplicationXMLCriteriaCriterionAndOr {
+	return &e
+}
+
+func (e *FindComputerGroupsByID200ApplicationXMLCriteriaCriterionAndOr) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "and":
+		fallthrough
+	case "or":
+		*e = FindComputerGroupsByID200ApplicationXMLCriteriaCriterionAndOr(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindComputerGroupsByID200ApplicationXMLCriteriaCriterionAndOr: %v", v)
+	}
+}
+
+type FindComputerGroupsByID200ApplicationXMLCriteriaCriterion struct {
+	AndOr        *FindComputerGroupsByID200ApplicationXMLCriteriaCriterionAndOr
+	ClosingParen *bool
+	// Name of the criteria
+	Name         *string
+	OpeningParen *bool
+	Priority     *int64
+	// Operator
+	SearchType *string
+	Value      *string
+}
+
+type FindComputerGroupsByID200ApplicationXMLCriteria struct {
+	Criterion *FindComputerGroupsByID200ApplicationXMLCriteriaCriterion
+	Size      *int64
+}
+
+type FindComputerGroupsByID200ApplicationXMLSite struct {
+	ID *int64
+	// Name of the site
+	Name string
+}
+
+// FindComputerGroupsByID200ApplicationXML - OK
+type FindComputerGroupsByID200ApplicationXML struct {
+	Computers []FindComputerGroupsByID200ApplicationXMLComputers
+	Criteria  []FindComputerGroupsByID200ApplicationXMLCriteria
+	ID        *int64
+	// Smart or static group
+	IsSmart *bool
+	// Name of the group
+	Name *string
+	Site *FindComputerGroupsByID200ApplicationXMLSite
+}
+
+type FindComputerGroupsByID200ApplicationJSONComputersComputer struct {
+	AltMacAddress *string `json:"alt_mac_address,omitempty"`
+	ID            *int64  `json:"id,omitempty"`
+	MacAddress    *string `json:"mac_address,omitempty"`
+	// Name of the computer
+	Name         *string `json:"name,omitempty"`
+	SerialNumber *string `json:"serial_number,omitempty"`
+}
+
+type FindComputerGroupsByID200ApplicationJSONComputers struct {
+	Computer *FindComputerGroupsByID200ApplicationJSONComputersComputer `json:"computer,omitempty"`
+	Size     *int64                                                     `json:"size,omitempty"`
+}
+
+type FindComputerGroupsByID200ApplicationJSONCriteriaCriterionAndOr string
+
+const (
+	FindComputerGroupsByID200ApplicationJSONCriteriaCriterionAndOrAnd FindComputerGroupsByID200ApplicationJSONCriteriaCriterionAndOr = "and"
+	FindComputerGroupsByID200ApplicationJSONCriteriaCriterionAndOrOr  FindComputerGroupsByID200ApplicationJSONCriteriaCriterionAndOr = "or"
+)
+
+func (e FindComputerGroupsByID200ApplicationJSONCriteriaCriterionAndOr) ToPointer() *FindComputerGroupsByID200ApplicationJSONCriteriaCriterionAndOr {
+	return &e
+}
+
+func (e *FindComputerGroupsByID200ApplicationJSONCriteriaCriterionAndOr) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "and":
+		fallthrough
+	case "or":
+		*e = FindComputerGroupsByID200ApplicationJSONCriteriaCriterionAndOr(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindComputerGroupsByID200ApplicationJSONCriteriaCriterionAndOr: %v", v)
+	}
+}
+
+type FindComputerGroupsByID200ApplicationJSONCriteriaCriterion struct {
+	AndOr        *FindComputerGroupsByID200ApplicationJSONCriteriaCriterionAndOr `json:"and_or,omitempty"`
+	ClosingParen *bool                                                           `json:"closing_paren,omitempty"`
+	// Name of the criteria
+	Name         *string `json:"name,omitempty"`
+	OpeningParen *bool   `json:"opening_paren,omitempty"`
+	Priority     *int64  `json:"priority,omitempty"`
+	// Operator
+	SearchType *string `json:"search_type,omitempty"`
+	Value      *string `json:"value,omitempty"`
+}
+
+type FindComputerGroupsByID200ApplicationJSONCriteria struct {
+	Criterion *FindComputerGroupsByID200ApplicationJSONCriteriaCriterion `json:"criterion,omitempty"`
+	Size      *int64                                                     `json:"size,omitempty"`
+}
+
+type FindComputerGroupsByID200ApplicationJSONSite struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the site
+	Name string `json:"name"`
+}
+
+// FindComputerGroupsByID200ApplicationJSON - OK
+type FindComputerGroupsByID200ApplicationJSON struct {
+	Computers []FindComputerGroupsByID200ApplicationJSONComputers `json:"computers,omitempty"`
+	Criteria  []FindComputerGroupsByID200ApplicationJSONCriteria  `json:"criteria,omitempty"`
+	ID        *int64                                              `json:"id,omitempty"`
+	// Smart or static group
+	IsSmart *bool `json:"is_smart,omitempty"`
+	// Name of the group
+	Name *string                                       `json:"name,omitempty"`
+	Site *FindComputerGroupsByID200ApplicationJSONSite `json:"site,omitempty"`
+}
+
 type FindComputerGroupsByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ComputerGroup *shared.ComputerGroup
+	FindComputerGroupsByID200ApplicationJSONObject *FindComputerGroupsByID200ApplicationJSON
 }

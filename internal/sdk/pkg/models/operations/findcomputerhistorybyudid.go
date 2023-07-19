@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,429 @@ type FindComputerHistoryByUDIDRequest struct {
 	Udid string `pathParam:"style=simple,explode=false,name=udid"`
 }
 
+type FindComputerHistoryByUDID200ApplicationXMLAuditsAudit struct {
+	DateTime      *string
+	DateTimeEpoch *string
+	DateTimeUtc   *string
+	Event         *string
+	Username      *string
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLAudits struct {
+	Audit *FindComputerHistoryByUDID200ApplicationXMLAuditsAudit
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLCasperImagingLogsCasperImagingLog struct {
+	DateTime      *string
+	DateTimeEpoch *string
+	DateTimeUtc   *string
+	Status        *string
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLCasperImagingLogs struct {
+	CasperImagingLog *FindComputerHistoryByUDID200ApplicationXMLCasperImagingLogsCasperImagingLog
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLCasperRemoteLogsCasperRemoteLog struct {
+	DateTime      *string
+	DateTimeEpoch *string
+	DateTimeUtc   *string
+	Status        *string
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLCasperRemoteLogs struct {
+	CasperRemoteLog *FindComputerHistoryByUDID200ApplicationXMLCasperRemoteLogsCasperRemoteLog
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLCommandsCompletedCommand struct {
+	Completed      *string
+	CompletedEpoch *string
+	CompletedUtc   *string
+	Name           *string
+	Username       *string
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLCommandsCompleted struct {
+	Command *FindComputerHistoryByUDID200ApplicationXMLCommandsCompletedCommand
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLCommandsFailedCommand struct {
+	Failed      *string
+	FailedEpoch *string
+	FailedUtc   *string
+	Issued      *string
+	IssuedEpoch *string
+	IssuedUtc   *string
+	Name        *string
+	Status      *string
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLCommandsFailed struct {
+	Command *FindComputerHistoryByUDID200ApplicationXMLCommandsFailedCommand
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLCommandsPendingCommand struct {
+	Issued        *string
+	IssuedEpoch   *string
+	IssuedUtc     *string
+	LastPush      *string
+	LastPushEpoch *string
+	LastPushUtc   *string
+	Name          *string
+	Status        *string
+	Username      *string
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLCommandsPending struct {
+	Command *FindComputerHistoryByUDID200ApplicationXMLCommandsPendingCommand
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLCommands struct {
+	Completed []FindComputerHistoryByUDID200ApplicationXMLCommandsCompleted
+	Failed    []FindComputerHistoryByUDID200ApplicationXMLCommandsFailed
+	Pending   []FindComputerHistoryByUDID200ApplicationXMLCommandsPending
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLComputerUsageLogsUsageLog struct {
+	DateTime      *string
+	DateTimeEpoch *string
+	DateTimeUtc   *string
+	Event         *string
+	Username      *string
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLComputerUsageLogs struct {
+	UsageLog *FindComputerHistoryByUDID200ApplicationXMLComputerUsageLogsUsageLog
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLGeneral struct {
+	ID         *int64
+	MacAddress *string
+	// Name of the computer
+	Name         *string
+	SerialNumber *string
+	Udid         *string
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLMacAppStoreApplicationsFailedApp struct {
+	Deployed        *string
+	DeployedEpoch   *int64
+	DeployedUtc     *string
+	LastUpdate      *string
+	LastUpdateEpoch *int64
+	LastUpdateUtc   *string
+	Name            *string
+	Status          *string
+	Version         *string
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLMacAppStoreApplicationsFailed struct {
+	App *FindComputerHistoryByUDID200ApplicationXMLMacAppStoreApplicationsFailedApp
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLMacAppStoreApplicationsInstalledApp struct {
+	Name    *string
+	SizeMb  *string
+	Version *string
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLMacAppStoreApplicationsInstalled struct {
+	App *FindComputerHistoryByUDID200ApplicationXMLMacAppStoreApplicationsInstalledApp
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLMacAppStoreApplicationsPendingApp struct {
+	Deployed        *string
+	DeployedEpoch   *int64
+	DeployedUtc     *string
+	LastUpdate      *string
+	LastUpdateEpoch *int64
+	LastUpdateUtc   *string
+	Name            *string
+	Version         *string
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLMacAppStoreApplicationsPending struct {
+	App *FindComputerHistoryByUDID200ApplicationXMLMacAppStoreApplicationsPendingApp
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLMacAppStoreApplications struct {
+	Failed    []FindComputerHistoryByUDID200ApplicationXMLMacAppStoreApplicationsFailed
+	Installed []FindComputerHistoryByUDID200ApplicationXMLMacAppStoreApplicationsInstalled
+	Pending   []FindComputerHistoryByUDID200ApplicationXMLMacAppStoreApplicationsPending
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLPolicyLogsPolicyLog struct {
+	DateTime      *string
+	DateTimeEpoch *string
+	DateTimeUtc   *string
+	PolicyID      *int64
+	PolicyName    *string
+	Status        *string
+	Username      *string
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLPolicyLogs struct {
+	PolicyLog *FindComputerHistoryByUDID200ApplicationXMLPolicyLogsPolicyLog
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLScreenSharingLogsScreenSharingLog struct {
+	DateTime      *string
+	DateTimeEpoch *string
+	DateTimeUtc   *string
+	Details       *string
+	Status        *string
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLScreenSharingLogs struct {
+	ScreenSharingLog *FindComputerHistoryByUDID200ApplicationXMLScreenSharingLogsScreenSharingLog
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLUserLocationLocation struct {
+	Building      *string
+	DateTime      *string
+	DateTimeEpoch *string
+	DateTimeUtc   *string
+	Department    *string
+	EmailAddress  *string
+	FullName      *string
+	PhoneNumber   *string
+	Position      *string
+	Room          *string
+	Username      *string
+}
+
+type FindComputerHistoryByUDID200ApplicationXMLUserLocation struct {
+	Location *FindComputerHistoryByUDID200ApplicationXMLUserLocationLocation
+}
+
+// FindComputerHistoryByUDID200ApplicationXML - OK
+type FindComputerHistoryByUDID200ApplicationXML struct {
+	Audits                  []FindComputerHistoryByUDID200ApplicationXMLAudits
+	CasperImagingLogs       []FindComputerHistoryByUDID200ApplicationXMLCasperImagingLogs
+	CasperRemoteLogs        []FindComputerHistoryByUDID200ApplicationXMLCasperRemoteLogs
+	Commands                *FindComputerHistoryByUDID200ApplicationXMLCommands
+	ComputerUsageLogs       []FindComputerHistoryByUDID200ApplicationXMLComputerUsageLogs
+	General                 *FindComputerHistoryByUDID200ApplicationXMLGeneral
+	MacAppStoreApplications *FindComputerHistoryByUDID200ApplicationXMLMacAppStoreApplications
+	PolicyLogs              []FindComputerHistoryByUDID200ApplicationXMLPolicyLogs
+	ScreenSharingLogs       []FindComputerHistoryByUDID200ApplicationXMLScreenSharingLogs
+	UserLocation            []FindComputerHistoryByUDID200ApplicationXMLUserLocation
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONAuditsAudit struct {
+	DateTime      *string `json:"date_time,omitempty"`
+	DateTimeEpoch *string `json:"date_time_epoch,omitempty"`
+	DateTimeUtc   *string `json:"date_time_utc,omitempty"`
+	Event         *string `json:"event,omitempty"`
+	Username      *string `json:"username,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONAudits struct {
+	Audit *FindComputerHistoryByUDID200ApplicationJSONAuditsAudit `json:"audit,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONCasperImagingLogsCasperImagingLog struct {
+	DateTime      *string `json:"date_time,omitempty"`
+	DateTimeEpoch *string `json:"date_time_epoch,omitempty"`
+	DateTimeUtc   *string `json:"date_time_utc,omitempty"`
+	Status        *string `json:"status,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONCasperImagingLogs struct {
+	CasperImagingLog *FindComputerHistoryByUDID200ApplicationJSONCasperImagingLogsCasperImagingLog `json:"casper_imaging_log,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONCasperRemoteLogsCasperRemoteLog struct {
+	DateTime      *string `json:"date_time,omitempty"`
+	DateTimeEpoch *string `json:"date_time_epoch,omitempty"`
+	DateTimeUtc   *string `json:"date_time_utc,omitempty"`
+	Status        *string `json:"status,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONCasperRemoteLogs struct {
+	CasperRemoteLog *FindComputerHistoryByUDID200ApplicationJSONCasperRemoteLogsCasperRemoteLog `json:"casper_remote_log,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONCommandsCompletedCommand struct {
+	Completed      *string `json:"completed,omitempty"`
+	CompletedEpoch *string `json:"completed_epoch,omitempty"`
+	CompletedUtc   *string `json:"completed_utc,omitempty"`
+	Name           *string `json:"name,omitempty"`
+	Username       *string `json:"username,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONCommandsCompleted struct {
+	Command *FindComputerHistoryByUDID200ApplicationJSONCommandsCompletedCommand `json:"command,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONCommandsFailedCommand struct {
+	Failed      *string `json:"failed,omitempty"`
+	FailedEpoch *string `json:"failed_epoch,omitempty"`
+	FailedUtc   *string `json:"failed_utc,omitempty"`
+	Issued      *string `json:"issued,omitempty"`
+	IssuedEpoch *string `json:"issued_epoch,omitempty"`
+	IssuedUtc   *string `json:"issued_utc,omitempty"`
+	Name        *string `json:"name,omitempty"`
+	Status      *string `json:"status,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONCommandsFailed struct {
+	Command *FindComputerHistoryByUDID200ApplicationJSONCommandsFailedCommand `json:"command,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONCommandsPendingCommand struct {
+	Issued        *string `json:"issued,omitempty"`
+	IssuedEpoch   *string `json:"issued_epoch,omitempty"`
+	IssuedUtc     *string `json:"issued_utc,omitempty"`
+	LastPush      *string `json:"last_push,omitempty"`
+	LastPushEpoch *string `json:"last_push_epoch,omitempty"`
+	LastPushUtc   *string `json:"last_push_utc,omitempty"`
+	Name          *string `json:"name,omitempty"`
+	Status        *string `json:"status,omitempty"`
+	Username      *string `json:"username,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONCommandsPending struct {
+	Command *FindComputerHistoryByUDID200ApplicationJSONCommandsPendingCommand `json:"command,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONCommands struct {
+	Completed []FindComputerHistoryByUDID200ApplicationJSONCommandsCompleted `json:"completed,omitempty"`
+	Failed    []FindComputerHistoryByUDID200ApplicationJSONCommandsFailed    `json:"failed,omitempty"`
+	Pending   []FindComputerHistoryByUDID200ApplicationJSONCommandsPending   `json:"pending,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONComputerUsageLogsUsageLog struct {
+	DateTime      *string `json:"date_time,omitempty"`
+	DateTimeEpoch *string `json:"date_time_epoch,omitempty"`
+	DateTimeUtc   *string `json:"date_time_utc,omitempty"`
+	Event         *string `json:"event,omitempty"`
+	Username      *string `json:"username,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONComputerUsageLogs struct {
+	UsageLog *FindComputerHistoryByUDID200ApplicationJSONComputerUsageLogsUsageLog `json:"usage_log,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONGeneral struct {
+	ID         *int64  `json:"id,omitempty"`
+	MacAddress *string `json:"mac_address,omitempty"`
+	// Name of the computer
+	Name         *string `json:"name,omitempty"`
+	SerialNumber *string `json:"serial_number,omitempty"`
+	Udid         *string `json:"udid,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONMacAppStoreApplicationsFailedApp struct {
+	Deployed        *string `json:"deployed,omitempty"`
+	DeployedEpoch   *int64  `json:"deployed_epoch,omitempty"`
+	DeployedUtc     *string `json:"deployed_utc,omitempty"`
+	LastUpdate      *string `json:"last_update,omitempty"`
+	LastUpdateEpoch *int64  `json:"last_update_epoch,omitempty"`
+	LastUpdateUtc   *string `json:"last_update_utc,omitempty"`
+	Name            *string `json:"name,omitempty"`
+	Status          *string `json:"status,omitempty"`
+	Version         *string `json:"version,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONMacAppStoreApplicationsFailed struct {
+	App *FindComputerHistoryByUDID200ApplicationJSONMacAppStoreApplicationsFailedApp `json:"app,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONMacAppStoreApplicationsInstalledApp struct {
+	Name    *string `json:"name,omitempty"`
+	SizeMb  *string `json:"size_mb,omitempty"`
+	Version *string `json:"version,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONMacAppStoreApplicationsInstalled struct {
+	App *FindComputerHistoryByUDID200ApplicationJSONMacAppStoreApplicationsInstalledApp `json:"app,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONMacAppStoreApplicationsPendingApp struct {
+	Deployed        *string `json:"deployed,omitempty"`
+	DeployedEpoch   *int64  `json:"deployed_epoch,omitempty"`
+	DeployedUtc     *string `json:"deployed_utc,omitempty"`
+	LastUpdate      *string `json:"last_update,omitempty"`
+	LastUpdateEpoch *int64  `json:"last_update_epoch,omitempty"`
+	LastUpdateUtc   *string `json:"last_update_utc,omitempty"`
+	Name            *string `json:"name,omitempty"`
+	Version         *string `json:"version,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONMacAppStoreApplicationsPending struct {
+	App *FindComputerHistoryByUDID200ApplicationJSONMacAppStoreApplicationsPendingApp `json:"app,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONMacAppStoreApplications struct {
+	Failed    []FindComputerHistoryByUDID200ApplicationJSONMacAppStoreApplicationsFailed    `json:"failed,omitempty"`
+	Installed []FindComputerHistoryByUDID200ApplicationJSONMacAppStoreApplicationsInstalled `json:"installed,omitempty"`
+	Pending   []FindComputerHistoryByUDID200ApplicationJSONMacAppStoreApplicationsPending   `json:"pending,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONPolicyLogsPolicyLog struct {
+	DateTime      *string `json:"date_time,omitempty"`
+	DateTimeEpoch *string `json:"date_time_epoch,omitempty"`
+	DateTimeUtc   *string `json:"date_time_utc,omitempty"`
+	PolicyID      *int64  `json:"policy_id,omitempty"`
+	PolicyName    *string `json:"policy_name,omitempty"`
+	Status        *string `json:"status,omitempty"`
+	Username      *string `json:"username,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONPolicyLogs struct {
+	PolicyLog *FindComputerHistoryByUDID200ApplicationJSONPolicyLogsPolicyLog `json:"policy_log,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONScreenSharingLogsScreenSharingLog struct {
+	DateTime      *string `json:"date_time,omitempty"`
+	DateTimeEpoch *string `json:"date_time_epoch,omitempty"`
+	DateTimeUtc   *string `json:"date_time_utc,omitempty"`
+	Details       *string `json:"details,omitempty"`
+	Status        *string `json:"status,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONScreenSharingLogs struct {
+	ScreenSharingLog *FindComputerHistoryByUDID200ApplicationJSONScreenSharingLogsScreenSharingLog `json:"screen_sharing_log,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONUserLocationLocation struct {
+	Building      *string `json:"building,omitempty"`
+	DateTime      *string `json:"date_time,omitempty"`
+	DateTimeEpoch *string `json:"date_time_epoch,omitempty"`
+	DateTimeUtc   *string `json:"date_time_utc,omitempty"`
+	Department    *string `json:"department,omitempty"`
+	EmailAddress  *string `json:"email_address,omitempty"`
+	FullName      *string `json:"full_name,omitempty"`
+	PhoneNumber   *string `json:"phone_number,omitempty"`
+	Position      *string `json:"position,omitempty"`
+	Room          *string `json:"room,omitempty"`
+	Username      *string `json:"username,omitempty"`
+}
+
+type FindComputerHistoryByUDID200ApplicationJSONUserLocation struct {
+	Location *FindComputerHistoryByUDID200ApplicationJSONUserLocationLocation `json:"location,omitempty"`
+}
+
+// FindComputerHistoryByUDID200ApplicationJSON - OK
+type FindComputerHistoryByUDID200ApplicationJSON struct {
+	Audits                  []FindComputerHistoryByUDID200ApplicationJSONAudits                 `json:"audits,omitempty"`
+	CasperImagingLogs       []FindComputerHistoryByUDID200ApplicationJSONCasperImagingLogs      `json:"casper_imaging_logs,omitempty"`
+	CasperRemoteLogs        []FindComputerHistoryByUDID200ApplicationJSONCasperRemoteLogs       `json:"casper_remote_logs,omitempty"`
+	Commands                *FindComputerHistoryByUDID200ApplicationJSONCommands                `json:"commands,omitempty"`
+	ComputerUsageLogs       []FindComputerHistoryByUDID200ApplicationJSONComputerUsageLogs      `json:"computer_usage_logs,omitempty"`
+	General                 *FindComputerHistoryByUDID200ApplicationJSONGeneral                 `json:"general,omitempty"`
+	MacAppStoreApplications *FindComputerHistoryByUDID200ApplicationJSONMacAppStoreApplications `json:"mac_app_store_applications,omitempty"`
+	PolicyLogs              []FindComputerHistoryByUDID200ApplicationJSONPolicyLogs             `json:"policy_logs,omitempty"`
+	ScreenSharingLogs       []FindComputerHistoryByUDID200ApplicationJSONScreenSharingLogs      `json:"screen_sharing_logs,omitempty"`
+	UserLocation            []FindComputerHistoryByUDID200ApplicationJSONUserLocation           `json:"user_location,omitempty"`
+}
+
 type FindComputerHistoryByUDIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ComputerHistory *shared.ComputerHistory
+	FindComputerHistoryByUDID200ApplicationJSONObject *FindComputerHistoryByUDID200ApplicationJSON
 }

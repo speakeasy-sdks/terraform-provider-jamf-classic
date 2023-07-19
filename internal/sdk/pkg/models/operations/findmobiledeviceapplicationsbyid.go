@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,667 @@ type FindMobileDeviceApplicationsByIDRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+type FindMobileDeviceApplicationsByID200ApplicationXMLAppConfiguration struct {
+	Preferences *string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLGeneralCategory struct {
+	ID *int64
+	// Name of the category
+	Name string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLGeneralDeploymentType string
+
+const (
+	FindMobileDeviceApplicationsByID200ApplicationXMLGeneralDeploymentTypeMakeAvailableInSelfService               FindMobileDeviceApplicationsByID200ApplicationXMLGeneralDeploymentType = "Make Available in Self Service"
+	FindMobileDeviceApplicationsByID200ApplicationXMLGeneralDeploymentTypeInstallAutomaticallyPromptUsersToInstall FindMobileDeviceApplicationsByID200ApplicationXMLGeneralDeploymentType = "Install Automatically/Prompt Users to Install"
+)
+
+func (e FindMobileDeviceApplicationsByID200ApplicationXMLGeneralDeploymentType) ToPointer() *FindMobileDeviceApplicationsByID200ApplicationXMLGeneralDeploymentType {
+	return &e
+}
+
+func (e *FindMobileDeviceApplicationsByID200ApplicationXMLGeneralDeploymentType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Make Available in Self Service":
+		fallthrough
+	case "Install Automatically/Prompt Users to Install":
+		*e = FindMobileDeviceApplicationsByID200ApplicationXMLGeneralDeploymentType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindMobileDeviceApplicationsByID200ApplicationXMLGeneralDeploymentType: %v", v)
+	}
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLGeneralIcon struct {
+	// base64 encoded
+	Data *string
+	ID   *int64
+	Name *string
+	URI  *string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLGeneralIpa struct {
+	Data *string
+	Name *string
+	URI  *string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLGeneralSite struct {
+	ID *int64
+	// Name of the site
+	Name string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLGeneral struct {
+	BundleID                         string
+	Category                         *FindMobileDeviceApplicationsByID200ApplicationXMLGeneralCategory
+	DeployAsManagedApp               *bool
+	DeployAutomatically              *bool
+	DeploymentType                   *FindMobileDeviceApplicationsByID200ApplicationXMLGeneralDeploymentType
+	Description                      *string
+	DisplayName                      *string
+	ExternalURL                      *string
+	Free                             *bool
+	HostExternally                   *bool
+	Icon                             *FindMobileDeviceApplicationsByID200ApplicationXMLGeneralIcon
+	ID                               *int64
+	InternalApp                      *bool
+	Ipa                              *FindMobileDeviceApplicationsByID200ApplicationXMLGeneralIpa
+	ItunesCountryRegion              *string
+	ItunesStoreURL                   *string
+	ItunesSyncTime                   *int64
+	KeepDescriptionAndIconUpToDate   *bool
+	MakeAvailableAfterInstall        *bool
+	MobileDeviceProvisioningProfile  *int64
+	Name                             string
+	PreventBackupOfAppData           *bool
+	RemoveAppWhenMdmProfileIsRemoved *bool
+	Site                             *FindMobileDeviceApplicationsByID200ApplicationXMLGeneralSite
+	TakeOverManagement               *bool
+	Version                          string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeBuildingsBuilding struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeBuildings struct {
+	Building *FindMobileDeviceApplicationsByID200ApplicationXMLScopeBuildingsBuilding
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeDepartmentsDepartment struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeDepartments struct {
+	Department *FindMobileDeviceApplicationsByID200ApplicationXMLScopeDepartmentsDepartment
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsBuildingsBuilding struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsBuildings struct {
+	Building *FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsBuildingsBuilding
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsDepartmentsDepartment struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsDepartments struct {
+	Department *FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsDepartmentsDepartment
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsJssUserGroupsUserGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsJssUserGroups struct {
+	UserGroup *FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsJssUserGroupsUserGroup
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsJssUsersUser struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsJssUsers struct {
+	User *FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsJssUsersUser
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsMobileDeviceGroupsMobileDeviceGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsMobileDeviceGroups struct {
+	MobileDeviceGroup *FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsMobileDeviceGroupsMobileDeviceGroup
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsMobileDevicesMobileDevice struct {
+	ID *int64
+	// Name of the device
+	Name           *string
+	Udid           *string
+	WifiMacAddress *string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsMobileDevices struct {
+	MobileDevice *FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsMobileDevicesMobileDevice
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsNetworkSegmentsNetworkSegment struct {
+	ID *int64
+	// Name of the network segment
+	Name *string
+	UID  *string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsNetworkSegments struct {
+	NetworkSegment *FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsNetworkSegmentsNetworkSegment
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsUserGroupsUserGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsUserGroups struct {
+	UserGroup *FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsUserGroupsUserGroup
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsUsersUser struct {
+	Name *string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsUsers struct {
+	User *FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsUsersUser
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusions struct {
+	Buildings          []FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsBuildings
+	Departments        []FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsDepartments
+	JssUserGroups      []FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsJssUserGroups
+	JssUsers           []FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsJssUsers
+	MobileDeviceGroups []FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsMobileDeviceGroups
+	MobileDevices      []FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsMobileDevices
+	NetworkSegments    []FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsNetworkSegments
+	UserGroups         []FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsUserGroups
+	Users              []FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusionsUsers
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeJssUserGroupsUserGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeJssUserGroups struct {
+	UserGroup *FindMobileDeviceApplicationsByID200ApplicationXMLScopeJssUserGroupsUserGroup
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeJssUsersUser struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeJssUsers struct {
+	User *FindMobileDeviceApplicationsByID200ApplicationXMLScopeJssUsersUser
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeLimitationsNetworkSegmentsNetworkSegment struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeLimitationsNetworkSegments struct {
+	NetworkSegment *FindMobileDeviceApplicationsByID200ApplicationXMLScopeLimitationsNetworkSegmentsNetworkSegment
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeLimitationsUserGroupsUserGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeLimitationsUserGroups struct {
+	UserGroup *FindMobileDeviceApplicationsByID200ApplicationXMLScopeLimitationsUserGroupsUserGroup
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeLimitationsUsersUser struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeLimitationsUsers struct {
+	User *FindMobileDeviceApplicationsByID200ApplicationXMLScopeLimitationsUsersUser
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeLimitations struct {
+	NetworkSegments []FindMobileDeviceApplicationsByID200ApplicationXMLScopeLimitationsNetworkSegments
+	UserGroups      []FindMobileDeviceApplicationsByID200ApplicationXMLScopeLimitationsUserGroups
+	Users           []FindMobileDeviceApplicationsByID200ApplicationXMLScopeLimitationsUsers
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeMobileDeviceGroupsMobileDeviceGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeMobileDeviceGroups struct {
+	MobileDeviceGroup *FindMobileDeviceApplicationsByID200ApplicationXMLScopeMobileDeviceGroupsMobileDeviceGroup
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeMobileDevicesMobileDevice struct {
+	ID *int64
+	// Name of the device
+	Name           *string
+	Udid           *string
+	WifiMacAddress *string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScopeMobileDevices struct {
+	MobileDevice *FindMobileDeviceApplicationsByID200ApplicationXMLScopeMobileDevicesMobileDevice
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLScope struct {
+	AllJssUsers        *bool
+	AllMobileDevices   *bool
+	Buildings          []FindMobileDeviceApplicationsByID200ApplicationXMLScopeBuildings
+	Departments        []FindMobileDeviceApplicationsByID200ApplicationXMLScopeDepartments
+	Exclusions         *FindMobileDeviceApplicationsByID200ApplicationXMLScopeExclusions
+	JssUserGroups      []FindMobileDeviceApplicationsByID200ApplicationXMLScopeJssUserGroups
+	JssUsers           []FindMobileDeviceApplicationsByID200ApplicationXMLScopeJssUsers
+	Limitations        *FindMobileDeviceApplicationsByID200ApplicationXMLScopeLimitations
+	MobileDeviceGroups []FindMobileDeviceApplicationsByID200ApplicationXMLScopeMobileDeviceGroups
+	MobileDevices      []FindMobileDeviceApplicationsByID200ApplicationXMLScopeMobileDevices
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLSelfServiceSelfServiceCategoriesCategory struct {
+	DisplayIn *bool
+	ID        *int64
+	Name      *string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLSelfServiceSelfServiceCategories struct {
+	Category *FindMobileDeviceApplicationsByID200ApplicationXMLSelfServiceSelfServiceCategoriesCategory
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLSelfServiceSelfServiceIcon struct {
+	// base64 encoded
+	Data *string
+	ID   *int64
+	Name *string
+	URI  *string
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLSelfService struct {
+	FeatureOnMainPage      *bool
+	Notification           *bool
+	NotificationMessage    *string
+	NotificationSubject    *string
+	SelfServiceCategories  []FindMobileDeviceApplicationsByID200ApplicationXMLSelfServiceSelfServiceCategories
+	SelfServiceDescription *string
+	SelfServiceIcon        *FindMobileDeviceApplicationsByID200ApplicationXMLSelfServiceSelfServiceIcon
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationXMLVpp struct {
+	AssignVppDeviceBasedLicenses *bool
+	VppAdminAccountID            *int64
+}
+
+// FindMobileDeviceApplicationsByID200ApplicationXML - OK
+type FindMobileDeviceApplicationsByID200ApplicationXML struct {
+	AppConfiguration *FindMobileDeviceApplicationsByID200ApplicationXMLAppConfiguration
+	General          *FindMobileDeviceApplicationsByID200ApplicationXMLGeneral
+	Scope            *FindMobileDeviceApplicationsByID200ApplicationXMLScope
+	SelfService      *FindMobileDeviceApplicationsByID200ApplicationXMLSelfService
+	Vpp              *FindMobileDeviceApplicationsByID200ApplicationXMLVpp
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONAppConfiguration struct {
+	Preferences *string `json:"preferences,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONGeneralCategory struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the category
+	Name string `json:"name"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONGeneralDeploymentType string
+
+const (
+	FindMobileDeviceApplicationsByID200ApplicationJSONGeneralDeploymentTypeMakeAvailableInSelfService               FindMobileDeviceApplicationsByID200ApplicationJSONGeneralDeploymentType = "Make Available in Self Service"
+	FindMobileDeviceApplicationsByID200ApplicationJSONGeneralDeploymentTypeInstallAutomaticallyPromptUsersToInstall FindMobileDeviceApplicationsByID200ApplicationJSONGeneralDeploymentType = "Install Automatically/Prompt Users to Install"
+)
+
+func (e FindMobileDeviceApplicationsByID200ApplicationJSONGeneralDeploymentType) ToPointer() *FindMobileDeviceApplicationsByID200ApplicationJSONGeneralDeploymentType {
+	return &e
+}
+
+func (e *FindMobileDeviceApplicationsByID200ApplicationJSONGeneralDeploymentType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Make Available in Self Service":
+		fallthrough
+	case "Install Automatically/Prompt Users to Install":
+		*e = FindMobileDeviceApplicationsByID200ApplicationJSONGeneralDeploymentType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindMobileDeviceApplicationsByID200ApplicationJSONGeneralDeploymentType: %v", v)
+	}
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONGeneralIcon struct {
+	// base64 encoded
+	Data *string `json:"data,omitempty"`
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+	URI  *string `json:"uri,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONGeneralIpa struct {
+	Data *string `json:"data,omitempty"`
+	Name *string `json:"name,omitempty"`
+	URI  *string `json:"uri,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONGeneralSite struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the site
+	Name string `json:"name"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONGeneral struct {
+	BundleID                         string                                                                   `json:"bundle_id"`
+	Category                         *FindMobileDeviceApplicationsByID200ApplicationJSONGeneralCategory       `json:"category,omitempty"`
+	DeployAsManagedApp               *bool                                                                    `json:"deploy_as_managed_app,omitempty"`
+	DeployAutomatically              *bool                                                                    `json:"deploy_automatically,omitempty"`
+	DeploymentType                   *FindMobileDeviceApplicationsByID200ApplicationJSONGeneralDeploymentType `json:"deployment_type,omitempty"`
+	Description                      *string                                                                  `json:"description,omitempty"`
+	DisplayName                      *string                                                                  `json:"display_name,omitempty"`
+	ExternalURL                      *string                                                                  `json:"external_url,omitempty"`
+	Free                             *bool                                                                    `json:"free,omitempty"`
+	HostExternally                   *bool                                                                    `json:"host_externally,omitempty"`
+	Icon                             *FindMobileDeviceApplicationsByID200ApplicationJSONGeneralIcon           `json:"icon,omitempty"`
+	ID                               *int64                                                                   `json:"id,omitempty"`
+	InternalApp                      *bool                                                                    `json:"internal_app,omitempty"`
+	Ipa                              *FindMobileDeviceApplicationsByID200ApplicationJSONGeneralIpa            `json:"ipa,omitempty"`
+	ItunesCountryRegion              *string                                                                  `json:"itunes_country_region,omitempty"`
+	ItunesStoreURL                   *string                                                                  `json:"itunes_store_url,omitempty"`
+	ItunesSyncTime                   *int64                                                                   `json:"itunes_sync_time,omitempty"`
+	KeepDescriptionAndIconUpToDate   *bool                                                                    `json:"keep_description_and_icon_up_to_date,omitempty"`
+	MakeAvailableAfterInstall        *bool                                                                    `json:"make_available_after_install,omitempty"`
+	MobileDeviceProvisioningProfile  *int64                                                                   `json:"mobile_device_provisioning_profile,omitempty"`
+	Name                             string                                                                   `json:"name"`
+	PreventBackupOfAppData           *bool                                                                    `json:"prevent_backup_of_app_data,omitempty"`
+	RemoveAppWhenMdmProfileIsRemoved *bool                                                                    `json:"remove_app_when_mdm_profile_is_removed,omitempty"`
+	Site                             *FindMobileDeviceApplicationsByID200ApplicationJSONGeneralSite           `json:"site,omitempty"`
+	TakeOverManagement               *bool                                                                    `json:"take_over_management,omitempty"`
+	Version                          string                                                                   `json:"version"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeBuildingsBuilding struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeBuildings struct {
+	Building *FindMobileDeviceApplicationsByID200ApplicationJSONScopeBuildingsBuilding `json:"building,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeDepartmentsDepartment struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeDepartments struct {
+	Department *FindMobileDeviceApplicationsByID200ApplicationJSONScopeDepartmentsDepartment `json:"department,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsBuildingsBuilding struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsBuildings struct {
+	Building *FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsBuildingsBuilding `json:"building,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsDepartmentsDepartment struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsDepartments struct {
+	Department *FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsDepartmentsDepartment `json:"department,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsJssUserGroupsUserGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsJssUserGroups struct {
+	UserGroup *FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsJssUserGroupsUserGroup `json:"user_group,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsJssUsersUser struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsJssUsers struct {
+	User *FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsJssUsersUser `json:"user,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsMobileDeviceGroupsMobileDeviceGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsMobileDeviceGroups struct {
+	MobileDeviceGroup *FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsMobileDeviceGroupsMobileDeviceGroup `json:"mobile_device_group,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsMobileDevicesMobileDevice struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the device
+	Name           *string `json:"name,omitempty"`
+	Udid           *string `json:"udid,omitempty"`
+	WifiMacAddress *string `json:"wifi_mac_address,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsMobileDevices struct {
+	MobileDevice *FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsMobileDevicesMobileDevice `json:"mobile_device,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsNetworkSegmentsNetworkSegment struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the network segment
+	Name *string `json:"name,omitempty"`
+	UID  *string `json:"uid,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsNetworkSegments struct {
+	NetworkSegment *FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsNetworkSegmentsNetworkSegment `json:"network_segment,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsUserGroupsUserGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsUserGroups struct {
+	UserGroup *FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsUserGroupsUserGroup `json:"user_group,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsUsersUser struct {
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsUsers struct {
+	User *FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsUsersUser `json:"user,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusions struct {
+	Buildings          []FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsBuildings          `json:"buildings,omitempty"`
+	Departments        []FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsDepartments        `json:"departments,omitempty"`
+	JssUserGroups      []FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsJssUserGroups      `json:"jss_user_groups,omitempty"`
+	JssUsers           []FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsJssUsers           `json:"jss_users,omitempty"`
+	MobileDeviceGroups []FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsMobileDeviceGroups `json:"mobile_device_groups,omitempty"`
+	MobileDevices      []FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsMobileDevices      `json:"mobile_devices,omitempty"`
+	NetworkSegments    []FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsNetworkSegments    `json:"network_segments,omitempty"`
+	UserGroups         []FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsUserGroups         `json:"user_groups,omitempty"`
+	Users              []FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusionsUsers              `json:"users,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeJssUserGroupsUserGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeJssUserGroups struct {
+	UserGroup *FindMobileDeviceApplicationsByID200ApplicationJSONScopeJssUserGroupsUserGroup `json:"user_group,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeJssUsersUser struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeJssUsers struct {
+	User *FindMobileDeviceApplicationsByID200ApplicationJSONScopeJssUsersUser `json:"user,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeLimitationsNetworkSegmentsNetworkSegment struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeLimitationsNetworkSegments struct {
+	NetworkSegment *FindMobileDeviceApplicationsByID200ApplicationJSONScopeLimitationsNetworkSegmentsNetworkSegment `json:"network_segment,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeLimitationsUserGroupsUserGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeLimitationsUserGroups struct {
+	UserGroup *FindMobileDeviceApplicationsByID200ApplicationJSONScopeLimitationsUserGroupsUserGroup `json:"user_group,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeLimitationsUsersUser struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeLimitationsUsers struct {
+	User *FindMobileDeviceApplicationsByID200ApplicationJSONScopeLimitationsUsersUser `json:"user,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeLimitations struct {
+	NetworkSegments []FindMobileDeviceApplicationsByID200ApplicationJSONScopeLimitationsNetworkSegments `json:"network_segments,omitempty"`
+	UserGroups      []FindMobileDeviceApplicationsByID200ApplicationJSONScopeLimitationsUserGroups      `json:"user_groups,omitempty"`
+	Users           []FindMobileDeviceApplicationsByID200ApplicationJSONScopeLimitationsUsers           `json:"users,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeMobileDeviceGroupsMobileDeviceGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeMobileDeviceGroups struct {
+	MobileDeviceGroup *FindMobileDeviceApplicationsByID200ApplicationJSONScopeMobileDeviceGroupsMobileDeviceGroup `json:"mobile_device_group,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeMobileDevicesMobileDevice struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the device
+	Name           *string `json:"name,omitempty"`
+	Udid           *string `json:"udid,omitempty"`
+	WifiMacAddress *string `json:"wifi_mac_address,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScopeMobileDevices struct {
+	MobileDevice *FindMobileDeviceApplicationsByID200ApplicationJSONScopeMobileDevicesMobileDevice `json:"mobile_device,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONScope struct {
+	AllJssUsers        *bool                                                                       `json:"all_jss_users,omitempty"`
+	AllMobileDevices   *bool                                                                       `json:"all_mobile_devices,omitempty"`
+	Buildings          []FindMobileDeviceApplicationsByID200ApplicationJSONScopeBuildings          `json:"buildings,omitempty"`
+	Departments        []FindMobileDeviceApplicationsByID200ApplicationJSONScopeDepartments        `json:"departments,omitempty"`
+	Exclusions         *FindMobileDeviceApplicationsByID200ApplicationJSONScopeExclusions          `json:"exclusions,omitempty"`
+	JssUserGroups      []FindMobileDeviceApplicationsByID200ApplicationJSONScopeJssUserGroups      `json:"jss_user_groups,omitempty"`
+	JssUsers           []FindMobileDeviceApplicationsByID200ApplicationJSONScopeJssUsers           `json:"jss_users,omitempty"`
+	Limitations        *FindMobileDeviceApplicationsByID200ApplicationJSONScopeLimitations         `json:"limitations,omitempty"`
+	MobileDeviceGroups []FindMobileDeviceApplicationsByID200ApplicationJSONScopeMobileDeviceGroups `json:"mobile_device_groups,omitempty"`
+	MobileDevices      []FindMobileDeviceApplicationsByID200ApplicationJSONScopeMobileDevices      `json:"mobile_devices,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONSelfServiceSelfServiceCategoriesCategory struct {
+	DisplayIn *bool   `json:"display_in,omitempty"`
+	ID        *int64  `json:"id,omitempty"`
+	Name      *string `json:"name,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONSelfServiceSelfServiceCategories struct {
+	Category *FindMobileDeviceApplicationsByID200ApplicationJSONSelfServiceSelfServiceCategoriesCategory `json:"category,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONSelfServiceSelfServiceIcon struct {
+	// base64 encoded
+	Data *string `json:"data,omitempty"`
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+	URI  *string `json:"uri,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONSelfService struct {
+	FeatureOnMainPage      *bool                                                                                `json:"feature_on_main_page,omitempty"`
+	Notification           *bool                                                                                `json:"notification,omitempty"`
+	NotificationMessage    *string                                                                              `json:"notification_message,omitempty"`
+	NotificationSubject    *string                                                                              `json:"notification_subject,omitempty"`
+	SelfServiceCategories  []FindMobileDeviceApplicationsByID200ApplicationJSONSelfServiceSelfServiceCategories `json:"self_service_categories,omitempty"`
+	SelfServiceDescription *string                                                                              `json:"self_service_description,omitempty"`
+	SelfServiceIcon        *FindMobileDeviceApplicationsByID200ApplicationJSONSelfServiceSelfServiceIcon        `json:"self_service_icon,omitempty"`
+}
+
+type FindMobileDeviceApplicationsByID200ApplicationJSONVpp struct {
+	AssignVppDeviceBasedLicenses *bool  `json:"assign_vpp_device_based_licenses,omitempty"`
+	VppAdminAccountID            *int64 `json:"vpp_admin_account_id,omitempty"`
+}
+
+// FindMobileDeviceApplicationsByID200ApplicationJSON - OK
+type FindMobileDeviceApplicationsByID200ApplicationJSON struct {
+	AppConfiguration *FindMobileDeviceApplicationsByID200ApplicationJSONAppConfiguration `json:"app_configuration,omitempty"`
+	General          *FindMobileDeviceApplicationsByID200ApplicationJSONGeneral          `json:"general,omitempty"`
+	Scope            *FindMobileDeviceApplicationsByID200ApplicationJSONScope            `json:"scope,omitempty"`
+	SelfService      *FindMobileDeviceApplicationsByID200ApplicationJSONSelfService      `json:"self_service,omitempty"`
+	Vpp              *FindMobileDeviceApplicationsByID200ApplicationJSONVpp              `json:"vpp,omitempty"`
+}
+
 type FindMobileDeviceApplicationsByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	MobileDeviceApplication *shared.MobileDeviceApplication
+	FindMobileDeviceApplicationsByID200ApplicationJSONObject *FindMobileDeviceApplicationsByID200ApplicationJSON
 }

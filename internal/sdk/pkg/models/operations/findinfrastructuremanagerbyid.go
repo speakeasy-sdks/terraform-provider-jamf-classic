@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,37 @@ type FindInfrastructureManagerByIDRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+// FindInfrastructureManagerByID200ApplicationXML - OK
+type FindInfrastructureManagerByID200ApplicationXML struct {
+	Hostname                  *string
+	ID                        *int64
+	LastCheckIn               *string
+	LastReportedIP            *string
+	Name                      *string
+	OperatingSystem           *string
+	OperatingSystemVersion    *string
+	RecurringCheckInFrequency *int64
+	UUID                      *string
+}
+
+// FindInfrastructureManagerByID200ApplicationJSON - OK
+type FindInfrastructureManagerByID200ApplicationJSON struct {
+	Hostname                  *string `json:"hostname,omitempty"`
+	ID                        *int64  `json:"id,omitempty"`
+	LastCheckIn               *string `json:"last_check_in,omitempty"`
+	LastReportedIP            *string `json:"last_reported_ip,omitempty"`
+	Name                      *string `json:"name,omitempty"`
+	OperatingSystem           *string `json:"operating_system,omitempty"`
+	OperatingSystemVersion    *string `json:"operating_system_version,omitempty"`
+	RecurringCheckInFrequency *int64  `json:"recurring_check_in_frequency,omitempty"`
+	UUID                      *string `json:"uuid,omitempty"`
+}
+
 type FindInfrastructureManagerByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	InfrastructureManager *shared.InfrastructureManager
+	FindInfrastructureManagerByID200ApplicationJSONObject *FindInfrastructureManagerByID200ApplicationJSON
 }

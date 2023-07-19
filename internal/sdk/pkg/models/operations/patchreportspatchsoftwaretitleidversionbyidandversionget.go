@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -14,11 +13,67 @@ type PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGetRequest struct {
 	Version string `pathParam:"style=simple,explode=false,name=version"`
 }
 
+type PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet200ApplicationXMLVersionsVersionComputersComputer struct {
+	ID   *int64
+	Name *string
+}
+
+type PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet200ApplicationXMLVersionsVersionComputers struct {
+	Computer *PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet200ApplicationXMLVersionsVersionComputersComputer
+	Size     *int64
+}
+
+type PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet200ApplicationXMLVersionsVersion struct {
+	Computers       []PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet200ApplicationXMLVersionsVersionComputers
+	SoftwareVersion *string
+}
+
+type PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet200ApplicationXMLVersions struct {
+	Version *PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet200ApplicationXMLVersionsVersion
+}
+
+// PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet200ApplicationXML - OK
+type PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet200ApplicationXML struct {
+	Name                 *string
+	PatchSoftwareTitleID *string
+	TotalComputers       *int64
+	TotalVersions        *int64
+	Versions             []PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet200ApplicationXMLVersions
+}
+
+type PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet200ApplicationJSONVersionsVersionComputersComputer struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet200ApplicationJSONVersionsVersionComputers struct {
+	Computer *PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet200ApplicationJSONVersionsVersionComputersComputer `json:"computer,omitempty"`
+	Size     *int64                                                                                                      `json:"size,omitempty"`
+}
+
+type PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet200ApplicationJSONVersionsVersion struct {
+	Computers       []PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet200ApplicationJSONVersionsVersionComputers `json:"computers,omitempty"`
+	SoftwareVersion *string                                                                                              `json:"software_version,omitempty"`
+}
+
+type PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet200ApplicationJSONVersions struct {
+	Version *PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet200ApplicationJSONVersionsVersion `json:"version,omitempty"`
+}
+
+// PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet200ApplicationJSON - OK
+type PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet200ApplicationJSON struct {
+	Name                 *string                                                                              `json:"name,omitempty"`
+	PatchSoftwareTitleID *string                                                                              `json:"patch_software_title_id,omitempty"`
+	TotalComputers       *int64                                                                               `json:"total_computers,omitempty"`
+	TotalVersions        *int64                                                                               `json:"total_versions,omitempty"`
+	Versions             []PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet200ApplicationJSONVersions `json:"versions,omitempty"`
+}
+
 type PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGetResponse struct {
 	Body        []byte
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// OK
-	PatchReport *shared.PatchReport
+	PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet200ApplicationJSONObject *PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet200ApplicationJSON
+	StatusCode                                                                       int
+	RawResponse                                                                      *http.Response
 }

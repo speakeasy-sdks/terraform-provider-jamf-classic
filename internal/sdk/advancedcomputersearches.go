@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"io"
 	"jamf/internal/sdk/pkg/models/operations"
-	"jamf/internal/sdk/pkg/models/shared"
 	"jamf/internal/sdk/pkg/utils"
 	"net/http"
 	"strings"
@@ -202,12 +201,12 @@ func (s *advancedcomputersearches) FindAdvancedComputerSearches(ctx context.Cont
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.AdvancedComputerSearches
+			var out []operations.FindAdvancedComputerSearches200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.AdvancedComputerSearches = out
+			res.FindAdvancedComputerSearches200ApplicationJSONObjects = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -261,12 +260,12 @@ func (s *advancedcomputersearches) FindAdvancedComputerSearchesByID(ctx context.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.AdvancedComputerSearch
+			var out *operations.FindAdvancedComputerSearchesByID200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.AdvancedComputerSearch = out
+			res.FindAdvancedComputerSearchesByID200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -319,12 +318,12 @@ func (s *advancedcomputersearches) FindAdvancedComputerSearchesByName(ctx contex
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.AdvancedComputerSearch
+			var out *operations.FindAdvancedComputerSearchesByName200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.AdvancedComputerSearch = out
+			res.FindAdvancedComputerSearchesByName200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}

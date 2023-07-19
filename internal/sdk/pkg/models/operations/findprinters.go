@@ -3,9 +3,28 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindPrinters200ApplicationXMLPrinter struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPrinters200ApplicationXML struct {
+	Printer *FindPrinters200ApplicationXMLPrinter
+	Size    *int64
+}
+
+type FindPrinters200ApplicationJSONPrinter struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPrinters200ApplicationJSON struct {
+	Printer *FindPrinters200ApplicationJSONPrinter `json:"printer,omitempty"`
+	Size    *int64                                 `json:"size,omitempty"`
+}
 
 type FindPrintersResponse struct {
 	Body        []byte
@@ -13,5 +32,5 @@ type FindPrintersResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Printers []shared.Printers
+	FindPrinters200ApplicationJSONObjects []FindPrinters200ApplicationJSON
 }

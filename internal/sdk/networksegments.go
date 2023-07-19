@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"io"
 	"jamf/internal/sdk/pkg/models/operations"
-	"jamf/internal/sdk/pkg/models/shared"
 	"jamf/internal/sdk/pkg/utils"
 	"net/http"
 	"strings"
@@ -202,12 +201,12 @@ func (s *networksegments) FindNetworkSegments(ctx context.Context) (*operations.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.NetworkSegments
+			var out []operations.FindNetworkSegments200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.NetworkSegments = out
+			res.FindNetworkSegments200ApplicationJSONObjects = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -259,12 +258,12 @@ func (s *networksegments) FindNetworkSegmentsByID(ctx context.Context, request o
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.NetworkSegment
+			var out *operations.FindNetworkSegmentsByID200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.NetworkSegment = out
+			res.FindNetworkSegmentsByID200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -316,12 +315,12 @@ func (s *networksegments) FindNetworkSegmentsByName(ctx context.Context, request
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.NetworkSegment
+			var out *operations.FindNetworkSegmentsByName200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.NetworkSegment = out
+			res.FindNetworkSegmentsByName200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}

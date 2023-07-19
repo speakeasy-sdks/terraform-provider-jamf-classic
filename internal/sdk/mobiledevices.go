@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"io"
 	"jamf/internal/sdk/pkg/models/operations"
-	"jamf/internal/sdk/pkg/models/shared"
 	"jamf/internal/sdk/pkg/utils"
 	"net/http"
 	"strings"
@@ -341,12 +340,12 @@ func (s *mobiledevices) FindMobileDevices(ctx context.Context) (*operations.Find
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.MobileDevices
+			var out []operations.FindMobileDevices200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.MobileDevices = out
+			res.FindMobileDevices200ApplicationJSONObjects = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -398,12 +397,12 @@ func (s *mobiledevices) FindMobileDevicesByID(ctx context.Context, request opera
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.MobileDevice
+			var out *operations.FindMobileDevicesByID200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.MobileDevice = out
+			res.FindMobileDevicesByID200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -502,12 +501,12 @@ func (s *mobiledevices) FindMobileDevicesByMacAddress(ctx context.Context, reque
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.MobileDevice
+			var out *operations.FindMobileDevicesByMacAddress200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.MobileDevice = out
+			res.FindMobileDevicesByMacAddress200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -560,12 +559,12 @@ func (s *mobiledevices) FindMobileDevicesByMacAddressSubset(ctx context.Context,
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.MobileDevice
+			var out *operations.FindMobileDevicesByMacAddressSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.MobileDevice = out
+			res.FindMobileDevicesByMacAddressSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -617,12 +616,12 @@ func (s *mobiledevices) FindMobileDevicesByName(ctx context.Context, request ope
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.MobileDevice
+			var out *operations.FindMobileDevicesByName200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.MobileDevice = out
+			res.FindMobileDevicesByName200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -675,12 +674,12 @@ func (s *mobiledevices) FindMobileDevicesByNameSubset(ctx context.Context, reque
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.MobileDevice
+			var out *operations.FindMobileDevicesByNameSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.MobileDevice = out
+			res.FindMobileDevicesByNameSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -732,12 +731,12 @@ func (s *mobiledevices) FindMobileDevicesBySerialNumber(ctx context.Context, req
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.MobileDevice
+			var out *operations.FindMobileDevicesBySerialNumber200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.MobileDevice = out
+			res.FindMobileDevicesBySerialNumber200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -790,12 +789,12 @@ func (s *mobiledevices) FindMobileDevicesBySerialNumberSubset(ctx context.Contex
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.MobileDevice
+			var out *operations.FindMobileDevicesBySerialNumberSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.MobileDevice = out
+			res.FindMobileDevicesBySerialNumberSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -847,12 +846,12 @@ func (s *mobiledevices) FindMobileDevicesByUDID(ctx context.Context, request ope
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.MobileDevice
+			var out *operations.FindMobileDevicesByUDID200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.MobileDevice = out
+			res.FindMobileDevicesByUDID200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -905,12 +904,12 @@ func (s *mobiledevices) FindMobileDevicesByUDIDSubset(ctx context.Context, reque
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.MobileDevice
+			var out *operations.FindMobileDevicesByUDIDSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.MobileDevice = out
+			res.FindMobileDevicesByUDIDSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -963,12 +962,12 @@ func (s *mobiledevices) MatchMobileDevices(ctx context.Context, request operatio
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.MobileDevice
+			var out *operations.MatchMobileDevices200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.MobileDevice = out
+			res.MatchMobileDevices200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}

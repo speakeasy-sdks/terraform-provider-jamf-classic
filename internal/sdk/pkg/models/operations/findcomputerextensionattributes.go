@@ -3,9 +3,30 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindComputerextensionattributes200ApplicationXMLComputerExtensionAttribute struct {
+	Enabled *bool
+	ID      *int64
+	Name    *string
+}
+
+type FindComputerextensionattributes200ApplicationXML struct {
+	ComputerExtensionAttribute *FindComputerextensionattributes200ApplicationXMLComputerExtensionAttribute
+	Size                       *int64
+}
+
+type FindComputerextensionattributes200ApplicationJSONComputerExtensionAttribute struct {
+	Enabled *bool   `json:"enabled,omitempty"`
+	ID      *int64  `json:"id,omitempty"`
+	Name    *string `json:"name,omitempty"`
+}
+
+type FindComputerextensionattributes200ApplicationJSON struct {
+	ComputerExtensionAttribute *FindComputerextensionattributes200ApplicationJSONComputerExtensionAttribute `json:"computer_extension_attribute,omitempty"`
+	Size                       *int64                                                                       `json:"size,omitempty"`
+}
 
 type FindComputerextensionattributesResponse struct {
 	Body        []byte
@@ -13,5 +34,5 @@ type FindComputerextensionattributesResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ComputerExtensionAttributes []shared.ComputerExtensionAttributes
+	FindComputerextensionattributes200ApplicationJSONObjects []FindComputerextensionattributes200ApplicationJSON
 }

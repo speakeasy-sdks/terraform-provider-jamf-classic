@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,57 @@ type FindVPPAdminAccountByIDRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+type FindVPPAdminAccountByID200ApplicationXMLSite struct {
+	ID *int64
+	// Name of the site
+	Name string
+}
+
+// FindVPPAdminAccountByID200ApplicationXML - OK
+type FindVPPAdminAccountByID200ApplicationXML struct {
+	AccountName              *string
+	AppleID                  *string
+	AutoRegisterManagedUsers *bool
+	Contact                  *string
+	Country                  *string
+	ExpirationDate           *string
+	ID                       *int64
+	// Name of the VPP account
+	Name                          string
+	NotifyDisassociation          *bool
+	PopulateCatalogFromVppContent *bool
+	ServiceToken                  string
+	Site                          *FindVPPAdminAccountByID200ApplicationXMLSite
+}
+
+type FindVPPAdminAccountByID200ApplicationJSONSite struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the site
+	Name string `json:"name"`
+}
+
+// FindVPPAdminAccountByID200ApplicationJSON - OK
+type FindVPPAdminAccountByID200ApplicationJSON struct {
+	AccountName              *string `json:"account_name,omitempty"`
+	AppleID                  *string `json:"apple_id,omitempty"`
+	AutoRegisterManagedUsers *bool   `json:"auto_register_managed_users,omitempty"`
+	Contact                  *string `json:"contact,omitempty"`
+	Country                  *string `json:"country,omitempty"`
+	ExpirationDate           *string `json:"expiration_date,omitempty"`
+	ID                       *int64  `json:"id,omitempty"`
+	// Name of the VPP account
+	Name                          string                                         `json:"name"`
+	NotifyDisassociation          *bool                                          `json:"notify_disassociation,omitempty"`
+	PopulateCatalogFromVppContent *bool                                          `json:"populate_catalog_from_vpp_content,omitempty"`
+	ServiceToken                  string                                         `json:"service_token"`
+	Site                          *FindVPPAdminAccountByID200ApplicationJSONSite `json:"site,omitempty"`
+}
+
 type FindVPPAdminAccountByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	VppAccount *shared.VppAccount
+	FindVPPAdminAccountByID200ApplicationJSONObject *FindVPPAdminAccountByID200ApplicationJSON
 }

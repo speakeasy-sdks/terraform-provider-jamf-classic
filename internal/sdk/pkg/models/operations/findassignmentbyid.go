@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,239 @@ type FindAssignmentByIDRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+type FindAssignmentByID200ApplicationXMLEbooksEbook struct {
+	AdamID *int64
+	Name   *string
+}
+
+type FindAssignmentByID200ApplicationXMLEbooks struct {
+	Ebook *FindAssignmentByID200ApplicationXMLEbooksEbook
+}
+
+type FindAssignmentByID200ApplicationXMLGeneral struct {
+	ID                  *int64
+	Name                string
+	VppAdminAccountID   int64
+	VppAdminAccountName *string
+}
+
+type FindAssignmentByID200ApplicationXMLIosAppsIosApp struct {
+	AdamID *int64
+	Name   *string
+}
+
+type FindAssignmentByID200ApplicationXMLIosApps struct {
+	IosApp *FindAssignmentByID200ApplicationXMLIosAppsIosApp
+}
+
+type FindAssignmentByID200ApplicationXMLMacAppsMacApp struct {
+	AdamID *int64
+	Name   *string
+}
+
+type FindAssignmentByID200ApplicationXMLMacApps struct {
+	MacApp *FindAssignmentByID200ApplicationXMLMacAppsMacApp
+}
+
+type FindAssignmentByID200ApplicationXMLScopeExclusionsJssUserGroupsUserGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindAssignmentByID200ApplicationXMLScopeExclusionsJssUserGroups struct {
+	UserGroup *FindAssignmentByID200ApplicationXMLScopeExclusionsJssUserGroupsUserGroup
+}
+
+type FindAssignmentByID200ApplicationXMLScopeExclusionsJssUsersUser struct {
+	ID   *int64
+	Name *string
+}
+
+type FindAssignmentByID200ApplicationXMLScopeExclusionsJssUsers struct {
+	User *FindAssignmentByID200ApplicationXMLScopeExclusionsJssUsersUser
+}
+
+type FindAssignmentByID200ApplicationXMLScopeExclusionsUserGroupsUserGroup struct {
+	Name *string
+}
+
+type FindAssignmentByID200ApplicationXMLScopeExclusionsUserGroups struct {
+	UserGroup *FindAssignmentByID200ApplicationXMLScopeExclusionsUserGroupsUserGroup
+}
+
+type FindAssignmentByID200ApplicationXMLScopeExclusions struct {
+	JssUserGroups []FindAssignmentByID200ApplicationXMLScopeExclusionsJssUserGroups
+	JssUsers      []FindAssignmentByID200ApplicationXMLScopeExclusionsJssUsers
+	UserGroups    []FindAssignmentByID200ApplicationXMLScopeExclusionsUserGroups
+}
+
+type FindAssignmentByID200ApplicationXMLScopeJssUserGroupsUserGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindAssignmentByID200ApplicationXMLScopeJssUserGroups struct {
+	UserGroup *FindAssignmentByID200ApplicationXMLScopeJssUserGroupsUserGroup
+}
+
+type FindAssignmentByID200ApplicationXMLScopeJssUsersUser struct {
+	ID   *int64
+	Name *string
+}
+
+type FindAssignmentByID200ApplicationXMLScopeJssUsers struct {
+	User *FindAssignmentByID200ApplicationXMLScopeJssUsersUser
+}
+
+type FindAssignmentByID200ApplicationXMLScopeLimitationsUserGroupsUserGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindAssignmentByID200ApplicationXMLScopeLimitationsUserGroups struct {
+	UserGroup *FindAssignmentByID200ApplicationXMLScopeLimitationsUserGroupsUserGroup
+}
+
+type FindAssignmentByID200ApplicationXMLScopeLimitations struct {
+	UserGroups []FindAssignmentByID200ApplicationXMLScopeLimitationsUserGroups
+}
+
+type FindAssignmentByID200ApplicationXMLScope struct {
+	AllJssUsers   *bool
+	Exclusions    *FindAssignmentByID200ApplicationXMLScopeExclusions
+	JssUserGroups []FindAssignmentByID200ApplicationXMLScopeJssUserGroups
+	JssUsers      []FindAssignmentByID200ApplicationXMLScopeJssUsers
+	Limitations   *FindAssignmentByID200ApplicationXMLScopeLimitations
+}
+
+// FindAssignmentByID200ApplicationXML - OK
+type FindAssignmentByID200ApplicationXML struct {
+	Ebooks  []FindAssignmentByID200ApplicationXMLEbooks
+	General *FindAssignmentByID200ApplicationXMLGeneral
+	IosApps []FindAssignmentByID200ApplicationXMLIosApps
+	MacApps []FindAssignmentByID200ApplicationXMLMacApps
+	Scope   *FindAssignmentByID200ApplicationXMLScope
+}
+
+type FindAssignmentByID200ApplicationJSONEbooksEbook struct {
+	AdamID *int64  `json:"adam_id,omitempty"`
+	Name   *string `json:"name,omitempty"`
+}
+
+type FindAssignmentByID200ApplicationJSONEbooks struct {
+	Ebook *FindAssignmentByID200ApplicationJSONEbooksEbook `json:"ebook,omitempty"`
+}
+
+type FindAssignmentByID200ApplicationJSONGeneral struct {
+	ID                  *int64  `json:"id,omitempty"`
+	Name                string  `json:"name"`
+	VppAdminAccountID   int64   `json:"vpp_admin_account_id"`
+	VppAdminAccountName *string `json:"vpp_admin_account_name,omitempty"`
+}
+
+type FindAssignmentByID200ApplicationJSONIosAppsIosApp struct {
+	AdamID *int64  `json:"adam_id,omitempty"`
+	Name   *string `json:"name,omitempty"`
+}
+
+type FindAssignmentByID200ApplicationJSONIosApps struct {
+	IosApp *FindAssignmentByID200ApplicationJSONIosAppsIosApp `json:"ios_app,omitempty"`
+}
+
+type FindAssignmentByID200ApplicationJSONMacAppsMacApp struct {
+	AdamID *int64  `json:"adam_id,omitempty"`
+	Name   *string `json:"name,omitempty"`
+}
+
+type FindAssignmentByID200ApplicationJSONMacApps struct {
+	MacApp *FindAssignmentByID200ApplicationJSONMacAppsMacApp `json:"mac_app,omitempty"`
+}
+
+type FindAssignmentByID200ApplicationJSONScopeExclusionsJssUserGroupsUserGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindAssignmentByID200ApplicationJSONScopeExclusionsJssUserGroups struct {
+	UserGroup *FindAssignmentByID200ApplicationJSONScopeExclusionsJssUserGroupsUserGroup `json:"user_group,omitempty"`
+}
+
+type FindAssignmentByID200ApplicationJSONScopeExclusionsJssUsersUser struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindAssignmentByID200ApplicationJSONScopeExclusionsJssUsers struct {
+	User *FindAssignmentByID200ApplicationJSONScopeExclusionsJssUsersUser `json:"user,omitempty"`
+}
+
+type FindAssignmentByID200ApplicationJSONScopeExclusionsUserGroupsUserGroup struct {
+	Name *string `json:"name,omitempty"`
+}
+
+type FindAssignmentByID200ApplicationJSONScopeExclusionsUserGroups struct {
+	UserGroup *FindAssignmentByID200ApplicationJSONScopeExclusionsUserGroupsUserGroup `json:"user_group,omitempty"`
+}
+
+type FindAssignmentByID200ApplicationJSONScopeExclusions struct {
+	JssUserGroups []FindAssignmentByID200ApplicationJSONScopeExclusionsJssUserGroups `json:"jss_user_groups,omitempty"`
+	JssUsers      []FindAssignmentByID200ApplicationJSONScopeExclusionsJssUsers      `json:"jss_users,omitempty"`
+	UserGroups    []FindAssignmentByID200ApplicationJSONScopeExclusionsUserGroups    `json:"user_groups,omitempty"`
+}
+
+type FindAssignmentByID200ApplicationJSONScopeJssUserGroupsUserGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindAssignmentByID200ApplicationJSONScopeJssUserGroups struct {
+	UserGroup *FindAssignmentByID200ApplicationJSONScopeJssUserGroupsUserGroup `json:"user_group,omitempty"`
+}
+
+type FindAssignmentByID200ApplicationJSONScopeJssUsersUser struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindAssignmentByID200ApplicationJSONScopeJssUsers struct {
+	User *FindAssignmentByID200ApplicationJSONScopeJssUsersUser `json:"user,omitempty"`
+}
+
+type FindAssignmentByID200ApplicationJSONScopeLimitationsUserGroupsUserGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindAssignmentByID200ApplicationJSONScopeLimitationsUserGroups struct {
+	UserGroup *FindAssignmentByID200ApplicationJSONScopeLimitationsUserGroupsUserGroup `json:"user_group,omitempty"`
+}
+
+type FindAssignmentByID200ApplicationJSONScopeLimitations struct {
+	UserGroups []FindAssignmentByID200ApplicationJSONScopeLimitationsUserGroups `json:"user_groups,omitempty"`
+}
+
+type FindAssignmentByID200ApplicationJSONScope struct {
+	AllJssUsers   *bool                                                    `json:"all_jss_users,omitempty"`
+	Exclusions    *FindAssignmentByID200ApplicationJSONScopeExclusions     `json:"exclusions,omitempty"`
+	JssUserGroups []FindAssignmentByID200ApplicationJSONScopeJssUserGroups `json:"jss_user_groups,omitempty"`
+	JssUsers      []FindAssignmentByID200ApplicationJSONScopeJssUsers      `json:"jss_users,omitempty"`
+	Limitations   *FindAssignmentByID200ApplicationJSONScopeLimitations    `json:"limitations,omitempty"`
+}
+
+// FindAssignmentByID200ApplicationJSON - OK
+type FindAssignmentByID200ApplicationJSON struct {
+	Ebooks  []FindAssignmentByID200ApplicationJSONEbooks  `json:"ebooks,omitempty"`
+	General *FindAssignmentByID200ApplicationJSONGeneral  `json:"general,omitempty"`
+	IosApps []FindAssignmentByID200ApplicationJSONIosApps `json:"ios_apps,omitempty"`
+	MacApps []FindAssignmentByID200ApplicationJSONMacApps `json:"mac_apps,omitempty"`
+	Scope   *FindAssignmentByID200ApplicationJSONScope    `json:"scope,omitempty"`
+}
+
 type FindAssignmentByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	VppAssignment *shared.VppAssignment
+	FindAssignmentByID200ApplicationJSONObject *FindAssignmentByID200ApplicationJSON
 }

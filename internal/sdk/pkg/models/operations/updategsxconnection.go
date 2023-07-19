@@ -3,8 +3,51 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
+
+type UpdateGSXConnectionRequestBodyRegion string
+
+const (
+	UpdateGSXConnectionRequestBodyRegionAmericas     UpdateGSXConnectionRequestBodyRegion = "Americas"
+	UpdateGSXConnectionRequestBodyRegionApac         UpdateGSXConnectionRequestBodyRegion = "APAC"
+	UpdateGSXConnectionRequestBodyRegionEmea         UpdateGSXConnectionRequestBodyRegion = "EMEA"
+	UpdateGSXConnectionRequestBodyRegionLatinAmerica UpdateGSXConnectionRequestBodyRegion = "LatinAmerica"
+)
+
+func (e UpdateGSXConnectionRequestBodyRegion) ToPointer() *UpdateGSXConnectionRequestBodyRegion {
+	return &e
+}
+
+func (e *UpdateGSXConnectionRequestBodyRegion) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Americas":
+		fallthrough
+	case "APAC":
+		fallthrough
+	case "EMEA":
+		fallthrough
+	case "LatinAmerica":
+		*e = UpdateGSXConnectionRequestBodyRegion(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateGSXConnectionRequestBodyRegion: %v", v)
+	}
+}
+
+type UpdateGSXConnectionRequestBody struct {
+	AccountNumber *int64
+	Enabled       *bool
+	Region        *UpdateGSXConnectionRequestBodyRegion
+	URI           *string
+	Username      *string
+}
 
 type UpdateGSXConnectionResponse struct {
 	ContentType string

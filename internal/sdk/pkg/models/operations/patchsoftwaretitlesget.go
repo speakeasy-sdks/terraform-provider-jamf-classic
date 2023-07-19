@@ -3,15 +3,36 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type PatchsoftwaretitlesGet200ApplicationXMLPatchSoftwareTitle struct {
+	ID       *int64
+	NameID   *string
+	SourceID *int64
+}
+
+type PatchsoftwaretitlesGet200ApplicationXML struct {
+	PatchSoftwareTitle *PatchsoftwaretitlesGet200ApplicationXMLPatchSoftwareTitle
+	Size               *int64
+}
+
+type PatchsoftwaretitlesGet200ApplicationJSONPatchSoftwareTitle struct {
+	ID       *int64  `json:"id,omitempty"`
+	NameID   *string `json:"name_id,omitempty"`
+	SourceID *int64  `json:"source_id,omitempty"`
+}
+
+type PatchsoftwaretitlesGet200ApplicationJSON struct {
+	PatchSoftwareTitle *PatchsoftwaretitlesGet200ApplicationJSONPatchSoftwareTitle `json:"patch_software_title,omitempty"`
+	Size               *int64                                                      `json:"size,omitempty"`
+}
 
 type PatchsoftwaretitlesGetResponse struct {
 	Body        []byte
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// OK
-	PatchSoftwareTitles []shared.PatchSoftwareTitles
+	PatchsoftwaretitlesGet200ApplicationJSONObjects []PatchsoftwaretitlesGet200ApplicationJSON
+	StatusCode                                      int
+	RawResponse                                     *http.Response
 }

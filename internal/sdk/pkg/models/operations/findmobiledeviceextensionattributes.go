@@ -3,9 +3,28 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindMobiledeviceextensionattributes200ApplicationXMLMobileDeviceExtensionAttribute struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMobiledeviceextensionattributes200ApplicationXML struct {
+	MobileDeviceExtensionAttribute *FindMobiledeviceextensionattributes200ApplicationXMLMobileDeviceExtensionAttribute
+	Size                           *int64
+}
+
+type FindMobiledeviceextensionattributes200ApplicationJSONMobileDeviceExtensionAttribute struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMobiledeviceextensionattributes200ApplicationJSON struct {
+	MobileDeviceExtensionAttribute *FindMobiledeviceextensionattributes200ApplicationJSONMobileDeviceExtensionAttribute `json:"mobile_device_extension_attribute,omitempty"`
+	Size                           *int64                                                                               `json:"size,omitempty"`
+}
 
 type FindMobiledeviceextensionattributesResponse struct {
 	Body        []byte
@@ -13,5 +32,5 @@ type FindMobiledeviceextensionattributesResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	MobileDeviceExtensionAttributes []shared.MobileDeviceExtensionAttributes
+	FindMobiledeviceextensionattributes200ApplicationJSONObjects []FindMobiledeviceextensionattributes200ApplicationJSON
 }

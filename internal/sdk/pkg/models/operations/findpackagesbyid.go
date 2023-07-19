@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,117 @@ type FindPackagesByIDRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+type FindPackagesByID200ApplicationXMLRequiredProcessor string
+
+const (
+	FindPackagesByID200ApplicationXMLRequiredProcessorNone FindPackagesByID200ApplicationXMLRequiredProcessor = "None"
+	FindPackagesByID200ApplicationXMLRequiredProcessorPpc  FindPackagesByID200ApplicationXMLRequiredProcessor = "ppc"
+	FindPackagesByID200ApplicationXMLRequiredProcessorX86  FindPackagesByID200ApplicationXMLRequiredProcessor = "x86"
+)
+
+func (e FindPackagesByID200ApplicationXMLRequiredProcessor) ToPointer() *FindPackagesByID200ApplicationXMLRequiredProcessor {
+	return &e
+}
+
+func (e *FindPackagesByID200ApplicationXMLRequiredProcessor) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "None":
+		fallthrough
+	case "ppc":
+		fallthrough
+	case "x86":
+		*e = FindPackagesByID200ApplicationXMLRequiredProcessor(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPackagesByID200ApplicationXMLRequiredProcessor: %v", v)
+	}
+}
+
+// FindPackagesByID200ApplicationXML - OK
+type FindPackagesByID200ApplicationXML struct {
+	AllowUninstalled           *bool
+	Category                   *string
+	Filename                   string
+	FillExistingUsers          *bool
+	FillUserTemplate           *bool
+	ID                         *int64
+	Info                       *string
+	InstallIfReportedAvailable *bool
+	// Name of the package
+	Name              string
+	Notes             *string
+	OsRequirements    *string
+	Priority          *int64
+	RebootRequired    *bool
+	ReinstallOption   *string
+	RequiredProcessor *FindPackagesByID200ApplicationXMLRequiredProcessor
+	SendNotification  *bool
+	SwitchWithPackage *string
+	TriggeringFiles   *string
+}
+
+type FindPackagesByID200ApplicationJSONRequiredProcessor string
+
+const (
+	FindPackagesByID200ApplicationJSONRequiredProcessorNone FindPackagesByID200ApplicationJSONRequiredProcessor = "None"
+	FindPackagesByID200ApplicationJSONRequiredProcessorPpc  FindPackagesByID200ApplicationJSONRequiredProcessor = "ppc"
+	FindPackagesByID200ApplicationJSONRequiredProcessorX86  FindPackagesByID200ApplicationJSONRequiredProcessor = "x86"
+)
+
+func (e FindPackagesByID200ApplicationJSONRequiredProcessor) ToPointer() *FindPackagesByID200ApplicationJSONRequiredProcessor {
+	return &e
+}
+
+func (e *FindPackagesByID200ApplicationJSONRequiredProcessor) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "None":
+		fallthrough
+	case "ppc":
+		fallthrough
+	case "x86":
+		*e = FindPackagesByID200ApplicationJSONRequiredProcessor(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPackagesByID200ApplicationJSONRequiredProcessor: %v", v)
+	}
+}
+
+// FindPackagesByID200ApplicationJSON - OK
+type FindPackagesByID200ApplicationJSON struct {
+	AllowUninstalled           *bool   `json:"allow_uninstalled,omitempty"`
+	Category                   *string `json:"category,omitempty"`
+	Filename                   string  `json:"filename"`
+	FillExistingUsers          *bool   `json:"fill_existing_users,omitempty"`
+	FillUserTemplate           *bool   `json:"fill_user_template,omitempty"`
+	ID                         *int64  `json:"id,omitempty"`
+	Info                       *string `json:"info,omitempty"`
+	InstallIfReportedAvailable *bool   `json:"install_if_reported_available,omitempty"`
+	// Name of the package
+	Name              string                                               `json:"name"`
+	Notes             *string                                              `json:"notes,omitempty"`
+	OsRequirements    *string                                              `json:"os_requirements,omitempty"`
+	Priority          *int64                                               `json:"priority,omitempty"`
+	RebootRequired    *bool                                                `json:"reboot_required,omitempty"`
+	ReinstallOption   *string                                              `json:"reinstall_option,omitempty"`
+	RequiredProcessor *FindPackagesByID200ApplicationJSONRequiredProcessor `json:"required_processor,omitempty"`
+	SendNotification  *bool                                                `json:"send_notification,omitempty"`
+	SwitchWithPackage *string                                              `json:"switch_with_package,omitempty"`
+	TriggeringFiles   *string                                              `json:"triggering_files,omitempty"`
+}
+
 type FindPackagesByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Package *shared.Package
+	FindPackagesByID200ApplicationJSONObject *FindPackagesByID200ApplicationJSON
 }

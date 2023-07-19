@@ -3,9 +3,28 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindDistributionPoints200ApplicationXMLDistributionPoint struct {
+	ID   *int64
+	Name *string
+}
+
+type FindDistributionPoints200ApplicationXML struct {
+	DistributionPoint *FindDistributionPoints200ApplicationXMLDistributionPoint
+	Size              *int64
+}
+
+type FindDistributionPoints200ApplicationJSONDistributionPoint struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindDistributionPoints200ApplicationJSON struct {
+	DistributionPoint *FindDistributionPoints200ApplicationJSONDistributionPoint `json:"distribution_point,omitempty"`
+	Size              *int64                                                     `json:"size,omitempty"`
+}
 
 type FindDistributionPointsResponse struct {
 	Body        []byte
@@ -13,5 +32,5 @@ type FindDistributionPointsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	DistributionPoints []shared.DistributionPoints
+	FindDistributionPoints200ApplicationJSONObjects []FindDistributionPoints200ApplicationJSON
 }

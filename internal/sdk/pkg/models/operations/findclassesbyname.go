@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,143 @@ type FindClassesByNameRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+type FindClassesByNameClassAppleTvsAppleTv struct {
+	AirplayPassword *string `json:"airplay_password,omitempty"`
+	DeviceID        *string `json:"device_id,omitempty"`
+	Name            *string `json:"name,omitempty"`
+	Udid            *string `json:"udid,omitempty"`
+	WifiMacAddress  *string `json:"wifi_mac_address,omitempty"`
+}
+
+type FindClassesByNameClassAppleTvs struct {
+	AppleTv *FindClassesByNameClassAppleTvsAppleTv `json:"apple_tv,omitempty"`
+}
+
+type FindClassesByNameClassMeetingTimesMeetingTimeDays string
+
+const (
+	FindClassesByNameClassMeetingTimesMeetingTimeDaysM  FindClassesByNameClassMeetingTimesMeetingTimeDays = "M"
+	FindClassesByNameClassMeetingTimesMeetingTimeDaysT  FindClassesByNameClassMeetingTimesMeetingTimeDays = "T"
+	FindClassesByNameClassMeetingTimesMeetingTimeDaysW  FindClassesByNameClassMeetingTimesMeetingTimeDays = "W"
+	FindClassesByNameClassMeetingTimesMeetingTimeDaysTh FindClassesByNameClassMeetingTimesMeetingTimeDays = "Th"
+	FindClassesByNameClassMeetingTimesMeetingTimeDaysF  FindClassesByNameClassMeetingTimesMeetingTimeDays = "F"
+	FindClassesByNameClassMeetingTimesMeetingTimeDaysSa FindClassesByNameClassMeetingTimesMeetingTimeDays = "Sa"
+	FindClassesByNameClassMeetingTimesMeetingTimeDaysSu FindClassesByNameClassMeetingTimesMeetingTimeDays = "Su"
+)
+
+func (e FindClassesByNameClassMeetingTimesMeetingTimeDays) ToPointer() *FindClassesByNameClassMeetingTimesMeetingTimeDays {
+	return &e
+}
+
+func (e *FindClassesByNameClassMeetingTimesMeetingTimeDays) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "M":
+		fallthrough
+	case "T":
+		fallthrough
+	case "W":
+		fallthrough
+	case "Th":
+		fallthrough
+	case "F":
+		fallthrough
+	case "Sa":
+		fallthrough
+	case "Su":
+		*e = FindClassesByNameClassMeetingTimesMeetingTimeDays(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindClassesByNameClassMeetingTimesMeetingTimeDays: %v", v)
+	}
+}
+
+type FindClassesByNameClassMeetingTimesMeetingTime struct {
+	Days      *FindClassesByNameClassMeetingTimesMeetingTimeDays `json:"days,omitempty"`
+	EndTime   *int64                                             `json:"end_time,omitempty"`
+	StartTime *int64                                             `json:"start_time,omitempty"`
+}
+
+type FindClassesByNameClassMeetingTimes struct {
+	MeetingTime *FindClassesByNameClassMeetingTimesMeetingTime `json:"meeting_time,omitempty"`
+}
+
+type FindClassesByNameClassMobileDeviceGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindClassesByNameClassMobileDeviceGroupID struct {
+	ID *int64 `json:"id,omitempty"`
+}
+
+type FindClassesByNameClassMobileDevicesMobileDevice struct {
+	// Name of the device
+	Name           *string `json:"name,omitempty"`
+	Udid           *string `json:"udid,omitempty"`
+	WifiMacAddress *string `json:"wifi_mac_address,omitempty"`
+}
+
+type FindClassesByNameClassMobileDevices struct {
+	MobileDevice *FindClassesByNameClassMobileDevicesMobileDevice `json:"mobile_device,omitempty"`
+}
+
+type FindClassesByNameClassSite struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the site
+	Name string `json:"name"`
+}
+
+type FindClassesByNameClassStudentGroupIds struct {
+	ID *int64 `json:"id,omitempty"`
+}
+
+type FindClassesByNameClassStudents struct {
+	// Name of the student
+	Student *string `json:"student,omitempty"`
+}
+
+type FindClassesByNameClassTeacherGroupIds struct {
+	ID *int64 `json:"id,omitempty"`
+}
+
+type FindClassesByNameClassTeacherIds struct {
+	ID *int64 `json:"id,omitempty"`
+}
+
+type FindClassesByNameClassTeachers struct {
+	// Name of the teacher
+	Teacher *string `json:"teacher,omitempty"`
+}
+
+// FindClassesByNameClass - OK
+type FindClassesByNameClass struct {
+	AppleTvs            []FindClassesByNameClassAppleTvs            `json:"apple_tvs,omitempty"`
+	Description         *string                                     `json:"description,omitempty"`
+	ID                  *int64                                      `json:"id,omitempty"`
+	MeetingTimes        *FindClassesByNameClassMeetingTimes         `json:"meeting_times,omitempty"`
+	MobileDeviceGroup   *FindClassesByNameClassMobileDeviceGroup    `json:"mobile_device_group,omitempty"`
+	MobileDeviceGroupID []FindClassesByNameClassMobileDeviceGroupID `json:"mobile_device_group_id,omitempty"`
+	MobileDevices       []FindClassesByNameClassMobileDevices       `json:"mobile_devices,omitempty"`
+	// Name of the class
+	Name            string                                  `json:"name"`
+	Site            *FindClassesByNameClassSite             `json:"site,omitempty"`
+	Source          *string                                 `json:"source,omitempty"`
+	StudentGroupIds []FindClassesByNameClassStudentGroupIds `json:"student_group_ids,omitempty"`
+	Students        []FindClassesByNameClassStudents        `json:"students,omitempty"`
+	TeacherGroupIds []FindClassesByNameClassTeacherGroupIds `json:"teacher_group_ids,omitempty"`
+	TeacherIds      []FindClassesByNameClassTeacherIds      `json:"teacher_ids,omitempty"`
+	Teachers        []FindClassesByNameClassTeachers        `json:"teachers,omitempty"`
+}
+
 type FindClassesByNameResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Class *shared.Class
+	Class *FindClassesByNameClass
 }

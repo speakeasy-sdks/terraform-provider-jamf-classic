@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,327 @@ type FindWebhooksByIDRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+type FindWebhooksByID200ApplicationXMLAuthenticationType string
+
+const (
+	FindWebhooksByID200ApplicationXMLAuthenticationTypeNone  FindWebhooksByID200ApplicationXMLAuthenticationType = "NONE"
+	FindWebhooksByID200ApplicationXMLAuthenticationTypeBasic FindWebhooksByID200ApplicationXMLAuthenticationType = "BASIC"
+)
+
+func (e FindWebhooksByID200ApplicationXMLAuthenticationType) ToPointer() *FindWebhooksByID200ApplicationXMLAuthenticationType {
+	return &e
+}
+
+func (e *FindWebhooksByID200ApplicationXMLAuthenticationType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "NONE":
+		fallthrough
+	case "BASIC":
+		*e = FindWebhooksByID200ApplicationXMLAuthenticationType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindWebhooksByID200ApplicationXMLAuthenticationType: %v", v)
+	}
+}
+
+type FindWebhooksByID200ApplicationXMLContentType string
+
+const (
+	FindWebhooksByID200ApplicationXMLContentTypeTextXML         FindWebhooksByID200ApplicationXMLContentType = "text/xml"
+	FindWebhooksByID200ApplicationXMLContentTypeApplicationJSON FindWebhooksByID200ApplicationXMLContentType = "application/json"
+)
+
+func (e FindWebhooksByID200ApplicationXMLContentType) ToPointer() *FindWebhooksByID200ApplicationXMLContentType {
+	return &e
+}
+
+func (e *FindWebhooksByID200ApplicationXMLContentType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "text/xml":
+		fallthrough
+	case "application/json":
+		*e = FindWebhooksByID200ApplicationXMLContentType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindWebhooksByID200ApplicationXMLContentType: %v", v)
+	}
+}
+
+type FindWebhooksByID200ApplicationXMLDisplayFieldsDisplayField struct {
+	// Name of the display field to include for smart group based webhook events
+	Name *string
+}
+
+type FindWebhooksByID200ApplicationXMLDisplayFields struct {
+	DisplayField *FindWebhooksByID200ApplicationXMLDisplayFieldsDisplayField
+	Size         *int64
+}
+
+type FindWebhooksByID200ApplicationXMLEvent string
+
+const (
+	FindWebhooksByID200ApplicationXMLEventComputerAdded                          FindWebhooksByID200ApplicationXMLEvent = "ComputerAdded"
+	FindWebhooksByID200ApplicationXMLEventComputerCheckIn                        FindWebhooksByID200ApplicationXMLEvent = "ComputerCheckIn"
+	FindWebhooksByID200ApplicationXMLEventComputerInventoryCompleted             FindWebhooksByID200ApplicationXMLEvent = "ComputerInventoryCompleted"
+	FindWebhooksByID200ApplicationXMLEventComputerPolicyFinished                 FindWebhooksByID200ApplicationXMLEvent = "ComputerPolicyFinished"
+	FindWebhooksByID200ApplicationXMLEventComputerPushCapabilityChanged          FindWebhooksByID200ApplicationXMLEvent = "ComputerPushCapabilityChanged"
+	FindWebhooksByID200ApplicationXMLEventJssShutdown                            FindWebhooksByID200ApplicationXMLEvent = "JSSShutdown"
+	FindWebhooksByID200ApplicationXMLEventJssStartup                             FindWebhooksByID200ApplicationXMLEvent = "JSSStartup"
+	FindWebhooksByID200ApplicationXMLEventMobileDeviceCheckIn                    FindWebhooksByID200ApplicationXMLEvent = "MobileDeviceCheckIn"
+	FindWebhooksByID200ApplicationXMLEventMobileDeviceCommandCompleted           FindWebhooksByID200ApplicationXMLEvent = "MobileDeviceCommandCompleted"
+	FindWebhooksByID200ApplicationXMLEventMobileDeviceEnrolled                   FindWebhooksByID200ApplicationXMLEvent = "MobileDeviceEnrolled"
+	FindWebhooksByID200ApplicationXMLEventMobileDevicePushSent                   FindWebhooksByID200ApplicationXMLEvent = "MobileDevicePushSent"
+	FindWebhooksByID200ApplicationXMLEventMobileDeviceUnEnrolled                 FindWebhooksByID200ApplicationXMLEvent = "MobileDeviceUnEnrolled"
+	FindWebhooksByID200ApplicationXMLEventPatchSoftwareTitleUpdated              FindWebhooksByID200ApplicationXMLEvent = "PatchSoftwareTitleUpdated"
+	FindWebhooksByID200ApplicationXMLEventPushSent                               FindWebhooksByID200ApplicationXMLEvent = "PushSent"
+	FindWebhooksByID200ApplicationXMLEventRestAPIOperation                       FindWebhooksByID200ApplicationXMLEvent = "RestAPIOperation"
+	FindWebhooksByID200ApplicationXMLEventScepChallenge                          FindWebhooksByID200ApplicationXMLEvent = "SCEPChallenge"
+	FindWebhooksByID200ApplicationXMLEventSmartGroupComputerMembershipChange     FindWebhooksByID200ApplicationXMLEvent = "SmartGroupComputerMembershipChange"
+	FindWebhooksByID200ApplicationXMLEventSmartGroupMobileDeviceMembershipChange FindWebhooksByID200ApplicationXMLEvent = "SmartGroupMobileDeviceMembershipChange"
+)
+
+func (e FindWebhooksByID200ApplicationXMLEvent) ToPointer() *FindWebhooksByID200ApplicationXMLEvent {
+	return &e
+}
+
+func (e *FindWebhooksByID200ApplicationXMLEvent) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "ComputerAdded":
+		fallthrough
+	case "ComputerCheckIn":
+		fallthrough
+	case "ComputerInventoryCompleted":
+		fallthrough
+	case "ComputerPolicyFinished":
+		fallthrough
+	case "ComputerPushCapabilityChanged":
+		fallthrough
+	case "JSSShutdown":
+		fallthrough
+	case "JSSStartup":
+		fallthrough
+	case "MobileDeviceCheckIn":
+		fallthrough
+	case "MobileDeviceCommandCompleted":
+		fallthrough
+	case "MobileDeviceEnrolled":
+		fallthrough
+	case "MobileDevicePushSent":
+		fallthrough
+	case "MobileDeviceUnEnrolled":
+		fallthrough
+	case "PatchSoftwareTitleUpdated":
+		fallthrough
+	case "PushSent":
+		fallthrough
+	case "RestAPIOperation":
+		fallthrough
+	case "SCEPChallenge":
+		fallthrough
+	case "SmartGroupComputerMembershipChange":
+		fallthrough
+	case "SmartGroupMobileDeviceMembershipChange":
+		*e = FindWebhooksByID200ApplicationXMLEvent(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindWebhooksByID200ApplicationXMLEvent: %v", v)
+	}
+}
+
+// FindWebhooksByID200ApplicationXML - OK
+type FindWebhooksByID200ApplicationXML struct {
+	AuthenticationType *FindWebhooksByID200ApplicationXMLAuthenticationType
+	// Number of seconds to attempt to connect to the webhooks host server
+	ConnectionTimeout                 *int64
+	ContentType                       *FindWebhooksByID200ApplicationXMLContentType
+	DisplayFields                     []FindWebhooksByID200ApplicationXMLDisplayFields
+	EnableDisplayFieldsForGroupObject *bool
+	Enabled                           *bool
+	Event                             FindWebhooksByID200ApplicationXMLEvent
+	ID                                *int64
+	Name                              string
+	Password                          *string
+	// Number of seconds to wait for a response from the webhooks host server after sending a request
+	ReadTimeout *int64
+	URL         string
+	Username    *string
+}
+
+type FindWebhooksByID200ApplicationJSONAuthenticationType string
+
+const (
+	FindWebhooksByID200ApplicationJSONAuthenticationTypeNone  FindWebhooksByID200ApplicationJSONAuthenticationType = "NONE"
+	FindWebhooksByID200ApplicationJSONAuthenticationTypeBasic FindWebhooksByID200ApplicationJSONAuthenticationType = "BASIC"
+)
+
+func (e FindWebhooksByID200ApplicationJSONAuthenticationType) ToPointer() *FindWebhooksByID200ApplicationJSONAuthenticationType {
+	return &e
+}
+
+func (e *FindWebhooksByID200ApplicationJSONAuthenticationType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "NONE":
+		fallthrough
+	case "BASIC":
+		*e = FindWebhooksByID200ApplicationJSONAuthenticationType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindWebhooksByID200ApplicationJSONAuthenticationType: %v", v)
+	}
+}
+
+type FindWebhooksByID200ApplicationJSONContentType string
+
+const (
+	FindWebhooksByID200ApplicationJSONContentTypeTextXML         FindWebhooksByID200ApplicationJSONContentType = "text/xml"
+	FindWebhooksByID200ApplicationJSONContentTypeApplicationJSON FindWebhooksByID200ApplicationJSONContentType = "application/json"
+)
+
+func (e FindWebhooksByID200ApplicationJSONContentType) ToPointer() *FindWebhooksByID200ApplicationJSONContentType {
+	return &e
+}
+
+func (e *FindWebhooksByID200ApplicationJSONContentType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "text/xml":
+		fallthrough
+	case "application/json":
+		*e = FindWebhooksByID200ApplicationJSONContentType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindWebhooksByID200ApplicationJSONContentType: %v", v)
+	}
+}
+
+type FindWebhooksByID200ApplicationJSONDisplayFieldsDisplayField struct {
+	// Name of the display field to include for smart group based webhook events
+	Name *string `json:"name,omitempty"`
+}
+
+type FindWebhooksByID200ApplicationJSONDisplayFields struct {
+	DisplayField *FindWebhooksByID200ApplicationJSONDisplayFieldsDisplayField `json:"display_field,omitempty"`
+	Size         *int64                                                       `json:"size,omitempty"`
+}
+
+type FindWebhooksByID200ApplicationJSONEvent string
+
+const (
+	FindWebhooksByID200ApplicationJSONEventComputerAdded                          FindWebhooksByID200ApplicationJSONEvent = "ComputerAdded"
+	FindWebhooksByID200ApplicationJSONEventComputerCheckIn                        FindWebhooksByID200ApplicationJSONEvent = "ComputerCheckIn"
+	FindWebhooksByID200ApplicationJSONEventComputerInventoryCompleted             FindWebhooksByID200ApplicationJSONEvent = "ComputerInventoryCompleted"
+	FindWebhooksByID200ApplicationJSONEventComputerPolicyFinished                 FindWebhooksByID200ApplicationJSONEvent = "ComputerPolicyFinished"
+	FindWebhooksByID200ApplicationJSONEventComputerPushCapabilityChanged          FindWebhooksByID200ApplicationJSONEvent = "ComputerPushCapabilityChanged"
+	FindWebhooksByID200ApplicationJSONEventJssShutdown                            FindWebhooksByID200ApplicationJSONEvent = "JSSShutdown"
+	FindWebhooksByID200ApplicationJSONEventJssStartup                             FindWebhooksByID200ApplicationJSONEvent = "JSSStartup"
+	FindWebhooksByID200ApplicationJSONEventMobileDeviceCheckIn                    FindWebhooksByID200ApplicationJSONEvent = "MobileDeviceCheckIn"
+	FindWebhooksByID200ApplicationJSONEventMobileDeviceCommandCompleted           FindWebhooksByID200ApplicationJSONEvent = "MobileDeviceCommandCompleted"
+	FindWebhooksByID200ApplicationJSONEventMobileDeviceEnrolled                   FindWebhooksByID200ApplicationJSONEvent = "MobileDeviceEnrolled"
+	FindWebhooksByID200ApplicationJSONEventMobileDevicePushSent                   FindWebhooksByID200ApplicationJSONEvent = "MobileDevicePushSent"
+	FindWebhooksByID200ApplicationJSONEventMobileDeviceUnEnrolled                 FindWebhooksByID200ApplicationJSONEvent = "MobileDeviceUnEnrolled"
+	FindWebhooksByID200ApplicationJSONEventPatchSoftwareTitleUpdated              FindWebhooksByID200ApplicationJSONEvent = "PatchSoftwareTitleUpdated"
+	FindWebhooksByID200ApplicationJSONEventPushSent                               FindWebhooksByID200ApplicationJSONEvent = "PushSent"
+	FindWebhooksByID200ApplicationJSONEventRestAPIOperation                       FindWebhooksByID200ApplicationJSONEvent = "RestAPIOperation"
+	FindWebhooksByID200ApplicationJSONEventScepChallenge                          FindWebhooksByID200ApplicationJSONEvent = "SCEPChallenge"
+	FindWebhooksByID200ApplicationJSONEventSmartGroupComputerMembershipChange     FindWebhooksByID200ApplicationJSONEvent = "SmartGroupComputerMembershipChange"
+	FindWebhooksByID200ApplicationJSONEventSmartGroupMobileDeviceMembershipChange FindWebhooksByID200ApplicationJSONEvent = "SmartGroupMobileDeviceMembershipChange"
+)
+
+func (e FindWebhooksByID200ApplicationJSONEvent) ToPointer() *FindWebhooksByID200ApplicationJSONEvent {
+	return &e
+}
+
+func (e *FindWebhooksByID200ApplicationJSONEvent) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "ComputerAdded":
+		fallthrough
+	case "ComputerCheckIn":
+		fallthrough
+	case "ComputerInventoryCompleted":
+		fallthrough
+	case "ComputerPolicyFinished":
+		fallthrough
+	case "ComputerPushCapabilityChanged":
+		fallthrough
+	case "JSSShutdown":
+		fallthrough
+	case "JSSStartup":
+		fallthrough
+	case "MobileDeviceCheckIn":
+		fallthrough
+	case "MobileDeviceCommandCompleted":
+		fallthrough
+	case "MobileDeviceEnrolled":
+		fallthrough
+	case "MobileDevicePushSent":
+		fallthrough
+	case "MobileDeviceUnEnrolled":
+		fallthrough
+	case "PatchSoftwareTitleUpdated":
+		fallthrough
+	case "PushSent":
+		fallthrough
+	case "RestAPIOperation":
+		fallthrough
+	case "SCEPChallenge":
+		fallthrough
+	case "SmartGroupComputerMembershipChange":
+		fallthrough
+	case "SmartGroupMobileDeviceMembershipChange":
+		*e = FindWebhooksByID200ApplicationJSONEvent(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindWebhooksByID200ApplicationJSONEvent: %v", v)
+	}
+}
+
+// FindWebhooksByID200ApplicationJSON - OK
+type FindWebhooksByID200ApplicationJSON struct {
+	AuthenticationType *FindWebhooksByID200ApplicationJSONAuthenticationType `json:"authentication_type,omitempty"`
+	// Number of seconds to attempt to connect to the webhooks host server
+	ConnectionTimeout                 *int64                                            `json:"connection_timeout,omitempty"`
+	ContentType                       *FindWebhooksByID200ApplicationJSONContentType    `json:"content_type,omitempty"`
+	DisplayFields                     []FindWebhooksByID200ApplicationJSONDisplayFields `json:"display_fields,omitempty"`
+	EnableDisplayFieldsForGroupObject *bool                                             `json:"enable_display_fields_for_group_object,omitempty"`
+	Enabled                           *bool                                             `json:"enabled,omitempty"`
+	Event                             FindWebhooksByID200ApplicationJSONEvent           `json:"event"`
+	ID                                *int64                                            `json:"id,omitempty"`
+	Name                              string                                            `json:"name"`
+	Password                          *string                                           `json:"password,omitempty"`
+	// Number of seconds to wait for a response from the webhooks host server after sending a request
+	ReadTimeout *int64  `json:"read_timeout,omitempty"`
+	URL         string  `json:"url"`
+	Username    *string `json:"username,omitempty"`
+}
+
 type FindWebhooksByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Webhook *shared.Webhook
+	FindWebhooksByID200ApplicationJSONObject *FindWebhooksByID200ApplicationJSON
 }

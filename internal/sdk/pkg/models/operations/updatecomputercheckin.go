@@ -6,6 +6,23 @@ import (
 	"net/http"
 )
 
+type UpdateComputerCheckinRequestBody struct {
+	ApplyComputerLevelManagedPreferences *bool
+	ApplyUserLevelManagedPreferences     *bool
+	CheckForPoliciesAtLoginLogout        *bool
+	CheckForPoliciesAtStartup            *bool
+	// Measured in minutes
+	CheckInFrequency                *int64
+	CreateLoginLogoutHooks          *bool
+	CreateStartupScript             *bool
+	DisplayStatusToUser             *bool
+	EnsureSSHIsEnabled              *bool
+	HideRestorePartition            *bool
+	LogStartupEvent                 *bool
+	LogUsername                     *bool
+	PerformLoginActionsInBackground *bool
+}
+
 type UpdateComputerCheckinResponse struct {
 	ContentType string
 	StatusCode  int

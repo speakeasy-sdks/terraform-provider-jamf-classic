@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"io"
 	"jamf/internal/sdk/pkg/models/operations"
-	"jamf/internal/sdk/pkg/models/shared"
 	"jamf/internal/sdk/pkg/utils"
 	"net/http"
 	"strings"
@@ -202,12 +201,12 @@ func (s *diskencryptionconfigurations) FindDiskEncryptionConfigurations(ctx cont
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.DiskEncryptionConfigurations
+			var out []operations.FindDiskEncryptionConfigurations200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.DiskEncryptionConfigurations = out
+			res.FindDiskEncryptionConfigurations200ApplicationJSONObjects = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -259,12 +258,12 @@ func (s *diskencryptionconfigurations) FindDiskEncryptionConfigurationsByID(ctx 
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.DiskEncryptionConfiguration
+			var out *operations.FindDiskEncryptionConfigurationsByID200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.DiskEncryptionConfiguration = out
+			res.FindDiskEncryptionConfigurationsByID200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -316,12 +315,12 @@ func (s *diskencryptionconfigurations) FindDiskEncryptionConfigurationsByName(ct
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.DiskEncryptionConfiguration
+			var out *operations.FindDiskEncryptionConfigurationsByName200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.DiskEncryptionConfiguration = out
+			res.FindDiskEncryptionConfigurationsByName200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}

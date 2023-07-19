@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,163 @@ type FindComputerGroupsByNameRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+type FindComputerGroupsByName200ApplicationXMLComputersComputer struct {
+	AltMacAddress *string
+	ID            *int64
+	MacAddress    *string
+	// Name of the computer
+	Name         *string
+	SerialNumber *string
+}
+
+type FindComputerGroupsByName200ApplicationXMLComputers struct {
+	Computer *FindComputerGroupsByName200ApplicationXMLComputersComputer
+	Size     *int64
+}
+
+type FindComputerGroupsByName200ApplicationXMLCriteriaCriterionAndOr string
+
+const (
+	FindComputerGroupsByName200ApplicationXMLCriteriaCriterionAndOrAnd FindComputerGroupsByName200ApplicationXMLCriteriaCriterionAndOr = "and"
+	FindComputerGroupsByName200ApplicationXMLCriteriaCriterionAndOrOr  FindComputerGroupsByName200ApplicationXMLCriteriaCriterionAndOr = "or"
+)
+
+func (e FindComputerGroupsByName200ApplicationXMLCriteriaCriterionAndOr) ToPointer() *FindComputerGroupsByName200ApplicationXMLCriteriaCriterionAndOr {
+	return &e
+}
+
+func (e *FindComputerGroupsByName200ApplicationXMLCriteriaCriterionAndOr) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "and":
+		fallthrough
+	case "or":
+		*e = FindComputerGroupsByName200ApplicationXMLCriteriaCriterionAndOr(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindComputerGroupsByName200ApplicationXMLCriteriaCriterionAndOr: %v", v)
+	}
+}
+
+type FindComputerGroupsByName200ApplicationXMLCriteriaCriterion struct {
+	AndOr        *FindComputerGroupsByName200ApplicationXMLCriteriaCriterionAndOr
+	ClosingParen *bool
+	// Name of the criteria
+	Name         *string
+	OpeningParen *bool
+	Priority     *int64
+	// Operator
+	SearchType *string
+	Value      *string
+}
+
+type FindComputerGroupsByName200ApplicationXMLCriteria struct {
+	Criterion *FindComputerGroupsByName200ApplicationXMLCriteriaCriterion
+	Size      *int64
+}
+
+type FindComputerGroupsByName200ApplicationXMLSite struct {
+	ID *int64
+	// Name of the site
+	Name string
+}
+
+// FindComputerGroupsByName200ApplicationXML - OK
+type FindComputerGroupsByName200ApplicationXML struct {
+	Computers []FindComputerGroupsByName200ApplicationXMLComputers
+	Criteria  []FindComputerGroupsByName200ApplicationXMLCriteria
+	ID        *int64
+	// Smart or static group
+	IsSmart *bool
+	// Name of the group
+	Name *string
+	Site *FindComputerGroupsByName200ApplicationXMLSite
+}
+
+type FindComputerGroupsByName200ApplicationJSONComputersComputer struct {
+	AltMacAddress *string `json:"alt_mac_address,omitempty"`
+	ID            *int64  `json:"id,omitempty"`
+	MacAddress    *string `json:"mac_address,omitempty"`
+	// Name of the computer
+	Name         *string `json:"name,omitempty"`
+	SerialNumber *string `json:"serial_number,omitempty"`
+}
+
+type FindComputerGroupsByName200ApplicationJSONComputers struct {
+	Computer *FindComputerGroupsByName200ApplicationJSONComputersComputer `json:"computer,omitempty"`
+	Size     *int64                                                       `json:"size,omitempty"`
+}
+
+type FindComputerGroupsByName200ApplicationJSONCriteriaCriterionAndOr string
+
+const (
+	FindComputerGroupsByName200ApplicationJSONCriteriaCriterionAndOrAnd FindComputerGroupsByName200ApplicationJSONCriteriaCriterionAndOr = "and"
+	FindComputerGroupsByName200ApplicationJSONCriteriaCriterionAndOrOr  FindComputerGroupsByName200ApplicationJSONCriteriaCriterionAndOr = "or"
+)
+
+func (e FindComputerGroupsByName200ApplicationJSONCriteriaCriterionAndOr) ToPointer() *FindComputerGroupsByName200ApplicationJSONCriteriaCriterionAndOr {
+	return &e
+}
+
+func (e *FindComputerGroupsByName200ApplicationJSONCriteriaCriterionAndOr) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "and":
+		fallthrough
+	case "or":
+		*e = FindComputerGroupsByName200ApplicationJSONCriteriaCriterionAndOr(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindComputerGroupsByName200ApplicationJSONCriteriaCriterionAndOr: %v", v)
+	}
+}
+
+type FindComputerGroupsByName200ApplicationJSONCriteriaCriterion struct {
+	AndOr        *FindComputerGroupsByName200ApplicationJSONCriteriaCriterionAndOr `json:"and_or,omitempty"`
+	ClosingParen *bool                                                             `json:"closing_paren,omitempty"`
+	// Name of the criteria
+	Name         *string `json:"name,omitempty"`
+	OpeningParen *bool   `json:"opening_paren,omitempty"`
+	Priority     *int64  `json:"priority,omitempty"`
+	// Operator
+	SearchType *string `json:"search_type,omitempty"`
+	Value      *string `json:"value,omitempty"`
+}
+
+type FindComputerGroupsByName200ApplicationJSONCriteria struct {
+	Criterion *FindComputerGroupsByName200ApplicationJSONCriteriaCriterion `json:"criterion,omitempty"`
+	Size      *int64                                                       `json:"size,omitempty"`
+}
+
+type FindComputerGroupsByName200ApplicationJSONSite struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the site
+	Name string `json:"name"`
+}
+
+// FindComputerGroupsByName200ApplicationJSON - OK
+type FindComputerGroupsByName200ApplicationJSON struct {
+	Computers []FindComputerGroupsByName200ApplicationJSONComputers `json:"computers,omitempty"`
+	Criteria  []FindComputerGroupsByName200ApplicationJSONCriteria  `json:"criteria,omitempty"`
+	ID        *int64                                                `json:"id,omitempty"`
+	// Smart or static group
+	IsSmart *bool `json:"is_smart,omitempty"`
+	// Name of the group
+	Name *string                                         `json:"name,omitempty"`
+	Site *FindComputerGroupsByName200ApplicationJSONSite `json:"site,omitempty"`
+}
+
 type FindComputerGroupsByNameResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ComputerGroup *shared.ComputerGroup
+	FindComputerGroupsByName200ApplicationJSONObject *FindComputerGroupsByName200ApplicationJSON
 }

@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,25 @@ type FindAllowedFileExtensionByIDRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+// FindAllowedFileExtensionByID200ApplicationXML - OK
+type FindAllowedFileExtensionByID200ApplicationXML struct {
+	// File extension
+	Extension string
+	ID        *int64
+}
+
+// FindAllowedFileExtensionByID200ApplicationJSON - OK
+type FindAllowedFileExtensionByID200ApplicationJSON struct {
+	// File extension
+	Extension string `json:"extension"`
+	ID        *int64 `json:"id,omitempty"`
+}
+
 type FindAllowedFileExtensionByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	AllowedFileExtension *shared.AllowedFileExtension
+	FindAllowedFileExtensionByID200ApplicationJSONObject *FindAllowedFileExtensionByID200ApplicationJSON
 }

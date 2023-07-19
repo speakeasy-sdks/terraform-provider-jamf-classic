@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,67 @@ type PatchreportsPatchsoftwaretitleidByIDGetRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+type PatchreportsPatchsoftwaretitleidByIDGet200ApplicationXMLVersionsVersionComputersComputer struct {
+	ID   *int64
+	Name *string
+}
+
+type PatchreportsPatchsoftwaretitleidByIDGet200ApplicationXMLVersionsVersionComputers struct {
+	Computer *PatchreportsPatchsoftwaretitleidByIDGet200ApplicationXMLVersionsVersionComputersComputer
+	Size     *int64
+}
+
+type PatchreportsPatchsoftwaretitleidByIDGet200ApplicationXMLVersionsVersion struct {
+	Computers       []PatchreportsPatchsoftwaretitleidByIDGet200ApplicationXMLVersionsVersionComputers
+	SoftwareVersion *string
+}
+
+type PatchreportsPatchsoftwaretitleidByIDGet200ApplicationXMLVersions struct {
+	Version *PatchreportsPatchsoftwaretitleidByIDGet200ApplicationXMLVersionsVersion
+}
+
+// PatchreportsPatchsoftwaretitleidByIDGet200ApplicationXML - OK
+type PatchreportsPatchsoftwaretitleidByIDGet200ApplicationXML struct {
+	Name                 *string
+	PatchSoftwareTitleID *string
+	TotalComputers       *int64
+	TotalVersions        *int64
+	Versions             []PatchreportsPatchsoftwaretitleidByIDGet200ApplicationXMLVersions
+}
+
+type PatchreportsPatchsoftwaretitleidByIDGet200ApplicationJSONVersionsVersionComputersComputer struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type PatchreportsPatchsoftwaretitleidByIDGet200ApplicationJSONVersionsVersionComputers struct {
+	Computer *PatchreportsPatchsoftwaretitleidByIDGet200ApplicationJSONVersionsVersionComputersComputer `json:"computer,omitempty"`
+	Size     *int64                                                                                     `json:"size,omitempty"`
+}
+
+type PatchreportsPatchsoftwaretitleidByIDGet200ApplicationJSONVersionsVersion struct {
+	Computers       []PatchreportsPatchsoftwaretitleidByIDGet200ApplicationJSONVersionsVersionComputers `json:"computers,omitempty"`
+	SoftwareVersion *string                                                                             `json:"software_version,omitempty"`
+}
+
+type PatchreportsPatchsoftwaretitleidByIDGet200ApplicationJSONVersions struct {
+	Version *PatchreportsPatchsoftwaretitleidByIDGet200ApplicationJSONVersionsVersion `json:"version,omitempty"`
+}
+
+// PatchreportsPatchsoftwaretitleidByIDGet200ApplicationJSON - OK
+type PatchreportsPatchsoftwaretitleidByIDGet200ApplicationJSON struct {
+	Name                 *string                                                             `json:"name,omitempty"`
+	PatchSoftwareTitleID *string                                                             `json:"patch_software_title_id,omitempty"`
+	TotalComputers       *int64                                                              `json:"total_computers,omitempty"`
+	TotalVersions        *int64                                                              `json:"total_versions,omitempty"`
+	Versions             []PatchreportsPatchsoftwaretitleidByIDGet200ApplicationJSONVersions `json:"versions,omitempty"`
+}
+
 type PatchreportsPatchsoftwaretitleidByIDGetResponse struct {
 	Body        []byte
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// OK
-	PatchReport *shared.PatchReport
+	PatchreportsPatchsoftwaretitleidByIDGet200ApplicationJSONObject *PatchreportsPatchsoftwaretitleidByIDGet200ApplicationJSON
+	StatusCode                                                      int
+	RawResponse                                                     *http.Response
 }

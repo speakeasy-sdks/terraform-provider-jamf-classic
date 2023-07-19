@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"io"
 	"jamf/internal/sdk/pkg/models/operations"
-	"jamf/internal/sdk/pkg/models/shared"
 	"jamf/internal/sdk/pkg/utils"
 	"net/http"
 )
@@ -66,12 +65,12 @@ func (s *computerapplications) FindComputerApplicationByNameAndVersion(ctx conte
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerApplications
+			var out *operations.FindComputerApplicationByNameAndVersion200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerApplications = out
+			res.FindComputerApplicationByNameAndVersion200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -123,12 +122,12 @@ func (s *computerapplications) FindComputerApplicationsByName(ctx context.Contex
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerApplications
+			var out *operations.FindComputerApplicationsByName200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerApplications = out
+			res.FindComputerApplicationsByName200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -181,12 +180,12 @@ func (s *computerapplications) FindComputerApplicationsByNameAndVersionAndInvent
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerApplications
+			var out *operations.FindComputerApplicationsByNameAndVersionAndInventory200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerApplications = out
+			res.FindComputerApplicationsByNameAndVersionAndInventory200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -239,12 +238,12 @@ func (s *computerapplications) FindComputerApplicationsByNameInventory(ctx conte
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerApplications
+			var out *operations.FindComputerApplicationsByNameInventory200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerApplications = out
+			res.FindComputerApplicationsByNameInventory200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}

@@ -3,9 +3,32 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindCategories200ApplicationXMLCategory struct {
+	ID *int64
+	// Name of the category
+	Name     string
+	Priority *int64
+}
+
+type FindCategories200ApplicationXML struct {
+	Category *FindCategories200ApplicationXMLCategory
+	Size     *int64
+}
+
+type FindCategories200ApplicationJSONCategory struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the category
+	Name     string `json:"name"`
+	Priority *int64 `json:"priority,omitempty"`
+}
+
+type FindCategories200ApplicationJSON struct {
+	Category *FindCategories200ApplicationJSONCategory `json:"category,omitempty"`
+	Size     *int64                                    `json:"size,omitempty"`
+}
 
 type FindCategoriesResponse struct {
 	Body        []byte
@@ -13,5 +36,5 @@ type FindCategoriesResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Categories []shared.Categories
+	FindCategories200ApplicationJSONObjects []FindCategories200ApplicationJSON
 }

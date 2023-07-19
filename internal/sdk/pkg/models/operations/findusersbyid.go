@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,247 @@ type FindUsersByIDRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+type FindUsersByID200ApplicationXMLExtensionAttributesExtensionAttributeType string
+
+const (
+	FindUsersByID200ApplicationXMLExtensionAttributesExtensionAttributeTypeString  FindUsersByID200ApplicationXMLExtensionAttributesExtensionAttributeType = "String"
+	FindUsersByID200ApplicationXMLExtensionAttributesExtensionAttributeTypeInteger FindUsersByID200ApplicationXMLExtensionAttributesExtensionAttributeType = "Integer"
+	FindUsersByID200ApplicationXMLExtensionAttributesExtensionAttributeTypeDate    FindUsersByID200ApplicationXMLExtensionAttributesExtensionAttributeType = "Date"
+)
+
+func (e FindUsersByID200ApplicationXMLExtensionAttributesExtensionAttributeType) ToPointer() *FindUsersByID200ApplicationXMLExtensionAttributesExtensionAttributeType {
+	return &e
+}
+
+func (e *FindUsersByID200ApplicationXMLExtensionAttributesExtensionAttributeType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "String":
+		fallthrough
+	case "Integer":
+		fallthrough
+	case "Date":
+		*e = FindUsersByID200ApplicationXMLExtensionAttributesExtensionAttributeType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindUsersByID200ApplicationXMLExtensionAttributesExtensionAttributeType: %v", v)
+	}
+}
+
+type FindUsersByID200ApplicationXMLExtensionAttributesExtensionAttribute struct {
+	ID    *int64
+	Name  *string
+	Type  *FindUsersByID200ApplicationXMLExtensionAttributesExtensionAttributeType
+	Value *string
+}
+
+type FindUsersByID200ApplicationXMLExtensionAttributes struct {
+	ExtensionAttribute *FindUsersByID200ApplicationXMLExtensionAttributesExtensionAttribute
+}
+
+type FindUsersByID200ApplicationXMLLdapServer struct {
+	ID   *int64
+	Name *string
+}
+
+type FindUsersByID200ApplicationXMLLinksComputersComputer struct {
+	ID   *int64
+	Name *string
+}
+
+type FindUsersByID200ApplicationXMLLinksComputers struct {
+	Computer *FindUsersByID200ApplicationXMLLinksComputersComputer
+}
+
+type FindUsersByID200ApplicationXMLLinksMobileDevicesMobileDevice struct {
+	ID   *int64
+	Name *string
+}
+
+type FindUsersByID200ApplicationXMLLinksMobileDevices struct {
+	MobileDevice *FindUsersByID200ApplicationXMLLinksMobileDevicesMobileDevice
+}
+
+type FindUsersByID200ApplicationXMLLinksPeripheralsPeripheral struct {
+	ID   *int64
+	Name *string
+}
+
+type FindUsersByID200ApplicationXMLLinksPeripherals struct {
+	Peripheral *FindUsersByID200ApplicationXMLLinksPeripheralsPeripheral
+}
+
+type FindUsersByID200ApplicationXMLLinksVppAssignmentsVppAssignment struct {
+	ID   *int64
+	Name *string
+}
+
+type FindUsersByID200ApplicationXMLLinksVppAssignments struct {
+	VppAssignment *FindUsersByID200ApplicationXMLLinksVppAssignmentsVppAssignment
+}
+
+type FindUsersByID200ApplicationXMLLinks struct {
+	Computers         *FindUsersByID200ApplicationXMLLinksComputers
+	MobileDevices     *FindUsersByID200ApplicationXMLLinksMobileDevices
+	Peripherals       *FindUsersByID200ApplicationXMLLinksPeripherals
+	TotalVppCodeCount *int64
+	VppAssignments    *FindUsersByID200ApplicationXMLLinksVppAssignments
+}
+
+type FindUsersByID200ApplicationXMLSitesSite struct {
+	ID *int64
+	// Name of the site
+	Name string
+}
+
+type FindUsersByID200ApplicationXMLSites struct {
+	Site *FindUsersByID200ApplicationXMLSitesSite
+}
+
+// FindUsersByID200ApplicationXML - OK
+type FindUsersByID200ApplicationXML struct {
+	CustomPhotoURL       *string
+	Email                *string
+	EmailAddress         *string
+	EnableCustomPhotoURL *bool
+	ExtensionAttributes  []FindUsersByID200ApplicationXMLExtensionAttributes
+	FullName             *string
+	ID                   *int64
+	LdapServer           *FindUsersByID200ApplicationXMLLdapServer
+	Links                *FindUsersByID200ApplicationXMLLinks
+	// Name of the user
+	Name        string
+	PhoneNumber *string
+	Position    *string
+	Sites       []FindUsersByID200ApplicationXMLSites
+}
+
+type FindUsersByID200ApplicationJSONExtensionAttributesExtensionAttributeType string
+
+const (
+	FindUsersByID200ApplicationJSONExtensionAttributesExtensionAttributeTypeString  FindUsersByID200ApplicationJSONExtensionAttributesExtensionAttributeType = "String"
+	FindUsersByID200ApplicationJSONExtensionAttributesExtensionAttributeTypeInteger FindUsersByID200ApplicationJSONExtensionAttributesExtensionAttributeType = "Integer"
+	FindUsersByID200ApplicationJSONExtensionAttributesExtensionAttributeTypeDate    FindUsersByID200ApplicationJSONExtensionAttributesExtensionAttributeType = "Date"
+)
+
+func (e FindUsersByID200ApplicationJSONExtensionAttributesExtensionAttributeType) ToPointer() *FindUsersByID200ApplicationJSONExtensionAttributesExtensionAttributeType {
+	return &e
+}
+
+func (e *FindUsersByID200ApplicationJSONExtensionAttributesExtensionAttributeType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "String":
+		fallthrough
+	case "Integer":
+		fallthrough
+	case "Date":
+		*e = FindUsersByID200ApplicationJSONExtensionAttributesExtensionAttributeType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindUsersByID200ApplicationJSONExtensionAttributesExtensionAttributeType: %v", v)
+	}
+}
+
+type FindUsersByID200ApplicationJSONExtensionAttributesExtensionAttribute struct {
+	ID    *int64                                                                    `json:"id,omitempty"`
+	Name  *string                                                                   `json:"name,omitempty"`
+	Type  *FindUsersByID200ApplicationJSONExtensionAttributesExtensionAttributeType `json:"type,omitempty"`
+	Value *string                                                                   `json:"value,omitempty"`
+}
+
+type FindUsersByID200ApplicationJSONExtensionAttributes struct {
+	ExtensionAttribute *FindUsersByID200ApplicationJSONExtensionAttributesExtensionAttribute `json:"extension_attribute,omitempty"`
+}
+
+type FindUsersByID200ApplicationJSONLdapServer struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindUsersByID200ApplicationJSONLinksComputersComputer struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindUsersByID200ApplicationJSONLinksComputers struct {
+	Computer *FindUsersByID200ApplicationJSONLinksComputersComputer `json:"computer,omitempty"`
+}
+
+type FindUsersByID200ApplicationJSONLinksMobileDevicesMobileDevice struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindUsersByID200ApplicationJSONLinksMobileDevices struct {
+	MobileDevice *FindUsersByID200ApplicationJSONLinksMobileDevicesMobileDevice `json:"mobile_device,omitempty"`
+}
+
+type FindUsersByID200ApplicationJSONLinksPeripheralsPeripheral struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindUsersByID200ApplicationJSONLinksPeripherals struct {
+	Peripheral *FindUsersByID200ApplicationJSONLinksPeripheralsPeripheral `json:"peripheral,omitempty"`
+}
+
+type FindUsersByID200ApplicationJSONLinksVppAssignmentsVppAssignment struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindUsersByID200ApplicationJSONLinksVppAssignments struct {
+	VppAssignment *FindUsersByID200ApplicationJSONLinksVppAssignmentsVppAssignment `json:"vpp_assignment,omitempty"`
+}
+
+type FindUsersByID200ApplicationJSONLinks struct {
+	Computers         *FindUsersByID200ApplicationJSONLinksComputers      `json:"computers,omitempty"`
+	MobileDevices     *FindUsersByID200ApplicationJSONLinksMobileDevices  `json:"mobile_devices,omitempty"`
+	Peripherals       *FindUsersByID200ApplicationJSONLinksPeripherals    `json:"peripherals,omitempty"`
+	TotalVppCodeCount *int64                                              `json:"total_vpp_code_count,omitempty"`
+	VppAssignments    *FindUsersByID200ApplicationJSONLinksVppAssignments `json:"vpp_assignments,omitempty"`
+}
+
+type FindUsersByID200ApplicationJSONSitesSite struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the site
+	Name string `json:"name"`
+}
+
+type FindUsersByID200ApplicationJSONSites struct {
+	Site *FindUsersByID200ApplicationJSONSitesSite `json:"site,omitempty"`
+}
+
+// FindUsersByID200ApplicationJSON - OK
+type FindUsersByID200ApplicationJSON struct {
+	CustomPhotoURL       *string                                              `json:"custom_photo_url,omitempty"`
+	Email                *string                                              `json:"email,omitempty"`
+	EmailAddress         *string                                              `json:"email_address,omitempty"`
+	EnableCustomPhotoURL *bool                                                `json:"enable_custom_photo_url,omitempty"`
+	ExtensionAttributes  []FindUsersByID200ApplicationJSONExtensionAttributes `json:"extension_attributes,omitempty"`
+	FullName             *string                                              `json:"full_name,omitempty"`
+	ID                   *int64                                               `json:"id,omitempty"`
+	LdapServer           *FindUsersByID200ApplicationJSONLdapServer           `json:"ldap_server,omitempty"`
+	Links                *FindUsersByID200ApplicationJSONLinks                `json:"links,omitempty"`
+	// Name of the user
+	Name        string                                 `json:"name"`
+	PhoneNumber *string                                `json:"phone_number,omitempty"`
+	Position    *string                                `json:"position,omitempty"`
+	Sites       []FindUsersByID200ApplicationJSONSites `json:"sites,omitempty"`
+}
+
 type FindUsersByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	User *shared.User
+	FindUsersByID200ApplicationJSONObject *FindUsersByID200ApplicationJSON
 }

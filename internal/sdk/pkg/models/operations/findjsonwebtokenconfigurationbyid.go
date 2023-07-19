@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,27 @@ type FindJSONWebTokenConfigurationByIDRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+// FindJSONWebTokenConfigurationByID200ApplicationXML - OK
+type FindJSONWebTokenConfigurationByID200ApplicationXML struct {
+	Disabled    *bool
+	ID          *int64
+	Name        string
+	TokenExpiry *int64
+}
+
+// FindJSONWebTokenConfigurationByID200ApplicationJSON - OK
+type FindJSONWebTokenConfigurationByID200ApplicationJSON struct {
+	Disabled    *bool  `json:"disabled,omitempty"`
+	ID          *int64 `json:"id,omitempty"`
+	Name        string `json:"name"`
+	TokenExpiry *int64 `json:"token_expiry,omitempty"`
+}
+
 type FindJSONWebTokenConfigurationByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	JSONWebTokenConfiguration *shared.JSONWebTokenConfiguration
+	FindJSONWebTokenConfigurationByID200ApplicationJSONObject *FindJSONWebTokenConfigurationByID200ApplicationJSON
 }

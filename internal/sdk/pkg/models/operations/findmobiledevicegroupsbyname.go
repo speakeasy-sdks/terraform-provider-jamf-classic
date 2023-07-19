@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,159 @@ type FindMobileDeviceGroupsByNameRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+type FindMobileDeviceGroupsByName200ApplicationXMLCriteriaCriterionAndOr string
+
+const (
+	FindMobileDeviceGroupsByName200ApplicationXMLCriteriaCriterionAndOrAnd FindMobileDeviceGroupsByName200ApplicationXMLCriteriaCriterionAndOr = "and"
+	FindMobileDeviceGroupsByName200ApplicationXMLCriteriaCriterionAndOrOr  FindMobileDeviceGroupsByName200ApplicationXMLCriteriaCriterionAndOr = "or"
+)
+
+func (e FindMobileDeviceGroupsByName200ApplicationXMLCriteriaCriterionAndOr) ToPointer() *FindMobileDeviceGroupsByName200ApplicationXMLCriteriaCriterionAndOr {
+	return &e
+}
+
+func (e *FindMobileDeviceGroupsByName200ApplicationXMLCriteriaCriterionAndOr) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "and":
+		fallthrough
+	case "or":
+		*e = FindMobileDeviceGroupsByName200ApplicationXMLCriteriaCriterionAndOr(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindMobileDeviceGroupsByName200ApplicationXMLCriteriaCriterionAndOr: %v", v)
+	}
+}
+
+type FindMobileDeviceGroupsByName200ApplicationXMLCriteriaCriterion struct {
+	AndOr        *FindMobileDeviceGroupsByName200ApplicationXMLCriteriaCriterionAndOr
+	ClosingParen *bool
+	// Name of the criteria
+	Name         *string
+	OpeningParen *bool
+	Priority     *int64
+	// Operator
+	SearchType *string
+	Value      *string
+}
+
+type FindMobileDeviceGroupsByName200ApplicationXMLCriteria struct {
+	Criterion *FindMobileDeviceGroupsByName200ApplicationXMLCriteriaCriterion
+	Size      *int64
+}
+
+type FindMobileDeviceGroupsByName200ApplicationXMLMobileDevicesMobileDevice struct {
+	ID         *int64
+	MacAddress *string
+	// Name of the device
+	Name           *string
+	SerialNumber   *string
+	Udid           *string
+	WifiMacAddress *string
+}
+
+type FindMobileDeviceGroupsByName200ApplicationXMLMobileDevices struct {
+	MobileDevice *FindMobileDeviceGroupsByName200ApplicationXMLMobileDevicesMobileDevice
+}
+
+type FindMobileDeviceGroupsByName200ApplicationXMLSite struct {
+	ID *int64
+	// Name of the site
+	Name string
+}
+
+// FindMobileDeviceGroupsByName200ApplicationXML - OK
+type FindMobileDeviceGroupsByName200ApplicationXML struct {
+	Criteria      []FindMobileDeviceGroupsByName200ApplicationXMLCriteria
+	ID            *int64
+	IsSmart       bool
+	MobileDevices []FindMobileDeviceGroupsByName200ApplicationXMLMobileDevices
+	Name          string
+	Site          *FindMobileDeviceGroupsByName200ApplicationXMLSite
+}
+
+type FindMobileDeviceGroupsByName200ApplicationJSONCriteriaCriterionAndOr string
+
+const (
+	FindMobileDeviceGroupsByName200ApplicationJSONCriteriaCriterionAndOrAnd FindMobileDeviceGroupsByName200ApplicationJSONCriteriaCriterionAndOr = "and"
+	FindMobileDeviceGroupsByName200ApplicationJSONCriteriaCriterionAndOrOr  FindMobileDeviceGroupsByName200ApplicationJSONCriteriaCriterionAndOr = "or"
+)
+
+func (e FindMobileDeviceGroupsByName200ApplicationJSONCriteriaCriterionAndOr) ToPointer() *FindMobileDeviceGroupsByName200ApplicationJSONCriteriaCriterionAndOr {
+	return &e
+}
+
+func (e *FindMobileDeviceGroupsByName200ApplicationJSONCriteriaCriterionAndOr) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "and":
+		fallthrough
+	case "or":
+		*e = FindMobileDeviceGroupsByName200ApplicationJSONCriteriaCriterionAndOr(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindMobileDeviceGroupsByName200ApplicationJSONCriteriaCriterionAndOr: %v", v)
+	}
+}
+
+type FindMobileDeviceGroupsByName200ApplicationJSONCriteriaCriterion struct {
+	AndOr        *FindMobileDeviceGroupsByName200ApplicationJSONCriteriaCriterionAndOr `json:"and_or,omitempty"`
+	ClosingParen *bool                                                                 `json:"closing_paren,omitempty"`
+	// Name of the criteria
+	Name         *string `json:"name,omitempty"`
+	OpeningParen *bool   `json:"opening_paren,omitempty"`
+	Priority     *int64  `json:"priority,omitempty"`
+	// Operator
+	SearchType *string `json:"search_type,omitempty"`
+	Value      *string `json:"value,omitempty"`
+}
+
+type FindMobileDeviceGroupsByName200ApplicationJSONCriteria struct {
+	Criterion *FindMobileDeviceGroupsByName200ApplicationJSONCriteriaCriterion `json:"criterion,omitempty"`
+	Size      *int64                                                           `json:"size,omitempty"`
+}
+
+type FindMobileDeviceGroupsByName200ApplicationJSONMobileDevicesMobileDevice struct {
+	ID         *int64  `json:"id,omitempty"`
+	MacAddress *string `json:"mac_address,omitempty"`
+	// Name of the device
+	Name           *string `json:"name,omitempty"`
+	SerialNumber   *string `json:"serial_number,omitempty"`
+	Udid           *string `json:"udid,omitempty"`
+	WifiMacAddress *string `json:"wifi_mac_address,omitempty"`
+}
+
+type FindMobileDeviceGroupsByName200ApplicationJSONMobileDevices struct {
+	MobileDevice *FindMobileDeviceGroupsByName200ApplicationJSONMobileDevicesMobileDevice `json:"mobile_device,omitempty"`
+}
+
+type FindMobileDeviceGroupsByName200ApplicationJSONSite struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the site
+	Name string `json:"name"`
+}
+
+// FindMobileDeviceGroupsByName200ApplicationJSON - OK
+type FindMobileDeviceGroupsByName200ApplicationJSON struct {
+	Criteria      []FindMobileDeviceGroupsByName200ApplicationJSONCriteria      `json:"criteria,omitempty"`
+	ID            *int64                                                        `json:"id,omitempty"`
+	IsSmart       bool                                                          `json:"is_smart"`
+	MobileDevices []FindMobileDeviceGroupsByName200ApplicationJSONMobileDevices `json:"mobile_devices,omitempty"`
+	Name          string                                                        `json:"name"`
+	Site          *FindMobileDeviceGroupsByName200ApplicationJSONSite           `json:"site,omitempty"`
+}
+
 type FindMobileDeviceGroupsByNameResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	MobileDeviceGroup *shared.MobileDeviceGroup
+	FindMobileDeviceGroupsByName200ApplicationJSONObject *FindMobileDeviceGroupsByName200ApplicationJSON
 }

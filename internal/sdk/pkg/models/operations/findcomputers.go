@@ -3,9 +3,28 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindComputers200ApplicationXMLComputer struct {
+	ID   *int64
+	Name *string
+}
+
+type FindComputers200ApplicationXML struct {
+	Computer *FindComputers200ApplicationXMLComputer
+	Size     *int64
+}
+
+type FindComputers200ApplicationJSONComputer struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindComputers200ApplicationJSON struct {
+	Computer *FindComputers200ApplicationJSONComputer `json:"computer,omitempty"`
+	Size     *int64                                   `json:"size,omitempty"`
+}
 
 type FindComputersResponse struct {
 	Body        []byte
@@ -13,5 +32,5 @@ type FindComputersResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Computers []shared.Computers
+	FindComputers200ApplicationJSONObjects []FindComputers200ApplicationJSON
 }

@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -16,11 +15,89 @@ type FindComputerApplicationsByNameAndVersionAndInventoryRequest struct {
 	Version string `pathParam:"style=simple,explode=false,name=version"`
 }
 
+type FindComputerApplicationsByNameAndVersionAndInventory200ApplicationXMLUniqueComputersComputer struct {
+	ID           *int64
+	MacAddress   *string
+	Name         *string
+	SerialNumber *string
+	Udid         *string
+}
+
+type FindComputerApplicationsByNameAndVersionAndInventory200ApplicationXMLUniqueComputers struct {
+	Computer []FindComputerApplicationsByNameAndVersionAndInventory200ApplicationXMLUniqueComputersComputer
+}
+
+type FindComputerApplicationsByNameAndVersionAndInventory200ApplicationXMLVersionsVersionComputersComputer struct {
+	ID           *int64
+	MacAddress   *string
+	Name         *string
+	SerialNumber *string
+	Udid         *string
+}
+
+type FindComputerApplicationsByNameAndVersionAndInventory200ApplicationXMLVersionsVersionComputers struct {
+	Computer *FindComputerApplicationsByNameAndVersionAndInventory200ApplicationXMLVersionsVersionComputersComputer
+}
+
+type FindComputerApplicationsByNameAndVersionAndInventory200ApplicationXMLVersionsVersion struct {
+	Computers []FindComputerApplicationsByNameAndVersionAndInventory200ApplicationXMLVersionsVersionComputers
+	Number    *string
+}
+
+type FindComputerApplicationsByNameAndVersionAndInventory200ApplicationXMLVersions struct {
+	Version [][]FindComputerApplicationsByNameAndVersionAndInventory200ApplicationXMLVersionsVersion
+}
+
+// FindComputerApplicationsByNameAndVersionAndInventory200ApplicationXML - OK
+type FindComputerApplicationsByNameAndVersionAndInventory200ApplicationXML struct {
+	UniqueComputers *FindComputerApplicationsByNameAndVersionAndInventory200ApplicationXMLUniqueComputers
+	Versions        *FindComputerApplicationsByNameAndVersionAndInventory200ApplicationXMLVersions
+}
+
+type FindComputerApplicationsByNameAndVersionAndInventory200ApplicationJSONUniqueComputersComputer struct {
+	ID           *int64  `json:"id,omitempty"`
+	MacAddress   *string `json:"mac_address,omitempty"`
+	Name         *string `json:"name,omitempty"`
+	SerialNumber *string `json:"serial_number,omitempty"`
+	Udid         *string `json:"udid,omitempty"`
+}
+
+type FindComputerApplicationsByNameAndVersionAndInventory200ApplicationJSONUniqueComputers struct {
+	Computer []FindComputerApplicationsByNameAndVersionAndInventory200ApplicationJSONUniqueComputersComputer `json:"computer,omitempty"`
+}
+
+type FindComputerApplicationsByNameAndVersionAndInventory200ApplicationJSONVersionsVersionComputersComputer struct {
+	ID           *int64  `json:"id,omitempty"`
+	MacAddress   *string `json:"mac_address,omitempty"`
+	Name         *string `json:"name,omitempty"`
+	SerialNumber *string `json:"serial_number,omitempty"`
+	Udid         *string `json:"udid,omitempty"`
+}
+
+type FindComputerApplicationsByNameAndVersionAndInventory200ApplicationJSONVersionsVersionComputers struct {
+	Computer *FindComputerApplicationsByNameAndVersionAndInventory200ApplicationJSONVersionsVersionComputersComputer `json:"computer,omitempty"`
+}
+
+type FindComputerApplicationsByNameAndVersionAndInventory200ApplicationJSONVersionsVersion struct {
+	Computers []FindComputerApplicationsByNameAndVersionAndInventory200ApplicationJSONVersionsVersionComputers `json:"computers,omitempty"`
+	Number    *string                                                                                          `json:"number,omitempty"`
+}
+
+type FindComputerApplicationsByNameAndVersionAndInventory200ApplicationJSONVersions struct {
+	Version [][]FindComputerApplicationsByNameAndVersionAndInventory200ApplicationJSONVersionsVersion `json:"version,omitempty"`
+}
+
+// FindComputerApplicationsByNameAndVersionAndInventory200ApplicationJSON - OK
+type FindComputerApplicationsByNameAndVersionAndInventory200ApplicationJSON struct {
+	UniqueComputers *FindComputerApplicationsByNameAndVersionAndInventory200ApplicationJSONUniqueComputers `json:"unique_computers,omitempty"`
+	Versions        *FindComputerApplicationsByNameAndVersionAndInventory200ApplicationJSONVersions        `json:"versions,omitempty"`
+}
+
 type FindComputerApplicationsByNameAndVersionAndInventoryResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ComputerApplications *shared.ComputerApplications
+	FindComputerApplicationsByNameAndVersionAndInventory200ApplicationJSONObject *FindComputerApplicationsByNameAndVersionAndInventory200ApplicationJSON
 }

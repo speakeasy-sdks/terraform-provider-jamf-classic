@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"io"
 	"jamf/internal/sdk/pkg/models/operations"
-	"jamf/internal/sdk/pkg/models/shared"
 	"jamf/internal/sdk/pkg/utils"
 	"net/http"
 )
@@ -66,12 +65,12 @@ func (s *computerhardwaresoftwarereports) FindComputerHardwareSoftwareReportsByI
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerHardwareSoftwareReports
+			var out *operations.FindComputerHardwareSoftwareReportsByID200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerHardwareSoftwareReports = out
+			res.FindComputerHardwareSoftwareReportsByID200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -124,12 +123,12 @@ func (s *computerhardwaresoftwarereports) FindComputerHardwareSoftwareReportsByI
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerHardwareSoftwareReports
+			var out *operations.FindComputerHardwareSoftwareReportsByIDSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerHardwareSoftwareReports = out
+			res.FindComputerHardwareSoftwareReportsByIDSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -181,12 +180,12 @@ func (s *computerhardwaresoftwarereports) FindComputerHardwareSoftwareReportsByM
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerHardwareSoftwareReports
+			var out *operations.FindComputerHardwareSoftwareReportsByMacAddress200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerHardwareSoftwareReports = out
+			res.FindComputerHardwareSoftwareReportsByMacAddress200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -239,12 +238,12 @@ func (s *computerhardwaresoftwarereports) FindComputerHardwareSoftwareReportsByM
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerHardwareSoftwareReports
+			var out *operations.FindComputerHardwareSoftwareReportsByMacAddressSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerHardwareSoftwareReports = out
+			res.FindComputerHardwareSoftwareReportsByMacAddressSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -296,12 +295,12 @@ func (s *computerhardwaresoftwarereports) FindComputerHardwareSoftwareReportsByN
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerHardwareSoftwareReports
+			var out *operations.FindComputerHardwareSoftwareReportsByName200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerHardwareSoftwareReports = out
+			res.FindComputerHardwareSoftwareReportsByName200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -354,12 +353,12 @@ func (s *computerhardwaresoftwarereports) FindComputerHardwareSoftwareReportsByN
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerHardwareSoftwareReports
+			var out *operations.FindComputerHardwareSoftwareReportsByNameSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerHardwareSoftwareReports = out
+			res.FindComputerHardwareSoftwareReportsByNameSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -411,12 +410,12 @@ func (s *computerhardwaresoftwarereports) FindComputerHardwareSoftwareReportsByS
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerHardwareSoftwareReports
+			var out *operations.FindComputerHardwareSoftwareReportsBySerial200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerHardwareSoftwareReports = out
+			res.FindComputerHardwareSoftwareReportsBySerial200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -469,12 +468,12 @@ func (s *computerhardwaresoftwarereports) FindComputerHardwareSoftwareReportsByS
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerHardwareSoftwareReports
+			var out *operations.FindComputerHardwareSoftwareReportsBySerialSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerHardwareSoftwareReports = out
+			res.FindComputerHardwareSoftwareReportsBySerialSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -526,12 +525,12 @@ func (s *computerhardwaresoftwarereports) FindComputerHardwareSoftwareReportsByU
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerHardwareSoftwareReports
+			var out *operations.FindComputerHardwareSoftwareReportsByUDID200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerHardwareSoftwareReports = out
+			res.FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -584,12 +583,12 @@ func (s *computerhardwaresoftwarereports) FindComputerHardwareSoftwareReportsByU
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerHardwareSoftwareReports
+			var out *operations.FindComputerHardwareSoftwareReportsByUDIDSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerHardwareSoftwareReports = out
+			res.FindComputerHardwareSoftwareReportsByUDIDSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}

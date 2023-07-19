@@ -11,6 +11,14 @@ type CreateJSONWebTokenConfigurationByIDRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+// CreateJSONWebTokenConfigurationByID201ApplicationXML - Created
+type CreateJSONWebTokenConfigurationByID201ApplicationXML struct {
+	Disabled    *bool
+	ID          *int64
+	Name        string
+	TokenExpiry *int64
+}
+
 type CreateJSONWebTokenConfigurationByIDResponse struct {
 	Body        []byte
 	ContentType string

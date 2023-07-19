@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"io"
 	"jamf/internal/sdk/pkg/models/operations"
-	"jamf/internal/sdk/pkg/models/shared"
 	"jamf/internal/sdk/pkg/utils"
 	"net/http"
 )
@@ -66,12 +65,12 @@ func (s *computerhistory) FindComputerHistoryByID(ctx context.Context, request o
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerHistory
+			var out *operations.FindComputerHistoryByID200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerHistory = out
+			res.FindComputerHistoryByID200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -124,12 +123,12 @@ func (s *computerhistory) FindComputerHistoryByIDSubset(ctx context.Context, req
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerHistory
+			var out *operations.FindComputerHistoryByIDSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerHistory = out
+			res.FindComputerHistoryByIDSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -181,12 +180,12 @@ func (s *computerhistory) FindComputerHistoryByMacAddress(ctx context.Context, r
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerHistory
+			var out *operations.FindComputerHistoryByMacAddress200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerHistory = out
+			res.FindComputerHistoryByMacAddress200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -239,12 +238,12 @@ func (s *computerhistory) FindComputerHistoryByMacAddressSubset(ctx context.Cont
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerHistory
+			var out *operations.FindComputerHistoryByMacAddressSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerHistory = out
+			res.FindComputerHistoryByMacAddressSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -296,12 +295,12 @@ func (s *computerhistory) FindComputerHistoryByName(ctx context.Context, request
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerHistory
+			var out *operations.FindComputerHistoryByName200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerHistory = out
+			res.FindComputerHistoryByName200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -354,12 +353,12 @@ func (s *computerhistory) FindComputerHistoryByNameSubset(ctx context.Context, r
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerHistory
+			var out *operations.FindComputerHistoryByNameSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerHistory = out
+			res.FindComputerHistoryByNameSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -411,12 +410,12 @@ func (s *computerhistory) FindComputerHistoryBySerialNumber(ctx context.Context,
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerHistory
+			var out *operations.FindComputerHistoryBySerialNumber200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerHistory = out
+			res.FindComputerHistoryBySerialNumber200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -469,12 +468,12 @@ func (s *computerhistory) FindComputerHistoryBySerialNumberSubset(ctx context.Co
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerHistory
+			var out *operations.FindComputerHistoryBySerialNumberSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerHistory = out
+			res.FindComputerHistoryBySerialNumberSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -526,12 +525,12 @@ func (s *computerhistory) FindComputerHistoryByUDID(ctx context.Context, request
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerHistory
+			var out *operations.FindComputerHistoryByUDID200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerHistory = out
+			res.FindComputerHistoryByUDID200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -584,12 +583,12 @@ func (s *computerhistory) FindComputerHistoryByUDIDSubset(ctx context.Context, r
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerHistory
+			var out *operations.FindComputerHistoryByUDIDSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerHistory = out
+			res.FindComputerHistoryByUDIDSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}

@@ -3,9 +3,36 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindComputerInvitations200ApplicationXMLComputerInvitation struct {
+	ExpirationDate      *string
+	ExpirationDateEpoch *int64
+	ExpirationDateUtc   *string
+	ID                  *int64
+	Invitation          *int64
+	InvitationType      *string
+}
+
+type FindComputerInvitations200ApplicationXML struct {
+	ComputerInvitation *FindComputerInvitations200ApplicationXMLComputerInvitation
+	Size               *int64
+}
+
+type FindComputerInvitations200ApplicationJSONComputerInvitation struct {
+	ExpirationDate      *string `json:"expiration_date,omitempty"`
+	ExpirationDateEpoch *int64  `json:"expiration_date_epoch,omitempty"`
+	ExpirationDateUtc   *string `json:"expiration_date_utc,omitempty"`
+	ID                  *int64  `json:"id,omitempty"`
+	Invitation          *int64  `json:"invitation,omitempty"`
+	InvitationType      *string `json:"invitation_type,omitempty"`
+}
+
+type FindComputerInvitations200ApplicationJSON struct {
+	ComputerInvitation *FindComputerInvitations200ApplicationJSONComputerInvitation `json:"computer_invitation,omitempty"`
+	Size               *int64                                                       `json:"size,omitempty"`
+}
 
 type FindComputerInvitationsResponse struct {
 	Body        []byte
@@ -13,5 +40,5 @@ type FindComputerInvitationsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ComputerInvitations []shared.ComputerInvitations
+	FindComputerInvitations200ApplicationJSONObjects []FindComputerInvitations200ApplicationJSON
 }

@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,125 @@ type FindScriptsByNameRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+type FindScriptsByName200ApplicationXMLParameters struct {
+	Parameter10 *string
+	Parameter11 *string
+	Parameter4  *string
+	Parameter5  *string
+	Parameter6  *string
+	Parameter7  *string
+	Parameter8  *string
+	Parameter9  *string
+}
+
+type FindScriptsByName200ApplicationXMLPriority string
+
+const (
+	FindScriptsByName200ApplicationXMLPriorityBefore   FindScriptsByName200ApplicationXMLPriority = "Before"
+	FindScriptsByName200ApplicationXMLPriorityAfter    FindScriptsByName200ApplicationXMLPriority = "After"
+	FindScriptsByName200ApplicationXMLPriorityAtReboot FindScriptsByName200ApplicationXMLPriority = "At Reboot"
+)
+
+func (e FindScriptsByName200ApplicationXMLPriority) ToPointer() *FindScriptsByName200ApplicationXMLPriority {
+	return &e
+}
+
+func (e *FindScriptsByName200ApplicationXMLPriority) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Before":
+		fallthrough
+	case "After":
+		fallthrough
+	case "At Reboot":
+		*e = FindScriptsByName200ApplicationXMLPriority(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindScriptsByName200ApplicationXMLPriority: %v", v)
+	}
+}
+
+// FindScriptsByName200ApplicationXML - OK
+type FindScriptsByName200ApplicationXML struct {
+	Category *string
+	Filename *string
+	ID       *int64
+	Info     *string
+	// Name of the script
+	Name                  string
+	Notes                 *string
+	OsRequirements        *string
+	Parameters            *FindScriptsByName200ApplicationXMLParameters
+	Priority              *FindScriptsByName200ApplicationXMLPriority
+	ScriptContents        *string
+	ScriptContentsEncoded *string
+}
+
+type FindScriptsByName200ApplicationJSONParameters struct {
+	Parameter10 *string `json:"parameter10,omitempty"`
+	Parameter11 *string `json:"parameter11,omitempty"`
+	Parameter4  *string `json:"parameter4,omitempty"`
+	Parameter5  *string `json:"parameter5,omitempty"`
+	Parameter6  *string `json:"parameter6,omitempty"`
+	Parameter7  *string `json:"parameter7,omitempty"`
+	Parameter8  *string `json:"parameter8,omitempty"`
+	Parameter9  *string `json:"parameter9,omitempty"`
+}
+
+type FindScriptsByName200ApplicationJSONPriority string
+
+const (
+	FindScriptsByName200ApplicationJSONPriorityBefore   FindScriptsByName200ApplicationJSONPriority = "Before"
+	FindScriptsByName200ApplicationJSONPriorityAfter    FindScriptsByName200ApplicationJSONPriority = "After"
+	FindScriptsByName200ApplicationJSONPriorityAtReboot FindScriptsByName200ApplicationJSONPriority = "At Reboot"
+)
+
+func (e FindScriptsByName200ApplicationJSONPriority) ToPointer() *FindScriptsByName200ApplicationJSONPriority {
+	return &e
+}
+
+func (e *FindScriptsByName200ApplicationJSONPriority) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Before":
+		fallthrough
+	case "After":
+		fallthrough
+	case "At Reboot":
+		*e = FindScriptsByName200ApplicationJSONPriority(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindScriptsByName200ApplicationJSONPriority: %v", v)
+	}
+}
+
+// FindScriptsByName200ApplicationJSON - OK
+type FindScriptsByName200ApplicationJSON struct {
+	Category *string `json:"category,omitempty"`
+	Filename *string `json:"filename,omitempty"`
+	ID       *int64  `json:"id,omitempty"`
+	Info     *string `json:"info,omitempty"`
+	// Name of the script
+	Name                  string                                         `json:"name"`
+	Notes                 *string                                        `json:"notes,omitempty"`
+	OsRequirements        *string                                        `json:"os_requirements,omitempty"`
+	Parameters            *FindScriptsByName200ApplicationJSONParameters `json:"parameters,omitempty"`
+	Priority              *FindScriptsByName200ApplicationJSONPriority   `json:"priority,omitempty"`
+	ScriptContents        *string                                        `json:"script_contents,omitempty"`
+	ScriptContentsEncoded *string                                        `json:"script_contents_encoded,omitempty"`
+}
+
 type FindScriptsByNameResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Script *shared.Script
+	FindScriptsByName200ApplicationJSONObject *FindScriptsByName200ApplicationJSON
 }

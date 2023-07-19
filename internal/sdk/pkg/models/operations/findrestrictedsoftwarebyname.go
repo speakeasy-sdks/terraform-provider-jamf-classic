@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,257 @@ type FindRestrictedSoftwareByNameRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+type FindRestrictedSoftwareByName200ApplicationXMLGeneralSite struct {
+	ID *int64
+	// Name of the site
+	Name string
+}
+
+type FindRestrictedSoftwareByName200ApplicationXMLGeneral struct {
+	DeleteExecutable      *bool
+	DisplayMessage        *string
+	ID                    *int64
+	KillProcess           *bool
+	MatchExactProcessName *bool
+	// Name of the restricted software
+	Name             string
+	ProcessName      string
+	SendNotification *bool
+	Site             *FindRestrictedSoftwareByName200ApplicationXMLGeneralSite
+}
+
+type FindRestrictedSoftwareByName200ApplicationXMLScopeBuildingsBuilding struct {
+	ID   *int64
+	Name *string
+}
+
+type FindRestrictedSoftwareByName200ApplicationXMLScopeBuildings struct {
+	Building *FindRestrictedSoftwareByName200ApplicationXMLScopeBuildingsBuilding
+}
+
+type FindRestrictedSoftwareByName200ApplicationXMLScopeComputerGroupsComputerGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindRestrictedSoftwareByName200ApplicationXMLScopeComputerGroups struct {
+	ComputerGroup *FindRestrictedSoftwareByName200ApplicationXMLScopeComputerGroupsComputerGroup
+}
+
+type FindRestrictedSoftwareByName200ApplicationXMLScopeComputersComputer struct {
+	ID   *int64
+	Name *string
+}
+
+type FindRestrictedSoftwareByName200ApplicationXMLScopeComputers struct {
+	Computer *FindRestrictedSoftwareByName200ApplicationXMLScopeComputersComputer
+}
+
+type FindRestrictedSoftwareByName200ApplicationXMLScopeDepartmentsDepartment struct {
+	ID   *int64
+	Name *string
+}
+
+type FindRestrictedSoftwareByName200ApplicationXMLScopeDepartments struct {
+	Department *FindRestrictedSoftwareByName200ApplicationXMLScopeDepartmentsDepartment
+}
+
+type FindRestrictedSoftwareByName200ApplicationXMLScopeExclusionsBuildingsBuilding struct {
+	ID   *int64
+	Name *string
+}
+
+type FindRestrictedSoftwareByName200ApplicationXMLScopeExclusionsBuildings struct {
+	Building *FindRestrictedSoftwareByName200ApplicationXMLScopeExclusionsBuildingsBuilding
+}
+
+type FindRestrictedSoftwareByName200ApplicationXMLScopeExclusionsComputerGroupsComputerGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindRestrictedSoftwareByName200ApplicationXMLScopeExclusionsComputerGroups struct {
+	ComputerGroup *FindRestrictedSoftwareByName200ApplicationXMLScopeExclusionsComputerGroupsComputerGroup
+}
+
+type FindRestrictedSoftwareByName200ApplicationXMLScopeExclusionsComputersComputer struct {
+	ID   *int64
+	Name *string
+}
+
+type FindRestrictedSoftwareByName200ApplicationXMLScopeExclusionsComputers struct {
+	Computer *FindRestrictedSoftwareByName200ApplicationXMLScopeExclusionsComputersComputer
+}
+
+type FindRestrictedSoftwareByName200ApplicationXMLScopeExclusionsDepartmentsDepartment struct {
+	ID   *int64
+	Name *string
+}
+
+type FindRestrictedSoftwareByName200ApplicationXMLScopeExclusionsDepartments struct {
+	Department *FindRestrictedSoftwareByName200ApplicationXMLScopeExclusionsDepartmentsDepartment
+}
+
+type FindRestrictedSoftwareByName200ApplicationXMLScopeExclusionsUsersUser struct {
+	ID   *int64
+	Name *string
+}
+
+type FindRestrictedSoftwareByName200ApplicationXMLScopeExclusionsUsers struct {
+	User *FindRestrictedSoftwareByName200ApplicationXMLScopeExclusionsUsersUser
+}
+
+type FindRestrictedSoftwareByName200ApplicationXMLScopeExclusions struct {
+	Buildings      []FindRestrictedSoftwareByName200ApplicationXMLScopeExclusionsBuildings
+	ComputerGroups []FindRestrictedSoftwareByName200ApplicationXMLScopeExclusionsComputerGroups
+	Computers      []FindRestrictedSoftwareByName200ApplicationXMLScopeExclusionsComputers
+	Departments    []FindRestrictedSoftwareByName200ApplicationXMLScopeExclusionsDepartments
+	Users          []FindRestrictedSoftwareByName200ApplicationXMLScopeExclusionsUsers
+}
+
+type FindRestrictedSoftwareByName200ApplicationXMLScope struct {
+	AllComputers   *bool
+	Buildings      []FindRestrictedSoftwareByName200ApplicationXMLScopeBuildings
+	ComputerGroups []FindRestrictedSoftwareByName200ApplicationXMLScopeComputerGroups
+	Computers      []FindRestrictedSoftwareByName200ApplicationXMLScopeComputers
+	Departments    []FindRestrictedSoftwareByName200ApplicationXMLScopeDepartments
+	Exclusions     *FindRestrictedSoftwareByName200ApplicationXMLScopeExclusions
+}
+
+// FindRestrictedSoftwareByName200ApplicationXML - OK
+type FindRestrictedSoftwareByName200ApplicationXML struct {
+	General *FindRestrictedSoftwareByName200ApplicationXMLGeneral
+	Scope   *FindRestrictedSoftwareByName200ApplicationXMLScope
+}
+
+type FindRestrictedSoftwareByName200ApplicationJSONGeneralSite struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the site
+	Name string `json:"name"`
+}
+
+type FindRestrictedSoftwareByName200ApplicationJSONGeneral struct {
+	DeleteExecutable      *bool   `json:"delete_executable,omitempty"`
+	DisplayMessage        *string `json:"display_message,omitempty"`
+	ID                    *int64  `json:"id,omitempty"`
+	KillProcess           *bool   `json:"kill_process,omitempty"`
+	MatchExactProcessName *bool   `json:"match_exact_process_name,omitempty"`
+	// Name of the restricted software
+	Name             string                                                     `json:"name"`
+	ProcessName      string                                                     `json:"process_name"`
+	SendNotification *bool                                                      `json:"send_notification,omitempty"`
+	Site             *FindRestrictedSoftwareByName200ApplicationJSONGeneralSite `json:"site,omitempty"`
+}
+
+type FindRestrictedSoftwareByName200ApplicationJSONScopeBuildingsBuilding struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindRestrictedSoftwareByName200ApplicationJSONScopeBuildings struct {
+	Building *FindRestrictedSoftwareByName200ApplicationJSONScopeBuildingsBuilding `json:"building,omitempty"`
+}
+
+type FindRestrictedSoftwareByName200ApplicationJSONScopeComputerGroupsComputerGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindRestrictedSoftwareByName200ApplicationJSONScopeComputerGroups struct {
+	ComputerGroup *FindRestrictedSoftwareByName200ApplicationJSONScopeComputerGroupsComputerGroup `json:"computer_group,omitempty"`
+}
+
+type FindRestrictedSoftwareByName200ApplicationJSONScopeComputersComputer struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindRestrictedSoftwareByName200ApplicationJSONScopeComputers struct {
+	Computer *FindRestrictedSoftwareByName200ApplicationJSONScopeComputersComputer `json:"computer,omitempty"`
+}
+
+type FindRestrictedSoftwareByName200ApplicationJSONScopeDepartmentsDepartment struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindRestrictedSoftwareByName200ApplicationJSONScopeDepartments struct {
+	Department *FindRestrictedSoftwareByName200ApplicationJSONScopeDepartmentsDepartment `json:"department,omitempty"`
+}
+
+type FindRestrictedSoftwareByName200ApplicationJSONScopeExclusionsBuildingsBuilding struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindRestrictedSoftwareByName200ApplicationJSONScopeExclusionsBuildings struct {
+	Building *FindRestrictedSoftwareByName200ApplicationJSONScopeExclusionsBuildingsBuilding `json:"building,omitempty"`
+}
+
+type FindRestrictedSoftwareByName200ApplicationJSONScopeExclusionsComputerGroupsComputerGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindRestrictedSoftwareByName200ApplicationJSONScopeExclusionsComputerGroups struct {
+	ComputerGroup *FindRestrictedSoftwareByName200ApplicationJSONScopeExclusionsComputerGroupsComputerGroup `json:"computer_group,omitempty"`
+}
+
+type FindRestrictedSoftwareByName200ApplicationJSONScopeExclusionsComputersComputer struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindRestrictedSoftwareByName200ApplicationJSONScopeExclusionsComputers struct {
+	Computer *FindRestrictedSoftwareByName200ApplicationJSONScopeExclusionsComputersComputer `json:"computer,omitempty"`
+}
+
+type FindRestrictedSoftwareByName200ApplicationJSONScopeExclusionsDepartmentsDepartment struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindRestrictedSoftwareByName200ApplicationJSONScopeExclusionsDepartments struct {
+	Department *FindRestrictedSoftwareByName200ApplicationJSONScopeExclusionsDepartmentsDepartment `json:"department,omitempty"`
+}
+
+type FindRestrictedSoftwareByName200ApplicationJSONScopeExclusionsUsersUser struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindRestrictedSoftwareByName200ApplicationJSONScopeExclusionsUsers struct {
+	User *FindRestrictedSoftwareByName200ApplicationJSONScopeExclusionsUsersUser `json:"user,omitempty"`
+}
+
+type FindRestrictedSoftwareByName200ApplicationJSONScopeExclusions struct {
+	Buildings      []FindRestrictedSoftwareByName200ApplicationJSONScopeExclusionsBuildings      `json:"buildings,omitempty"`
+	ComputerGroups []FindRestrictedSoftwareByName200ApplicationJSONScopeExclusionsComputerGroups `json:"computer_groups,omitempty"`
+	Computers      []FindRestrictedSoftwareByName200ApplicationJSONScopeExclusionsComputers      `json:"computers,omitempty"`
+	Departments    []FindRestrictedSoftwareByName200ApplicationJSONScopeExclusionsDepartments    `json:"departments,omitempty"`
+	Users          []FindRestrictedSoftwareByName200ApplicationJSONScopeExclusionsUsers          `json:"users,omitempty"`
+}
+
+type FindRestrictedSoftwareByName200ApplicationJSONScope struct {
+	AllComputers   *bool                                                               `json:"all_computers,omitempty"`
+	Buildings      []FindRestrictedSoftwareByName200ApplicationJSONScopeBuildings      `json:"buildings,omitempty"`
+	ComputerGroups []FindRestrictedSoftwareByName200ApplicationJSONScopeComputerGroups `json:"computer_groups,omitempty"`
+	Computers      []FindRestrictedSoftwareByName200ApplicationJSONScopeComputers      `json:"computers,omitempty"`
+	Departments    []FindRestrictedSoftwareByName200ApplicationJSONScopeDepartments    `json:"departments,omitempty"`
+	Exclusions     *FindRestrictedSoftwareByName200ApplicationJSONScopeExclusions      `json:"exclusions,omitempty"`
+}
+
+// FindRestrictedSoftwareByName200ApplicationJSON - OK
+type FindRestrictedSoftwareByName200ApplicationJSON struct {
+	General *FindRestrictedSoftwareByName200ApplicationJSONGeneral `json:"general,omitempty"`
+	Scope   *FindRestrictedSoftwareByName200ApplicationJSONScope   `json:"scope,omitempty"`
+}
+
 type FindRestrictedSoftwareByNameResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	RestrictedSoftware *shared.RestrictedSoftware
+	FindRestrictedSoftwareByName200ApplicationJSONObject *FindRestrictedSoftwareByName200ApplicationJSON
 }

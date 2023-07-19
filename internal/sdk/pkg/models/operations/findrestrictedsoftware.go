@@ -3,9 +3,28 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindRestrictedSoftware200ApplicationXMLRestrictedSoftwareTitle struct {
+	ID   *int64
+	Name *string
+}
+
+type FindRestrictedSoftware200ApplicationXML struct {
+	RestrictedSoftwareTitle *FindRestrictedSoftware200ApplicationXMLRestrictedSoftwareTitle
+	Size                    *int64
+}
+
+type FindRestrictedSoftware200ApplicationJSONRestrictedSoftwareTitle struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindRestrictedSoftware200ApplicationJSON struct {
+	RestrictedSoftwareTitle *FindRestrictedSoftware200ApplicationJSONRestrictedSoftwareTitle `json:"restricted_software_title,omitempty"`
+	Size                    *int64                                                           `json:"size,omitempty"`
+}
 
 type FindRestrictedSoftwareResponse struct {
 	Body        []byte
@@ -13,5 +32,5 @@ type FindRestrictedSoftwareResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	RestrictedSoftwareAll []shared.RestrictedSoftwareAll
+	FindRestrictedSoftware200ApplicationJSONObjects []FindRestrictedSoftware200ApplicationJSON
 }

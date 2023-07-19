@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"io"
 	"jamf/internal/sdk/pkg/models/operations"
-	"jamf/internal/sdk/pkg/models/shared"
 	"jamf/internal/sdk/pkg/utils"
 	"net/http"
 )
@@ -66,12 +65,12 @@ func (s *computerapplicationusage) FindComputerApplicationUsageByID(ctx context.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.ComputerApplicationUsage
+			var out []operations.FindComputerApplicationUsageByID200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerApplicationUsage = out
+			res.FindComputerApplicationUsageByID200ApplicationJSONObjects = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -123,12 +122,12 @@ func (s *computerapplicationusage) FindComputerApplicationUsageByMacAddress(ctx 
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.ComputerApplicationUsage
+			var out []operations.FindComputerApplicationUsageByMacAddress200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerApplicationUsage = out
+			res.FindComputerApplicationUsageByMacAddress200ApplicationJSONObjects = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -180,12 +179,12 @@ func (s *computerapplicationusage) FindComputerApplicationUsageByName(ctx contex
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.ComputerApplicationUsage
+			var out []operations.FindComputerApplicationUsageByName200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerApplicationUsage = out
+			res.FindComputerApplicationUsageByName200ApplicationJSONObjects = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -237,12 +236,12 @@ func (s *computerapplicationusage) FindComputerApplicationUsageBySerial(ctx cont
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.ComputerApplicationUsage
+			var out []operations.FindComputerApplicationUsageBySerial200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerApplicationUsage = out
+			res.FindComputerApplicationUsageBySerial200ApplicationJSONObjects = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -294,12 +293,12 @@ func (s *computerapplicationusage) FindComputerApplicationUsageByUDID(ctx contex
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.ComputerApplicationUsage
+			var out []operations.FindComputerApplicationUsageByUDID200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerApplicationUsage = out
+			res.FindComputerApplicationUsageByUDID200ApplicationJSONObjects = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}

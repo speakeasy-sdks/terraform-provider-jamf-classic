@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,437 @@ type FindLicensedSoftwareByIDRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+type FindLicensedSoftwareByID200ApplicationXMLFontDefinitionsDefinitionCompareType string
+
+const (
+	FindLicensedSoftwareByID200ApplicationXMLFontDefinitionsDefinitionCompareTypeLike FindLicensedSoftwareByID200ApplicationXMLFontDefinitionsDefinitionCompareType = "like"
+	FindLicensedSoftwareByID200ApplicationXMLFontDefinitionsDefinitionCompareTypeIs   FindLicensedSoftwareByID200ApplicationXMLFontDefinitionsDefinitionCompareType = "is"
+)
+
+func (e FindLicensedSoftwareByID200ApplicationXMLFontDefinitionsDefinitionCompareType) ToPointer() *FindLicensedSoftwareByID200ApplicationXMLFontDefinitionsDefinitionCompareType {
+	return &e
+}
+
+func (e *FindLicensedSoftwareByID200ApplicationXMLFontDefinitionsDefinitionCompareType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "like":
+		fallthrough
+	case "is":
+		*e = FindLicensedSoftwareByID200ApplicationXMLFontDefinitionsDefinitionCompareType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLicensedSoftwareByID200ApplicationXMLFontDefinitionsDefinitionCompareType: %v", v)
+	}
+}
+
+type FindLicensedSoftwareByID200ApplicationXMLFontDefinitionsDefinition struct {
+	CompareType *FindLicensedSoftwareByID200ApplicationXMLFontDefinitionsDefinitionCompareType
+	Name        *string
+	Version     *string
+}
+
+type FindLicensedSoftwareByID200ApplicationXMLFontDefinitions struct {
+	Definition *FindLicensedSoftwareByID200ApplicationXMLFontDefinitionsDefinition
+}
+
+type FindLicensedSoftwareByID200ApplicationXMLGeneralSite struct {
+	ID *int64
+	// Name of the site
+	Name string
+}
+
+type FindLicensedSoftwareByID200ApplicationXMLGeneral struct {
+	ExcludeTitlesPurchasedFromAppStore *bool
+	ID                                 *int64
+	// Name of the licensed software
+	Name                             string
+	Notes                            *string
+	Platform                         *string
+	Publisher                        *string
+	RemoveTitlesFromInventoryReports *bool
+	SendEmailOnViolation             *bool
+	Site                             *FindLicensedSoftwareByID200ApplicationXMLGeneralSite
+}
+
+type FindLicensedSoftwareByID200ApplicationXMLLicensesLicenseAttachmentsAttachment struct {
+	Filename *string
+	ID       *int64
+	URI      *string
+}
+
+type FindLicensedSoftwareByID200ApplicationXMLLicensesLicenseAttachments struct {
+	Attachment *FindLicensedSoftwareByID200ApplicationXMLLicensesLicenseAttachmentsAttachment
+}
+
+type FindLicensedSoftwareByID200ApplicationXMLLicensesLicenseLicenseType string
+
+const (
+	FindLicensedSoftwareByID200ApplicationXMLLicensesLicenseLicenseTypeStandard    FindLicensedSoftwareByID200ApplicationXMLLicensesLicenseLicenseType = "Standard"
+	FindLicensedSoftwareByID200ApplicationXMLLicensesLicenseLicenseTypeConcurrent  FindLicensedSoftwareByID200ApplicationXMLLicensesLicenseLicenseType = "Concurrent"
+	FindLicensedSoftwareByID200ApplicationXMLLicensesLicenseLicenseTypeSiteLicense FindLicensedSoftwareByID200ApplicationXMLLicensesLicenseLicenseType = "Site License"
+)
+
+func (e FindLicensedSoftwareByID200ApplicationXMLLicensesLicenseLicenseType) ToPointer() *FindLicensedSoftwareByID200ApplicationXMLLicensesLicenseLicenseType {
+	return &e
+}
+
+func (e *FindLicensedSoftwareByID200ApplicationXMLLicensesLicenseLicenseType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Standard":
+		fallthrough
+	case "Concurrent":
+		fallthrough
+	case "Site License":
+		*e = FindLicensedSoftwareByID200ApplicationXMLLicensesLicenseLicenseType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLicensedSoftwareByID200ApplicationXMLLicensesLicenseLicenseType: %v", v)
+	}
+}
+
+type FindLicensedSoftwareByID200ApplicationXMLLicensesLicensePurchasing struct {
+	IsAnnual            *bool
+	IsPerpetual         *bool
+	LicenseExpires      *string
+	LicenseExpiresEpoch *int64
+	LicenseExpiresUtc   *string
+	LifeExpectancy      *int64
+	PoDate              *string
+	PoDateEpoch         *int64
+	PoDateUtc           *string
+	PoNumber            *string
+	PurchasePrice       *string
+	PurchasingAccount   *string
+	PurchasingContact   *string
+	Vendor              *string
+}
+
+type FindLicensedSoftwareByID200ApplicationXMLLicensesLicense struct {
+	Attachments      []FindLicensedSoftwareByID200ApplicationXMLLicensesLicenseAttachments
+	LicenseCount     *int64
+	LicenseType      *FindLicensedSoftwareByID200ApplicationXMLLicensesLicenseLicenseType
+	Notes            *string
+	OrganizationName *string
+	Purchasing       *FindLicensedSoftwareByID200ApplicationXMLLicensesLicensePurchasing
+	RegisteredTo     *string
+	SerialNumber1    *string
+	SerialNumber2    *string
+}
+
+type FindLicensedSoftwareByID200ApplicationXMLLicenses struct {
+	License *FindLicensedSoftwareByID200ApplicationXMLLicensesLicense
+	Size    *int64
+}
+
+type FindLicensedSoftwareByID200ApplicationXMLPluginDefinitionsDefinitionCompareType string
+
+const (
+	FindLicensedSoftwareByID200ApplicationXMLPluginDefinitionsDefinitionCompareTypeLike FindLicensedSoftwareByID200ApplicationXMLPluginDefinitionsDefinitionCompareType = "like"
+	FindLicensedSoftwareByID200ApplicationXMLPluginDefinitionsDefinitionCompareTypeIs   FindLicensedSoftwareByID200ApplicationXMLPluginDefinitionsDefinitionCompareType = "is"
+)
+
+func (e FindLicensedSoftwareByID200ApplicationXMLPluginDefinitionsDefinitionCompareType) ToPointer() *FindLicensedSoftwareByID200ApplicationXMLPluginDefinitionsDefinitionCompareType {
+	return &e
+}
+
+func (e *FindLicensedSoftwareByID200ApplicationXMLPluginDefinitionsDefinitionCompareType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "like":
+		fallthrough
+	case "is":
+		*e = FindLicensedSoftwareByID200ApplicationXMLPluginDefinitionsDefinitionCompareType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLicensedSoftwareByID200ApplicationXMLPluginDefinitionsDefinitionCompareType: %v", v)
+	}
+}
+
+type FindLicensedSoftwareByID200ApplicationXMLPluginDefinitionsDefinition struct {
+	CompareType *FindLicensedSoftwareByID200ApplicationXMLPluginDefinitionsDefinitionCompareType
+	Name        *string
+	Version     *string
+}
+
+type FindLicensedSoftwareByID200ApplicationXMLPluginDefinitions struct {
+	Definition *FindLicensedSoftwareByID200ApplicationXMLPluginDefinitionsDefinition
+}
+
+type FindLicensedSoftwareByID200ApplicationXMLSoftwareDefinitionsDefinitionCompareType string
+
+const (
+	FindLicensedSoftwareByID200ApplicationXMLSoftwareDefinitionsDefinitionCompareTypeLike FindLicensedSoftwareByID200ApplicationXMLSoftwareDefinitionsDefinitionCompareType = "like"
+	FindLicensedSoftwareByID200ApplicationXMLSoftwareDefinitionsDefinitionCompareTypeIs   FindLicensedSoftwareByID200ApplicationXMLSoftwareDefinitionsDefinitionCompareType = "is"
+)
+
+func (e FindLicensedSoftwareByID200ApplicationXMLSoftwareDefinitionsDefinitionCompareType) ToPointer() *FindLicensedSoftwareByID200ApplicationXMLSoftwareDefinitionsDefinitionCompareType {
+	return &e
+}
+
+func (e *FindLicensedSoftwareByID200ApplicationXMLSoftwareDefinitionsDefinitionCompareType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "like":
+		fallthrough
+	case "is":
+		*e = FindLicensedSoftwareByID200ApplicationXMLSoftwareDefinitionsDefinitionCompareType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLicensedSoftwareByID200ApplicationXMLSoftwareDefinitionsDefinitionCompareType: %v", v)
+	}
+}
+
+type FindLicensedSoftwareByID200ApplicationXMLSoftwareDefinitionsDefinition struct {
+	CompareType *FindLicensedSoftwareByID200ApplicationXMLSoftwareDefinitionsDefinitionCompareType
+	Name        *string
+	Version     *string
+}
+
+type FindLicensedSoftwareByID200ApplicationXMLSoftwareDefinitions struct {
+	Definition *FindLicensedSoftwareByID200ApplicationXMLSoftwareDefinitionsDefinition
+}
+
+// FindLicensedSoftwareByID200ApplicationXML - OK
+type FindLicensedSoftwareByID200ApplicationXML struct {
+	FontDefinitions     []FindLicensedSoftwareByID200ApplicationXMLFontDefinitions
+	General             *FindLicensedSoftwareByID200ApplicationXMLGeneral
+	Licenses            []FindLicensedSoftwareByID200ApplicationXMLLicenses
+	PluginDefinitions   []FindLicensedSoftwareByID200ApplicationXMLPluginDefinitions
+	SoftwareDefinitions []FindLicensedSoftwareByID200ApplicationXMLSoftwareDefinitions
+}
+
+type FindLicensedSoftwareByID200ApplicationJSONFontDefinitionsDefinitionCompareType string
+
+const (
+	FindLicensedSoftwareByID200ApplicationJSONFontDefinitionsDefinitionCompareTypeLike FindLicensedSoftwareByID200ApplicationJSONFontDefinitionsDefinitionCompareType = "like"
+	FindLicensedSoftwareByID200ApplicationJSONFontDefinitionsDefinitionCompareTypeIs   FindLicensedSoftwareByID200ApplicationJSONFontDefinitionsDefinitionCompareType = "is"
+)
+
+func (e FindLicensedSoftwareByID200ApplicationJSONFontDefinitionsDefinitionCompareType) ToPointer() *FindLicensedSoftwareByID200ApplicationJSONFontDefinitionsDefinitionCompareType {
+	return &e
+}
+
+func (e *FindLicensedSoftwareByID200ApplicationJSONFontDefinitionsDefinitionCompareType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "like":
+		fallthrough
+	case "is":
+		*e = FindLicensedSoftwareByID200ApplicationJSONFontDefinitionsDefinitionCompareType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLicensedSoftwareByID200ApplicationJSONFontDefinitionsDefinitionCompareType: %v", v)
+	}
+}
+
+type FindLicensedSoftwareByID200ApplicationJSONFontDefinitionsDefinition struct {
+	CompareType *FindLicensedSoftwareByID200ApplicationJSONFontDefinitionsDefinitionCompareType `json:"compare_type,omitempty"`
+	Name        *string                                                                         `json:"name,omitempty"`
+	Version     *string                                                                         `json:"version,omitempty"`
+}
+
+type FindLicensedSoftwareByID200ApplicationJSONFontDefinitions struct {
+	Definition *FindLicensedSoftwareByID200ApplicationJSONFontDefinitionsDefinition `json:"definition,omitempty"`
+}
+
+type FindLicensedSoftwareByID200ApplicationJSONGeneralSite struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the site
+	Name string `json:"name"`
+}
+
+type FindLicensedSoftwareByID200ApplicationJSONGeneral struct {
+	ExcludeTitlesPurchasedFromAppStore *bool  `json:"exclude_titles_purchased_from_app_store,omitempty"`
+	ID                                 *int64 `json:"id,omitempty"`
+	// Name of the licensed software
+	Name                             string                                                 `json:"name"`
+	Notes                            *string                                                `json:"notes,omitempty"`
+	Platform                         *string                                                `json:"platform,omitempty"`
+	Publisher                        *string                                                `json:"publisher,omitempty"`
+	RemoveTitlesFromInventoryReports *bool                                                  `json:"remove_titles_from_inventory_reports,omitempty"`
+	SendEmailOnViolation             *bool                                                  `json:"send_email_on_violation,omitempty"`
+	Site                             *FindLicensedSoftwareByID200ApplicationJSONGeneralSite `json:"site,omitempty"`
+}
+
+type FindLicensedSoftwareByID200ApplicationJSONLicensesLicenseAttachmentsAttachment struct {
+	Filename *string `json:"filename,omitempty"`
+	ID       *int64  `json:"id,omitempty"`
+	URI      *string `json:"uri,omitempty"`
+}
+
+type FindLicensedSoftwareByID200ApplicationJSONLicensesLicenseAttachments struct {
+	Attachment *FindLicensedSoftwareByID200ApplicationJSONLicensesLicenseAttachmentsAttachment `json:"attachment,omitempty"`
+}
+
+type FindLicensedSoftwareByID200ApplicationJSONLicensesLicenseLicenseType string
+
+const (
+	FindLicensedSoftwareByID200ApplicationJSONLicensesLicenseLicenseTypeStandard    FindLicensedSoftwareByID200ApplicationJSONLicensesLicenseLicenseType = "Standard"
+	FindLicensedSoftwareByID200ApplicationJSONLicensesLicenseLicenseTypeConcurrent  FindLicensedSoftwareByID200ApplicationJSONLicensesLicenseLicenseType = "Concurrent"
+	FindLicensedSoftwareByID200ApplicationJSONLicensesLicenseLicenseTypeSiteLicense FindLicensedSoftwareByID200ApplicationJSONLicensesLicenseLicenseType = "Site License"
+)
+
+func (e FindLicensedSoftwareByID200ApplicationJSONLicensesLicenseLicenseType) ToPointer() *FindLicensedSoftwareByID200ApplicationJSONLicensesLicenseLicenseType {
+	return &e
+}
+
+func (e *FindLicensedSoftwareByID200ApplicationJSONLicensesLicenseLicenseType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Standard":
+		fallthrough
+	case "Concurrent":
+		fallthrough
+	case "Site License":
+		*e = FindLicensedSoftwareByID200ApplicationJSONLicensesLicenseLicenseType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLicensedSoftwareByID200ApplicationJSONLicensesLicenseLicenseType: %v", v)
+	}
+}
+
+type FindLicensedSoftwareByID200ApplicationJSONLicensesLicensePurchasing struct {
+	IsAnnual            *bool   `json:"is_annual,omitempty"`
+	IsPerpetual         *bool   `json:"is_perpetual,omitempty"`
+	LicenseExpires      *string `json:"license_expires,omitempty"`
+	LicenseExpiresEpoch *int64  `json:"license_expires_epoch,omitempty"`
+	LicenseExpiresUtc   *string `json:"license_expires_utc,omitempty"`
+	LifeExpectancy      *int64  `json:"life_expectancy,omitempty"`
+	PoDate              *string `json:"po_date,omitempty"`
+	PoDateEpoch         *int64  `json:"po_date_epoch,omitempty"`
+	PoDateUtc           *string `json:"po_date_utc,omitempty"`
+	PoNumber            *string `json:"po_number,omitempty"`
+	PurchasePrice       *string `json:"purchase_price,omitempty"`
+	PurchasingAccount   *string `json:"purchasing_account,omitempty"`
+	PurchasingContact   *string `json:"purchasing_contact,omitempty"`
+	Vendor              *string `json:"vendor,omitempty"`
+}
+
+type FindLicensedSoftwareByID200ApplicationJSONLicensesLicense struct {
+	Attachments      []FindLicensedSoftwareByID200ApplicationJSONLicensesLicenseAttachments `json:"attachments,omitempty"`
+	LicenseCount     *int64                                                                 `json:"license_count,omitempty"`
+	LicenseType      *FindLicensedSoftwareByID200ApplicationJSONLicensesLicenseLicenseType  `json:"license_type,omitempty"`
+	Notes            *string                                                                `json:"notes,omitempty"`
+	OrganizationName *string                                                                `json:"organization_name,omitempty"`
+	Purchasing       *FindLicensedSoftwareByID200ApplicationJSONLicensesLicensePurchasing   `json:"purchasing,omitempty"`
+	RegisteredTo     *string                                                                `json:"registered_to,omitempty"`
+	SerialNumber1    *string                                                                `json:"serial_number_1,omitempty"`
+	SerialNumber2    *string                                                                `json:"serial_number_2,omitempty"`
+}
+
+type FindLicensedSoftwareByID200ApplicationJSONLicenses struct {
+	License *FindLicensedSoftwareByID200ApplicationJSONLicensesLicense `json:"license,omitempty"`
+	Size    *int64                                                     `json:"size,omitempty"`
+}
+
+type FindLicensedSoftwareByID200ApplicationJSONPluginDefinitionsDefinitionCompareType string
+
+const (
+	FindLicensedSoftwareByID200ApplicationJSONPluginDefinitionsDefinitionCompareTypeLike FindLicensedSoftwareByID200ApplicationJSONPluginDefinitionsDefinitionCompareType = "like"
+	FindLicensedSoftwareByID200ApplicationJSONPluginDefinitionsDefinitionCompareTypeIs   FindLicensedSoftwareByID200ApplicationJSONPluginDefinitionsDefinitionCompareType = "is"
+)
+
+func (e FindLicensedSoftwareByID200ApplicationJSONPluginDefinitionsDefinitionCompareType) ToPointer() *FindLicensedSoftwareByID200ApplicationJSONPluginDefinitionsDefinitionCompareType {
+	return &e
+}
+
+func (e *FindLicensedSoftwareByID200ApplicationJSONPluginDefinitionsDefinitionCompareType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "like":
+		fallthrough
+	case "is":
+		*e = FindLicensedSoftwareByID200ApplicationJSONPluginDefinitionsDefinitionCompareType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLicensedSoftwareByID200ApplicationJSONPluginDefinitionsDefinitionCompareType: %v", v)
+	}
+}
+
+type FindLicensedSoftwareByID200ApplicationJSONPluginDefinitionsDefinition struct {
+	CompareType *FindLicensedSoftwareByID200ApplicationJSONPluginDefinitionsDefinitionCompareType `json:"compare_type,omitempty"`
+	Name        *string                                                                           `json:"name,omitempty"`
+	Version     *string                                                                           `json:"version,omitempty"`
+}
+
+type FindLicensedSoftwareByID200ApplicationJSONPluginDefinitions struct {
+	Definition *FindLicensedSoftwareByID200ApplicationJSONPluginDefinitionsDefinition `json:"definition,omitempty"`
+}
+
+type FindLicensedSoftwareByID200ApplicationJSONSoftwareDefinitionsDefinitionCompareType string
+
+const (
+	FindLicensedSoftwareByID200ApplicationJSONSoftwareDefinitionsDefinitionCompareTypeLike FindLicensedSoftwareByID200ApplicationJSONSoftwareDefinitionsDefinitionCompareType = "like"
+	FindLicensedSoftwareByID200ApplicationJSONSoftwareDefinitionsDefinitionCompareTypeIs   FindLicensedSoftwareByID200ApplicationJSONSoftwareDefinitionsDefinitionCompareType = "is"
+)
+
+func (e FindLicensedSoftwareByID200ApplicationJSONSoftwareDefinitionsDefinitionCompareType) ToPointer() *FindLicensedSoftwareByID200ApplicationJSONSoftwareDefinitionsDefinitionCompareType {
+	return &e
+}
+
+func (e *FindLicensedSoftwareByID200ApplicationJSONSoftwareDefinitionsDefinitionCompareType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "like":
+		fallthrough
+	case "is":
+		*e = FindLicensedSoftwareByID200ApplicationJSONSoftwareDefinitionsDefinitionCompareType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLicensedSoftwareByID200ApplicationJSONSoftwareDefinitionsDefinitionCompareType: %v", v)
+	}
+}
+
+type FindLicensedSoftwareByID200ApplicationJSONSoftwareDefinitionsDefinition struct {
+	CompareType *FindLicensedSoftwareByID200ApplicationJSONSoftwareDefinitionsDefinitionCompareType `json:"compare_type,omitempty"`
+	Name        *string                                                                             `json:"name,omitempty"`
+	Version     *string                                                                             `json:"version,omitempty"`
+}
+
+type FindLicensedSoftwareByID200ApplicationJSONSoftwareDefinitions struct {
+	Definition *FindLicensedSoftwareByID200ApplicationJSONSoftwareDefinitionsDefinition `json:"definition,omitempty"`
+}
+
+// FindLicensedSoftwareByID200ApplicationJSON - OK
+type FindLicensedSoftwareByID200ApplicationJSON struct {
+	FontDefinitions     []FindLicensedSoftwareByID200ApplicationJSONFontDefinitions     `json:"font_definitions,omitempty"`
+	General             *FindLicensedSoftwareByID200ApplicationJSONGeneral              `json:"general,omitempty"`
+	Licenses            []FindLicensedSoftwareByID200ApplicationJSONLicenses            `json:"licenses,omitempty"`
+	PluginDefinitions   []FindLicensedSoftwareByID200ApplicationJSONPluginDefinitions   `json:"plugin_definitions,omitempty"`
+	SoftwareDefinitions []FindLicensedSoftwareByID200ApplicationJSONSoftwareDefinitions `json:"software_definitions,omitempty"`
+}
+
 type FindLicensedSoftwareByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	LicensedSoftware *shared.LicensedSoftware
+	FindLicensedSoftwareByID200ApplicationJSONObject *FindLicensedSoftwareByID200ApplicationJSON
 }

@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -14,11 +13,89 @@ type FindComputerApplicationByNameAndVersionRequest struct {
 	Version string `pathParam:"style=simple,explode=false,name=version"`
 }
 
+type FindComputerApplicationByNameAndVersion200ApplicationXMLUniqueComputersComputer struct {
+	ID           *int64
+	MacAddress   *string
+	Name         *string
+	SerialNumber *string
+	Udid         *string
+}
+
+type FindComputerApplicationByNameAndVersion200ApplicationXMLUniqueComputers struct {
+	Computer []FindComputerApplicationByNameAndVersion200ApplicationXMLUniqueComputersComputer
+}
+
+type FindComputerApplicationByNameAndVersion200ApplicationXMLVersionsVersionComputersComputer struct {
+	ID           *int64
+	MacAddress   *string
+	Name         *string
+	SerialNumber *string
+	Udid         *string
+}
+
+type FindComputerApplicationByNameAndVersion200ApplicationXMLVersionsVersionComputers struct {
+	Computer *FindComputerApplicationByNameAndVersion200ApplicationXMLVersionsVersionComputersComputer
+}
+
+type FindComputerApplicationByNameAndVersion200ApplicationXMLVersionsVersion struct {
+	Computers []FindComputerApplicationByNameAndVersion200ApplicationXMLVersionsVersionComputers
+	Number    *string
+}
+
+type FindComputerApplicationByNameAndVersion200ApplicationXMLVersions struct {
+	Version [][]FindComputerApplicationByNameAndVersion200ApplicationXMLVersionsVersion
+}
+
+// FindComputerApplicationByNameAndVersion200ApplicationXML - OK
+type FindComputerApplicationByNameAndVersion200ApplicationXML struct {
+	UniqueComputers *FindComputerApplicationByNameAndVersion200ApplicationXMLUniqueComputers
+	Versions        *FindComputerApplicationByNameAndVersion200ApplicationXMLVersions
+}
+
+type FindComputerApplicationByNameAndVersion200ApplicationJSONUniqueComputersComputer struct {
+	ID           *int64  `json:"id,omitempty"`
+	MacAddress   *string `json:"mac_address,omitempty"`
+	Name         *string `json:"name,omitempty"`
+	SerialNumber *string `json:"serial_number,omitempty"`
+	Udid         *string `json:"udid,omitempty"`
+}
+
+type FindComputerApplicationByNameAndVersion200ApplicationJSONUniqueComputers struct {
+	Computer []FindComputerApplicationByNameAndVersion200ApplicationJSONUniqueComputersComputer `json:"computer,omitempty"`
+}
+
+type FindComputerApplicationByNameAndVersion200ApplicationJSONVersionsVersionComputersComputer struct {
+	ID           *int64  `json:"id,omitempty"`
+	MacAddress   *string `json:"mac_address,omitempty"`
+	Name         *string `json:"name,omitempty"`
+	SerialNumber *string `json:"serial_number,omitempty"`
+	Udid         *string `json:"udid,omitempty"`
+}
+
+type FindComputerApplicationByNameAndVersion200ApplicationJSONVersionsVersionComputers struct {
+	Computer *FindComputerApplicationByNameAndVersion200ApplicationJSONVersionsVersionComputersComputer `json:"computer,omitempty"`
+}
+
+type FindComputerApplicationByNameAndVersion200ApplicationJSONVersionsVersion struct {
+	Computers []FindComputerApplicationByNameAndVersion200ApplicationJSONVersionsVersionComputers `json:"computers,omitempty"`
+	Number    *string                                                                             `json:"number,omitempty"`
+}
+
+type FindComputerApplicationByNameAndVersion200ApplicationJSONVersions struct {
+	Version [][]FindComputerApplicationByNameAndVersion200ApplicationJSONVersionsVersion `json:"version,omitempty"`
+}
+
+// FindComputerApplicationByNameAndVersion200ApplicationJSON - OK
+type FindComputerApplicationByNameAndVersion200ApplicationJSON struct {
+	UniqueComputers *FindComputerApplicationByNameAndVersion200ApplicationJSONUniqueComputers `json:"unique_computers,omitempty"`
+	Versions        *FindComputerApplicationByNameAndVersion200ApplicationJSONVersions        `json:"versions,omitempty"`
+}
+
 type FindComputerApplicationByNameAndVersionResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ComputerApplications *shared.ComputerApplications
+	FindComputerApplicationByNameAndVersion200ApplicationJSONObject *FindComputerApplicationByNameAndVersion200ApplicationJSON
 }

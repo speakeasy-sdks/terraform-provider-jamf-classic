@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,325 @@ type FindAccountsByNameRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+type FindAccountsByName200ApplicationXMLAccessLevel string
+
+const (
+	FindAccountsByName200ApplicationXMLAccessLevelFullAccess  FindAccountsByName200ApplicationXMLAccessLevel = "Full Access"
+	FindAccountsByName200ApplicationXMLAccessLevelSiteAccess  FindAccountsByName200ApplicationXMLAccessLevel = "Site Access"
+	FindAccountsByName200ApplicationXMLAccessLevelGroupAccess FindAccountsByName200ApplicationXMLAccessLevel = "Group Access"
+)
+
+func (e FindAccountsByName200ApplicationXMLAccessLevel) ToPointer() *FindAccountsByName200ApplicationXMLAccessLevel {
+	return &e
+}
+
+func (e *FindAccountsByName200ApplicationXMLAccessLevel) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Full Access":
+		fallthrough
+	case "Site Access":
+		fallthrough
+	case "Group Access":
+		*e = FindAccountsByName200ApplicationXMLAccessLevel(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindAccountsByName200ApplicationXMLAccessLevel: %v", v)
+	}
+}
+
+type FindAccountsByName200ApplicationXMLEnabled string
+
+const (
+	FindAccountsByName200ApplicationXMLEnabledEnabled  FindAccountsByName200ApplicationXMLEnabled = "Enabled"
+	FindAccountsByName200ApplicationXMLEnabledDisabled FindAccountsByName200ApplicationXMLEnabled = "Disabled"
+)
+
+func (e FindAccountsByName200ApplicationXMLEnabled) ToPointer() *FindAccountsByName200ApplicationXMLEnabled {
+	return &e
+}
+
+func (e *FindAccountsByName200ApplicationXMLEnabled) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Enabled":
+		fallthrough
+	case "Disabled":
+		*e = FindAccountsByName200ApplicationXMLEnabled(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindAccountsByName200ApplicationXMLEnabled: %v", v)
+	}
+}
+
+type FindAccountsByName200ApplicationXMLLdapServer struct {
+	ID   *int64
+	Name *string
+}
+
+type FindAccountsByName200ApplicationXMLPrivilegeSet string
+
+const (
+	FindAccountsByName200ApplicationXMLPrivilegeSetAdministrator  FindAccountsByName200ApplicationXMLPrivilegeSet = "Administrator"
+	FindAccountsByName200ApplicationXMLPrivilegeSetAuditor        FindAccountsByName200ApplicationXMLPrivilegeSet = "Auditor"
+	FindAccountsByName200ApplicationXMLPrivilegeSetEnrollmentOnly FindAccountsByName200ApplicationXMLPrivilegeSet = "Enrollment Only"
+	FindAccountsByName200ApplicationXMLPrivilegeSetCustom         FindAccountsByName200ApplicationXMLPrivilegeSet = "Custom"
+)
+
+func (e FindAccountsByName200ApplicationXMLPrivilegeSet) ToPointer() *FindAccountsByName200ApplicationXMLPrivilegeSet {
+	return &e
+}
+
+func (e *FindAccountsByName200ApplicationXMLPrivilegeSet) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Administrator":
+		fallthrough
+	case "Auditor":
+		fallthrough
+	case "Enrollment Only":
+		fallthrough
+	case "Custom":
+		*e = FindAccountsByName200ApplicationXMLPrivilegeSet(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindAccountsByName200ApplicationXMLPrivilegeSet: %v", v)
+	}
+}
+
+type FindAccountsByName200ApplicationXMLPrivilegesCasperAdmin struct {
+	Privilege *string
+}
+
+type FindAccountsByName200ApplicationXMLPrivilegesCasperImaging struct {
+	Privilege *string
+}
+
+type FindAccountsByName200ApplicationXMLPrivilegesCasperRemote struct {
+	Privilege *string
+}
+
+type FindAccountsByName200ApplicationXMLPrivilegesJssActions struct {
+	Privilege *string
+}
+
+type FindAccountsByName200ApplicationXMLPrivilegesJssObjects struct {
+	Privilege *string
+}
+
+type FindAccountsByName200ApplicationXMLPrivilegesJssSettings struct {
+	Privilege *string
+}
+
+type FindAccountsByName200ApplicationXMLPrivilegesRecon struct {
+	Privilege *string
+}
+
+type FindAccountsByName200ApplicationXMLPrivileges struct {
+	CasperAdmin   []FindAccountsByName200ApplicationXMLPrivilegesCasperAdmin
+	CasperImaging []FindAccountsByName200ApplicationXMLPrivilegesCasperImaging
+	CasperRemote  []FindAccountsByName200ApplicationXMLPrivilegesCasperRemote
+	JssActions    []FindAccountsByName200ApplicationXMLPrivilegesJssActions
+	JssObjects    []FindAccountsByName200ApplicationXMLPrivilegesJssObjects
+	JssSettings   []FindAccountsByName200ApplicationXMLPrivilegesJssSettings
+	Recon         []FindAccountsByName200ApplicationXMLPrivilegesRecon
+}
+
+type FindAccountsByName200ApplicationXMLSite struct {
+	ID *int64
+	// Name of the site
+	Name string
+}
+
+// FindAccountsByName200ApplicationXML - OK
+type FindAccountsByName200ApplicationXML struct {
+	AccessLevel         *FindAccountsByName200ApplicationXMLAccessLevel
+	DirectoryUser       *bool
+	Email               *string
+	EmailAddress        *string
+	Enabled             *FindAccountsByName200ApplicationXMLEnabled
+	ForcePasswordChange *bool
+	FullName            *string
+	ID                  *int64
+	LdapServer          *FindAccountsByName200ApplicationXMLLdapServer
+	// Name of the account
+	Name         string
+	PrivilegeSet *FindAccountsByName200ApplicationXMLPrivilegeSet
+	Privileges   *FindAccountsByName200ApplicationXMLPrivileges
+	Site         *FindAccountsByName200ApplicationXMLSite
+}
+
+type FindAccountsByName200ApplicationJSONAccessLevel string
+
+const (
+	FindAccountsByName200ApplicationJSONAccessLevelFullAccess  FindAccountsByName200ApplicationJSONAccessLevel = "Full Access"
+	FindAccountsByName200ApplicationJSONAccessLevelSiteAccess  FindAccountsByName200ApplicationJSONAccessLevel = "Site Access"
+	FindAccountsByName200ApplicationJSONAccessLevelGroupAccess FindAccountsByName200ApplicationJSONAccessLevel = "Group Access"
+)
+
+func (e FindAccountsByName200ApplicationJSONAccessLevel) ToPointer() *FindAccountsByName200ApplicationJSONAccessLevel {
+	return &e
+}
+
+func (e *FindAccountsByName200ApplicationJSONAccessLevel) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Full Access":
+		fallthrough
+	case "Site Access":
+		fallthrough
+	case "Group Access":
+		*e = FindAccountsByName200ApplicationJSONAccessLevel(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindAccountsByName200ApplicationJSONAccessLevel: %v", v)
+	}
+}
+
+type FindAccountsByName200ApplicationJSONEnabled string
+
+const (
+	FindAccountsByName200ApplicationJSONEnabledEnabled  FindAccountsByName200ApplicationJSONEnabled = "Enabled"
+	FindAccountsByName200ApplicationJSONEnabledDisabled FindAccountsByName200ApplicationJSONEnabled = "Disabled"
+)
+
+func (e FindAccountsByName200ApplicationJSONEnabled) ToPointer() *FindAccountsByName200ApplicationJSONEnabled {
+	return &e
+}
+
+func (e *FindAccountsByName200ApplicationJSONEnabled) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Enabled":
+		fallthrough
+	case "Disabled":
+		*e = FindAccountsByName200ApplicationJSONEnabled(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindAccountsByName200ApplicationJSONEnabled: %v", v)
+	}
+}
+
+type FindAccountsByName200ApplicationJSONLdapServer struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindAccountsByName200ApplicationJSONPrivilegeSet string
+
+const (
+	FindAccountsByName200ApplicationJSONPrivilegeSetAdministrator  FindAccountsByName200ApplicationJSONPrivilegeSet = "Administrator"
+	FindAccountsByName200ApplicationJSONPrivilegeSetAuditor        FindAccountsByName200ApplicationJSONPrivilegeSet = "Auditor"
+	FindAccountsByName200ApplicationJSONPrivilegeSetEnrollmentOnly FindAccountsByName200ApplicationJSONPrivilegeSet = "Enrollment Only"
+	FindAccountsByName200ApplicationJSONPrivilegeSetCustom         FindAccountsByName200ApplicationJSONPrivilegeSet = "Custom"
+)
+
+func (e FindAccountsByName200ApplicationJSONPrivilegeSet) ToPointer() *FindAccountsByName200ApplicationJSONPrivilegeSet {
+	return &e
+}
+
+func (e *FindAccountsByName200ApplicationJSONPrivilegeSet) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Administrator":
+		fallthrough
+	case "Auditor":
+		fallthrough
+	case "Enrollment Only":
+		fallthrough
+	case "Custom":
+		*e = FindAccountsByName200ApplicationJSONPrivilegeSet(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindAccountsByName200ApplicationJSONPrivilegeSet: %v", v)
+	}
+}
+
+type FindAccountsByName200ApplicationJSONPrivilegesCasperAdmin struct {
+	Privilege *string `json:"privilege,omitempty"`
+}
+
+type FindAccountsByName200ApplicationJSONPrivilegesCasperImaging struct {
+	Privilege *string `json:"privilege,omitempty"`
+}
+
+type FindAccountsByName200ApplicationJSONPrivilegesCasperRemote struct {
+	Privilege *string `json:"privilege,omitempty"`
+}
+
+type FindAccountsByName200ApplicationJSONPrivilegesJssActions struct {
+	Privilege *string `json:"privilege,omitempty"`
+}
+
+type FindAccountsByName200ApplicationJSONPrivilegesJssObjects struct {
+	Privilege *string `json:"privilege,omitempty"`
+}
+
+type FindAccountsByName200ApplicationJSONPrivilegesJssSettings struct {
+	Privilege *string `json:"privilege,omitempty"`
+}
+
+type FindAccountsByName200ApplicationJSONPrivilegesRecon struct {
+	Privilege *string `json:"privilege,omitempty"`
+}
+
+type FindAccountsByName200ApplicationJSONPrivileges struct {
+	CasperAdmin   []FindAccountsByName200ApplicationJSONPrivilegesCasperAdmin   `json:"casper_admin,omitempty"`
+	CasperImaging []FindAccountsByName200ApplicationJSONPrivilegesCasperImaging `json:"casper_imaging,omitempty"`
+	CasperRemote  []FindAccountsByName200ApplicationJSONPrivilegesCasperRemote  `json:"casper_remote,omitempty"`
+	JssActions    []FindAccountsByName200ApplicationJSONPrivilegesJssActions    `json:"jss_actions,omitempty"`
+	JssObjects    []FindAccountsByName200ApplicationJSONPrivilegesJssObjects    `json:"jss_objects,omitempty"`
+	JssSettings   []FindAccountsByName200ApplicationJSONPrivilegesJssSettings   `json:"jss_settings,omitempty"`
+	Recon         []FindAccountsByName200ApplicationJSONPrivilegesRecon         `json:"recon,omitempty"`
+}
+
+type FindAccountsByName200ApplicationJSONSite struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the site
+	Name string `json:"name"`
+}
+
+// FindAccountsByName200ApplicationJSON - OK
+type FindAccountsByName200ApplicationJSON struct {
+	AccessLevel         *FindAccountsByName200ApplicationJSONAccessLevel `json:"access_level,omitempty"`
+	DirectoryUser       *bool                                            `json:"directory_user,omitempty"`
+	Email               *string                                          `json:"email,omitempty"`
+	EmailAddress        *string                                          `json:"email_address,omitempty"`
+	Enabled             *FindAccountsByName200ApplicationJSONEnabled     `json:"enabled,omitempty"`
+	ForcePasswordChange *bool                                            `json:"force_password_change,omitempty"`
+	FullName            *string                                          `json:"full_name,omitempty"`
+	ID                  *int64                                           `json:"id,omitempty"`
+	LdapServer          *FindAccountsByName200ApplicationJSONLdapServer  `json:"ldap_server,omitempty"`
+	// Name of the account
+	Name         string                                            `json:"name"`
+	PrivilegeSet *FindAccountsByName200ApplicationJSONPrivilegeSet `json:"privilege_set,omitempty"`
+	Privileges   *FindAccountsByName200ApplicationJSONPrivileges   `json:"privileges,omitempty"`
+	Site         *FindAccountsByName200ApplicationJSONSite         `json:"site,omitempty"`
+}
+
 type FindAccountsByNameResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Account *shared.Account
+	FindAccountsByName200ApplicationJSONObject *FindAccountsByName200ApplicationJSON
 }

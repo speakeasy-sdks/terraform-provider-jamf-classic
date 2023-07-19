@@ -3,9 +3,60 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindMobileDeviceCommands200ApplicationXMLMobileDeviceCommand struct {
+	Command   *string
+	ID        *int64
+	ProfileID *int64
+	Udid      *string
+}
+
+type FindMobileDeviceCommands200ApplicationXMLMobileDevicesMobileDevice struct {
+	ID             *int64
+	PhoneNumber    *string
+	SerialNumber   *string
+	Udid           *string
+	WifiMacAddress *string
+}
+
+type FindMobileDeviceCommands200ApplicationXMLMobileDevices struct {
+	MobileDevice *FindMobileDeviceCommands200ApplicationXMLMobileDevicesMobileDevice
+	Size         *int64
+}
+
+type FindMobileDeviceCommands200ApplicationXML struct {
+	MobileDeviceCommand *FindMobileDeviceCommands200ApplicationXMLMobileDeviceCommand
+	MobileDevices       *FindMobileDeviceCommands200ApplicationXMLMobileDevices
+	Size                *int64
+}
+
+type FindMobileDeviceCommands200ApplicationJSONMobileDeviceCommand struct {
+	Command   *string `json:"command,omitempty"`
+	ID        *int64  `json:"id,omitempty"`
+	ProfileID *int64  `json:"profile_id,omitempty"`
+	Udid      *string `json:"udid,omitempty"`
+}
+
+type FindMobileDeviceCommands200ApplicationJSONMobileDevicesMobileDevice struct {
+	ID             *int64  `json:"id,omitempty"`
+	PhoneNumber    *string `json:"phone_number,omitempty"`
+	SerialNumber   *string `json:"serial_number,omitempty"`
+	Udid           *string `json:"udid,omitempty"`
+	WifiMacAddress *string `json:"wifi_mac_address,omitempty"`
+}
+
+type FindMobileDeviceCommands200ApplicationJSONMobileDevices struct {
+	MobileDevice *FindMobileDeviceCommands200ApplicationJSONMobileDevicesMobileDevice `json:"mobile_device,omitempty"`
+	Size         *int64                                                               `json:"size,omitempty"`
+}
+
+type FindMobileDeviceCommands200ApplicationJSON struct {
+	MobileDeviceCommand *FindMobileDeviceCommands200ApplicationJSONMobileDeviceCommand `json:"mobile_device_command,omitempty"`
+	MobileDevices       *FindMobileDeviceCommands200ApplicationJSONMobileDevices       `json:"mobile_devices,omitempty"`
+	Size                *int64                                                         `json:"size,omitempty"`
+}
 
 type FindMobileDeviceCommandsResponse struct {
 	Body        []byte
@@ -13,5 +64,5 @@ type FindMobileDeviceCommandsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	MobileDeviceCommands []shared.MobileDeviceCommands
+	FindMobileDeviceCommands200ApplicationJSONObjects []FindMobileDeviceCommands200ApplicationJSON
 }

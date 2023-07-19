@@ -3,9 +3,30 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindJSONWebTokenConfigurations200ApplicationXMLJSONWebTokenConfiguration struct {
+	Disabled    *bool
+	ID          *int64
+	Name        string
+	TokenExpiry *int64
+}
+
+type FindJSONWebTokenConfigurations200ApplicationXML struct {
+	JSONWebTokenConfiguration *FindJSONWebTokenConfigurations200ApplicationXMLJSONWebTokenConfiguration
+}
+
+type FindJSONWebTokenConfigurations200ApplicationJSONJSONWebTokenConfiguration struct {
+	Disabled    *bool  `json:"disabled,omitempty"`
+	ID          *int64 `json:"id,omitempty"`
+	Name        string `json:"name"`
+	TokenExpiry *int64 `json:"token_expiry,omitempty"`
+}
+
+type FindJSONWebTokenConfigurations200ApplicationJSON struct {
+	JSONWebTokenConfiguration *FindJSONWebTokenConfigurations200ApplicationJSONJSONWebTokenConfiguration `json:"json_web_token_configuration,omitempty"`
+}
 
 type FindJSONWebTokenConfigurationsResponse struct {
 	Body        []byte
@@ -13,5 +34,5 @@ type FindJSONWebTokenConfigurationsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	JSONWebTokenConfigurations []shared.JSONWebTokenConfigurations
+	FindJSONWebTokenConfigurations200ApplicationJSONObjects []FindJSONWebTokenConfigurations200ApplicationJSON
 }

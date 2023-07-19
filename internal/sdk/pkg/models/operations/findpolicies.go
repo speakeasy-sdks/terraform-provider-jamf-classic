@@ -3,9 +3,28 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindPolicies200ApplicationXMLPolicy struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPolicies200ApplicationXML struct {
+	Policy *FindPolicies200ApplicationXMLPolicy
+	Size   *int64
+}
+
+type FindPolicies200ApplicationJSONPolicy struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPolicies200ApplicationJSON struct {
+	Policy *FindPolicies200ApplicationJSONPolicy `json:"policy,omitempty"`
+	Size   *int64                                `json:"size,omitempty"`
+}
 
 type FindPoliciesResponse struct {
 	Body        []byte
@@ -13,5 +32,5 @@ type FindPoliciesResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Policies []shared.Policies
+	FindPolicies200ApplicationJSONObjects []FindPolicies200ApplicationJSON
 }

@@ -5,7 +5,6 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -47,11 +46,35 @@ type FindManagedPreferenceProfilesByNameSubsetRequest struct {
 	Subset FindManagedPreferenceProfilesByNameSubsetSubset `pathParam:"style=simple,explode=false,name=subset"`
 }
 
+type FindManagedPreferenceProfilesByNameSubset200ApplicationXMLGeneral struct {
+	Enabled *bool
+	ID      *int64
+	Name    string
+	Plist   *string
+}
+
+// FindManagedPreferenceProfilesByNameSubset200ApplicationXML - OK
+type FindManagedPreferenceProfilesByNameSubset200ApplicationXML struct {
+	General *FindManagedPreferenceProfilesByNameSubset200ApplicationXMLGeneral
+}
+
+type FindManagedPreferenceProfilesByNameSubset200ApplicationJSONGeneral struct {
+	Enabled *bool   `json:"enabled,omitempty"`
+	ID      *int64  `json:"id,omitempty"`
+	Name    string  `json:"name"`
+	Plist   *string `json:"plist,omitempty"`
+}
+
+// FindManagedPreferenceProfilesByNameSubset200ApplicationJSON - OK
+type FindManagedPreferenceProfilesByNameSubset200ApplicationJSON struct {
+	General *FindManagedPreferenceProfilesByNameSubset200ApplicationJSONGeneral `json:"general,omitempty"`
+}
+
 type FindManagedPreferenceProfilesByNameSubsetResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ManagedPreferenceProfile *shared.ManagedPreferenceProfile
+	FindManagedPreferenceProfilesByNameSubset200ApplicationJSONObject *FindManagedPreferenceProfilesByNameSubset200ApplicationJSON
 }

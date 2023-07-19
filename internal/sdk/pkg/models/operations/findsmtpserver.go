@@ -3,9 +3,42 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+// FindSMTPServer200ApplicationXML - OK
+type FindSMTPServer200ApplicationXML struct {
+	AuthorizationRequired *bool
+	Enabled               *bool
+	// Hostname or IP address of the SMTP server
+	Host          *string
+	Password      *string
+	Port          *int64
+	SendFromEmail *string
+	SendFromName  *string
+	Ssl           *bool
+	// Measured in seconds
+	Timeout  *int64
+	TLS      *bool
+	Username *string
+}
+
+// FindSMTPServer200ApplicationJSON - OK
+type FindSMTPServer200ApplicationJSON struct {
+	AuthorizationRequired *bool `json:"authorization_required,omitempty"`
+	Enabled               *bool `json:"enabled,omitempty"`
+	// Hostname or IP address of the SMTP server
+	Host          *string `json:"host,omitempty"`
+	Password      *string `json:"password,omitempty"`
+	Port          *int64  `json:"port,omitempty"`
+	SendFromEmail *string `json:"send_from_email,omitempty"`
+	SendFromName  *string `json:"send_from_name,omitempty"`
+	Ssl           *bool   `json:"ssl,omitempty"`
+	// Measured in seconds
+	Timeout  *int64  `json:"timeout,omitempty"`
+	TLS      *bool   `json:"tls,omitempty"`
+	Username *string `json:"username,omitempty"`
+}
 
 type FindSMTPServerResponse struct {
 	Body        []byte
@@ -13,5 +46,5 @@ type FindSMTPServerResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	SMTPServer *shared.SMTPServer
+	FindSMTPServer200ApplicationJSONObject *FindSMTPServer200ApplicationJSON
 }

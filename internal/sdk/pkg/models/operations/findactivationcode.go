@@ -3,9 +3,20 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+// Findactivationcode200ApplicationXML - OK
+type Findactivationcode200ApplicationXML struct {
+	Code             *string
+	OrganizationName *string
+}
+
+// Findactivationcode200ApplicationJSON - OK
+type Findactivationcode200ApplicationJSON struct {
+	Code             *string `json:"code,omitempty"`
+	OrganizationName *string `json:"organization_name,omitempty"`
+}
 
 type FindactivationcodeResponse struct {
 	Body        []byte
@@ -13,5 +24,5 @@ type FindactivationcodeResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ActivationCode *shared.ActivationCode
+	Findactivationcode200ApplicationJSONObject *Findactivationcode200ApplicationJSON
 }

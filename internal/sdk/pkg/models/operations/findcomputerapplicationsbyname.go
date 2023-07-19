@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,89 @@ type FindComputerApplicationsByNameRequest struct {
 	Application string `pathParam:"style=simple,explode=false,name=application"`
 }
 
+type FindComputerApplicationsByName200ApplicationXMLUniqueComputersComputer struct {
+	ID           *int64
+	MacAddress   *string
+	Name         *string
+	SerialNumber *string
+	Udid         *string
+}
+
+type FindComputerApplicationsByName200ApplicationXMLUniqueComputers struct {
+	Computer []FindComputerApplicationsByName200ApplicationXMLUniqueComputersComputer
+}
+
+type FindComputerApplicationsByName200ApplicationXMLVersionsVersionComputersComputer struct {
+	ID           *int64
+	MacAddress   *string
+	Name         *string
+	SerialNumber *string
+	Udid         *string
+}
+
+type FindComputerApplicationsByName200ApplicationXMLVersionsVersionComputers struct {
+	Computer *FindComputerApplicationsByName200ApplicationXMLVersionsVersionComputersComputer
+}
+
+type FindComputerApplicationsByName200ApplicationXMLVersionsVersion struct {
+	Computers []FindComputerApplicationsByName200ApplicationXMLVersionsVersionComputers
+	Number    *string
+}
+
+type FindComputerApplicationsByName200ApplicationXMLVersions struct {
+	Version [][]FindComputerApplicationsByName200ApplicationXMLVersionsVersion
+}
+
+// FindComputerApplicationsByName200ApplicationXML - OK
+type FindComputerApplicationsByName200ApplicationXML struct {
+	UniqueComputers *FindComputerApplicationsByName200ApplicationXMLUniqueComputers
+	Versions        *FindComputerApplicationsByName200ApplicationXMLVersions
+}
+
+type FindComputerApplicationsByName200ApplicationJSONUniqueComputersComputer struct {
+	ID           *int64  `json:"id,omitempty"`
+	MacAddress   *string `json:"mac_address,omitempty"`
+	Name         *string `json:"name,omitempty"`
+	SerialNumber *string `json:"serial_number,omitempty"`
+	Udid         *string `json:"udid,omitempty"`
+}
+
+type FindComputerApplicationsByName200ApplicationJSONUniqueComputers struct {
+	Computer []FindComputerApplicationsByName200ApplicationJSONUniqueComputersComputer `json:"computer,omitempty"`
+}
+
+type FindComputerApplicationsByName200ApplicationJSONVersionsVersionComputersComputer struct {
+	ID           *int64  `json:"id,omitempty"`
+	MacAddress   *string `json:"mac_address,omitempty"`
+	Name         *string `json:"name,omitempty"`
+	SerialNumber *string `json:"serial_number,omitempty"`
+	Udid         *string `json:"udid,omitempty"`
+}
+
+type FindComputerApplicationsByName200ApplicationJSONVersionsVersionComputers struct {
+	Computer *FindComputerApplicationsByName200ApplicationJSONVersionsVersionComputersComputer `json:"computer,omitempty"`
+}
+
+type FindComputerApplicationsByName200ApplicationJSONVersionsVersion struct {
+	Computers []FindComputerApplicationsByName200ApplicationJSONVersionsVersionComputers `json:"computers,omitempty"`
+	Number    *string                                                                    `json:"number,omitempty"`
+}
+
+type FindComputerApplicationsByName200ApplicationJSONVersions struct {
+	Version [][]FindComputerApplicationsByName200ApplicationJSONVersionsVersion `json:"version,omitempty"`
+}
+
+// FindComputerApplicationsByName200ApplicationJSON - OK
+type FindComputerApplicationsByName200ApplicationJSON struct {
+	UniqueComputers *FindComputerApplicationsByName200ApplicationJSONUniqueComputers `json:"unique_computers,omitempty"`
+	Versions        *FindComputerApplicationsByName200ApplicationJSONVersions        `json:"versions,omitempty"`
+}
+
 type FindComputerApplicationsByNameResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ComputerApplications *shared.ComputerApplications
+	FindComputerApplicationsByName200ApplicationJSONObject *FindComputerApplicationsByName200ApplicationJSON
 }

@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,94 @@ type FindUserSearchesByNameRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+type FindUserSearchesByNameAdvancedUserSearchCriteriaCriterionAndOr string
+
+const (
+	FindUserSearchesByNameAdvancedUserSearchCriteriaCriterionAndOrAnd FindUserSearchesByNameAdvancedUserSearchCriteriaCriterionAndOr = "and"
+	FindUserSearchesByNameAdvancedUserSearchCriteriaCriterionAndOrOr  FindUserSearchesByNameAdvancedUserSearchCriteriaCriterionAndOr = "or"
+)
+
+func (e FindUserSearchesByNameAdvancedUserSearchCriteriaCriterionAndOr) ToPointer() *FindUserSearchesByNameAdvancedUserSearchCriteriaCriterionAndOr {
+	return &e
+}
+
+func (e *FindUserSearchesByNameAdvancedUserSearchCriteriaCriterionAndOr) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "and":
+		fallthrough
+	case "or":
+		*e = FindUserSearchesByNameAdvancedUserSearchCriteriaCriterionAndOr(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindUserSearchesByNameAdvancedUserSearchCriteriaCriterionAndOr: %v", v)
+	}
+}
+
+type FindUserSearchesByNameAdvancedUserSearchCriteriaCriterion struct {
+	AndOr        *FindUserSearchesByNameAdvancedUserSearchCriteriaCriterionAndOr `json:"and_or,omitempty"`
+	ClosingParen *bool                                                           `json:"closing_paren,omitempty"`
+	// Name of the criteria
+	Name         *string `json:"name,omitempty"`
+	OpeningParen *bool   `json:"opening_paren,omitempty"`
+	Priority     *int64  `json:"priority,omitempty"`
+	// Operator
+	SearchType *string `json:"search_type,omitempty"`
+	Value      *string `json:"value,omitempty"`
+}
+
+type FindUserSearchesByNameAdvancedUserSearchCriteria struct {
+	Criterion *FindUserSearchesByNameAdvancedUserSearchCriteriaCriterion `json:"criterion,omitempty"`
+	Size      *int64                                                     `json:"size,omitempty"`
+}
+
+type FindUserSearchesByNameAdvancedUserSearchDisplayFieldsDisplayField struct {
+	// Name of the display field
+	Name *string `json:"name,omitempty"`
+}
+
+type FindUserSearchesByNameAdvancedUserSearchDisplayFields struct {
+	DisplayField *FindUserSearchesByNameAdvancedUserSearchDisplayFieldsDisplayField `json:"display_field,omitempty"`
+	Size         *int64                                                             `json:"size,omitempty"`
+}
+
+type FindUserSearchesByNameAdvancedUserSearchSite struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the site
+	Name string `json:"name"`
+}
+
+type FindUserSearchesByNameAdvancedUserSearchUsersUser struct {
+	Username *string `json:"Username,omitempty"`
+	ID       *int64  `json:"id,omitempty"`
+	// Name of the user
+	Name *string `json:"name,omitempty"`
+}
+
+type FindUserSearchesByNameAdvancedUserSearchUsers struct {
+	Size *int64                                             `json:"size,omitempty"`
+	User *FindUserSearchesByNameAdvancedUserSearchUsersUser `json:"user,omitempty"`
+}
+
+// FindUserSearchesByNameAdvancedUserSearch - OK
+type FindUserSearchesByNameAdvancedUserSearch struct {
+	Criteria      []FindUserSearchesByNameAdvancedUserSearchCriteria      `json:"criteria,omitempty"`
+	DisplayFields []FindUserSearchesByNameAdvancedUserSearchDisplayFields `json:"display_fields,omitempty"`
+	ID            *int64                                                  `json:"id,omitempty"`
+	// Name of the advanced user search
+	Name  string                                          `json:"name"`
+	Site  *FindUserSearchesByNameAdvancedUserSearchSite   `json:"site,omitempty"`
+	Users []FindUserSearchesByNameAdvancedUserSearchUsers `json:"users,omitempty"`
+}
+
 type FindUserSearchesByNameResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	AdvancedUserSearch *shared.AdvancedUserSearch
+	AdvancedUserSearch *FindUserSearchesByNameAdvancedUserSearch
 }

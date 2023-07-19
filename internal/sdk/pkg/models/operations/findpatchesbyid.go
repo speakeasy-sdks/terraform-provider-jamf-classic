@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,115 @@ type FindPatchesByIDRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+type FindPatchesByID200ApplicationXMLCategory struct {
+	ID *int64
+	// Name of the category
+	Name     string
+	Priority *int64
+}
+
+type FindPatchesByID200ApplicationXMLNotifications struct {
+	EmailNotification *bool
+	JssNotification   *bool
+}
+
+type FindPatchesByID200ApplicationXMLVersionsVersionComputersComputer struct {
+	AltMacAddress *string
+	ID            *int64
+	MacAddress    *string
+	Name          *string
+	SerialNumber  *string
+}
+
+type FindPatchesByID200ApplicationXMLVersionsVersionComputers struct {
+	Computer *FindPatchesByID200ApplicationXMLVersionsVersionComputersComputer
+}
+
+type FindPatchesByID200ApplicationXMLVersionsVersionPackage struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPatchesByID200ApplicationXMLVersionsVersion struct {
+	Computers       []FindPatchesByID200ApplicationXMLVersionsVersionComputers
+	Package         *FindPatchesByID200ApplicationXMLVersionsVersionPackage
+	Size            *int64
+	SoftwareVersion *string
+}
+
+type FindPatchesByID200ApplicationXMLVersions struct {
+	Version *FindPatchesByID200ApplicationXMLVersionsVersion
+}
+
+// FindPatchesByID200ApplicationXML - OK
+type FindPatchesByID200ApplicationXML struct {
+	Category *FindPatchesByID200ApplicationXMLCategory
+	ID       *int64
+	// Name of the patch software title
+	Name           *string
+	Notifications  *FindPatchesByID200ApplicationXMLNotifications
+	TotalComputers *int64
+	TotalVersions  *int64
+	Versions       []FindPatchesByID200ApplicationXMLVersions
+}
+
+type FindPatchesByID200ApplicationJSONCategory struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the category
+	Name     string `json:"name"`
+	Priority *int64 `json:"priority,omitempty"`
+}
+
+type FindPatchesByID200ApplicationJSONNotifications struct {
+	EmailNotification *bool `json:"email_notification,omitempty"`
+	JssNotification   *bool `json:"jss_notification,omitempty"`
+}
+
+type FindPatchesByID200ApplicationJSONVersionsVersionComputersComputer struct {
+	AltMacAddress *string `json:"alt_mac_address,omitempty"`
+	ID            *int64  `json:"id,omitempty"`
+	MacAddress    *string `json:"mac_address,omitempty"`
+	Name          *string `json:"name,omitempty"`
+	SerialNumber  *string `json:"serial_number,omitempty"`
+}
+
+type FindPatchesByID200ApplicationJSONVersionsVersionComputers struct {
+	Computer *FindPatchesByID200ApplicationJSONVersionsVersionComputersComputer `json:"computer,omitempty"`
+}
+
+type FindPatchesByID200ApplicationJSONVersionsVersionPackage struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPatchesByID200ApplicationJSONVersionsVersion struct {
+	Computers       []FindPatchesByID200ApplicationJSONVersionsVersionComputers `json:"computers,omitempty"`
+	Package         *FindPatchesByID200ApplicationJSONVersionsVersionPackage    `json:"package,omitempty"`
+	Size            *int64                                                      `json:"size,omitempty"`
+	SoftwareVersion *string                                                     `json:"software_version,omitempty"`
+}
+
+type FindPatchesByID200ApplicationJSONVersions struct {
+	Version *FindPatchesByID200ApplicationJSONVersionsVersion `json:"version,omitempty"`
+}
+
+// FindPatchesByID200ApplicationJSON - OK
+type FindPatchesByID200ApplicationJSON struct {
+	Category *FindPatchesByID200ApplicationJSONCategory `json:"category,omitempty"`
+	ID       *int64                                     `json:"id,omitempty"`
+	// Name of the patch software title
+	Name           *string                                         `json:"name,omitempty"`
+	Notifications  *FindPatchesByID200ApplicationJSONNotifications `json:"notifications,omitempty"`
+	TotalComputers *int64                                          `json:"total_computers,omitempty"`
+	TotalVersions  *int64                                          `json:"total_versions,omitempty"`
+	Versions       []FindPatchesByID200ApplicationJSONVersions     `json:"versions,omitempty"`
+}
+
 type FindPatchesByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	SoftwareTitle *shared.SoftwareTitle
+	FindPatchesByID200ApplicationJSONObject *FindPatchesByID200ApplicationJSON
 }

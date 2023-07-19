@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,143 @@ type FindDiskEncryptionConfigurationsByNameRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+type FindDiskEncryptionConfigurationsByName200ApplicationXMLFileVaultEnabledUsers string
+
+const (
+	FindDiskEncryptionConfigurationsByName200ApplicationXMLFileVaultEnabledUsersCurrentOrNextUser FindDiskEncryptionConfigurationsByName200ApplicationXMLFileVaultEnabledUsers = "Current or Next User"
+	FindDiskEncryptionConfigurationsByName200ApplicationXMLFileVaultEnabledUsersManagementAccount FindDiskEncryptionConfigurationsByName200ApplicationXMLFileVaultEnabledUsers = "Management Account"
+)
+
+func (e FindDiskEncryptionConfigurationsByName200ApplicationXMLFileVaultEnabledUsers) ToPointer() *FindDiskEncryptionConfigurationsByName200ApplicationXMLFileVaultEnabledUsers {
+	return &e
+}
+
+func (e *FindDiskEncryptionConfigurationsByName200ApplicationXMLFileVaultEnabledUsers) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Current or Next User":
+		fallthrough
+	case "Management Account":
+		*e = FindDiskEncryptionConfigurationsByName200ApplicationXMLFileVaultEnabledUsers(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindDiskEncryptionConfigurationsByName200ApplicationXMLFileVaultEnabledUsers: %v", v)
+	}
+}
+
+type FindDiskEncryptionConfigurationsByName200ApplicationXMLKeyType string
+
+const (
+	FindDiskEncryptionConfigurationsByName200ApplicationXMLKeyTypeIndividual                 FindDiskEncryptionConfigurationsByName200ApplicationXMLKeyType = "Individual"
+	FindDiskEncryptionConfigurationsByName200ApplicationXMLKeyTypeInstitutional              FindDiskEncryptionConfigurationsByName200ApplicationXMLKeyType = "Institutional"
+	FindDiskEncryptionConfigurationsByName200ApplicationXMLKeyTypeIndividualAndInstitutional FindDiskEncryptionConfigurationsByName200ApplicationXMLKeyType = "Individual And Institutional"
+)
+
+func (e FindDiskEncryptionConfigurationsByName200ApplicationXMLKeyType) ToPointer() *FindDiskEncryptionConfigurationsByName200ApplicationXMLKeyType {
+	return &e
+}
+
+func (e *FindDiskEncryptionConfigurationsByName200ApplicationXMLKeyType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Individual":
+		fallthrough
+	case "Institutional":
+		fallthrough
+	case "Individual And Institutional":
+		*e = FindDiskEncryptionConfigurationsByName200ApplicationXMLKeyType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindDiskEncryptionConfigurationsByName200ApplicationXMLKeyType: %v", v)
+	}
+}
+
+// FindDiskEncryptionConfigurationsByName200ApplicationXML - OK
+type FindDiskEncryptionConfigurationsByName200ApplicationXML struct {
+	FileVaultEnabledUsers *FindDiskEncryptionConfigurationsByName200ApplicationXMLFileVaultEnabledUsers
+	ID                    *int64
+	KeyType               *FindDiskEncryptionConfigurationsByName200ApplicationXMLKeyType
+	// Name of the disk encryption configuration
+	Name string
+}
+
+type FindDiskEncryptionConfigurationsByName200ApplicationJSONFileVaultEnabledUsers string
+
+const (
+	FindDiskEncryptionConfigurationsByName200ApplicationJSONFileVaultEnabledUsersCurrentOrNextUser FindDiskEncryptionConfigurationsByName200ApplicationJSONFileVaultEnabledUsers = "Current or Next User"
+	FindDiskEncryptionConfigurationsByName200ApplicationJSONFileVaultEnabledUsersManagementAccount FindDiskEncryptionConfigurationsByName200ApplicationJSONFileVaultEnabledUsers = "Management Account"
+)
+
+func (e FindDiskEncryptionConfigurationsByName200ApplicationJSONFileVaultEnabledUsers) ToPointer() *FindDiskEncryptionConfigurationsByName200ApplicationJSONFileVaultEnabledUsers {
+	return &e
+}
+
+func (e *FindDiskEncryptionConfigurationsByName200ApplicationJSONFileVaultEnabledUsers) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Current or Next User":
+		fallthrough
+	case "Management Account":
+		*e = FindDiskEncryptionConfigurationsByName200ApplicationJSONFileVaultEnabledUsers(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindDiskEncryptionConfigurationsByName200ApplicationJSONFileVaultEnabledUsers: %v", v)
+	}
+}
+
+type FindDiskEncryptionConfigurationsByName200ApplicationJSONKeyType string
+
+const (
+	FindDiskEncryptionConfigurationsByName200ApplicationJSONKeyTypeIndividual                 FindDiskEncryptionConfigurationsByName200ApplicationJSONKeyType = "Individual"
+	FindDiskEncryptionConfigurationsByName200ApplicationJSONKeyTypeInstitutional              FindDiskEncryptionConfigurationsByName200ApplicationJSONKeyType = "Institutional"
+	FindDiskEncryptionConfigurationsByName200ApplicationJSONKeyTypeIndividualAndInstitutional FindDiskEncryptionConfigurationsByName200ApplicationJSONKeyType = "Individual And Institutional"
+)
+
+func (e FindDiskEncryptionConfigurationsByName200ApplicationJSONKeyType) ToPointer() *FindDiskEncryptionConfigurationsByName200ApplicationJSONKeyType {
+	return &e
+}
+
+func (e *FindDiskEncryptionConfigurationsByName200ApplicationJSONKeyType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Individual":
+		fallthrough
+	case "Institutional":
+		fallthrough
+	case "Individual And Institutional":
+		*e = FindDiskEncryptionConfigurationsByName200ApplicationJSONKeyType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindDiskEncryptionConfigurationsByName200ApplicationJSONKeyType: %v", v)
+	}
+}
+
+// FindDiskEncryptionConfigurationsByName200ApplicationJSON - OK
+type FindDiskEncryptionConfigurationsByName200ApplicationJSON struct {
+	FileVaultEnabledUsers *FindDiskEncryptionConfigurationsByName200ApplicationJSONFileVaultEnabledUsers `json:"file_vault_enabled_users,omitempty"`
+	ID                    *int64                                                                         `json:"id,omitempty"`
+	KeyType               *FindDiskEncryptionConfigurationsByName200ApplicationJSONKeyType               `json:"key_type,omitempty"`
+	// Name of the disk encryption configuration
+	Name string `json:"name"`
+}
+
 type FindDiskEncryptionConfigurationsByNameResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	DiskEncryptionConfiguration *shared.DiskEncryptionConfiguration
+	FindDiskEncryptionConfigurationsByName200ApplicationJSONObject *FindDiskEncryptionConfigurationsByName200ApplicationJSON
 }

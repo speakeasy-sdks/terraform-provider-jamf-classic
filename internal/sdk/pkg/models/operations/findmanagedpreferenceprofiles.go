@@ -3,9 +3,28 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindManagedPreferenceProfiles200ApplicationXMLManagedPreferenceProfile struct {
+	ID   *int64
+	Name *string
+}
+
+type FindManagedPreferenceProfiles200ApplicationXML struct {
+	ManagedPreferenceProfile *FindManagedPreferenceProfiles200ApplicationXMLManagedPreferenceProfile
+	Size                     *int64
+}
+
+type FindManagedPreferenceProfiles200ApplicationJSONManagedPreferenceProfile struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindManagedPreferenceProfiles200ApplicationJSON struct {
+	ManagedPreferenceProfile *FindManagedPreferenceProfiles200ApplicationJSONManagedPreferenceProfile `json:"managed_preference_profile,omitempty"`
+	Size                     *int64                                                                   `json:"size,omitempty"`
+}
 
 type FindManagedPreferenceProfilesResponse struct {
 	Body        []byte
@@ -13,5 +32,5 @@ type FindManagedPreferenceProfilesResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ManagedPreferenceProfiles []shared.ManagedPreferenceProfiles
+	FindManagedPreferenceProfiles200ApplicationJSONObjects []FindManagedPreferenceProfiles200ApplicationJSON
 }

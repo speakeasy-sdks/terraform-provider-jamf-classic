@@ -3,8 +3,153 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
+
+// CreateMobileDeviceCommandRequestBodyGeneralCommand - Command to send device
+type CreateMobileDeviceCommandRequestBodyGeneralCommand string
+
+const (
+	CreateMobileDeviceCommandRequestBodyGeneralCommandSettings                                     CreateMobileDeviceCommandRequestBodyGeneralCommand = "Settings"
+	CreateMobileDeviceCommandRequestBodyGeneralCommandDeviceLock                                   CreateMobileDeviceCommandRequestBodyGeneralCommand = "DeviceLock"
+	CreateMobileDeviceCommandRequestBodyGeneralCommandEraseDevice                                  CreateMobileDeviceCommandRequestBodyGeneralCommand = "EraseDevice"
+	CreateMobileDeviceCommandRequestBodyGeneralCommandClearPasscode                                CreateMobileDeviceCommandRequestBodyGeneralCommand = "ClearPasscode"
+	CreateMobileDeviceCommandRequestBodyGeneralCommandUnmanageDevice                               CreateMobileDeviceCommandRequestBodyGeneralCommand = "UnmanageDevice"
+	CreateMobileDeviceCommandRequestBodyGeneralCommandUpdateInventory                              CreateMobileDeviceCommandRequestBodyGeneralCommand = "UpdateInventory"
+	CreateMobileDeviceCommandRequestBodyGeneralCommandClearRestrictionsPassword                    CreateMobileDeviceCommandRequestBodyGeneralCommand = "ClearRestrictionsPassword"
+	CreateMobileDeviceCommandRequestBodyGeneralCommandSettingsEnableDataRoaming                    CreateMobileDeviceCommandRequestBodyGeneralCommand = "SettingsEnableDataRoaming"
+	CreateMobileDeviceCommandRequestBodyGeneralCommandSettingsDisableDataRoaming                   CreateMobileDeviceCommandRequestBodyGeneralCommand = "SettingsDisableDataRoaming"
+	CreateMobileDeviceCommandRequestBodyGeneralCommandSettingsEnableVoiceRoaming                   CreateMobileDeviceCommandRequestBodyGeneralCommand = "SettingsEnableVoiceRoaming"
+	CreateMobileDeviceCommandRequestBodyGeneralCommandSettingsDisableVoiceRoaming                  CreateMobileDeviceCommandRequestBodyGeneralCommand = "SettingsDisableVoiceRoaming"
+	CreateMobileDeviceCommandRequestBodyGeneralCommandSettingsEnableAppAnalytics                   CreateMobileDeviceCommandRequestBodyGeneralCommand = "SettingsEnableAppAnalytics"
+	CreateMobileDeviceCommandRequestBodyGeneralCommandSettingsDisableAppAnalytics                  CreateMobileDeviceCommandRequestBodyGeneralCommand = "SettingsDisableAppAnalytics"
+	CreateMobileDeviceCommandRequestBodyGeneralCommandSettingsEnableDiagnosticSubmission           CreateMobileDeviceCommandRequestBodyGeneralCommand = "SettingsEnableDiagnosticSubmission"
+	CreateMobileDeviceCommandRequestBodyGeneralCommandSettingsDisableDiagnosticSubmission          CreateMobileDeviceCommandRequestBodyGeneralCommand = "SettingsDisableDiagnosticSubmission"
+	CreateMobileDeviceCommandRequestBodyGeneralCommandBlankPush                                    CreateMobileDeviceCommandRequestBodyGeneralCommand = "BlankPush"
+	CreateMobileDeviceCommandRequestBodyGeneralCommandWallpaperSupervisedOnly                      CreateMobileDeviceCommandRequestBodyGeneralCommand = "Wallpaper (supervised only)"
+	CreateMobileDeviceCommandRequestBodyGeneralCommandDeviceNameSupervisedOnly                     CreateMobileDeviceCommandRequestBodyGeneralCommand = "DeviceName (supervised only)"
+	CreateMobileDeviceCommandRequestBodyGeneralCommandShutDownDeviceSupervisedOnly                 CreateMobileDeviceCommandRequestBodyGeneralCommand = "ShutDownDevice (supervised only)"
+	CreateMobileDeviceCommandRequestBodyGeneralCommandRestartDeviceSupervisedOnly                  CreateMobileDeviceCommandRequestBodyGeneralCommand = "RestartDevice (supervised only)"
+	CreateMobileDeviceCommandRequestBodyGeneralCommandPasscodeLockGracePeriodSharedIPadOnly        CreateMobileDeviceCommandRequestBodyGeneralCommand = "PasscodeLockGracePeriod (shared iPad only)"
+	CreateMobileDeviceCommandRequestBodyGeneralCommandEnableLostModeSupervisedOnly                 CreateMobileDeviceCommandRequestBodyGeneralCommand = "EnableLostMode (supervised only)"
+	CreateMobileDeviceCommandRequestBodyGeneralCommandDisableLostModeSupervisedAndInLostModeOnly   CreateMobileDeviceCommandRequestBodyGeneralCommand = "DisableLostMode (supervised and in lost mode only)"
+	CreateMobileDeviceCommandRequestBodyGeneralCommandDeviceLocationSupervisedAndInLostModeOnly    CreateMobileDeviceCommandRequestBodyGeneralCommand = "DeviceLocation (supervised and in lost mode only)"
+	CreateMobileDeviceCommandRequestBodyGeneralCommandPlayLostModeSoundSupervisedAndInLostModeOnly CreateMobileDeviceCommandRequestBodyGeneralCommand = "PlayLostModeSound (supervised and in lost mode only)"
+)
+
+func (e CreateMobileDeviceCommandRequestBodyGeneralCommand) ToPointer() *CreateMobileDeviceCommandRequestBodyGeneralCommand {
+	return &e
+}
+
+func (e *CreateMobileDeviceCommandRequestBodyGeneralCommand) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Settings":
+		fallthrough
+	case "DeviceLock":
+		fallthrough
+	case "EraseDevice":
+		fallthrough
+	case "ClearPasscode":
+		fallthrough
+	case "UnmanageDevice":
+		fallthrough
+	case "UpdateInventory":
+		fallthrough
+	case "ClearRestrictionsPassword":
+		fallthrough
+	case "SettingsEnableDataRoaming":
+		fallthrough
+	case "SettingsDisableDataRoaming":
+		fallthrough
+	case "SettingsEnableVoiceRoaming":
+		fallthrough
+	case "SettingsDisableVoiceRoaming":
+		fallthrough
+	case "SettingsEnableAppAnalytics":
+		fallthrough
+	case "SettingsDisableAppAnalytics":
+		fallthrough
+	case "SettingsEnableDiagnosticSubmission":
+		fallthrough
+	case "SettingsDisableDiagnosticSubmission":
+		fallthrough
+	case "BlankPush":
+		fallthrough
+	case "Wallpaper (supervised only)":
+		fallthrough
+	case "DeviceName (supervised only)":
+		fallthrough
+	case "ShutDownDevice (supervised only)":
+		fallthrough
+	case "RestartDevice (supervised only)":
+		fallthrough
+	case "PasscodeLockGracePeriod (shared iPad only)":
+		fallthrough
+	case "EnableLostMode (supervised only)":
+		fallthrough
+	case "DisableLostMode (supervised and in lost mode only)":
+		fallthrough
+	case "DeviceLocation (supervised and in lost mode only)":
+		fallthrough
+	case "PlayLostModeSound (supervised and in lost mode only)":
+		*e = CreateMobileDeviceCommandRequestBodyGeneralCommand(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateMobileDeviceCommandRequestBodyGeneralCommand: %v", v)
+	}
+}
+
+type CreateMobileDeviceCommandRequestBodyGeneral struct {
+	// Whether Lost Mode should be enabled after the device is wiped and re-enrolled (optional, but defaults to true)
+	AlwaysEnforceLostMode *bool
+	// Command to send device
+	Command CreateMobileDeviceCommandRequestBodyGeneralCommand
+	// Device name to set (Required for DeviceName command)
+	DeviceName *string
+	// If true, on the next reboot Proximity Setup is not allowed and the pane in Setup Assistant will be skipped. Defaults to false.
+	DisallowProximitySetup *bool
+	// The carrier's eSIM server URL to query. This URL is obtained from each carrier separately.
+	ESimServerURL *string
+	// Lock message for the DeviceLock command (optional)
+	LockMessage *string
+	// The footnote to be displayed for the EnableLostMode command (optional)
+	LostModeFootnote *string
+	// The message to be displayed on the lost device (Required for EnableLostMode command if lost_mode_phone is not specified)
+	LostModeMessage *string
+	// The phone number to be displayed on the lost device (Required for EnableLostMode command if lost_mode_message is not specified)
+	LostModePhone *string
+	// Whether to play a sound on the device when the EnableLostMode command is sent (optional)
+	LostModeWithSound *bool
+	// Number of seconds the screen must be locked before unlock attempts will require the device passcode (Required for PasscodeLockGracePeriod command)
+	PasscodeLockGracePeriod *int64
+	// Whether the data plan should be preserved when issuing the EraseDevice command (optional)
+	PreserveDataPlan *bool
+	// Wallpaper image in PNG or JPEG format, encoded using base64 (required for Wallpaper command if wallpaper_id is not specified)
+	WallpaperContent *string
+	// ID of existing icon within Jamf Pro to use (required for Wallpaper command if wallpaper_content is not specified)
+	WallpaperID *int64
+	// Where to set wallpaper (Required for Wallpaper command.) Possible values include - 1 (Lock screen), 2 (Home screen), 3 (Lock and home screens)
+	WallpaperSetting *int64
+}
+
+type CreateMobileDeviceCommandRequestBodyMobileDevicesMobileDevice struct {
+	ID int64
+}
+
+type CreateMobileDeviceCommandRequestBodyMobileDevices struct {
+	MobileDevice *CreateMobileDeviceCommandRequestBodyMobileDevicesMobileDevice
+}
+
+type CreateMobileDeviceCommandRequestBody struct {
+	General       *CreateMobileDeviceCommandRequestBodyGeneral
+	MobileDevices *CreateMobileDeviceCommandRequestBodyMobileDevices
+}
 
 type CreateMobileDeviceCommandResponse struct {
 	ContentType string

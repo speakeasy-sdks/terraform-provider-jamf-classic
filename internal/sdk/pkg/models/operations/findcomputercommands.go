@@ -3,9 +3,62 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindComputerCommands200ApplicationXMLComputerCommandComputersComputer struct {
+	ID        *int64
+	IPAddress *string
+	Udid      *string
+	Users     *string
+}
+
+type FindComputerCommands200ApplicationXMLComputerCommandComputers struct {
+	Computer *FindComputerCommands200ApplicationXMLComputerCommandComputersComputer
+	Size     *int64
+}
+
+type FindComputerCommands200ApplicationXMLComputerCommand struct {
+	// Command type
+	Command   *string
+	Computers []FindComputerCommands200ApplicationXMLComputerCommandComputers
+	ID        *int64
+	ProfileID *int64
+	Udid      *string
+	UUID      *string
+}
+
+type FindComputerCommands200ApplicationXML struct {
+	ComputerCommand *FindComputerCommands200ApplicationXMLComputerCommand
+	Size            *int64
+}
+
+type FindComputerCommands200ApplicationJSONComputerCommandComputersComputer struct {
+	ID        *int64  `json:"id,omitempty"`
+	IPAddress *string `json:"ip_address,omitempty"`
+	Udid      *string `json:"udid,omitempty"`
+	Users     *string `json:"users,omitempty"`
+}
+
+type FindComputerCommands200ApplicationJSONComputerCommandComputers struct {
+	Computer *FindComputerCommands200ApplicationJSONComputerCommandComputersComputer `json:"computer,omitempty"`
+	Size     *int64                                                                  `json:"size,omitempty"`
+}
+
+type FindComputerCommands200ApplicationJSONComputerCommand struct {
+	// Command type
+	Command   *string                                                          `json:"command,omitempty"`
+	Computers []FindComputerCommands200ApplicationJSONComputerCommandComputers `json:"computers,omitempty"`
+	ID        *int64                                                           `json:"id,omitempty"`
+	ProfileID *int64                                                           `json:"profile_id,omitempty"`
+	Udid      *string                                                          `json:"udid,omitempty"`
+	UUID      *string                                                          `json:"uuid,omitempty"`
+}
+
+type FindComputerCommands200ApplicationJSON struct {
+	ComputerCommand *FindComputerCommands200ApplicationJSONComputerCommand `json:"computer_command,omitempty"`
+	Size            *int64                                                 `json:"size,omitempty"`
+}
 
 type FindComputerCommandsResponse struct {
 	Body        []byte
@@ -13,5 +66,5 @@ type FindComputerCommandsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ComputerCommands []shared.ComputerCommands
+	FindComputerCommands200ApplicationJSONObjects []FindComputerCommands200ApplicationJSON
 }

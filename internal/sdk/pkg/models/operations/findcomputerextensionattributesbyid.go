@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,255 @@ type FindComputerextensionattributesByIDRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+type FindComputerextensionattributesByID200ApplicationXMLDataType string
+
+const (
+	FindComputerextensionattributesByID200ApplicationXMLDataTypeString  FindComputerextensionattributesByID200ApplicationXMLDataType = "String"
+	FindComputerextensionattributesByID200ApplicationXMLDataTypeInteger FindComputerextensionattributesByID200ApplicationXMLDataType = "Integer"
+	FindComputerextensionattributesByID200ApplicationXMLDataTypeDate    FindComputerextensionattributesByID200ApplicationXMLDataType = "Date"
+)
+
+func (e FindComputerextensionattributesByID200ApplicationXMLDataType) ToPointer() *FindComputerextensionattributesByID200ApplicationXMLDataType {
+	return &e
+}
+
+func (e *FindComputerextensionattributesByID200ApplicationXMLDataType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "String":
+		fallthrough
+	case "Integer":
+		fallthrough
+	case "Date":
+		*e = FindComputerextensionattributesByID200ApplicationXMLDataType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindComputerextensionattributesByID200ApplicationXMLDataType: %v", v)
+	}
+}
+
+type FindComputerextensionattributesByID200ApplicationXMLInputTypeType string
+
+const (
+	FindComputerextensionattributesByID200ApplicationXMLInputTypeTypeScript      FindComputerextensionattributesByID200ApplicationXMLInputTypeType = "script"
+	FindComputerextensionattributesByID200ApplicationXMLInputTypeTypeTextField   FindComputerextensionattributesByID200ApplicationXMLInputTypeType = "Text Field"
+	FindComputerextensionattributesByID200ApplicationXMLInputTypeTypeLdapMapping FindComputerextensionattributesByID200ApplicationXMLInputTypeType = "LDAP Mapping"
+	FindComputerextensionattributesByID200ApplicationXMLInputTypeTypePopUpMenu   FindComputerextensionattributesByID200ApplicationXMLInputTypeType = "Pop-up Menu"
+)
+
+func (e FindComputerextensionattributesByID200ApplicationXMLInputTypeType) ToPointer() *FindComputerextensionattributesByID200ApplicationXMLInputTypeType {
+	return &e
+}
+
+func (e *FindComputerextensionattributesByID200ApplicationXMLInputTypeType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "script":
+		fallthrough
+	case "Text Field":
+		fallthrough
+	case "LDAP Mapping":
+		fallthrough
+	case "Pop-up Menu":
+		*e = FindComputerextensionattributesByID200ApplicationXMLInputTypeType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindComputerextensionattributesByID200ApplicationXMLInputTypeType: %v", v)
+	}
+}
+
+type FindComputerextensionattributesByID200ApplicationXMLInputType struct {
+	Type *FindComputerextensionattributesByID200ApplicationXMLInputTypeType
+}
+
+// FindComputerextensionattributesByID200ApplicationXMLInventoryDisplay - Category in which to display the extension attribute in Jamf Pro
+type FindComputerextensionattributesByID200ApplicationXMLInventoryDisplay string
+
+const (
+	FindComputerextensionattributesByID200ApplicationXMLInventoryDisplayGeneral             FindComputerextensionattributesByID200ApplicationXMLInventoryDisplay = "General"
+	FindComputerextensionattributesByID200ApplicationXMLInventoryDisplayHardware            FindComputerextensionattributesByID200ApplicationXMLInventoryDisplay = "Hardware"
+	FindComputerextensionattributesByID200ApplicationXMLInventoryDisplayOperatingSystem     FindComputerextensionattributesByID200ApplicationXMLInventoryDisplay = "Operating System"
+	FindComputerextensionattributesByID200ApplicationXMLInventoryDisplayUserAndLocation     FindComputerextensionattributesByID200ApplicationXMLInventoryDisplay = "User and Location"
+	FindComputerextensionattributesByID200ApplicationXMLInventoryDisplayPurchasing          FindComputerextensionattributesByID200ApplicationXMLInventoryDisplay = "Purchasing"
+	FindComputerextensionattributesByID200ApplicationXMLInventoryDisplayExtensionAttributes FindComputerextensionattributesByID200ApplicationXMLInventoryDisplay = "Extension Attributes"
+)
+
+func (e FindComputerextensionattributesByID200ApplicationXMLInventoryDisplay) ToPointer() *FindComputerextensionattributesByID200ApplicationXMLInventoryDisplay {
+	return &e
+}
+
+func (e *FindComputerextensionattributesByID200ApplicationXMLInventoryDisplay) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "General":
+		fallthrough
+	case "Hardware":
+		fallthrough
+	case "Operating System":
+		fallthrough
+	case "User and Location":
+		fallthrough
+	case "Purchasing":
+		fallthrough
+	case "Extension Attributes":
+		*e = FindComputerextensionattributesByID200ApplicationXMLInventoryDisplay(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindComputerextensionattributesByID200ApplicationXMLInventoryDisplay: %v", v)
+	}
+}
+
+// FindComputerextensionattributesByID200ApplicationXML - OK
+type FindComputerextensionattributesByID200ApplicationXML struct {
+	DataType *FindComputerextensionattributesByID200ApplicationXMLDataType
+	// Description of the extension attribute
+	Description *string
+	// Only applicable to script input type
+	Enabled   *bool
+	ID        *int64
+	InputType *FindComputerextensionattributesByID200ApplicationXMLInputType
+	// Category in which to display the extension attribute in Jamf Pro
+	InventoryDisplay *FindComputerextensionattributesByID200ApplicationXMLInventoryDisplay
+	// Extension attribute name
+	Name string
+}
+
+type FindComputerextensionattributesByID200ApplicationJSONDataType string
+
+const (
+	FindComputerextensionattributesByID200ApplicationJSONDataTypeString  FindComputerextensionattributesByID200ApplicationJSONDataType = "String"
+	FindComputerextensionattributesByID200ApplicationJSONDataTypeInteger FindComputerextensionattributesByID200ApplicationJSONDataType = "Integer"
+	FindComputerextensionattributesByID200ApplicationJSONDataTypeDate    FindComputerextensionattributesByID200ApplicationJSONDataType = "Date"
+)
+
+func (e FindComputerextensionattributesByID200ApplicationJSONDataType) ToPointer() *FindComputerextensionattributesByID200ApplicationJSONDataType {
+	return &e
+}
+
+func (e *FindComputerextensionattributesByID200ApplicationJSONDataType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "String":
+		fallthrough
+	case "Integer":
+		fallthrough
+	case "Date":
+		*e = FindComputerextensionattributesByID200ApplicationJSONDataType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindComputerextensionattributesByID200ApplicationJSONDataType: %v", v)
+	}
+}
+
+type FindComputerextensionattributesByID200ApplicationJSONInputTypeType string
+
+const (
+	FindComputerextensionattributesByID200ApplicationJSONInputTypeTypeScript      FindComputerextensionattributesByID200ApplicationJSONInputTypeType = "script"
+	FindComputerextensionattributesByID200ApplicationJSONInputTypeTypeTextField   FindComputerextensionattributesByID200ApplicationJSONInputTypeType = "Text Field"
+	FindComputerextensionattributesByID200ApplicationJSONInputTypeTypeLdapMapping FindComputerextensionattributesByID200ApplicationJSONInputTypeType = "LDAP Mapping"
+	FindComputerextensionattributesByID200ApplicationJSONInputTypeTypePopUpMenu   FindComputerextensionattributesByID200ApplicationJSONInputTypeType = "Pop-up Menu"
+)
+
+func (e FindComputerextensionattributesByID200ApplicationJSONInputTypeType) ToPointer() *FindComputerextensionattributesByID200ApplicationJSONInputTypeType {
+	return &e
+}
+
+func (e *FindComputerextensionattributesByID200ApplicationJSONInputTypeType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "script":
+		fallthrough
+	case "Text Field":
+		fallthrough
+	case "LDAP Mapping":
+		fallthrough
+	case "Pop-up Menu":
+		*e = FindComputerextensionattributesByID200ApplicationJSONInputTypeType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindComputerextensionattributesByID200ApplicationJSONInputTypeType: %v", v)
+	}
+}
+
+type FindComputerextensionattributesByID200ApplicationJSONInputType struct {
+	Type *FindComputerextensionattributesByID200ApplicationJSONInputTypeType `json:"type,omitempty"`
+}
+
+// FindComputerextensionattributesByID200ApplicationJSONInventoryDisplay - Category in which to display the extension attribute in Jamf Pro
+type FindComputerextensionattributesByID200ApplicationJSONInventoryDisplay string
+
+const (
+	FindComputerextensionattributesByID200ApplicationJSONInventoryDisplayGeneral             FindComputerextensionattributesByID200ApplicationJSONInventoryDisplay = "General"
+	FindComputerextensionattributesByID200ApplicationJSONInventoryDisplayHardware            FindComputerextensionattributesByID200ApplicationJSONInventoryDisplay = "Hardware"
+	FindComputerextensionattributesByID200ApplicationJSONInventoryDisplayOperatingSystem     FindComputerextensionattributesByID200ApplicationJSONInventoryDisplay = "Operating System"
+	FindComputerextensionattributesByID200ApplicationJSONInventoryDisplayUserAndLocation     FindComputerextensionattributesByID200ApplicationJSONInventoryDisplay = "User and Location"
+	FindComputerextensionattributesByID200ApplicationJSONInventoryDisplayPurchasing          FindComputerextensionattributesByID200ApplicationJSONInventoryDisplay = "Purchasing"
+	FindComputerextensionattributesByID200ApplicationJSONInventoryDisplayExtensionAttributes FindComputerextensionattributesByID200ApplicationJSONInventoryDisplay = "Extension Attributes"
+)
+
+func (e FindComputerextensionattributesByID200ApplicationJSONInventoryDisplay) ToPointer() *FindComputerextensionattributesByID200ApplicationJSONInventoryDisplay {
+	return &e
+}
+
+func (e *FindComputerextensionattributesByID200ApplicationJSONInventoryDisplay) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "General":
+		fallthrough
+	case "Hardware":
+		fallthrough
+	case "Operating System":
+		fallthrough
+	case "User and Location":
+		fallthrough
+	case "Purchasing":
+		fallthrough
+	case "Extension Attributes":
+		*e = FindComputerextensionattributesByID200ApplicationJSONInventoryDisplay(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindComputerextensionattributesByID200ApplicationJSONInventoryDisplay: %v", v)
+	}
+}
+
+// FindComputerextensionattributesByID200ApplicationJSON - OK
+type FindComputerextensionattributesByID200ApplicationJSON struct {
+	DataType *FindComputerextensionattributesByID200ApplicationJSONDataType `json:"data_type,omitempty"`
+	// Description of the extension attribute
+	Description *string `json:"description,omitempty"`
+	// Only applicable to script input type
+	Enabled   *bool                                                           `json:"enabled,omitempty"`
+	ID        *int64                                                          `json:"id,omitempty"`
+	InputType *FindComputerextensionattributesByID200ApplicationJSONInputType `json:"input_type,omitempty"`
+	// Category in which to display the extension attribute in Jamf Pro
+	InventoryDisplay *FindComputerextensionattributesByID200ApplicationJSONInventoryDisplay `json:"inventory_display,omitempty"`
+	// Extension attribute name
+	Name string `json:"name"`
+}
+
 type FindComputerextensionattributesByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ComputerExtensionAttribute *shared.ComputerExtensionAttribute
+	FindComputerextensionattributesByID200ApplicationJSONObject *FindComputerextensionattributesByID200ApplicationJSON
 }

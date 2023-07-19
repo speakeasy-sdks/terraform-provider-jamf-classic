@@ -3,9 +3,29 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindComputersBasicComputersComputer struct {
+	Building   *string `json:"building,omitempty"`
+	Department *string `json:"department,omitempty"`
+	ID         *int64  `json:"id,omitempty"`
+	MacAddress *string `json:"mac_address,omitempty"`
+	Managed    *bool   `json:"managed,omitempty"`
+	Model      *string `json:"model,omitempty"`
+	// Name of the computer
+	Name            *string `json:"name,omitempty"`
+	ReportDateEpoch *string `json:"report_date_epoch,omitempty"`
+	ReportDateUtc   *string `json:"report_date_utc,omitempty"`
+	SerialNumber    *string `json:"serial_number,omitempty"`
+	Udid            *string `json:"udid,omitempty"`
+	Username        *string `json:"username,omitempty"`
+}
+
+// FindComputersBasicComputers - OK
+type FindComputersBasicComputers struct {
+	Computer *FindComputersBasicComputersComputer `json:"computer,omitempty"`
+}
 
 type FindComputersBasicResponse struct {
 	Body        []byte
@@ -13,5 +33,5 @@ type FindComputersBasicResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ComputersBasic *shared.ComputersBasic
+	Computers *FindComputersBasicComputers
 }

@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,289 @@ type FindInvitationByIDRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+type FindInvitationByID200ApplicationXMLGeneralDistributionMethod string
+
+const (
+	FindInvitationByID200ApplicationXMLGeneralDistributionMethodPromptUsersToAcceptMakeAvailableInSelfService FindInvitationByID200ApplicationXMLGeneralDistributionMethod = "Prompt users to accept/make available in Self Service"
+	FindInvitationByID200ApplicationXMLGeneralDistributionMethodSendEmails                                    FindInvitationByID200ApplicationXMLGeneralDistributionMethod = "Send emails"
+	FindInvitationByID200ApplicationXMLGeneralDistributionMethodMakeAvailableInSelfServiceOnly                FindInvitationByID200ApplicationXMLGeneralDistributionMethod = "Make available in Self Service only"
+)
+
+func (e FindInvitationByID200ApplicationXMLGeneralDistributionMethod) ToPointer() *FindInvitationByID200ApplicationXMLGeneralDistributionMethod {
+	return &e
+}
+
+func (e *FindInvitationByID200ApplicationXMLGeneralDistributionMethod) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Prompt users to accept/make available in Self Service":
+		fallthrough
+	case "Send emails":
+		fallthrough
+	case "Make available in Self Service only":
+		*e = FindInvitationByID200ApplicationXMLGeneralDistributionMethod(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindInvitationByID200ApplicationXMLGeneralDistributionMethod: %v", v)
+	}
+}
+
+type FindInvitationByID200ApplicationXMLGeneralVppAccount struct {
+	ID int64
+}
+
+type FindInvitationByID200ApplicationXMLGeneral struct {
+	DistributionMethod *FindInvitationByID200ApplicationXMLGeneralDistributionMethod
+	ID                 *int64
+	Message            *string
+	Name               string
+	RequireLogin       *bool
+	SenderEmailAddress *string
+	SenderName         *string
+	Subject            *string
+	VppAccount         *FindInvitationByID200ApplicationXMLGeneralVppAccount
+}
+
+type FindInvitationByID200ApplicationXMLInvitationUsageUsage struct {
+	EmailAddress      *string
+	ID                *int64
+	LastActionDateUtc *string
+	LastActionEpoch   *int64
+	Name              *string
+	Status            *string
+	VppAccount        *string
+}
+
+type FindInvitationByID200ApplicationXMLInvitationUsage struct {
+	Size  *int64
+	Usage *FindInvitationByID200ApplicationXMLInvitationUsageUsage
+}
+
+type FindInvitationByID200ApplicationXMLScopeExclusionsJssUserGroupsUserGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindInvitationByID200ApplicationXMLScopeExclusionsJssUserGroups struct {
+	UserGroup *FindInvitationByID200ApplicationXMLScopeExclusionsJssUserGroupsUserGroup
+}
+
+type FindInvitationByID200ApplicationXMLScopeExclusionsJssUsersUser struct {
+	ID   *int64
+	Name *string
+}
+
+type FindInvitationByID200ApplicationXMLScopeExclusionsJssUsers struct {
+	User *FindInvitationByID200ApplicationXMLScopeExclusionsJssUsersUser
+}
+
+type FindInvitationByID200ApplicationXMLScopeExclusionsUserGroupsUserGroup struct {
+	Name *string
+}
+
+type FindInvitationByID200ApplicationXMLScopeExclusionsUserGroups struct {
+	UserGroup *FindInvitationByID200ApplicationXMLScopeExclusionsUserGroupsUserGroup
+}
+
+type FindInvitationByID200ApplicationXMLScopeExclusions struct {
+	JssUserGroups []FindInvitationByID200ApplicationXMLScopeExclusionsJssUserGroups
+	JssUsers      []FindInvitationByID200ApplicationXMLScopeExclusionsJssUsers
+	UserGroups    []FindInvitationByID200ApplicationXMLScopeExclusionsUserGroups
+}
+
+type FindInvitationByID200ApplicationXMLScopeJssUserGroupsUserGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindInvitationByID200ApplicationXMLScopeJssUserGroups struct {
+	UserGroup *FindInvitationByID200ApplicationXMLScopeJssUserGroupsUserGroup
+}
+
+type FindInvitationByID200ApplicationXMLScopeJssUsersUser struct {
+	ID   *int64
+	Name *string
+}
+
+type FindInvitationByID200ApplicationXMLScopeJssUsers struct {
+	User *FindInvitationByID200ApplicationXMLScopeJssUsersUser
+}
+
+type FindInvitationByID200ApplicationXMLScopeLimitationsUserGroupsUserGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindInvitationByID200ApplicationXMLScopeLimitationsUserGroups struct {
+	UserGroup *FindInvitationByID200ApplicationXMLScopeLimitationsUserGroupsUserGroup
+}
+
+type FindInvitationByID200ApplicationXMLScopeLimitations struct {
+	UserGroups []FindInvitationByID200ApplicationXMLScopeLimitationsUserGroups
+}
+
+type FindInvitationByID200ApplicationXMLScope struct {
+	AllJssUsers   *bool
+	Exclusions    *FindInvitationByID200ApplicationXMLScopeExclusions
+	JssUserGroups []FindInvitationByID200ApplicationXMLScopeJssUserGroups
+	JssUsers      []FindInvitationByID200ApplicationXMLScopeJssUsers
+	Limitations   *FindInvitationByID200ApplicationXMLScopeLimitations
+}
+
+// FindInvitationByID200ApplicationXML - OK
+type FindInvitationByID200ApplicationXML struct {
+	General         *FindInvitationByID200ApplicationXMLGeneral
+	InvitationUsage []FindInvitationByID200ApplicationXMLInvitationUsage
+	Scope           *FindInvitationByID200ApplicationXMLScope
+}
+
+type FindInvitationByID200ApplicationJSONGeneralDistributionMethod string
+
+const (
+	FindInvitationByID200ApplicationJSONGeneralDistributionMethodPromptUsersToAcceptMakeAvailableInSelfService FindInvitationByID200ApplicationJSONGeneralDistributionMethod = "Prompt users to accept/make available in Self Service"
+	FindInvitationByID200ApplicationJSONGeneralDistributionMethodSendEmails                                    FindInvitationByID200ApplicationJSONGeneralDistributionMethod = "Send emails"
+	FindInvitationByID200ApplicationJSONGeneralDistributionMethodMakeAvailableInSelfServiceOnly                FindInvitationByID200ApplicationJSONGeneralDistributionMethod = "Make available in Self Service only"
+)
+
+func (e FindInvitationByID200ApplicationJSONGeneralDistributionMethod) ToPointer() *FindInvitationByID200ApplicationJSONGeneralDistributionMethod {
+	return &e
+}
+
+func (e *FindInvitationByID200ApplicationJSONGeneralDistributionMethod) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Prompt users to accept/make available in Self Service":
+		fallthrough
+	case "Send emails":
+		fallthrough
+	case "Make available in Self Service only":
+		*e = FindInvitationByID200ApplicationJSONGeneralDistributionMethod(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindInvitationByID200ApplicationJSONGeneralDistributionMethod: %v", v)
+	}
+}
+
+type FindInvitationByID200ApplicationJSONGeneralVppAccount struct {
+	ID int64 `json:"id"`
+}
+
+type FindInvitationByID200ApplicationJSONGeneral struct {
+	DistributionMethod *FindInvitationByID200ApplicationJSONGeneralDistributionMethod `json:"distribution_method,omitempty"`
+	ID                 *int64                                                         `json:"id,omitempty"`
+	Message            *string                                                        `json:"message,omitempty"`
+	Name               string                                                         `json:"name"`
+	RequireLogin       *bool                                                          `json:"require_login,omitempty"`
+	SenderEmailAddress *string                                                        `json:"sender_email_address,omitempty"`
+	SenderName         *string                                                        `json:"sender_name,omitempty"`
+	Subject            *string                                                        `json:"subject,omitempty"`
+	VppAccount         *FindInvitationByID200ApplicationJSONGeneralVppAccount         `json:"vpp_account,omitempty"`
+}
+
+type FindInvitationByID200ApplicationJSONInvitationUsageUsage struct {
+	EmailAddress      *string `json:"email_address,omitempty"`
+	ID                *int64  `json:"id,omitempty"`
+	LastActionDateUtc *string `json:"last_action_date_utc,omitempty"`
+	LastActionEpoch   *int64  `json:"last_action_epoch,omitempty"`
+	Name              *string `json:"name,omitempty"`
+	Status            *string `json:"status,omitempty"`
+	VppAccount        *string `json:"vpp_account,omitempty"`
+}
+
+type FindInvitationByID200ApplicationJSONInvitationUsage struct {
+	Size  *int64                                                    `json:"size,omitempty"`
+	Usage *FindInvitationByID200ApplicationJSONInvitationUsageUsage `json:"usage,omitempty"`
+}
+
+type FindInvitationByID200ApplicationJSONScopeExclusionsJssUserGroupsUserGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindInvitationByID200ApplicationJSONScopeExclusionsJssUserGroups struct {
+	UserGroup *FindInvitationByID200ApplicationJSONScopeExclusionsJssUserGroupsUserGroup `json:"user_group,omitempty"`
+}
+
+type FindInvitationByID200ApplicationJSONScopeExclusionsJssUsersUser struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindInvitationByID200ApplicationJSONScopeExclusionsJssUsers struct {
+	User *FindInvitationByID200ApplicationJSONScopeExclusionsJssUsersUser `json:"user,omitempty"`
+}
+
+type FindInvitationByID200ApplicationJSONScopeExclusionsUserGroupsUserGroup struct {
+	Name *string `json:"name,omitempty"`
+}
+
+type FindInvitationByID200ApplicationJSONScopeExclusionsUserGroups struct {
+	UserGroup *FindInvitationByID200ApplicationJSONScopeExclusionsUserGroupsUserGroup `json:"user_group,omitempty"`
+}
+
+type FindInvitationByID200ApplicationJSONScopeExclusions struct {
+	JssUserGroups []FindInvitationByID200ApplicationJSONScopeExclusionsJssUserGroups `json:"jss_user_groups,omitempty"`
+	JssUsers      []FindInvitationByID200ApplicationJSONScopeExclusionsJssUsers      `json:"jss_users,omitempty"`
+	UserGroups    []FindInvitationByID200ApplicationJSONScopeExclusionsUserGroups    `json:"user_groups,omitempty"`
+}
+
+type FindInvitationByID200ApplicationJSONScopeJssUserGroupsUserGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindInvitationByID200ApplicationJSONScopeJssUserGroups struct {
+	UserGroup *FindInvitationByID200ApplicationJSONScopeJssUserGroupsUserGroup `json:"user_group,omitempty"`
+}
+
+type FindInvitationByID200ApplicationJSONScopeJssUsersUser struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindInvitationByID200ApplicationJSONScopeJssUsers struct {
+	User *FindInvitationByID200ApplicationJSONScopeJssUsersUser `json:"user,omitempty"`
+}
+
+type FindInvitationByID200ApplicationJSONScopeLimitationsUserGroupsUserGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindInvitationByID200ApplicationJSONScopeLimitationsUserGroups struct {
+	UserGroup *FindInvitationByID200ApplicationJSONScopeLimitationsUserGroupsUserGroup `json:"user_group,omitempty"`
+}
+
+type FindInvitationByID200ApplicationJSONScopeLimitations struct {
+	UserGroups []FindInvitationByID200ApplicationJSONScopeLimitationsUserGroups `json:"user_groups,omitempty"`
+}
+
+type FindInvitationByID200ApplicationJSONScope struct {
+	AllJssUsers   *bool                                                    `json:"all_jss_users,omitempty"`
+	Exclusions    *FindInvitationByID200ApplicationJSONScopeExclusions     `json:"exclusions,omitempty"`
+	JssUserGroups []FindInvitationByID200ApplicationJSONScopeJssUserGroups `json:"jss_user_groups,omitempty"`
+	JssUsers      []FindInvitationByID200ApplicationJSONScopeJssUsers      `json:"jss_users,omitempty"`
+	Limitations   *FindInvitationByID200ApplicationJSONScopeLimitations    `json:"limitations,omitempty"`
+}
+
+// FindInvitationByID200ApplicationJSON - OK
+type FindInvitationByID200ApplicationJSON struct {
+	General         *FindInvitationByID200ApplicationJSONGeneral          `json:"general,omitempty"`
+	InvitationUsage []FindInvitationByID200ApplicationJSONInvitationUsage `json:"invitation_usage,omitempty"`
+	Scope           *FindInvitationByID200ApplicationJSONScope            `json:"scope,omitempty"`
+}
+
 type FindInvitationByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	VppInvitation *shared.VppInvitation
+	FindInvitationByID200ApplicationJSONObject *FindInvitationByID200ApplicationJSON
 }

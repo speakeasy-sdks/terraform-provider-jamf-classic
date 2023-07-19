@@ -3,9 +3,28 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindUsers200ApplicationXMLUser struct {
+	ID   *int64
+	Name *string
+}
+
+type FindUsers200ApplicationXML struct {
+	Size *int64
+	User *FindUsers200ApplicationXMLUser
+}
+
+type FindUsers200ApplicationJSONUser struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindUsers200ApplicationJSON struct {
+	Size *int64                           `json:"size,omitempty"`
+	User *FindUsers200ApplicationJSONUser `json:"user,omitempty"`
+}
 
 type FindUsersResponse struct {
 	Body        []byte
@@ -13,5 +32,5 @@ type FindUsersResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Users []shared.Users
+	FindUsers200ApplicationJSONObjects []FindUsers200ApplicationJSON
 }

@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,25 @@ type FindBuildingsByNameRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+// FindBuildingsByName200ApplicationXML - OK
+type FindBuildingsByName200ApplicationXML struct {
+	ID *int64
+	// Name of the building
+	Name string
+}
+
+// FindBuildingsByName200ApplicationJSON - OK
+type FindBuildingsByName200ApplicationJSON struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the building
+	Name string `json:"name"`
+}
+
 type FindBuildingsByNameResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Building *shared.Building
+	FindBuildingsByName200ApplicationJSONObject *FindBuildingsByName200ApplicationJSON
 }

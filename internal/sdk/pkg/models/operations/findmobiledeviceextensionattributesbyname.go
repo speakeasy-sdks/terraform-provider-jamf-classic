@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,231 @@ type FindMobiledeviceextensionattributesByNameRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+type FindMobiledeviceextensionattributesByName200ApplicationXMLDateType string
+
+const (
+	FindMobiledeviceextensionattributesByName200ApplicationXMLDateTypeString  FindMobiledeviceextensionattributesByName200ApplicationXMLDateType = "String"
+	FindMobiledeviceextensionattributesByName200ApplicationXMLDateTypeDate    FindMobiledeviceextensionattributesByName200ApplicationXMLDateType = "Date"
+	FindMobiledeviceextensionattributesByName200ApplicationXMLDateTypeInteger FindMobiledeviceextensionattributesByName200ApplicationXMLDateType = "Integer"
+)
+
+func (e FindMobiledeviceextensionattributesByName200ApplicationXMLDateType) ToPointer() *FindMobiledeviceextensionattributesByName200ApplicationXMLDateType {
+	return &e
+}
+
+func (e *FindMobiledeviceextensionattributesByName200ApplicationXMLDateType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "String":
+		fallthrough
+	case "Date":
+		fallthrough
+	case "Integer":
+		*e = FindMobiledeviceextensionattributesByName200ApplicationXMLDateType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindMobiledeviceextensionattributesByName200ApplicationXMLDateType: %v", v)
+	}
+}
+
+type FindMobiledeviceextensionattributesByName200ApplicationXMLInputTypeType string
+
+const (
+	FindMobiledeviceextensionattributesByName200ApplicationXMLInputTypeTypeTextField            FindMobiledeviceextensionattributesByName200ApplicationXMLInputTypeType = "Text Field"
+	FindMobiledeviceextensionattributesByName200ApplicationXMLInputTypeTypePopUpMenu            FindMobiledeviceextensionattributesByName200ApplicationXMLInputTypeType = "Pop-up Menu"
+	FindMobiledeviceextensionattributesByName200ApplicationXMLInputTypeTypeLdapAttributeMapping FindMobiledeviceextensionattributesByName200ApplicationXMLInputTypeType = "LDAP Attribute Mapping"
+)
+
+func (e FindMobiledeviceextensionattributesByName200ApplicationXMLInputTypeType) ToPointer() *FindMobiledeviceextensionattributesByName200ApplicationXMLInputTypeType {
+	return &e
+}
+
+func (e *FindMobiledeviceextensionattributesByName200ApplicationXMLInputTypeType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Text Field":
+		fallthrough
+	case "Pop-up Menu":
+		fallthrough
+	case "LDAP Attribute Mapping":
+		*e = FindMobiledeviceextensionattributesByName200ApplicationXMLInputTypeType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindMobiledeviceextensionattributesByName200ApplicationXMLInputTypeType: %v", v)
+	}
+}
+
+type FindMobiledeviceextensionattributesByName200ApplicationXMLInputType struct {
+	Type *FindMobiledeviceextensionattributesByName200ApplicationXMLInputTypeType
+}
+
+type FindMobiledeviceextensionattributesByName200ApplicationXMLInventoryDisplay string
+
+const (
+	FindMobiledeviceextensionattributesByName200ApplicationXMLInventoryDisplayGeneral             FindMobiledeviceextensionattributesByName200ApplicationXMLInventoryDisplay = "General"
+	FindMobiledeviceextensionattributesByName200ApplicationXMLInventoryDisplayHardware            FindMobiledeviceextensionattributesByName200ApplicationXMLInventoryDisplay = "Hardware"
+	FindMobiledeviceextensionattributesByName200ApplicationXMLInventoryDisplayUserAndLocation     FindMobiledeviceextensionattributesByName200ApplicationXMLInventoryDisplay = "User and Location"
+	FindMobiledeviceextensionattributesByName200ApplicationXMLInventoryDisplayPurchasing          FindMobiledeviceextensionattributesByName200ApplicationXMLInventoryDisplay = "Purchasing"
+	FindMobiledeviceextensionattributesByName200ApplicationXMLInventoryDisplayExtensionAttributes FindMobiledeviceextensionattributesByName200ApplicationXMLInventoryDisplay = "Extension Attributes"
+)
+
+func (e FindMobiledeviceextensionattributesByName200ApplicationXMLInventoryDisplay) ToPointer() *FindMobiledeviceextensionattributesByName200ApplicationXMLInventoryDisplay {
+	return &e
+}
+
+func (e *FindMobiledeviceextensionattributesByName200ApplicationXMLInventoryDisplay) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "General":
+		fallthrough
+	case "Hardware":
+		fallthrough
+	case "User and Location":
+		fallthrough
+	case "Purchasing":
+		fallthrough
+	case "Extension Attributes":
+		*e = FindMobiledeviceextensionattributesByName200ApplicationXMLInventoryDisplay(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindMobiledeviceextensionattributesByName200ApplicationXMLInventoryDisplay: %v", v)
+	}
+}
+
+// FindMobiledeviceextensionattributesByName200ApplicationXML - OK
+type FindMobiledeviceextensionattributesByName200ApplicationXML struct {
+	DateType         *FindMobiledeviceextensionattributesByName200ApplicationXMLDateType
+	Description      *string
+	ID               *int64
+	InputType        *FindMobiledeviceextensionattributesByName200ApplicationXMLInputType
+	InventoryDisplay *FindMobiledeviceextensionattributesByName200ApplicationXMLInventoryDisplay
+	Name             string
+}
+
+type FindMobiledeviceextensionattributesByName200ApplicationJSONDateType string
+
+const (
+	FindMobiledeviceextensionattributesByName200ApplicationJSONDateTypeString  FindMobiledeviceextensionattributesByName200ApplicationJSONDateType = "String"
+	FindMobiledeviceextensionattributesByName200ApplicationJSONDateTypeDate    FindMobiledeviceextensionattributesByName200ApplicationJSONDateType = "Date"
+	FindMobiledeviceextensionattributesByName200ApplicationJSONDateTypeInteger FindMobiledeviceextensionattributesByName200ApplicationJSONDateType = "Integer"
+)
+
+func (e FindMobiledeviceextensionattributesByName200ApplicationJSONDateType) ToPointer() *FindMobiledeviceextensionattributesByName200ApplicationJSONDateType {
+	return &e
+}
+
+func (e *FindMobiledeviceextensionattributesByName200ApplicationJSONDateType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "String":
+		fallthrough
+	case "Date":
+		fallthrough
+	case "Integer":
+		*e = FindMobiledeviceextensionattributesByName200ApplicationJSONDateType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindMobiledeviceextensionattributesByName200ApplicationJSONDateType: %v", v)
+	}
+}
+
+type FindMobiledeviceextensionattributesByName200ApplicationJSONInputTypeType string
+
+const (
+	FindMobiledeviceextensionattributesByName200ApplicationJSONInputTypeTypeTextField            FindMobiledeviceextensionattributesByName200ApplicationJSONInputTypeType = "Text Field"
+	FindMobiledeviceextensionattributesByName200ApplicationJSONInputTypeTypePopUpMenu            FindMobiledeviceextensionattributesByName200ApplicationJSONInputTypeType = "Pop-up Menu"
+	FindMobiledeviceextensionattributesByName200ApplicationJSONInputTypeTypeLdapAttributeMapping FindMobiledeviceextensionattributesByName200ApplicationJSONInputTypeType = "LDAP Attribute Mapping"
+)
+
+func (e FindMobiledeviceextensionattributesByName200ApplicationJSONInputTypeType) ToPointer() *FindMobiledeviceextensionattributesByName200ApplicationJSONInputTypeType {
+	return &e
+}
+
+func (e *FindMobiledeviceextensionattributesByName200ApplicationJSONInputTypeType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Text Field":
+		fallthrough
+	case "Pop-up Menu":
+		fallthrough
+	case "LDAP Attribute Mapping":
+		*e = FindMobiledeviceextensionattributesByName200ApplicationJSONInputTypeType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindMobiledeviceextensionattributesByName200ApplicationJSONInputTypeType: %v", v)
+	}
+}
+
+type FindMobiledeviceextensionattributesByName200ApplicationJSONInputType struct {
+	Type *FindMobiledeviceextensionattributesByName200ApplicationJSONInputTypeType `json:"type,omitempty"`
+}
+
+type FindMobiledeviceextensionattributesByName200ApplicationJSONInventoryDisplay string
+
+const (
+	FindMobiledeviceextensionattributesByName200ApplicationJSONInventoryDisplayGeneral             FindMobiledeviceextensionattributesByName200ApplicationJSONInventoryDisplay = "General"
+	FindMobiledeviceextensionattributesByName200ApplicationJSONInventoryDisplayHardware            FindMobiledeviceextensionattributesByName200ApplicationJSONInventoryDisplay = "Hardware"
+	FindMobiledeviceextensionattributesByName200ApplicationJSONInventoryDisplayUserAndLocation     FindMobiledeviceextensionattributesByName200ApplicationJSONInventoryDisplay = "User and Location"
+	FindMobiledeviceextensionattributesByName200ApplicationJSONInventoryDisplayPurchasing          FindMobiledeviceextensionattributesByName200ApplicationJSONInventoryDisplay = "Purchasing"
+	FindMobiledeviceextensionattributesByName200ApplicationJSONInventoryDisplayExtensionAttributes FindMobiledeviceextensionattributesByName200ApplicationJSONInventoryDisplay = "Extension Attributes"
+)
+
+func (e FindMobiledeviceextensionattributesByName200ApplicationJSONInventoryDisplay) ToPointer() *FindMobiledeviceextensionattributesByName200ApplicationJSONInventoryDisplay {
+	return &e
+}
+
+func (e *FindMobiledeviceextensionattributesByName200ApplicationJSONInventoryDisplay) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "General":
+		fallthrough
+	case "Hardware":
+		fallthrough
+	case "User and Location":
+		fallthrough
+	case "Purchasing":
+		fallthrough
+	case "Extension Attributes":
+		*e = FindMobiledeviceextensionattributesByName200ApplicationJSONInventoryDisplay(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindMobiledeviceextensionattributesByName200ApplicationJSONInventoryDisplay: %v", v)
+	}
+}
+
+// FindMobiledeviceextensionattributesByName200ApplicationJSON - OK
+type FindMobiledeviceextensionattributesByName200ApplicationJSON struct {
+	DateType         *FindMobiledeviceextensionattributesByName200ApplicationJSONDateType         `json:"date_type,omitempty"`
+	Description      *string                                                                      `json:"description,omitempty"`
+	ID               *int64                                                                       `json:"id,omitempty"`
+	InputType        *FindMobiledeviceextensionattributesByName200ApplicationJSONInputType        `json:"input_type,omitempty"`
+	InventoryDisplay *FindMobiledeviceextensionattributesByName200ApplicationJSONInventoryDisplay `json:"inventory_display,omitempty"`
+	Name             string                                                                       `json:"name"`
+}
+
 type FindMobiledeviceextensionattributesByNameResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	MobileDeviceExtensionAttribute *shared.MobileDeviceExtensionAttribute
+	FindMobiledeviceextensionattributesByName200ApplicationJSONObject *FindMobiledeviceextensionattributesByName200ApplicationJSON
 }

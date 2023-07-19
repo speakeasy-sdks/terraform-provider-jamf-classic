@@ -3,9 +3,42 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindInfrastructureManager200ApplicationXMLInfrastructureManager struct {
+	Hostname                  *string
+	ID                        *int64
+	LastCheckIn               *string
+	LastReportedIP            *string
+	Name                      *string
+	OperatingSystem           *string
+	OperatingSystemVersion    *string
+	RecurringCheckInFrequency *int64
+	UUID                      *string
+}
+
+type FindInfrastructureManager200ApplicationXML struct {
+	InfrastructureManager *FindInfrastructureManager200ApplicationXMLInfrastructureManager
+	Size                  *int64
+}
+
+type FindInfrastructureManager200ApplicationJSONInfrastructureManager struct {
+	Hostname                  *string `json:"hostname,omitempty"`
+	ID                        *int64  `json:"id,omitempty"`
+	LastCheckIn               *string `json:"last_check_in,omitempty"`
+	LastReportedIP            *string `json:"last_reported_ip,omitempty"`
+	Name                      *string `json:"name,omitempty"`
+	OperatingSystem           *string `json:"operating_system,omitempty"`
+	OperatingSystemVersion    *string `json:"operating_system_version,omitempty"`
+	RecurringCheckInFrequency *int64  `json:"recurring_check_in_frequency,omitempty"`
+	UUID                      *string `json:"uuid,omitempty"`
+}
+
+type FindInfrastructureManager200ApplicationJSON struct {
+	InfrastructureManager *FindInfrastructureManager200ApplicationJSONInfrastructureManager `json:"infrastructure_manager,omitempty"`
+	Size                  *int64                                                            `json:"size,omitempty"`
+}
 
 type FindInfrastructureManagerResponse struct {
 	Body        []byte
@@ -13,5 +46,5 @@ type FindInfrastructureManagerResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	InfrastructureManagers []shared.InfrastructureManagers
+	FindInfrastructureManager200ApplicationJSONObjects []FindInfrastructureManager200ApplicationJSON
 }

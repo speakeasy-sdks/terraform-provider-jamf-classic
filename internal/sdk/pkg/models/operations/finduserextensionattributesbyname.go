@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,153 @@ type FindUserextensionattributesByNameRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+type FindUserextensionattributesByName200ApplicationXMLDataType string
+
+const (
+	FindUserextensionattributesByName200ApplicationXMLDataTypeString  FindUserextensionattributesByName200ApplicationXMLDataType = "String"
+	FindUserextensionattributesByName200ApplicationXMLDataTypeInteger FindUserextensionattributesByName200ApplicationXMLDataType = "Integer"
+	FindUserextensionattributesByName200ApplicationXMLDataTypeDate    FindUserextensionattributesByName200ApplicationXMLDataType = "Date"
+)
+
+func (e FindUserextensionattributesByName200ApplicationXMLDataType) ToPointer() *FindUserextensionattributesByName200ApplicationXMLDataType {
+	return &e
+}
+
+func (e *FindUserextensionattributesByName200ApplicationXMLDataType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "String":
+		fallthrough
+	case "Integer":
+		fallthrough
+	case "Date":
+		*e = FindUserextensionattributesByName200ApplicationXMLDataType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindUserextensionattributesByName200ApplicationXMLDataType: %v", v)
+	}
+}
+
+type FindUserextensionattributesByName200ApplicationXMLInputTypeType string
+
+const (
+	FindUserextensionattributesByName200ApplicationXMLInputTypeTypeTextField FindUserextensionattributesByName200ApplicationXMLInputTypeType = "Text Field"
+	FindUserextensionattributesByName200ApplicationXMLInputTypeTypePopUpMenu FindUserextensionattributesByName200ApplicationXMLInputTypeType = "Pop-up Menu"
+)
+
+func (e FindUserextensionattributesByName200ApplicationXMLInputTypeType) ToPointer() *FindUserextensionattributesByName200ApplicationXMLInputTypeType {
+	return &e
+}
+
+func (e *FindUserextensionattributesByName200ApplicationXMLInputTypeType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Text Field":
+		fallthrough
+	case "Pop-up Menu":
+		*e = FindUserextensionattributesByName200ApplicationXMLInputTypeType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindUserextensionattributesByName200ApplicationXMLInputTypeType: %v", v)
+	}
+}
+
+type FindUserextensionattributesByName200ApplicationXMLInputType struct {
+	Type *FindUserextensionattributesByName200ApplicationXMLInputTypeType
+}
+
+// FindUserextensionattributesByName200ApplicationXML - OK
+type FindUserextensionattributesByName200ApplicationXML struct {
+	DataType    *FindUserextensionattributesByName200ApplicationXMLDataType
+	Description *string
+	ID          *int64
+	InputType   *FindUserextensionattributesByName200ApplicationXMLInputType
+	// Name of the user extension attribute
+	Name string
+}
+
+type FindUserextensionattributesByName200ApplicationJSONDataType string
+
+const (
+	FindUserextensionattributesByName200ApplicationJSONDataTypeString  FindUserextensionattributesByName200ApplicationJSONDataType = "String"
+	FindUserextensionattributesByName200ApplicationJSONDataTypeInteger FindUserextensionattributesByName200ApplicationJSONDataType = "Integer"
+	FindUserextensionattributesByName200ApplicationJSONDataTypeDate    FindUserextensionattributesByName200ApplicationJSONDataType = "Date"
+)
+
+func (e FindUserextensionattributesByName200ApplicationJSONDataType) ToPointer() *FindUserextensionattributesByName200ApplicationJSONDataType {
+	return &e
+}
+
+func (e *FindUserextensionattributesByName200ApplicationJSONDataType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "String":
+		fallthrough
+	case "Integer":
+		fallthrough
+	case "Date":
+		*e = FindUserextensionattributesByName200ApplicationJSONDataType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindUserextensionattributesByName200ApplicationJSONDataType: %v", v)
+	}
+}
+
+type FindUserextensionattributesByName200ApplicationJSONInputTypeType string
+
+const (
+	FindUserextensionattributesByName200ApplicationJSONInputTypeTypeTextField FindUserextensionattributesByName200ApplicationJSONInputTypeType = "Text Field"
+	FindUserextensionattributesByName200ApplicationJSONInputTypeTypePopUpMenu FindUserextensionattributesByName200ApplicationJSONInputTypeType = "Pop-up Menu"
+)
+
+func (e FindUserextensionattributesByName200ApplicationJSONInputTypeType) ToPointer() *FindUserextensionattributesByName200ApplicationJSONInputTypeType {
+	return &e
+}
+
+func (e *FindUserextensionattributesByName200ApplicationJSONInputTypeType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Text Field":
+		fallthrough
+	case "Pop-up Menu":
+		*e = FindUserextensionattributesByName200ApplicationJSONInputTypeType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindUserextensionattributesByName200ApplicationJSONInputTypeType: %v", v)
+	}
+}
+
+type FindUserextensionattributesByName200ApplicationJSONInputType struct {
+	Type *FindUserextensionattributesByName200ApplicationJSONInputTypeType `json:"type,omitempty"`
+}
+
+// FindUserextensionattributesByName200ApplicationJSON - OK
+type FindUserextensionattributesByName200ApplicationJSON struct {
+	DataType    *FindUserextensionattributesByName200ApplicationJSONDataType  `json:"data_type,omitempty"`
+	Description *string                                                       `json:"description,omitempty"`
+	ID          *int64                                                        `json:"id,omitempty"`
+	InputType   *FindUserextensionattributesByName200ApplicationJSONInputType `json:"input_type,omitempty"`
+	// Name of the user extension attribute
+	Name string `json:"name"`
+}
+
 type FindUserextensionattributesByNameResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	UserExtensionAttribute *shared.UserExtensionAttribute
+	FindUserextensionattributesByName200ApplicationJSONObject *FindUserextensionattributesByName200ApplicationJSON
 }

@@ -196,7 +196,7 @@ func New(opts ...SDKOption) *Jamf {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "terraform",
 			OpenAPIDocVersion: "10.48.0",
-			SDKVersion:        "1.1.1",
+			SDKVersion:        "1.1.2",
 			GenVersion:        "2.70.2",
 		},
 	}

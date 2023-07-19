@@ -3,9 +3,32 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindPatches200ApplicationXMLPatchManagementSoftwareTitle struct {
+	ID       *int64
+	Name     *string
+	NameID   *string
+	SourceID *int64
+}
+
+type FindPatches200ApplicationXML struct {
+	PatchManagementSoftwareTitle *FindPatches200ApplicationXMLPatchManagementSoftwareTitle
+	Size                         *int64
+}
+
+type FindPatches200ApplicationJSONPatchManagementSoftwareTitle struct {
+	ID       *int64  `json:"id,omitempty"`
+	Name     *string `json:"name,omitempty"`
+	NameID   *string `json:"name_id,omitempty"`
+	SourceID *int64  `json:"source_id,omitempty"`
+}
+
+type FindPatches200ApplicationJSON struct {
+	PatchManagementSoftwareTitle *FindPatches200ApplicationJSONPatchManagementSoftwareTitle `json:"patch_management_software_title,omitempty"`
+	Size                         *int64                                                     `json:"size,omitempty"`
+}
 
 type FindPatchesResponse struct {
 	Body        []byte
@@ -13,5 +36,5 @@ type FindPatchesResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	PatchManagementSoftwareTitles []shared.PatchManagementSoftwareTitles
+	FindPatches200ApplicationJSONObjects []FindPatches200ApplicationJSON
 }

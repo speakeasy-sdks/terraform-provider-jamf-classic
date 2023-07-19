@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,161 @@ type FindUserGroupsByIDRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+type FindUserGroupsByID200ApplicationXMLCriteriaCriterionAndOr string
+
+const (
+	FindUserGroupsByID200ApplicationXMLCriteriaCriterionAndOrAnd FindUserGroupsByID200ApplicationXMLCriteriaCriterionAndOr = "and"
+	FindUserGroupsByID200ApplicationXMLCriteriaCriterionAndOrOr  FindUserGroupsByID200ApplicationXMLCriteriaCriterionAndOr = "or"
+)
+
+func (e FindUserGroupsByID200ApplicationXMLCriteriaCriterionAndOr) ToPointer() *FindUserGroupsByID200ApplicationXMLCriteriaCriterionAndOr {
+	return &e
+}
+
+func (e *FindUserGroupsByID200ApplicationXMLCriteriaCriterionAndOr) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "and":
+		fallthrough
+	case "or":
+		*e = FindUserGroupsByID200ApplicationXMLCriteriaCriterionAndOr(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindUserGroupsByID200ApplicationXMLCriteriaCriterionAndOr: %v", v)
+	}
+}
+
+type FindUserGroupsByID200ApplicationXMLCriteriaCriterion struct {
+	AndOr        *FindUserGroupsByID200ApplicationXMLCriteriaCriterionAndOr
+	ClosingParen *bool
+	// Name of the criteria
+	Name         *string
+	OpeningParen *bool
+	Priority     *int64
+	// Operator
+	SearchType *string
+	Value      *string
+}
+
+type FindUserGroupsByID200ApplicationXMLCriteria struct {
+	Criterion *FindUserGroupsByID200ApplicationXMLCriteriaCriterion
+	Size      *int64
+}
+
+type FindUserGroupsByID200ApplicationXMLSite struct {
+	ID *int64
+	// Name of the site
+	Name string
+}
+
+type FindUserGroupsByID200ApplicationXMLUsersUser struct {
+	EmailAddress *string
+	FullName     *string
+	ID           *int64
+	PhoneNumber  *string
+	Username     *string
+}
+
+type FindUserGroupsByID200ApplicationXMLUsers struct {
+	Size *int64
+	User *FindUserGroupsByID200ApplicationXMLUsersUser
+}
+
+// FindUserGroupsByID200ApplicationXML - OK
+type FindUserGroupsByID200ApplicationXML struct {
+	Criteria         []FindUserGroupsByID200ApplicationXMLCriteria
+	ID               *int64
+	IsNotifyOnChange *bool
+	IsSmart          bool
+	// Name of the user group
+	Name  string
+	Site  *FindUserGroupsByID200ApplicationXMLSite
+	Users []FindUserGroupsByID200ApplicationXMLUsers
+}
+
+type FindUserGroupsByID200ApplicationJSONCriteriaCriterionAndOr string
+
+const (
+	FindUserGroupsByID200ApplicationJSONCriteriaCriterionAndOrAnd FindUserGroupsByID200ApplicationJSONCriteriaCriterionAndOr = "and"
+	FindUserGroupsByID200ApplicationJSONCriteriaCriterionAndOrOr  FindUserGroupsByID200ApplicationJSONCriteriaCriterionAndOr = "or"
+)
+
+func (e FindUserGroupsByID200ApplicationJSONCriteriaCriterionAndOr) ToPointer() *FindUserGroupsByID200ApplicationJSONCriteriaCriterionAndOr {
+	return &e
+}
+
+func (e *FindUserGroupsByID200ApplicationJSONCriteriaCriterionAndOr) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "and":
+		fallthrough
+	case "or":
+		*e = FindUserGroupsByID200ApplicationJSONCriteriaCriterionAndOr(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindUserGroupsByID200ApplicationJSONCriteriaCriterionAndOr: %v", v)
+	}
+}
+
+type FindUserGroupsByID200ApplicationJSONCriteriaCriterion struct {
+	AndOr        *FindUserGroupsByID200ApplicationJSONCriteriaCriterionAndOr `json:"and_or,omitempty"`
+	ClosingParen *bool                                                       `json:"closing_paren,omitempty"`
+	// Name of the criteria
+	Name         *string `json:"name,omitempty"`
+	OpeningParen *bool   `json:"opening_paren,omitempty"`
+	Priority     *int64  `json:"priority,omitempty"`
+	// Operator
+	SearchType *string `json:"search_type,omitempty"`
+	Value      *string `json:"value,omitempty"`
+}
+
+type FindUserGroupsByID200ApplicationJSONCriteria struct {
+	Criterion *FindUserGroupsByID200ApplicationJSONCriteriaCriterion `json:"criterion,omitempty"`
+	Size      *int64                                                 `json:"size,omitempty"`
+}
+
+type FindUserGroupsByID200ApplicationJSONSite struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the site
+	Name string `json:"name"`
+}
+
+type FindUserGroupsByID200ApplicationJSONUsersUser struct {
+	EmailAddress *string `json:"email_address,omitempty"`
+	FullName     *string `json:"full_name,omitempty"`
+	ID           *int64  `json:"id,omitempty"`
+	PhoneNumber  *string `json:"phone_number,omitempty"`
+	Username     *string `json:"username,omitempty"`
+}
+
+type FindUserGroupsByID200ApplicationJSONUsers struct {
+	Size *int64                                         `json:"size,omitempty"`
+	User *FindUserGroupsByID200ApplicationJSONUsersUser `json:"user,omitempty"`
+}
+
+// FindUserGroupsByID200ApplicationJSON - OK
+type FindUserGroupsByID200ApplicationJSON struct {
+	Criteria         []FindUserGroupsByID200ApplicationJSONCriteria `json:"criteria,omitempty"`
+	ID               *int64                                         `json:"id,omitempty"`
+	IsNotifyOnChange *bool                                          `json:"is_notify_on_change,omitempty"`
+	IsSmart          bool                                           `json:"is_smart"`
+	// Name of the user group
+	Name  string                                      `json:"name"`
+	Site  *FindUserGroupsByID200ApplicationJSONSite   `json:"site,omitempty"`
+	Users []FindUserGroupsByID200ApplicationJSONUsers `json:"users,omitempty"`
+}
+
 type FindUserGroupsByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	UserGroup *shared.UserGroup
+	FindUserGroupsByID200ApplicationJSONObject *FindUserGroupsByID200ApplicationJSON
 }

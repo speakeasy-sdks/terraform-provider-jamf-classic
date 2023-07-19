@@ -3,9 +3,30 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindBuildings200ApplicationXMLBuilding struct {
+	ID *int64
+	// Name of the building
+	Name string
+}
+
+type FindBuildings200ApplicationXML struct {
+	Building *FindBuildings200ApplicationXMLBuilding
+	Size     *int64
+}
+
+type FindBuildings200ApplicationJSONBuilding struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the building
+	Name string `json:"name"`
+}
+
+type FindBuildings200ApplicationJSON struct {
+	Building *FindBuildings200ApplicationJSONBuilding `json:"building,omitempty"`
+	Size     *int64                                   `json:"size,omitempty"`
+}
 
 type FindBuildingsResponse struct {
 	Body        []byte
@@ -13,5 +34,5 @@ type FindBuildingsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Buildings []shared.Buildings
+	FindBuildings200ApplicationJSONObjects []FindBuildings200ApplicationJSON
 }

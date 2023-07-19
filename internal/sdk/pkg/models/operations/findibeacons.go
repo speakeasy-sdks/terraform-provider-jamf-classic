@@ -3,9 +3,36 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindIBeacons200ApplicationXMLIbeacon struct {
+	ID    *int64
+	Major *string
+	Minor *string
+	// Name of the ibeacon
+	Name string
+	UUID string
+}
+
+type FindIBeacons200ApplicationXML struct {
+	Ibeacon *FindIBeacons200ApplicationXMLIbeacon
+	Size    *int64
+}
+
+type FindIBeacons200ApplicationJSONIbeacon struct {
+	ID    *int64  `json:"id,omitempty"`
+	Major *string `json:"major,omitempty"`
+	Minor *string `json:"minor,omitempty"`
+	// Name of the ibeacon
+	Name string `json:"name"`
+	UUID string `json:"uuid"`
+}
+
+type FindIBeacons200ApplicationJSON struct {
+	Ibeacon *FindIBeacons200ApplicationJSONIbeacon `json:"ibeacon,omitempty"`
+	Size    *int64                                 `json:"size,omitempty"`
+}
 
 type FindIBeaconsResponse struct {
 	Body        []byte
@@ -13,5 +40,5 @@ type FindIBeaconsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Ibeacons []shared.Ibeacons
+	FindIBeacons200ApplicationJSONObjects []FindIBeacons200ApplicationJSON
 }

@@ -3,9 +3,32 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindClasses200ApplicationXMLClass struct {
+	Description *string
+	ID          *int64
+	// Name of the class
+	Name *string
+}
+
+type FindClasses200ApplicationXML struct {
+	Class *FindClasses200ApplicationXMLClass
+	Size  *int64
+}
+
+type FindClasses200ApplicationJSONClass struct {
+	Description *string `json:"description,omitempty"`
+	ID          *int64  `json:"id,omitempty"`
+	// Name of the class
+	Name *string `json:"name,omitempty"`
+}
+
+type FindClasses200ApplicationJSON struct {
+	Class *FindClasses200ApplicationJSONClass `json:"class,omitempty"`
+	Size  *int64                              `json:"size,omitempty"`
+}
 
 type FindClassesResponse struct {
 	Body        []byte
@@ -13,5 +36,5 @@ type FindClassesResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Classes []shared.Classes
+	FindClasses200ApplicationJSONObjects []FindClasses200ApplicationJSON
 }

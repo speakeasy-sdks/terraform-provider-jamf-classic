@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,75 @@ type FindMobileDeviceCommandsByCommandRequest struct {
 	Command string `pathParam:"style=simple,explode=false,name=command"`
 }
 
+type FindMobileDeviceCommandsByCommand200ApplicationXMLGeneral struct {
+	ApnsResultStatus *string
+	Command          *string
+	DateSent         *string
+	DateSentEpoch    *string
+	DateSentUtc      *string
+	ID               *int64
+	ProfileID        *int64
+	ProfileUdid      *string
+	Udid             *string
+	UUID             *string
+}
+
+type FindMobileDeviceCommandsByCommand200ApplicationXMLMobileDevicesMobileDevice struct {
+	ID             *int64
+	PhoneNumber    *string
+	SerialNumber   *string
+	Udid           *string
+	WifiMacAddress *string
+}
+
+type FindMobileDeviceCommandsByCommand200ApplicationXMLMobileDevices struct {
+	MobileDevice *FindMobileDeviceCommandsByCommand200ApplicationXMLMobileDevicesMobileDevice
+	Size         *int64
+}
+
+// FindMobileDeviceCommandsByCommand200ApplicationXML - OK
+type FindMobileDeviceCommandsByCommand200ApplicationXML struct {
+	General       *FindMobileDeviceCommandsByCommand200ApplicationXMLGeneral
+	MobileDevices *FindMobileDeviceCommandsByCommand200ApplicationXMLMobileDevices
+}
+
+type FindMobileDeviceCommandsByCommand200ApplicationJSONGeneral struct {
+	ApnsResultStatus *string `json:"apns_result_status,omitempty"`
+	Command          *string `json:"command,omitempty"`
+	DateSent         *string `json:"date_sent,omitempty"`
+	DateSentEpoch    *string `json:"date_sent_epoch,omitempty"`
+	DateSentUtc      *string `json:"date_sent_utc,omitempty"`
+	ID               *int64  `json:"id,omitempty"`
+	ProfileID        *int64  `json:"profile_id,omitempty"`
+	ProfileUdid      *string `json:"profile_udid,omitempty"`
+	Udid             *string `json:"udid,omitempty"`
+	UUID             *string `json:"uuid,omitempty"`
+}
+
+type FindMobileDeviceCommandsByCommand200ApplicationJSONMobileDevicesMobileDevice struct {
+	ID             *int64  `json:"id,omitempty"`
+	PhoneNumber    *string `json:"phone_number,omitempty"`
+	SerialNumber   *string `json:"serial_number,omitempty"`
+	Udid           *string `json:"udid,omitempty"`
+	WifiMacAddress *string `json:"wifi_mac_address,omitempty"`
+}
+
+type FindMobileDeviceCommandsByCommand200ApplicationJSONMobileDevices struct {
+	MobileDevice *FindMobileDeviceCommandsByCommand200ApplicationJSONMobileDevicesMobileDevice `json:"mobile_device,omitempty"`
+	Size         *int64                                                                        `json:"size,omitempty"`
+}
+
+// FindMobileDeviceCommandsByCommand200ApplicationJSON - OK
+type FindMobileDeviceCommandsByCommand200ApplicationJSON struct {
+	General       *FindMobileDeviceCommandsByCommand200ApplicationJSONGeneral       `json:"general,omitempty"`
+	MobileDevices *FindMobileDeviceCommandsByCommand200ApplicationJSONMobileDevices `json:"mobile_devices,omitempty"`
+}
+
 type FindMobileDeviceCommandsByCommandResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	MobileDeviceCommand *shared.MobileDeviceCommand
+	FindMobileDeviceCommandsByCommand200ApplicationJSONObject *FindMobileDeviceCommandsByCommand200ApplicationJSON
 }

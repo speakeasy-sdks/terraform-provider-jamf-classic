@@ -3,8 +3,130 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
+
+type LogFlushRequestBodyComputersComputer struct {
+	ID *int64
+}
+
+type LogFlushRequestBodyComputers struct {
+	Computer *LogFlushRequestBodyComputersComputer
+}
+
+type LogFlushRequestBodyInterval string
+
+const (
+	LogFlushRequestBodyIntervalZeroDays    LogFlushRequestBodyInterval = "Zero Days"
+	LogFlushRequestBodyIntervalZeroWeeks   LogFlushRequestBodyInterval = "Zero Weeks"
+	LogFlushRequestBodyIntervalZeroMonths  LogFlushRequestBodyInterval = "Zero Months"
+	LogFlushRequestBodyIntervalZeroYears   LogFlushRequestBodyInterval = "Zero Years"
+	LogFlushRequestBodyIntervalOneDays     LogFlushRequestBodyInterval = "One Days"
+	LogFlushRequestBodyIntervalOneWeeks    LogFlushRequestBodyInterval = "One Weeks"
+	LogFlushRequestBodyIntervalOneMonths   LogFlushRequestBodyInterval = "One Months"
+	LogFlushRequestBodyIntervalOneYears    LogFlushRequestBodyInterval = "One Years"
+	LogFlushRequestBodyIntervalTwoDays     LogFlushRequestBodyInterval = "Two Days"
+	LogFlushRequestBodyIntervalTwoWeeks    LogFlushRequestBodyInterval = "Two Weeks"
+	LogFlushRequestBodyIntervalTwoMonths   LogFlushRequestBodyInterval = "Two Months"
+	LogFlushRequestBodyIntervalTwoYears    LogFlushRequestBodyInterval = "Two Years"
+	LogFlushRequestBodyIntervalThreeDays   LogFlushRequestBodyInterval = "Three Days"
+	LogFlushRequestBodyIntervalThreeWeeks  LogFlushRequestBodyInterval = "Three Weeks"
+	LogFlushRequestBodyIntervalThreeMonths LogFlushRequestBodyInterval = "Three Months"
+	LogFlushRequestBodyIntervalThreeYears  LogFlushRequestBodyInterval = "Three Years"
+	LogFlushRequestBodyIntervalSixDays     LogFlushRequestBodyInterval = "Six Days"
+	LogFlushRequestBodyIntervalSixWeeks    LogFlushRequestBodyInterval = "Six Weeks"
+	LogFlushRequestBodyIntervalSixMonths   LogFlushRequestBodyInterval = "Six Months"
+	LogFlushRequestBodyIntervalSixYears    LogFlushRequestBodyInterval = "Six Years"
+)
+
+func (e LogFlushRequestBodyInterval) ToPointer() *LogFlushRequestBodyInterval {
+	return &e
+}
+
+func (e *LogFlushRequestBodyInterval) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Zero Days":
+		fallthrough
+	case "Zero Weeks":
+		fallthrough
+	case "Zero Months":
+		fallthrough
+	case "Zero Years":
+		fallthrough
+	case "One Days":
+		fallthrough
+	case "One Weeks":
+		fallthrough
+	case "One Months":
+		fallthrough
+	case "One Years":
+		fallthrough
+	case "Two Days":
+		fallthrough
+	case "Two Weeks":
+		fallthrough
+	case "Two Months":
+		fallthrough
+	case "Two Years":
+		fallthrough
+	case "Three Days":
+		fallthrough
+	case "Three Weeks":
+		fallthrough
+	case "Three Months":
+		fallthrough
+	case "Three Years":
+		fallthrough
+	case "Six Days":
+		fallthrough
+	case "Six Weeks":
+		fallthrough
+	case "Six Months":
+		fallthrough
+	case "Six Years":
+		*e = LogFlushRequestBodyInterval(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for LogFlushRequestBodyInterval: %v", v)
+	}
+}
+
+type LogFlushRequestBodyLog string
+
+const (
+	LogFlushRequestBodyLogPolicy LogFlushRequestBodyLog = "policy"
+)
+
+func (e LogFlushRequestBodyLog) ToPointer() *LogFlushRequestBodyLog {
+	return &e
+}
+
+func (e *LogFlushRequestBodyLog) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "policy":
+		*e = LogFlushRequestBodyLog(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for LogFlushRequestBodyLog: %v", v)
+	}
+}
+
+type LogFlushRequestBody struct {
+	Computers *LogFlushRequestBodyComputers
+	Interval  LogFlushRequestBodyInterval
+	Log       LogFlushRequestBodyLog
+	LogID     int64
+}
 
 type LogFlushResponse struct {
 	ContentType string

@@ -3,9 +3,94 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
+
+type FindGSXConnection200ApplicationXMLRegion string
+
+const (
+	FindGSXConnection200ApplicationXMLRegionAmericas     FindGSXConnection200ApplicationXMLRegion = "Americas"
+	FindGSXConnection200ApplicationXMLRegionApac         FindGSXConnection200ApplicationXMLRegion = "APAC"
+	FindGSXConnection200ApplicationXMLRegionEmea         FindGSXConnection200ApplicationXMLRegion = "EMEA"
+	FindGSXConnection200ApplicationXMLRegionLatinAmerica FindGSXConnection200ApplicationXMLRegion = "LatinAmerica"
+)
+
+func (e FindGSXConnection200ApplicationXMLRegion) ToPointer() *FindGSXConnection200ApplicationXMLRegion {
+	return &e
+}
+
+func (e *FindGSXConnection200ApplicationXMLRegion) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Americas":
+		fallthrough
+	case "APAC":
+		fallthrough
+	case "EMEA":
+		fallthrough
+	case "LatinAmerica":
+		*e = FindGSXConnection200ApplicationXMLRegion(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindGSXConnection200ApplicationXMLRegion: %v", v)
+	}
+}
+
+// FindGSXConnection200ApplicationXML - OK
+type FindGSXConnection200ApplicationXML struct {
+	AccountNumber *int64
+	Enabled       *bool
+	Region        *FindGSXConnection200ApplicationXMLRegion
+	URI           *string
+	Username      *string
+}
+
+type FindGSXConnection200ApplicationJSONRegion string
+
+const (
+	FindGSXConnection200ApplicationJSONRegionAmericas     FindGSXConnection200ApplicationJSONRegion = "Americas"
+	FindGSXConnection200ApplicationJSONRegionApac         FindGSXConnection200ApplicationJSONRegion = "APAC"
+	FindGSXConnection200ApplicationJSONRegionEmea         FindGSXConnection200ApplicationJSONRegion = "EMEA"
+	FindGSXConnection200ApplicationJSONRegionLatinAmerica FindGSXConnection200ApplicationJSONRegion = "LatinAmerica"
+)
+
+func (e FindGSXConnection200ApplicationJSONRegion) ToPointer() *FindGSXConnection200ApplicationJSONRegion {
+	return &e
+}
+
+func (e *FindGSXConnection200ApplicationJSONRegion) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Americas":
+		fallthrough
+	case "APAC":
+		fallthrough
+	case "EMEA":
+		fallthrough
+	case "LatinAmerica":
+		*e = FindGSXConnection200ApplicationJSONRegion(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindGSXConnection200ApplicationJSONRegion: %v", v)
+	}
+}
+
+// FindGSXConnection200ApplicationJSON - OK
+type FindGSXConnection200ApplicationJSON struct {
+	AccountNumber *int64                                     `json:"account_number,omitempty"`
+	Enabled       *bool                                      `json:"enabled,omitempty"`
+	Region        *FindGSXConnection200ApplicationJSONRegion `json:"region,omitempty"`
+	URI           *string                                    `json:"uri,omitempty"`
+	Username      *string                                    `json:"username,omitempty"`
+}
 
 type FindGSXConnectionResponse struct {
 	Body        []byte
@@ -13,5 +98,5 @@ type FindGSXConnectionResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	GsxConnection *shared.GsxConnection
+	FindGSXConnection200ApplicationJSONObject *FindGSXConnection200ApplicationJSON
 }

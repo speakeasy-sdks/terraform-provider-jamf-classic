@@ -3,8 +3,136 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
+
+type UpdateComputerInventoryCollectionRequestBodyApplicationsApplicationPlatform string
+
+const (
+	UpdateComputerInventoryCollectionRequestBodyApplicationsApplicationPlatformMac     UpdateComputerInventoryCollectionRequestBodyApplicationsApplicationPlatform = "Mac"
+	UpdateComputerInventoryCollectionRequestBodyApplicationsApplicationPlatformWindows UpdateComputerInventoryCollectionRequestBodyApplicationsApplicationPlatform = "Windows"
+)
+
+func (e UpdateComputerInventoryCollectionRequestBodyApplicationsApplicationPlatform) ToPointer() *UpdateComputerInventoryCollectionRequestBodyApplicationsApplicationPlatform {
+	return &e
+}
+
+func (e *UpdateComputerInventoryCollectionRequestBodyApplicationsApplicationPlatform) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Mac":
+		fallthrough
+	case "Windows":
+		*e = UpdateComputerInventoryCollectionRequestBodyApplicationsApplicationPlatform(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateComputerInventoryCollectionRequestBodyApplicationsApplicationPlatform: %v", v)
+	}
+}
+
+type UpdateComputerInventoryCollectionRequestBodyApplicationsApplication struct {
+	Path     *string
+	Platform *UpdateComputerInventoryCollectionRequestBodyApplicationsApplicationPlatform
+}
+
+type UpdateComputerInventoryCollectionRequestBodyApplications struct {
+	Application *UpdateComputerInventoryCollectionRequestBodyApplicationsApplication
+}
+
+type UpdateComputerInventoryCollectionRequestBodyFontsFontPlatform string
+
+const (
+	UpdateComputerInventoryCollectionRequestBodyFontsFontPlatformMac     UpdateComputerInventoryCollectionRequestBodyFontsFontPlatform = "Mac"
+	UpdateComputerInventoryCollectionRequestBodyFontsFontPlatformWindows UpdateComputerInventoryCollectionRequestBodyFontsFontPlatform = "Windows"
+)
+
+func (e UpdateComputerInventoryCollectionRequestBodyFontsFontPlatform) ToPointer() *UpdateComputerInventoryCollectionRequestBodyFontsFontPlatform {
+	return &e
+}
+
+func (e *UpdateComputerInventoryCollectionRequestBodyFontsFontPlatform) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Mac":
+		fallthrough
+	case "Windows":
+		*e = UpdateComputerInventoryCollectionRequestBodyFontsFontPlatform(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateComputerInventoryCollectionRequestBodyFontsFontPlatform: %v", v)
+	}
+}
+
+type UpdateComputerInventoryCollectionRequestBodyFontsFont struct {
+	Path     *string
+	Platform *UpdateComputerInventoryCollectionRequestBodyFontsFontPlatform
+}
+
+type UpdateComputerInventoryCollectionRequestBodyFonts struct {
+	Font *UpdateComputerInventoryCollectionRequestBodyFontsFont
+}
+
+type UpdateComputerInventoryCollectionRequestBodyPluginsPluginPlatform string
+
+const (
+	UpdateComputerInventoryCollectionRequestBodyPluginsPluginPlatformMac     UpdateComputerInventoryCollectionRequestBodyPluginsPluginPlatform = "Mac"
+	UpdateComputerInventoryCollectionRequestBodyPluginsPluginPlatformWindows UpdateComputerInventoryCollectionRequestBodyPluginsPluginPlatform = "Windows"
+)
+
+func (e UpdateComputerInventoryCollectionRequestBodyPluginsPluginPlatform) ToPointer() *UpdateComputerInventoryCollectionRequestBodyPluginsPluginPlatform {
+	return &e
+}
+
+func (e *UpdateComputerInventoryCollectionRequestBodyPluginsPluginPlatform) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Mac":
+		fallthrough
+	case "Windows":
+		*e = UpdateComputerInventoryCollectionRequestBodyPluginsPluginPlatform(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateComputerInventoryCollectionRequestBodyPluginsPluginPlatform: %v", v)
+	}
+}
+
+type UpdateComputerInventoryCollectionRequestBodyPluginsPlugin struct {
+	Path     *string
+	Platform *UpdateComputerInventoryCollectionRequestBodyPluginsPluginPlatform
+}
+
+type UpdateComputerInventoryCollectionRequestBodyPlugins struct {
+	Plugin *UpdateComputerInventoryCollectionRequestBodyPluginsPlugin
+}
+
+type UpdateComputerInventoryCollectionRequestBody struct {
+	ActiveServices                *bool
+	Applications                  []UpdateComputerInventoryCollectionRequestBodyApplications
+	AvailableSoftwareUpdates      *bool
+	ComputerLocationInformation   *bool
+	Fonts                         []UpdateComputerInventoryCollectionRequestBodyFonts
+	HiddenAccounts                *bool
+	HomeDirectorySizes            *bool
+	InclueApplications            *bool
+	InclueFonts                   *bool
+	IncluePlugins                 *bool
+	LocalUserAccounts             *bool
+	MobileDeviceAppPurchasingInfo *bool
+	PackageReceipts               *bool
+	Plugins                       []UpdateComputerInventoryCollectionRequestBodyPlugins
+	Printers                      *bool
+}
 
 type UpdateComputerInventoryCollectionResponse struct {
 	ContentType string

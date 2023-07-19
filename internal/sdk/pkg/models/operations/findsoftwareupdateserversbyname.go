@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,31 @@ type FindSoftwareUpdateServersByNameRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+// FindSoftwareUpdateServersByName200ApplicationXML - OK
+type FindSoftwareUpdateServersByName200ApplicationXML struct {
+	ID        *int64
+	IPAddress string
+	// Name of the software update server
+	Name          string
+	Port          *int64
+	SetSystemWide *bool
+}
+
+// FindSoftwareUpdateServersByName200ApplicationJSON - OK
+type FindSoftwareUpdateServersByName200ApplicationJSON struct {
+	ID        *int64 `json:"id,omitempty"`
+	IPAddress string `json:"ip_address"`
+	// Name of the software update server
+	Name          string `json:"name"`
+	Port          *int64 `json:"port,omitempty"`
+	SetSystemWide *bool  `json:"set_system_wide,omitempty"`
+}
+
 type FindSoftwareUpdateServersByNameResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	SoftwareUpdateServer *shared.SoftwareUpdateServer
+	FindSoftwareUpdateServersByName200ApplicationJSONObject *FindSoftwareUpdateServersByName200ApplicationJSON
 }

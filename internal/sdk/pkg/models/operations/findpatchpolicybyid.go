@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,533 @@ type FindPatchPolicyByIDRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+type FindPatchPolicyByID200ApplicationXMLGeneralDistributionMethod string
+
+const (
+	FindPatchPolicyByID200ApplicationXMLGeneralDistributionMethodSelfservice FindPatchPolicyByID200ApplicationXMLGeneralDistributionMethod = "selfservice"
+	FindPatchPolicyByID200ApplicationXMLGeneralDistributionMethodPrompt      FindPatchPolicyByID200ApplicationXMLGeneralDistributionMethod = "prompt"
+)
+
+func (e FindPatchPolicyByID200ApplicationXMLGeneralDistributionMethod) ToPointer() *FindPatchPolicyByID200ApplicationXMLGeneralDistributionMethod {
+	return &e
+}
+
+func (e *FindPatchPolicyByID200ApplicationXMLGeneralDistributionMethod) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "selfservice":
+		fallthrough
+	case "prompt":
+		*e = FindPatchPolicyByID200ApplicationXMLGeneralDistributionMethod(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPatchPolicyByID200ApplicationXMLGeneralDistributionMethod: %v", v)
+	}
+}
+
+type FindPatchPolicyByID200ApplicationXMLGeneralKillAppsKillApp struct {
+	KillAppBundleID *string
+	KillAppName     *string
+}
+
+type FindPatchPolicyByID200ApplicationXMLGeneralKillApps struct {
+	KillApp *FindPatchPolicyByID200ApplicationXMLGeneralKillAppsKillApp
+}
+
+type FindPatchPolicyByID200ApplicationXMLGeneral struct {
+	AllowDowngrade     *bool
+	DistributionMethod *FindPatchPolicyByID200ApplicationXMLGeneralDistributionMethod
+	Enabled            *bool
+	ID                 *int64
+	IncrementalUpdates *bool
+	KillApps           []FindPatchPolicyByID200ApplicationXMLGeneralKillApps
+	MinimumOs          *string
+	Name               string
+	// Set to true to patch versions unidentified by Jamf Pro patch reporting
+	PatchUnknown  *bool
+	Reboot        *bool
+	ReleaseDate   *int64
+	TargetVersion string
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeBuildingsBuilding struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeBuildings struct {
+	Building *FindPatchPolicyByID200ApplicationXMLScopeBuildingsBuilding
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeComputerGroupsComputerGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeComputerGroups struct {
+	ComputerGroup *FindPatchPolicyByID200ApplicationXMLScopeComputerGroupsComputerGroup
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeComputersComputer struct {
+	ID   *int64
+	Name *string
+	Udid *string
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeComputers struct {
+	Computer *FindPatchPolicyByID200ApplicationXMLScopeComputersComputer
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeDepartmentsDepartment struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeDepartments struct {
+	Department *FindPatchPolicyByID200ApplicationXMLScopeDepartmentsDepartment
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeExclusionsBuildingsBuilding struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeExclusionsBuildings struct {
+	Building *FindPatchPolicyByID200ApplicationXMLScopeExclusionsBuildingsBuilding
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeExclusionsComputerGroupsComputerGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeExclusionsComputerGroups struct {
+	ComputerGroup *FindPatchPolicyByID200ApplicationXMLScopeExclusionsComputerGroupsComputerGroup
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeExclusionsComputersComputer struct {
+	ID   *int64
+	Name *string
+	Udid *string
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeExclusionsComputers struct {
+	Computer *FindPatchPolicyByID200ApplicationXMLScopeExclusionsComputersComputer
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeExclusionsDepartmentsDepartment struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeExclusionsDepartments struct {
+	Department *FindPatchPolicyByID200ApplicationXMLScopeExclusionsDepartmentsDepartment
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeExclusionsIbeaconsIbeacon struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeExclusionsIbeacons struct {
+	Ibeacon *FindPatchPolicyByID200ApplicationXMLScopeExclusionsIbeaconsIbeacon
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeExclusionsNetworkSegmentsNetworkSegment struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeExclusionsNetworkSegments struct {
+	NetworkSegment *FindPatchPolicyByID200ApplicationXMLScopeExclusionsNetworkSegmentsNetworkSegment
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeExclusions struct {
+	Buildings       []FindPatchPolicyByID200ApplicationXMLScopeExclusionsBuildings
+	ComputerGroups  []FindPatchPolicyByID200ApplicationXMLScopeExclusionsComputerGroups
+	Computers       []FindPatchPolicyByID200ApplicationXMLScopeExclusionsComputers
+	Departments     []FindPatchPolicyByID200ApplicationXMLScopeExclusionsDepartments
+	Ibeacons        []FindPatchPolicyByID200ApplicationXMLScopeExclusionsIbeacons
+	NetworkSegments []FindPatchPolicyByID200ApplicationXMLScopeExclusionsNetworkSegments
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeLimitationsIbeaconsIbeacon struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeLimitationsIbeacons struct {
+	Ibeacon *FindPatchPolicyByID200ApplicationXMLScopeLimitationsIbeaconsIbeacon
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeLimitationsNetworkSegmentsNetworkSegment struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeLimitationsNetworkSegments struct {
+	NetworkSegment *FindPatchPolicyByID200ApplicationXMLScopeLimitationsNetworkSegmentsNetworkSegment
+}
+
+type FindPatchPolicyByID200ApplicationXMLScopeLimitations struct {
+	Ibeacons        []FindPatchPolicyByID200ApplicationXMLScopeLimitationsIbeacons
+	NetworkSegments []FindPatchPolicyByID200ApplicationXMLScopeLimitationsNetworkSegments
+}
+
+type FindPatchPolicyByID200ApplicationXMLScope struct {
+	AllComputers   *bool
+	Buildings      []FindPatchPolicyByID200ApplicationXMLScopeBuildings
+	ComputerGroups []FindPatchPolicyByID200ApplicationXMLScopeComputerGroups
+	Computers      []FindPatchPolicyByID200ApplicationXMLScopeComputers
+	Departments    []FindPatchPolicyByID200ApplicationXMLScopeDepartments
+	Exclusions     *FindPatchPolicyByID200ApplicationXMLScopeExclusions
+	Limitations    *FindPatchPolicyByID200ApplicationXMLScopeLimitations
+}
+
+type FindPatchPolicyByID200ApplicationXMLUserInteractionDeadlines struct {
+	DeadlineEnabled *bool
+	DeadlinePeriod  *int64
+}
+
+type FindPatchPolicyByID200ApplicationXMLUserInteractionGracePeriod struct {
+	// Number of minutes to wait before automatically closing all apps required to be closed for an update
+	GracePeriodDuration       *int64
+	Message                   *string
+	NotificationCenterSubject *string
+}
+
+type FindPatchPolicyByID200ApplicationXMLUserInteractionNotificationsNotificationType string
+
+const (
+	FindPatchPolicyByID200ApplicationXMLUserInteractionNotificationsNotificationTypeSelfService                      FindPatchPolicyByID200ApplicationXMLUserInteractionNotificationsNotificationType = "Self Service"
+	FindPatchPolicyByID200ApplicationXMLUserInteractionNotificationsNotificationTypeSelfServiceAndNotificationCenter FindPatchPolicyByID200ApplicationXMLUserInteractionNotificationsNotificationType = "Self Service and Notification Center"
+)
+
+func (e FindPatchPolicyByID200ApplicationXMLUserInteractionNotificationsNotificationType) ToPointer() *FindPatchPolicyByID200ApplicationXMLUserInteractionNotificationsNotificationType {
+	return &e
+}
+
+func (e *FindPatchPolicyByID200ApplicationXMLUserInteractionNotificationsNotificationType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Self Service":
+		fallthrough
+	case "Self Service and Notification Center":
+		*e = FindPatchPolicyByID200ApplicationXMLUserInteractionNotificationsNotificationType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPatchPolicyByID200ApplicationXMLUserInteractionNotificationsNotificationType: %v", v)
+	}
+}
+
+type FindPatchPolicyByID200ApplicationXMLUserInteractionNotificationsReminders struct {
+	NotificationReminderFrequency *int64
+	NotificationRemindersEnabled  *bool
+}
+
+type FindPatchPolicyByID200ApplicationXMLUserInteractionNotifications struct {
+	NotificationEnabled *bool
+	NotificationMessage *string
+	NotificationSubject *string
+	NotificationType    *FindPatchPolicyByID200ApplicationXMLUserInteractionNotificationsNotificationType
+	Reminders           *FindPatchPolicyByID200ApplicationXMLUserInteractionNotificationsReminders
+}
+
+type FindPatchPolicyByID200ApplicationXMLUserInteractionSelfServiceIcon struct {
+	Filename *string
+	ID       *int64
+	URI      *string
+}
+
+type FindPatchPolicyByID200ApplicationXMLUserInteraction struct {
+	Deadlines              *FindPatchPolicyByID200ApplicationXMLUserInteractionDeadlines
+	GracePeriod            *FindPatchPolicyByID200ApplicationXMLUserInteractionGracePeriod
+	InstallButtonText      *string
+	Notifications          *FindPatchPolicyByID200ApplicationXMLUserInteractionNotifications
+	SelfServiceDescription *string
+	SelfServiceIcon        *FindPatchPolicyByID200ApplicationXMLUserInteractionSelfServiceIcon
+}
+
+// FindPatchPolicyByID200ApplicationXML - OK
+type FindPatchPolicyByID200ApplicationXML struct {
+	General                      *FindPatchPolicyByID200ApplicationXMLGeneral
+	Scope                        *FindPatchPolicyByID200ApplicationXMLScope
+	SoftwareTitleConfigurationID *int64
+	UserInteraction              *FindPatchPolicyByID200ApplicationXMLUserInteraction
+}
+
+type FindPatchPolicyByID200ApplicationJSONGeneralDistributionMethod string
+
+const (
+	FindPatchPolicyByID200ApplicationJSONGeneralDistributionMethodSelfservice FindPatchPolicyByID200ApplicationJSONGeneralDistributionMethod = "selfservice"
+	FindPatchPolicyByID200ApplicationJSONGeneralDistributionMethodPrompt      FindPatchPolicyByID200ApplicationJSONGeneralDistributionMethod = "prompt"
+)
+
+func (e FindPatchPolicyByID200ApplicationJSONGeneralDistributionMethod) ToPointer() *FindPatchPolicyByID200ApplicationJSONGeneralDistributionMethod {
+	return &e
+}
+
+func (e *FindPatchPolicyByID200ApplicationJSONGeneralDistributionMethod) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "selfservice":
+		fallthrough
+	case "prompt":
+		*e = FindPatchPolicyByID200ApplicationJSONGeneralDistributionMethod(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPatchPolicyByID200ApplicationJSONGeneralDistributionMethod: %v", v)
+	}
+}
+
+type FindPatchPolicyByID200ApplicationJSONGeneralKillAppsKillApp struct {
+	KillAppBundleID *string `json:"kill_app_bundle_id,omitempty"`
+	KillAppName     *string `json:"kill_app_name,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONGeneralKillApps struct {
+	KillApp *FindPatchPolicyByID200ApplicationJSONGeneralKillAppsKillApp `json:"kill_app,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONGeneral struct {
+	AllowDowngrade     *bool                                                           `json:"allow_downgrade,omitempty"`
+	DistributionMethod *FindPatchPolicyByID200ApplicationJSONGeneralDistributionMethod `json:"distribution_method,omitempty"`
+	Enabled            *bool                                                           `json:"enabled,omitempty"`
+	ID                 *int64                                                          `json:"id,omitempty"`
+	IncrementalUpdates *bool                                                           `json:"incremental_updates,omitempty"`
+	KillApps           []FindPatchPolicyByID200ApplicationJSONGeneralKillApps          `json:"kill_apps,omitempty"`
+	MinimumOs          *string                                                         `json:"minimum_os,omitempty"`
+	Name               string                                                          `json:"name"`
+	// Set to true to patch versions unidentified by Jamf Pro patch reporting
+	PatchUnknown  *bool  `json:"patch_unknown,omitempty"`
+	Reboot        *bool  `json:"reboot,omitempty"`
+	ReleaseDate   *int64 `json:"release_date,omitempty"`
+	TargetVersion string `json:"target_version"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeBuildingsBuilding struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeBuildings struct {
+	Building *FindPatchPolicyByID200ApplicationJSONScopeBuildingsBuilding `json:"building,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeComputerGroupsComputerGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeComputerGroups struct {
+	ComputerGroup *FindPatchPolicyByID200ApplicationJSONScopeComputerGroupsComputerGroup `json:"computer_group,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeComputersComputer struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Udid *string `json:"udid,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeComputers struct {
+	Computer *FindPatchPolicyByID200ApplicationJSONScopeComputersComputer `json:"computer,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeDepartmentsDepartment struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeDepartments struct {
+	Department *FindPatchPolicyByID200ApplicationJSONScopeDepartmentsDepartment `json:"department,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeExclusionsBuildingsBuilding struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeExclusionsBuildings struct {
+	Building *FindPatchPolicyByID200ApplicationJSONScopeExclusionsBuildingsBuilding `json:"building,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeExclusionsComputerGroupsComputerGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeExclusionsComputerGroups struct {
+	ComputerGroup *FindPatchPolicyByID200ApplicationJSONScopeExclusionsComputerGroupsComputerGroup `json:"computer_group,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeExclusionsComputersComputer struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Udid *string `json:"udid,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeExclusionsComputers struct {
+	Computer *FindPatchPolicyByID200ApplicationJSONScopeExclusionsComputersComputer `json:"computer,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeExclusionsDepartmentsDepartment struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeExclusionsDepartments struct {
+	Department *FindPatchPolicyByID200ApplicationJSONScopeExclusionsDepartmentsDepartment `json:"department,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeExclusionsIbeaconsIbeacon struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeExclusionsIbeacons struct {
+	Ibeacon *FindPatchPolicyByID200ApplicationJSONScopeExclusionsIbeaconsIbeacon `json:"ibeacon,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeExclusionsNetworkSegmentsNetworkSegment struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeExclusionsNetworkSegments struct {
+	NetworkSegment *FindPatchPolicyByID200ApplicationJSONScopeExclusionsNetworkSegmentsNetworkSegment `json:"network_segment,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeExclusions struct {
+	Buildings       []FindPatchPolicyByID200ApplicationJSONScopeExclusionsBuildings       `json:"buildings,omitempty"`
+	ComputerGroups  []FindPatchPolicyByID200ApplicationJSONScopeExclusionsComputerGroups  `json:"computer_groups,omitempty"`
+	Computers       []FindPatchPolicyByID200ApplicationJSONScopeExclusionsComputers       `json:"computers,omitempty"`
+	Departments     []FindPatchPolicyByID200ApplicationJSONScopeExclusionsDepartments     `json:"departments,omitempty"`
+	Ibeacons        []FindPatchPolicyByID200ApplicationJSONScopeExclusionsIbeacons        `json:"ibeacons,omitempty"`
+	NetworkSegments []FindPatchPolicyByID200ApplicationJSONScopeExclusionsNetworkSegments `json:"network_segments,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeLimitationsIbeaconsIbeacon struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeLimitationsIbeacons struct {
+	Ibeacon *FindPatchPolicyByID200ApplicationJSONScopeLimitationsIbeaconsIbeacon `json:"ibeacon,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeLimitationsNetworkSegmentsNetworkSegment struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeLimitationsNetworkSegments struct {
+	NetworkSegment *FindPatchPolicyByID200ApplicationJSONScopeLimitationsNetworkSegmentsNetworkSegment `json:"network_segment,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScopeLimitations struct {
+	Ibeacons        []FindPatchPolicyByID200ApplicationJSONScopeLimitationsIbeacons        `json:"ibeacons,omitempty"`
+	NetworkSegments []FindPatchPolicyByID200ApplicationJSONScopeLimitationsNetworkSegments `json:"network_segments,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONScope struct {
+	AllComputers   *bool                                                      `json:"all_computers,omitempty"`
+	Buildings      []FindPatchPolicyByID200ApplicationJSONScopeBuildings      `json:"buildings,omitempty"`
+	ComputerGroups []FindPatchPolicyByID200ApplicationJSONScopeComputerGroups `json:"computer_groups,omitempty"`
+	Computers      []FindPatchPolicyByID200ApplicationJSONScopeComputers      `json:"computers,omitempty"`
+	Departments    []FindPatchPolicyByID200ApplicationJSONScopeDepartments    `json:"departments,omitempty"`
+	Exclusions     *FindPatchPolicyByID200ApplicationJSONScopeExclusions      `json:"exclusions,omitempty"`
+	Limitations    *FindPatchPolicyByID200ApplicationJSONScopeLimitations     `json:"limitations,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONUserInteractionDeadlines struct {
+	DeadlineEnabled *bool  `json:"deadline_enabled,omitempty"`
+	DeadlinePeriod  *int64 `json:"deadline_period,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONUserInteractionGracePeriod struct {
+	// Number of minutes to wait before automatically closing all apps required to be closed for an update
+	GracePeriodDuration       *int64  `json:"grace_period_duration,omitempty"`
+	Message                   *string `json:"message,omitempty"`
+	NotificationCenterSubject *string `json:"notification_center_subject,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONUserInteractionNotificationsNotificationType string
+
+const (
+	FindPatchPolicyByID200ApplicationJSONUserInteractionNotificationsNotificationTypeSelfService                      FindPatchPolicyByID200ApplicationJSONUserInteractionNotificationsNotificationType = "Self Service"
+	FindPatchPolicyByID200ApplicationJSONUserInteractionNotificationsNotificationTypeSelfServiceAndNotificationCenter FindPatchPolicyByID200ApplicationJSONUserInteractionNotificationsNotificationType = "Self Service and Notification Center"
+)
+
+func (e FindPatchPolicyByID200ApplicationJSONUserInteractionNotificationsNotificationType) ToPointer() *FindPatchPolicyByID200ApplicationJSONUserInteractionNotificationsNotificationType {
+	return &e
+}
+
+func (e *FindPatchPolicyByID200ApplicationJSONUserInteractionNotificationsNotificationType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Self Service":
+		fallthrough
+	case "Self Service and Notification Center":
+		*e = FindPatchPolicyByID200ApplicationJSONUserInteractionNotificationsNotificationType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPatchPolicyByID200ApplicationJSONUserInteractionNotificationsNotificationType: %v", v)
+	}
+}
+
+type FindPatchPolicyByID200ApplicationJSONUserInteractionNotificationsReminders struct {
+	NotificationReminderFrequency *int64 `json:"notification_reminder_frequency,omitempty"`
+	NotificationRemindersEnabled  *bool  `json:"notification_reminders_enabled,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONUserInteractionNotifications struct {
+	NotificationEnabled *bool                                                                              `json:"notification_enabled,omitempty"`
+	NotificationMessage *string                                                                            `json:"notification_message,omitempty"`
+	NotificationSubject *string                                                                            `json:"notification_subject,omitempty"`
+	NotificationType    *FindPatchPolicyByID200ApplicationJSONUserInteractionNotificationsNotificationType `json:"notification_type,omitempty"`
+	Reminders           *FindPatchPolicyByID200ApplicationJSONUserInteractionNotificationsReminders        `json:"reminders,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONUserInteractionSelfServiceIcon struct {
+	Filename *string `json:"filename,omitempty"`
+	ID       *int64  `json:"id,omitempty"`
+	URI      *string `json:"uri,omitempty"`
+}
+
+type FindPatchPolicyByID200ApplicationJSONUserInteraction struct {
+	Deadlines              *FindPatchPolicyByID200ApplicationJSONUserInteractionDeadlines       `json:"deadlines,omitempty"`
+	GracePeriod            *FindPatchPolicyByID200ApplicationJSONUserInteractionGracePeriod     `json:"grace_period,omitempty"`
+	InstallButtonText      *string                                                              `json:"install_button_text,omitempty"`
+	Notifications          *FindPatchPolicyByID200ApplicationJSONUserInteractionNotifications   `json:"notifications,omitempty"`
+	SelfServiceDescription *string                                                              `json:"self_service_description,omitempty"`
+	SelfServiceIcon        *FindPatchPolicyByID200ApplicationJSONUserInteractionSelfServiceIcon `json:"self_service_icon,omitempty"`
+}
+
+// FindPatchPolicyByID200ApplicationJSON - OK
+type FindPatchPolicyByID200ApplicationJSON struct {
+	General                      *FindPatchPolicyByID200ApplicationJSONGeneral         `json:"general,omitempty"`
+	Scope                        *FindPatchPolicyByID200ApplicationJSONScope           `json:"scope,omitempty"`
+	SoftwareTitleConfigurationID *int64                                                `json:"software_title_configuration_id,omitempty"`
+	UserInteraction              *FindPatchPolicyByID200ApplicationJSONUserInteraction `json:"user_interaction,omitempty"`
+}
+
 type FindPatchPolicyByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	PatchPolicy *shared.PatchPolicy
+	FindPatchPolicyByID200ApplicationJSONObject *FindPatchPolicyByID200ApplicationJSON
 }

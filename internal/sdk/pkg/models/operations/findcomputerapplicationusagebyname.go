@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -16,11 +15,55 @@ type FindComputerApplicationUsageByNameRequest struct {
 	StartDate string `pathParam:"style=simple,explode=false,name=start_date"`
 }
 
+type FindComputerApplicationUsageByName200ApplicationXMLUsageAppsApp struct {
+	// Number of minutes application was in the foreground
+	Foreground *int64
+	Name       *string
+	// Number of minutes the application was open
+	Open    *int64
+	Version *string
+}
+
+type FindComputerApplicationUsageByName200ApplicationXMLUsageApps struct {
+	App *FindComputerApplicationUsageByName200ApplicationXMLUsageAppsApp
+}
+
+type FindComputerApplicationUsageByName200ApplicationXMLUsage struct {
+	Apps []FindComputerApplicationUsageByName200ApplicationXMLUsageApps
+	Date *string
+}
+
+type FindComputerApplicationUsageByName200ApplicationXML struct {
+	Usage *FindComputerApplicationUsageByName200ApplicationXMLUsage
+}
+
+type FindComputerApplicationUsageByName200ApplicationJSONUsageAppsApp struct {
+	// Number of minutes application was in the foreground
+	Foreground *int64  `json:"foreground,omitempty"`
+	Name       *string `json:"name,omitempty"`
+	// Number of minutes the application was open
+	Open    *int64  `json:"open,omitempty"`
+	Version *string `json:"version,omitempty"`
+}
+
+type FindComputerApplicationUsageByName200ApplicationJSONUsageApps struct {
+	App *FindComputerApplicationUsageByName200ApplicationJSONUsageAppsApp `json:"app,omitempty"`
+}
+
+type FindComputerApplicationUsageByName200ApplicationJSONUsage struct {
+	Apps []FindComputerApplicationUsageByName200ApplicationJSONUsageApps `json:"apps,omitempty"`
+	Date *string                                                         `json:"date,omitempty"`
+}
+
+type FindComputerApplicationUsageByName200ApplicationJSON struct {
+	Usage *FindComputerApplicationUsageByName200ApplicationJSONUsage `json:"usage,omitempty"`
+}
+
 type FindComputerApplicationUsageByNameResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ComputerApplicationUsage []shared.ComputerApplicationUsage
+	FindComputerApplicationUsageByName200ApplicationJSONObjects []FindComputerApplicationUsageByName200ApplicationJSON
 }

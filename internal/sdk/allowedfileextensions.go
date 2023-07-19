@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"io"
 	"jamf/internal/sdk/pkg/models/operations"
-	"jamf/internal/sdk/pkg/models/shared"
 	"jamf/internal/sdk/pkg/utils"
 	"net/http"
 	"strings"
@@ -156,12 +155,12 @@ func (s *allowedfileextensions) FindAllowedFileExtension(ctx context.Context) (*
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.AllowedFileExtensions
+			var out []operations.FindAllowedFileExtension200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.AllowedFileExtensions = out
+			res.FindAllowedFileExtension200ApplicationJSONObjects = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -213,12 +212,12 @@ func (s *allowedfileextensions) FindAllowedFileExtensionByID(ctx context.Context
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.AllowedFileExtension
+			var out *operations.FindAllowedFileExtensionByID200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.AllowedFileExtension = out
+			res.FindAllowedFileExtensionByID200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -270,12 +269,12 @@ func (s *allowedfileextensions) FindAllowedFileExtensionByName(ctx context.Conte
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.AllowedFileExtension
+			var out *operations.FindAllowedFileExtensionByName200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.AllowedFileExtension = out
+			res.FindAllowedFileExtensionByName200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}

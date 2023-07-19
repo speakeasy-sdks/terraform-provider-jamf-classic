@@ -3,9 +3,28 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindBYOProfiles200ApplicationXMLByoprofile struct {
+	ID   *int64
+	Name *string
+}
+
+type FindBYOProfiles200ApplicationXML struct {
+	Byoprofile *FindBYOProfiles200ApplicationXMLByoprofile
+	Size       *int64
+}
+
+type FindBYOProfiles200ApplicationJSONByoprofile struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindBYOProfiles200ApplicationJSON struct {
+	Byoprofile *FindBYOProfiles200ApplicationJSONByoprofile `json:"byoprofile,omitempty"`
+	Size       *int64                                       `json:"size,omitempty"`
+}
 
 type FindBYOProfilesResponse struct {
 	Body        []byte
@@ -13,5 +32,5 @@ type FindBYOProfilesResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Byoprofiles []shared.Byoprofiles
+	FindBYOProfiles200ApplicationJSONObjects []FindBYOProfiles200ApplicationJSON
 }

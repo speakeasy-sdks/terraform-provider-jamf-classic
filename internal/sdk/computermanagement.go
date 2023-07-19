@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"io"
 	"jamf/internal/sdk/pkg/models/operations"
-	"jamf/internal/sdk/pkg/models/shared"
 	"jamf/internal/sdk/pkg/utils"
 	"net/http"
 )
@@ -66,12 +65,12 @@ func (s *computermanagement) FindComputerManagementByID(ctx context.Context, req
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementByID200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementByID200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -123,12 +122,12 @@ func (s *computermanagement) FindComputerManagementByIDPatchFilter(ctx context.C
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementByIDPatchFilter200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementByIDPatchFilter200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -181,12 +180,12 @@ func (s *computermanagement) FindComputerManagementByIDSubset(ctx context.Contex
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementByIDSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementByIDSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -238,12 +237,12 @@ func (s *computermanagement) FindComputerManagementByIDUsername(ctx context.Cont
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementByIDUsername200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementByIDUsername200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -296,12 +295,12 @@ func (s *computermanagement) FindComputerManagementByIDUsernameSubset(ctx contex
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementByIDUsernameSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementByIDUsernameSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -353,12 +352,12 @@ func (s *computermanagement) FindComputerManagementByMacAddress(ctx context.Cont
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementByMacAddress200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementByMacAddress200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -410,12 +409,12 @@ func (s *computermanagement) FindComputerManagementByMacAddressPatchFilter(ctx c
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementByMacAddressPatchFilter200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementByMacAddressPatchFilter200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -468,12 +467,12 @@ func (s *computermanagement) FindComputerManagementByMacAddressSubset(ctx contex
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementByMacAddressSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementByMacAddressSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -525,12 +524,12 @@ func (s *computermanagement) FindComputerManagementByMacAddressUsername(ctx cont
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementByMacAddressUsername200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementByMacAddressUsername200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -583,12 +582,12 @@ func (s *computermanagement) FindComputerManagementByMacAddressUsernameSubset(ct
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementByMacAddressUsernameSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementByMacAddressUsernameSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -640,12 +639,12 @@ func (s *computermanagement) FindComputerManagementByName(ctx context.Context, r
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementByName200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementByName200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -697,12 +696,12 @@ func (s *computermanagement) FindComputerManagementByNamePatchFilter(ctx context
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementByNamePatchFilter200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementByNamePatchFilter200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -755,12 +754,12 @@ func (s *computermanagement) FindComputerManagementByNameSubset(ctx context.Cont
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementByNameSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementByNameSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -812,12 +811,12 @@ func (s *computermanagement) FindComputerManagementByNameUsername(ctx context.Co
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementByNameUsername200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementByNameUsername200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -870,12 +869,12 @@ func (s *computermanagement) FindComputerManagementByNameUsernameSubset(ctx cont
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementByNameUsernameSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementByNameUsernameSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -927,12 +926,12 @@ func (s *computermanagement) FindComputerManagementBySerialNumber(ctx context.Co
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementBySerialNumber200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementBySerialNumber200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -984,12 +983,12 @@ func (s *computermanagement) FindComputerManagementBySerialNumberPatchFilter(ctx
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementBySerialNumberPatchFilter200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementBySerialNumberPatchFilter200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -1042,12 +1041,12 @@ func (s *computermanagement) FindComputerManagementBySerialNumberSubset(ctx cont
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementBySerialNumberSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementBySerialNumberSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -1099,12 +1098,12 @@ func (s *computermanagement) FindComputerManagementBySerialNumberUsername(ctx co
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementBySerialNumberUsername200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementBySerialNumberUsername200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -1157,12 +1156,12 @@ func (s *computermanagement) FindComputerManagementBySerialNumberUsernameSubset(
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementBySerialNumberUsernameSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementBySerialNumberUsernameSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -1214,12 +1213,12 @@ func (s *computermanagement) FindComputerManagementByUDID(ctx context.Context, r
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementByUDID200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementByUDID200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -1272,12 +1271,12 @@ func (s *computermanagement) FindComputerManagementByUDIDSubset(ctx context.Cont
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementByUDIDSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementByUDIDSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -1329,12 +1328,12 @@ func (s *computermanagement) FindComputerManagementByUdidPatchFilter(ctx context
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementByUdidPatchFilter200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementByUdidPatchFilter200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -1386,12 +1385,12 @@ func (s *computermanagement) FindComputerManagementByUdidUsername(ctx context.Co
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementByUdidUsername200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementByUdidUsername200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -1444,12 +1443,12 @@ func (s *computermanagement) FindComputerManagementByUdidUsernameSubset(ctx cont
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.ComputerManagement
+			var out *operations.FindComputerManagementByUdidUsernameSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.ComputerManagement = out
+			res.FindComputerManagementByUdidUsernameSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}

@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,875 @@ type FindComputersByUDIDRequest struct {
 	Udid string `pathParam:"style=simple,explode=false,name=udid"`
 }
 
+type FindComputersByUDID200ApplicationXMLCertificatesCertificate struct {
+	CommonName   *string
+	ExpiresEpoch *int64
+	ExpiresUtc   *string
+	Identify     *bool
+	Name         *string
+}
+
+type FindComputersByUDID200ApplicationXMLCertificates struct {
+	Certificate *FindComputersByUDID200ApplicationXMLCertificatesCertificate
+}
+
+type FindComputersByUDID200ApplicationXMLConfigurationProfilesConfigurationProfile struct {
+	ID          *int64
+	IsRemovable *bool
+	Name        *string
+	UUID        *string
+}
+
+type FindComputersByUDID200ApplicationXMLConfigurationProfiles struct {
+	ConfigurationProfile *FindComputersByUDID200ApplicationXMLConfigurationProfilesConfigurationProfile
+	Size                 *int64
+}
+
+type FindComputersByUDID200ApplicationXMLExtensionAttributesExtensionAttribute struct {
+	ID    *int64
+	Name  *string
+	Type  *string
+	Value *string
+}
+
+type FindComputersByUDID200ApplicationXMLExtensionAttributes struct {
+	ExtensionAttribute *FindComputersByUDID200ApplicationXMLExtensionAttributesExtensionAttribute
+}
+
+type FindComputersByUDID200ApplicationXMLGeneralManagementStatus struct {
+	EnrolledViaDep         *bool
+	UserApprovedEnrollment *bool
+	UserApprovedMdm        *bool
+}
+
+type FindComputersByUDID200ApplicationXMLGeneralMdmCapableUsers struct {
+	MdmCapableUser *string
+}
+
+type FindComputersByUDID200ApplicationXMLGeneralRemoteManagement struct {
+	Managed            *bool
+	ManagementUsername *string
+}
+
+type FindComputersByUDID200ApplicationXMLGeneralSite struct {
+	ID *int64
+	// Name of the site
+	Name string
+}
+
+type FindComputersByUDID200ApplicationXMLGeneral struct {
+	AltMacAddress              *string
+	AltNetworkAdapterType      *string
+	AssetTag                   *string
+	Barcode1                   *string
+	Barcode2                   *string
+	DistributionPoint          *string
+	ID                         *int64
+	InitialEntryDate           *string
+	InitialEntryDateEpoch      *int64
+	InitialEntryDateUtc        *string
+	IPAddress                  *string
+	ItunesStoreAccountIsActive *bool
+	JamfVersion                *string
+	LastCloudBackupDateEpoch   *int64
+	LastCloudBackupDateUtc     *string
+	LastContactTime            *string
+	LastContactTimeEpoch       *int64
+	LastContactTimeUtc         *string
+	LastEnrolledDateEpoch      *int64
+	LastEnrolledDateUtc        *string
+	LastReportedIP             *string
+	MacAddress                 *string
+	ManagementStatus           *FindComputersByUDID200ApplicationXMLGeneralManagementStatus
+	MdmCapable                 *bool
+	MdmCapableUsers            *FindComputersByUDID200ApplicationXMLGeneralMdmCapableUsers
+	// Name of computer
+	Name               *string
+	NetworkAdapterType *string
+	Platform           *string
+	RemoteManagement   *FindComputersByUDID200ApplicationXMLGeneralRemoteManagement
+	ReportDate         *string
+	ReportDateEpoch    *int64
+	ReportDateUtc      *string
+	SerialNumber       *string
+	Site               *FindComputersByUDID200ApplicationXMLGeneralSite
+	Sus                *string
+	Udid               *string
+}
+
+type FindComputersByUDID200ApplicationXMLGroupsAccountsComputerGroupMemberships struct {
+	Group *string
+}
+
+type FindComputersByUDID200ApplicationXMLGroupsAccountsLocalAccountsUser struct {
+	Administrator    *bool
+	FilevaultEnabled *bool
+	Home             *string
+	HomeSize         *string
+	HomeSizeMb       *string
+	Name             *string
+	Realname         *string
+	UID              *string
+}
+
+type FindComputersByUDID200ApplicationXMLGroupsAccountsLocalAccounts struct {
+	User *FindComputersByUDID200ApplicationXMLGroupsAccountsLocalAccountsUser
+}
+
+type FindComputersByUDID200ApplicationXMLGroupsAccounts struct {
+	ComputerGroupMemberships []FindComputersByUDID200ApplicationXMLGroupsAccountsComputerGroupMemberships
+	LocalAccounts            []FindComputersByUDID200ApplicationXMLGroupsAccountsLocalAccounts
+}
+
+type FindComputersByUDID200ApplicationXMLHardwareFilevault2Users struct {
+	User *string
+}
+
+type FindComputersByUDID200ApplicationXMLHardwareMappedPrintersPrinter struct {
+	Location *string
+	Name     *string
+	Type     *string
+	URI      *string
+}
+
+type FindComputersByUDID200ApplicationXMLHardwareMappedPrinters struct {
+	Printer *FindComputersByUDID200ApplicationXMLHardwareMappedPrintersPrinter
+}
+
+type FindComputersByUDID200ApplicationXMLHardwareSipStatus string
+
+const (
+	FindComputersByUDID200ApplicationXMLHardwareSipStatusEnabled  FindComputersByUDID200ApplicationXMLHardwareSipStatus = "Enabled"
+	FindComputersByUDID200ApplicationXMLHardwareSipStatusDisabled FindComputersByUDID200ApplicationXMLHardwareSipStatus = "Disabled"
+)
+
+func (e FindComputersByUDID200ApplicationXMLHardwareSipStatus) ToPointer() *FindComputersByUDID200ApplicationXMLHardwareSipStatus {
+	return &e
+}
+
+func (e *FindComputersByUDID200ApplicationXMLHardwareSipStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Enabled":
+		fallthrough
+	case "Disabled":
+		*e = FindComputersByUDID200ApplicationXMLHardwareSipStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindComputersByUDID200ApplicationXMLHardwareSipStatus: %v", v)
+	}
+}
+
+type FindComputersByUDID200ApplicationXMLHardwareStorageDevicePartition struct {
+	BootDriveAvailableMb *int64
+	Filevault2Percent    *int64
+	Filevault2Status     *string
+	FilevaultPercent     *int64
+	FilevaultStatus      *string
+	LvUUID               *string
+	LvgUUID              *string
+	Name                 *string
+	PartitionCapacityMb  *int64
+	PercentageFull       *int64
+	PvUUID               *string
+	Size                 *int64
+	Type                 *string
+}
+
+type FindComputersByUDID200ApplicationXMLHardwareStorageDevice struct {
+	ConnectionType  *string
+	Disk            *string
+	DriveCapacityMb *int64
+	Model           *string
+	Partition       []FindComputersByUDID200ApplicationXMLHardwareStorageDevicePartition
+	Revision        *string
+	SerialNumber    *string
+	Size            *int64
+	SmartStatus     *string
+}
+
+type FindComputersByUDID200ApplicationXMLHardwareStorage struct {
+	Device *FindComputersByUDID200ApplicationXMLHardwareStorageDevice
+}
+
+type FindComputersByUDID200ApplicationXMLHardware struct {
+	ActiveDirectoryStatus       *string
+	AvailableRAMSlots           *int64
+	BatteryCapacity             *int64
+	BleCapable                  *bool
+	BootRom                     *string
+	BusSpeed                    *int64
+	BusSpeedMhz                 *int64
+	CacheSize                   *int64
+	CacheSizeKb                 *int64
+	DiskEncryptionConfiguration *string
+	Filevault2Users             []FindComputersByUDID200ApplicationXMLHardwareFilevault2Users
+	GatekeeperStatus            *string
+	InstitutionalRecoveryKey    *string
+	Make                        *string
+	MappedPrinters              []FindComputersByUDID200ApplicationXMLHardwareMappedPrinters
+	MasterPasswordSet           *bool
+	Model                       *string
+	ModelIdentifier             *string
+	NicSpeed                    *string
+	NumberCores                 *int64
+	NumberProcessors            *int64
+	OpticalDrive                *string
+	OsBuild                     *string
+	OsName                      *string
+	OsVersion                   *string
+	ProcessorArchitechture      *string
+	ProcessorSpeed              *string
+	ProcessorSpeedMhz           *string
+	ProcessorType               *string
+	ServicePack                 *string
+	SipStatus                   *FindComputersByUDID200ApplicationXMLHardwareSipStatus
+	SmcVersion                  *string
+	Storage                     []FindComputersByUDID200ApplicationXMLHardwareStorage
+	TotalRAM                    *int64
+	TotalRAMMb                  *int64
+	XprotectVersion             *string
+}
+
+type FindComputersByUDID200ApplicationXMLLocation struct {
+	Building     *string
+	Department   *string
+	EmailAddress *string
+	Phone        *string
+	PhoneNumber  *string
+	Position     *string
+	RealName     *string
+	Realname     *string
+	Room         *string
+	Username     *string
+}
+
+type FindComputersByUDID200ApplicationXMLPeripheralsPeripheralsAttachmentsAttachment struct {
+	Filename *string
+	ID       *int64
+	URI      *string
+}
+
+type FindComputersByUDID200ApplicationXMLPeripheralsPeripheralsAttachments struct {
+	Attachment *FindComputersByUDID200ApplicationXMLPeripheralsPeripheralsAttachmentsAttachment
+	Size       *int64
+}
+
+type FindComputersByUDID200ApplicationXMLPeripheralsPeripheralsPeripheralFieldsField struct {
+	Name  *string
+	Value *string
+}
+
+type FindComputersByUDID200ApplicationXMLPeripheralsPeripheralsPeripheralFields struct {
+	Field *FindComputersByUDID200ApplicationXMLPeripheralsPeripheralsPeripheralFieldsField
+}
+
+type FindComputersByUDID200ApplicationXMLPeripheralsPeripheralsPeripheral struct {
+	BarCode1 *string
+	BarCode2 *string
+	Fields   *FindComputersByUDID200ApplicationXMLPeripheralsPeripheralsPeripheralFields
+	ID       *int64
+	// Name of the peripheral type
+	Type *string
+}
+
+type FindComputersByUDID200ApplicationXMLPeripheralsPeripheralsPurchasing struct {
+	ApplecareID          *string
+	IsLeased             *bool
+	IsPurchased          *bool
+	LeaseExpires         *string
+	LeaseExpiresEpoch    *int64
+	LeaseExpiresUtc      *string
+	LifeExpectancy       *int64
+	PoDate               *string
+	PoDateEpoch          *int64
+	PoDateUtc            *string
+	PoNumber             *string
+	PurchasePrice        *string
+	PurchasingAccount    *string
+	PurchasingContact    *string
+	Vendor               *string
+	WarrantyExpires      *string
+	WarrantyExpiresEpoch *int64
+	WarrantyExpiresUtc   *string
+}
+
+type FindComputersByUDID200ApplicationXMLPeripheralsPeripherals struct {
+	Attachments []FindComputersByUDID200ApplicationXMLPeripheralsPeripheralsAttachments
+	Peripheral  *FindComputersByUDID200ApplicationXMLPeripheralsPeripheralsPeripheral
+	Purchasing  *FindComputersByUDID200ApplicationXMLPeripheralsPeripheralsPurchasing
+}
+
+type FindComputersByUDID200ApplicationXMLPeripherals struct {
+	Peripherals []FindComputersByUDID200ApplicationXMLPeripheralsPeripherals
+	Size        *int64
+}
+
+type FindComputersByUDID200ApplicationXMLPurchasing struct {
+	ApplecareID          *string
+	IsLeased             *bool
+	IsPurchased          *bool
+	LeaseExpires         *string
+	LeaseExpiresEpoch    *int64
+	LeaseExpiresUtc      *string
+	LifeExpectancy       *int64
+	PoDate               *string
+	PoDateEpoch          *int64
+	PoDateUtc            *string
+	PoNumber             *string
+	PurchasePrice        *string
+	PurchasingAccount    *string
+	PurchasingContact    *string
+	Vendor               *string
+	WarrantyExpires      *string
+	WarrantyExpiresEpoch *int64
+	WarrantyExpiresUtc   *string
+}
+
+type FindComputersByUDID200ApplicationXMLSecurity struct {
+	ActivationLock      *bool
+	ExternalBootLevel   *string
+	FirewallEnabled     *bool
+	RecoveryLockEnabled *bool
+	SecureBootLevel     *string
+}
+
+type FindComputersByUDID200ApplicationXMLSoftwareApplicationsApplication struct {
+	Name    *string
+	Path    *string
+	Version *string
+}
+
+type FindComputersByUDID200ApplicationXMLSoftwareApplications struct {
+	Application *FindComputersByUDID200ApplicationXMLSoftwareApplicationsApplication
+	Size        *int64
+}
+
+type FindComputersByUDID200ApplicationXMLSoftwareAvailableSoftwareUpdates struct {
+	Name *string
+}
+
+type FindComputersByUDID200ApplicationXMLSoftwareAvailableUpdatesUpdate struct {
+	Name        *string
+	PackageName *string
+	Version     *string
+}
+
+type FindComputersByUDID200ApplicationXMLSoftwareAvailableUpdates struct {
+	Update *FindComputersByUDID200ApplicationXMLSoftwareAvailableUpdatesUpdate
+}
+
+type FindComputersByUDID200ApplicationXMLSoftwareCachedByCasper struct {
+	Package *string
+}
+
+type FindComputersByUDID200ApplicationXMLSoftwareFontsFont struct {
+	Name    *string
+	Path    *string
+	Version *string
+}
+
+type FindComputersByUDID200ApplicationXMLSoftwareFonts struct {
+	Font *FindComputersByUDID200ApplicationXMLSoftwareFontsFont
+	Size *int64
+}
+
+type FindComputersByUDID200ApplicationXMLSoftwareInstalledByCasper struct {
+	Package *string
+}
+
+type FindComputersByUDID200ApplicationXMLSoftwareInstalledByInstallerSwu struct {
+	Package *string
+}
+
+type FindComputersByUDID200ApplicationXMLSoftwareLicensedSoftware struct {
+	Name *string
+}
+
+type FindComputersByUDID200ApplicationXMLSoftwarePluginsPlugin struct {
+	Name    *string
+	Path    *string
+	Version *string
+}
+
+type FindComputersByUDID200ApplicationXMLSoftwarePlugins struct {
+	Plugin *FindComputersByUDID200ApplicationXMLSoftwarePluginsPlugin
+	Size   *int64
+}
+
+type FindComputersByUDID200ApplicationXMLSoftwareRunningServices struct {
+	Name *string
+}
+
+type FindComputersByUDID200ApplicationXMLSoftware struct {
+	Applications             []FindComputersByUDID200ApplicationXMLSoftwareApplications
+	AvailableSoftwareUpdates []FindComputersByUDID200ApplicationXMLSoftwareAvailableSoftwareUpdates
+	AvailableUpdates         []FindComputersByUDID200ApplicationXMLSoftwareAvailableUpdates
+	CachedByCasper           []FindComputersByUDID200ApplicationXMLSoftwareCachedByCasper
+	Fonts                    []FindComputersByUDID200ApplicationXMLSoftwareFonts
+	InstalledByCasper        []FindComputersByUDID200ApplicationXMLSoftwareInstalledByCasper
+	InstalledByInstallerSwu  []FindComputersByUDID200ApplicationXMLSoftwareInstalledByInstallerSwu
+	LicensedSoftware         []FindComputersByUDID200ApplicationXMLSoftwareLicensedSoftware
+	Plugins                  []FindComputersByUDID200ApplicationXMLSoftwarePlugins
+	RunningServices          []FindComputersByUDID200ApplicationXMLSoftwareRunningServices
+	UnixExecutables          *string
+}
+
+// FindComputersByUDID200ApplicationXML - OK
+type FindComputersByUDID200ApplicationXML struct {
+	Certificates          []FindComputersByUDID200ApplicationXMLCertificates
+	ConfigurationProfiles []FindComputersByUDID200ApplicationXMLConfigurationProfiles
+	ExtensionAttributes   []FindComputersByUDID200ApplicationXMLExtensionAttributes
+	General               *FindComputersByUDID200ApplicationXMLGeneral
+	GroupsAccounts        *FindComputersByUDID200ApplicationXMLGroupsAccounts
+	Hardware              *FindComputersByUDID200ApplicationXMLHardware
+	Location              *FindComputersByUDID200ApplicationXMLLocation
+	Peripherals           *FindComputersByUDID200ApplicationXMLPeripherals
+	Purchasing            *FindComputersByUDID200ApplicationXMLPurchasing
+	Security              *FindComputersByUDID200ApplicationXMLSecurity
+	Software              *FindComputersByUDID200ApplicationXMLSoftware
+}
+
+type FindComputersByUDID200ApplicationJSONCertificatesCertificate struct {
+	CommonName   *string `json:"common_name,omitempty"`
+	ExpiresEpoch *int64  `json:"expires_epoch,omitempty"`
+	ExpiresUtc   *string `json:"expires_utc,omitempty"`
+	Identify     *bool   `json:"identify,omitempty"`
+	Name         *string `json:"name,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONCertificates struct {
+	Certificate *FindComputersByUDID200ApplicationJSONCertificatesCertificate `json:"certificate,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONConfigurationProfilesConfigurationProfile struct {
+	ID          *int64  `json:"id,omitempty"`
+	IsRemovable *bool   `json:"is_removable,omitempty"`
+	Name        *string `json:"name,omitempty"`
+	UUID        *string `json:"uuid,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONConfigurationProfiles struct {
+	ConfigurationProfile *FindComputersByUDID200ApplicationJSONConfigurationProfilesConfigurationProfile `json:"configuration_profile,omitempty"`
+	Size                 *int64                                                                          `json:"size,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONExtensionAttributesExtensionAttribute struct {
+	ID    *int64  `json:"id,omitempty"`
+	Name  *string `json:"name,omitempty"`
+	Type  *string `json:"type,omitempty"`
+	Value *string `json:"value,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONExtensionAttributes struct {
+	ExtensionAttribute *FindComputersByUDID200ApplicationJSONExtensionAttributesExtensionAttribute `json:"extension_attribute,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONGeneralManagementStatus struct {
+	EnrolledViaDep         *bool `json:"enrolled_via_dep,omitempty"`
+	UserApprovedEnrollment *bool `json:"user_approved_enrollment,omitempty"`
+	UserApprovedMdm        *bool `json:"user_approved_mdm,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONGeneralMdmCapableUsers struct {
+	MdmCapableUser *string `json:"mdm_capable_user,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONGeneralRemoteManagement struct {
+	Managed            *bool   `json:"managed,omitempty"`
+	ManagementUsername *string `json:"management_username,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONGeneralSite struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the site
+	Name string `json:"name"`
+}
+
+type FindComputersByUDID200ApplicationJSONGeneral struct {
+	AltMacAddress              *string                                                       `json:"alt_mac_address,omitempty"`
+	AltNetworkAdapterType      *string                                                       `json:"alt_network_adapter_type,omitempty"`
+	AssetTag                   *string                                                       `json:"asset_tag,omitempty"`
+	Barcode1                   *string                                                       `json:"barcode_1,omitempty"`
+	Barcode2                   *string                                                       `json:"barcode_2,omitempty"`
+	DistributionPoint          *string                                                       `json:"distribution_point,omitempty"`
+	ID                         *int64                                                        `json:"id,omitempty"`
+	InitialEntryDate           *string                                                       `json:"initial_entry_date,omitempty"`
+	InitialEntryDateEpoch      *int64                                                        `json:"initial_entry_date_epoch,omitempty"`
+	InitialEntryDateUtc        *string                                                       `json:"initial_entry_date_utc,omitempty"`
+	IPAddress                  *string                                                       `json:"ip_address,omitempty"`
+	ItunesStoreAccountIsActive *bool                                                         `json:"itunes_store_account_is_active,omitempty"`
+	JamfVersion                *string                                                       `json:"jamf_version,omitempty"`
+	LastCloudBackupDateEpoch   *int64                                                        `json:"last_cloud_backup_date_epoch,omitempty"`
+	LastCloudBackupDateUtc     *string                                                       `json:"last_cloud_backup_date_utc,omitempty"`
+	LastContactTime            *string                                                       `json:"last_contact_time,omitempty"`
+	LastContactTimeEpoch       *int64                                                        `json:"last_contact_time_epoch,omitempty"`
+	LastContactTimeUtc         *string                                                       `json:"last_contact_time_utc,omitempty"`
+	LastEnrolledDateEpoch      *int64                                                        `json:"last_enrolled_date_epoch,omitempty"`
+	LastEnrolledDateUtc        *string                                                       `json:"last_enrolled_date_utc,omitempty"`
+	LastReportedIP             *string                                                       `json:"last_reported_ip,omitempty"`
+	MacAddress                 *string                                                       `json:"mac_address,omitempty"`
+	ManagementStatus           *FindComputersByUDID200ApplicationJSONGeneralManagementStatus `json:"management_status,omitempty"`
+	MdmCapable                 *bool                                                         `json:"mdm_capable,omitempty"`
+	MdmCapableUsers            *FindComputersByUDID200ApplicationJSONGeneralMdmCapableUsers  `json:"mdm_capable_users,omitempty"`
+	// Name of computer
+	Name               *string                                                       `json:"name,omitempty"`
+	NetworkAdapterType *string                                                       `json:"network_adapter_type,omitempty"`
+	Platform           *string                                                       `json:"platform,omitempty"`
+	RemoteManagement   *FindComputersByUDID200ApplicationJSONGeneralRemoteManagement `json:"remote_management,omitempty"`
+	ReportDate         *string                                                       `json:"report_date,omitempty"`
+	ReportDateEpoch    *int64                                                        `json:"report_date_epoch,omitempty"`
+	ReportDateUtc      *string                                                       `json:"report_date_utc,omitempty"`
+	SerialNumber       *string                                                       `json:"serial_number,omitempty"`
+	Site               *FindComputersByUDID200ApplicationJSONGeneralSite             `json:"site,omitempty"`
+	Sus                *string                                                       `json:"sus,omitempty"`
+	Udid               *string                                                       `json:"udid,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONGroupsAccountsComputerGroupMemberships struct {
+	Group *string `json:"group,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONGroupsAccountsLocalAccountsUser struct {
+	Administrator    *bool   `json:"administrator,omitempty"`
+	FilevaultEnabled *bool   `json:"filevault_enabled,omitempty"`
+	Home             *string `json:"home,omitempty"`
+	HomeSize         *string `json:"home_size,omitempty"`
+	HomeSizeMb       *string `json:"home_size_mb,omitempty"`
+	Name             *string `json:"name,omitempty"`
+	Realname         *string `json:"realname,omitempty"`
+	UID              *string `json:"uid,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONGroupsAccountsLocalAccounts struct {
+	User *FindComputersByUDID200ApplicationJSONGroupsAccountsLocalAccountsUser `json:"user,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONGroupsAccounts struct {
+	ComputerGroupMemberships []FindComputersByUDID200ApplicationJSONGroupsAccountsComputerGroupMemberships `json:"computer_group_memberships,omitempty"`
+	LocalAccounts            []FindComputersByUDID200ApplicationJSONGroupsAccountsLocalAccounts            `json:"local_accounts,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONHardwareFilevault2Users struct {
+	User *string `json:"user,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONHardwareMappedPrintersPrinter struct {
+	Location *string `json:"location,omitempty"`
+	Name     *string `json:"name,omitempty"`
+	Type     *string `json:"type,omitempty"`
+	URI      *string `json:"uri,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONHardwareMappedPrinters struct {
+	Printer *FindComputersByUDID200ApplicationJSONHardwareMappedPrintersPrinter `json:"printer,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONHardwareSipStatus string
+
+const (
+	FindComputersByUDID200ApplicationJSONHardwareSipStatusEnabled  FindComputersByUDID200ApplicationJSONHardwareSipStatus = "Enabled"
+	FindComputersByUDID200ApplicationJSONHardwareSipStatusDisabled FindComputersByUDID200ApplicationJSONHardwareSipStatus = "Disabled"
+)
+
+func (e FindComputersByUDID200ApplicationJSONHardwareSipStatus) ToPointer() *FindComputersByUDID200ApplicationJSONHardwareSipStatus {
+	return &e
+}
+
+func (e *FindComputersByUDID200ApplicationJSONHardwareSipStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Enabled":
+		fallthrough
+	case "Disabled":
+		*e = FindComputersByUDID200ApplicationJSONHardwareSipStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindComputersByUDID200ApplicationJSONHardwareSipStatus: %v", v)
+	}
+}
+
+type FindComputersByUDID200ApplicationJSONHardwareStorageDevicePartition struct {
+	BootDriveAvailableMb *int64  `json:"boot_drive_available_mb,omitempty"`
+	Filevault2Percent    *int64  `json:"filevault2_percent,omitempty"`
+	Filevault2Status     *string `json:"filevault2_status,omitempty"`
+	FilevaultPercent     *int64  `json:"filevault_percent,omitempty"`
+	FilevaultStatus      *string `json:"filevault_status,omitempty"`
+	LvUUID               *string `json:"lvUUID,omitempty"`
+	LvgUUID              *string `json:"lvgUUID,omitempty"`
+	Name                 *string `json:"name,omitempty"`
+	PartitionCapacityMb  *int64  `json:"partition_capacity_mb,omitempty"`
+	PercentageFull       *int64  `json:"percentage_full,omitempty"`
+	PvUUID               *string `json:"pvUUID,omitempty"`
+	Size                 *int64  `json:"size,omitempty"`
+	Type                 *string `json:"type,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONHardwareStorageDevice struct {
+	ConnectionType  *string                                                               `json:"connection_type,omitempty"`
+	Disk            *string                                                               `json:"disk,omitempty"`
+	DriveCapacityMb *int64                                                                `json:"drive_capacity_mb,omitempty"`
+	Model           *string                                                               `json:"model,omitempty"`
+	Partition       []FindComputersByUDID200ApplicationJSONHardwareStorageDevicePartition `json:"partition,omitempty"`
+	Revision        *string                                                               `json:"revision,omitempty"`
+	SerialNumber    *string                                                               `json:"serial_number,omitempty"`
+	Size            *int64                                                                `json:"size,omitempty"`
+	SmartStatus     *string                                                               `json:"smart_status,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONHardwareStorage struct {
+	Device *FindComputersByUDID200ApplicationJSONHardwareStorageDevice `json:"device,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONHardware struct {
+	ActiveDirectoryStatus       *string                                                        `json:"active_directory_status,omitempty"`
+	AvailableRAMSlots           *int64                                                         `json:"available_ram_slots,omitempty"`
+	BatteryCapacity             *int64                                                         `json:"battery_capacity,omitempty"`
+	BleCapable                  *bool                                                          `json:"ble_capable,omitempty"`
+	BootRom                     *string                                                        `json:"boot_rom,omitempty"`
+	BusSpeed                    *int64                                                         `json:"bus_speed,omitempty"`
+	BusSpeedMhz                 *int64                                                         `json:"bus_speed_mhz,omitempty"`
+	CacheSize                   *int64                                                         `json:"cache_size,omitempty"`
+	CacheSizeKb                 *int64                                                         `json:"cache_size_kb,omitempty"`
+	DiskEncryptionConfiguration *string                                                        `json:"disk_encryption_configuration,omitempty"`
+	Filevault2Users             []FindComputersByUDID200ApplicationJSONHardwareFilevault2Users `json:"filevault_2_users,omitempty"`
+	GatekeeperStatus            *string                                                        `json:"gatekeeper_status,omitempty"`
+	InstitutionalRecoveryKey    *string                                                        `json:"institutional_recovery_key,omitempty"`
+	Make                        *string                                                        `json:"make,omitempty"`
+	MappedPrinters              []FindComputersByUDID200ApplicationJSONHardwareMappedPrinters  `json:"mapped_printers,omitempty"`
+	MasterPasswordSet           *bool                                                          `json:"master_password_set,omitempty"`
+	Model                       *string                                                        `json:"model,omitempty"`
+	ModelIdentifier             *string                                                        `json:"model_identifier,omitempty"`
+	NicSpeed                    *string                                                        `json:"nic_speed,omitempty"`
+	NumberCores                 *int64                                                         `json:"number_cores,omitempty"`
+	NumberProcessors            *int64                                                         `json:"number_processors,omitempty"`
+	OpticalDrive                *string                                                        `json:"optical_drive,omitempty"`
+	OsBuild                     *string                                                        `json:"os_build,omitempty"`
+	OsName                      *string                                                        `json:"os_name,omitempty"`
+	OsVersion                   *string                                                        `json:"os_version,omitempty"`
+	ProcessorArchitechture      *string                                                        `json:"processor_architechture,omitempty"`
+	ProcessorSpeed              *string                                                        `json:"processor_speed,omitempty"`
+	ProcessorSpeedMhz           *string                                                        `json:"processor_speed_mhz,omitempty"`
+	ProcessorType               *string                                                        `json:"processor_type,omitempty"`
+	ServicePack                 *string                                                        `json:"service_pack,omitempty"`
+	SipStatus                   *FindComputersByUDID200ApplicationJSONHardwareSipStatus        `json:"sip_status,omitempty"`
+	SmcVersion                  *string                                                        `json:"smc_version,omitempty"`
+	Storage                     []FindComputersByUDID200ApplicationJSONHardwareStorage         `json:"storage,omitempty"`
+	TotalRAM                    *int64                                                         `json:"total_ram,omitempty"`
+	TotalRAMMb                  *int64                                                         `json:"total_ram_mb,omitempty"`
+	XprotectVersion             *string                                                        `json:"xprotect_version,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONLocation struct {
+	Building     *string `json:"building,omitempty"`
+	Department   *string `json:"department,omitempty"`
+	EmailAddress *string `json:"email_address,omitempty"`
+	Phone        *string `json:"phone,omitempty"`
+	PhoneNumber  *string `json:"phone_number,omitempty"`
+	Position     *string `json:"position,omitempty"`
+	RealName     *string `json:"real_name,omitempty"`
+	Realname     *string `json:"realname,omitempty"`
+	Room         *string `json:"room,omitempty"`
+	Username     *string `json:"username,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONPeripheralsPeripheralsAttachmentsAttachment struct {
+	Filename *string `json:"filename,omitempty"`
+	ID       *int64  `json:"id,omitempty"`
+	URI      *string `json:"uri,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONPeripheralsPeripheralsAttachments struct {
+	Attachment *FindComputersByUDID200ApplicationJSONPeripheralsPeripheralsAttachmentsAttachment `json:"attachment,omitempty"`
+	Size       *int64                                                                            `json:"size,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONPeripheralsPeripheralsPeripheralFieldsField struct {
+	Name  *string `json:"name,omitempty"`
+	Value *string `json:"value,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONPeripheralsPeripheralsPeripheralFields struct {
+	Field *FindComputersByUDID200ApplicationJSONPeripheralsPeripheralsPeripheralFieldsField `json:"field,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONPeripheralsPeripheralsPeripheral struct {
+	BarCode1 *string                                                                      `json:"bar_code_1,omitempty"`
+	BarCode2 *string                                                                      `json:"bar_code_2,omitempty"`
+	Fields   *FindComputersByUDID200ApplicationJSONPeripheralsPeripheralsPeripheralFields `json:"fields,omitempty"`
+	ID       *int64                                                                       `json:"id,omitempty"`
+	// Name of the peripheral type
+	Type *string `json:"type,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONPeripheralsPeripheralsPurchasing struct {
+	ApplecareID          *string `json:"applecare_id,omitempty"`
+	IsLeased             *bool   `json:"is_leased,omitempty"`
+	IsPurchased          *bool   `json:"is_purchased,omitempty"`
+	LeaseExpires         *string `json:"lease_expires,omitempty"`
+	LeaseExpiresEpoch    *int64  `json:"lease_expires_epoch,omitempty"`
+	LeaseExpiresUtc      *string `json:"lease_expires_utc,omitempty"`
+	LifeExpectancy       *int64  `json:"life_expectancy,omitempty"`
+	PoDate               *string `json:"po_date,omitempty"`
+	PoDateEpoch          *int64  `json:"po_date_epoch,omitempty"`
+	PoDateUtc            *string `json:"po_date_utc,omitempty"`
+	PoNumber             *string `json:"po_number,omitempty"`
+	PurchasePrice        *string `json:"purchase_price,omitempty"`
+	PurchasingAccount    *string `json:"purchasing_account,omitempty"`
+	PurchasingContact    *string `json:"purchasing_contact,omitempty"`
+	Vendor               *string `json:"vendor,omitempty"`
+	WarrantyExpires      *string `json:"warranty_expires,omitempty"`
+	WarrantyExpiresEpoch *int64  `json:"warranty_expires_epoch,omitempty"`
+	WarrantyExpiresUtc   *string `json:"warranty_expires_utc,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONPeripheralsPeripherals struct {
+	Attachments []FindComputersByUDID200ApplicationJSONPeripheralsPeripheralsAttachments `json:"attachments,omitempty"`
+	Peripheral  *FindComputersByUDID200ApplicationJSONPeripheralsPeripheralsPeripheral   `json:"peripheral,omitempty"`
+	Purchasing  *FindComputersByUDID200ApplicationJSONPeripheralsPeripheralsPurchasing   `json:"purchasing,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONPeripherals struct {
+	Peripherals []FindComputersByUDID200ApplicationJSONPeripheralsPeripherals `json:"peripherals,omitempty"`
+	Size        *int64                                                        `json:"size,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONPurchasing struct {
+	ApplecareID          *string `json:"applecare_id,omitempty"`
+	IsLeased             *bool   `json:"is_leased,omitempty"`
+	IsPurchased          *bool   `json:"is_purchased,omitempty"`
+	LeaseExpires         *string `json:"lease_expires,omitempty"`
+	LeaseExpiresEpoch    *int64  `json:"lease_expires_epoch,omitempty"`
+	LeaseExpiresUtc      *string `json:"lease_expires_utc,omitempty"`
+	LifeExpectancy       *int64  `json:"life_expectancy,omitempty"`
+	PoDate               *string `json:"po_date,omitempty"`
+	PoDateEpoch          *int64  `json:"po_date_epoch,omitempty"`
+	PoDateUtc            *string `json:"po_date_utc,omitempty"`
+	PoNumber             *string `json:"po_number,omitempty"`
+	PurchasePrice        *string `json:"purchase_price,omitempty"`
+	PurchasingAccount    *string `json:"purchasing_account,omitempty"`
+	PurchasingContact    *string `json:"purchasing_contact,omitempty"`
+	Vendor               *string `json:"vendor,omitempty"`
+	WarrantyExpires      *string `json:"warranty_expires,omitempty"`
+	WarrantyExpiresEpoch *int64  `json:"warranty_expires_epoch,omitempty"`
+	WarrantyExpiresUtc   *string `json:"warranty_expires_utc,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONSecurity struct {
+	ActivationLock      *bool   `json:"activation_lock,omitempty"`
+	ExternalBootLevel   *string `json:"external_boot_level,omitempty"`
+	FirewallEnabled     *bool   `json:"firewall_enabled,omitempty"`
+	RecoveryLockEnabled *bool   `json:"recovery_lock_enabled,omitempty"`
+	SecureBootLevel     *string `json:"secure_boot_level,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONSoftwareApplicationsApplication struct {
+	Name    *string `json:"name,omitempty"`
+	Path    *string `json:"path,omitempty"`
+	Version *string `json:"version,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONSoftwareApplications struct {
+	Application *FindComputersByUDID200ApplicationJSONSoftwareApplicationsApplication `json:"application,omitempty"`
+	Size        *int64                                                                `json:"size,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONSoftwareAvailableSoftwareUpdates struct {
+	Name *string `json:"name,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONSoftwareAvailableUpdatesUpdate struct {
+	Name        *string `json:"name,omitempty"`
+	PackageName *string `json:"package_name,omitempty"`
+	Version     *string `json:"version,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONSoftwareAvailableUpdates struct {
+	Update *FindComputersByUDID200ApplicationJSONSoftwareAvailableUpdatesUpdate `json:"update,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONSoftwareCachedByCasper struct {
+	Package *string `json:"package,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONSoftwareFontsFont struct {
+	Name    *string `json:"name,omitempty"`
+	Path    *string `json:"path,omitempty"`
+	Version *string `json:"version,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONSoftwareFonts struct {
+	Font *FindComputersByUDID200ApplicationJSONSoftwareFontsFont `json:"font,omitempty"`
+	Size *int64                                                  `json:"size,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONSoftwareInstalledByCasper struct {
+	Package *string `json:"package,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONSoftwareInstalledByInstallerSwu struct {
+	Package *string `json:"package,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONSoftwareLicensedSoftware struct {
+	Name *string `json:"name,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONSoftwarePluginsPlugin struct {
+	Name    *string `json:"name,omitempty"`
+	Path    *string `json:"path,omitempty"`
+	Version *string `json:"version,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONSoftwarePlugins struct {
+	Plugin *FindComputersByUDID200ApplicationJSONSoftwarePluginsPlugin `json:"plugin,omitempty"`
+	Size   *int64                                                      `json:"size,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONSoftwareRunningServices struct {
+	Name *string `json:"name,omitempty"`
+}
+
+type FindComputersByUDID200ApplicationJSONSoftware struct {
+	Applications             []FindComputersByUDID200ApplicationJSONSoftwareApplications             `json:"applications,omitempty"`
+	AvailableSoftwareUpdates []FindComputersByUDID200ApplicationJSONSoftwareAvailableSoftwareUpdates `json:"available_software_updates,omitempty"`
+	AvailableUpdates         []FindComputersByUDID200ApplicationJSONSoftwareAvailableUpdates         `json:"available_updates,omitempty"`
+	CachedByCasper           []FindComputersByUDID200ApplicationJSONSoftwareCachedByCasper           `json:"cached_by_casper,omitempty"`
+	Fonts                    []FindComputersByUDID200ApplicationJSONSoftwareFonts                    `json:"fonts,omitempty"`
+	InstalledByCasper        []FindComputersByUDID200ApplicationJSONSoftwareInstalledByCasper        `json:"installed_by_casper,omitempty"`
+	InstalledByInstallerSwu  []FindComputersByUDID200ApplicationJSONSoftwareInstalledByInstallerSwu  `json:"installed_by_installer_swu,omitempty"`
+	LicensedSoftware         []FindComputersByUDID200ApplicationJSONSoftwareLicensedSoftware         `json:"licensed_software,omitempty"`
+	Plugins                  []FindComputersByUDID200ApplicationJSONSoftwarePlugins                  `json:"plugins,omitempty"`
+	RunningServices          []FindComputersByUDID200ApplicationJSONSoftwareRunningServices          `json:"running_services,omitempty"`
+	UnixExecutables          *string                                                                 `json:"unix_executables,omitempty"`
+}
+
+// FindComputersByUDID200ApplicationJSON - OK
+type FindComputersByUDID200ApplicationJSON struct {
+	Certificates          []FindComputersByUDID200ApplicationJSONCertificates          `json:"certificates,omitempty"`
+	ConfigurationProfiles []FindComputersByUDID200ApplicationJSONConfigurationProfiles `json:"configuration_profiles,omitempty"`
+	ExtensionAttributes   []FindComputersByUDID200ApplicationJSONExtensionAttributes   `json:"extension_attributes,omitempty"`
+	General               *FindComputersByUDID200ApplicationJSONGeneral                `json:"general,omitempty"`
+	GroupsAccounts        *FindComputersByUDID200ApplicationJSONGroupsAccounts         `json:"groups_accounts,omitempty"`
+	Hardware              *FindComputersByUDID200ApplicationJSONHardware               `json:"hardware,omitempty"`
+	Location              *FindComputersByUDID200ApplicationJSONLocation               `json:"location,omitempty"`
+	Peripherals           *FindComputersByUDID200ApplicationJSONPeripherals            `json:"peripherals,omitempty"`
+	Purchasing            *FindComputersByUDID200ApplicationJSONPurchasing             `json:"purchasing,omitempty"`
+	Security              *FindComputersByUDID200ApplicationJSONSecurity               `json:"security,omitempty"`
+	Software              *FindComputersByUDID200ApplicationJSONSoftware               `json:"software,omitempty"`
+}
+
 type FindComputersByUDIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Computer *shared.Computer
+	FindComputersByUDID200ApplicationJSONObject *FindComputersByUDID200ApplicationJSON
 }

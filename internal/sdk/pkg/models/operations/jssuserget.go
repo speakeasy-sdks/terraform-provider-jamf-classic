@@ -3,15 +3,40 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type JssuserGet200ApplicationXMLPrivileges struct {
+	Privilege *string
+}
+
+// JssuserGet200ApplicationXML - OK
+type JssuserGet200ApplicationXML struct {
+	Institution *string
+	LicenseType *string
+	Privileges  []JssuserGet200ApplicationXMLPrivileges
+	Product     *string
+	Version     *string
+}
+
+type JssuserGet200ApplicationJSONPrivileges struct {
+	Privilege *string `json:"privilege,omitempty"`
+}
+
+// JssuserGet200ApplicationJSON - OK
+type JssuserGet200ApplicationJSON struct {
+	Institution *string                                  `json:"institution,omitempty"`
+	LicenseType *string                                  `json:"license_type,omitempty"`
+	Privileges  []JssuserGet200ApplicationJSONPrivileges `json:"privileges,omitempty"`
+	Product     *string                                  `json:"product,omitempty"`
+	Version     *string                                  `json:"version,omitempty"`
+}
 
 type JssuserGetResponse struct {
 	Body        []byte
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// OK
-	JssUser *shared.JssUser
+	JssuserGet200ApplicationJSONObject *JssuserGet200ApplicationJSON
+	StatusCode                         int
+	RawResponse                        *http.Response
 }

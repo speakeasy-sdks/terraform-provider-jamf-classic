@@ -3,9 +3,28 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindPatchInternalSources200ApplicationXMLPatchInternalSource struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPatchInternalSources200ApplicationXML struct {
+	PatchInternalSource *FindPatchInternalSources200ApplicationXMLPatchInternalSource
+	Size                *int64
+}
+
+type FindPatchInternalSources200ApplicationJSONPatchInternalSource struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPatchInternalSources200ApplicationJSON struct {
+	PatchInternalSource *FindPatchInternalSources200ApplicationJSONPatchInternalSource `json:"patch_internal_source,omitempty"`
+	Size                *int64                                                         `json:"size,omitempty"`
+}
 
 type FindPatchInternalSourcesResponse struct {
 	Body        []byte
@@ -13,5 +32,5 @@ type FindPatchInternalSourcesResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	PatchInternalSources []shared.PatchInternalSources
+	FindPatchInternalSources200ApplicationJSONObjects []FindPatchInternalSources200ApplicationJSON
 }

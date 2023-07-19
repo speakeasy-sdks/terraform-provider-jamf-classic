@@ -3,9 +3,32 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindComputerGroups200ApplicationXMLComputerGroup struct {
+	ID      *int64
+	IsSmart *bool
+	// Name of the group
+	Name *string
+}
+
+type FindComputerGroups200ApplicationXML struct {
+	ComputerGroup []FindComputerGroups200ApplicationXMLComputerGroup
+	Size          *int64
+}
+
+type FindComputerGroups200ApplicationJSONComputerGroup struct {
+	ID      *int64 `json:"id,omitempty"`
+	IsSmart *bool  `json:"is_smart,omitempty"`
+	// Name of the group
+	Name *string `json:"name,omitempty"`
+}
+
+type FindComputerGroups200ApplicationJSON struct {
+	ComputerGroup []FindComputerGroups200ApplicationJSONComputerGroup `json:"computer_group,omitempty"`
+	Size          *int64                                              `json:"size,omitempty"`
+}
 
 type FindComputerGroupsResponse struct {
 	Body        []byte
@@ -13,5 +36,5 @@ type FindComputerGroupsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ComputerGroups []shared.ComputerGroups
+	FindComputerGroups200ApplicationJSONObjects []FindComputerGroups200ApplicationJSON
 }

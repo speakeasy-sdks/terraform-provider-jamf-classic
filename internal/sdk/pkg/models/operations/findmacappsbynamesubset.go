@@ -5,7 +5,6 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -53,11 +52,539 @@ type FindMacappsByNameSubsetRequest struct {
 	Subset FindMacappsByNameSubsetSubset `pathParam:"style=simple,explode=false,name=subset"`
 }
 
+type FindMacappsByNameSubset200ApplicationXMLGeneralCategory struct {
+	ID *int64
+	// Name of the category
+	Name string
+}
+
+type FindMacappsByNameSubset200ApplicationXMLGeneralSite struct {
+	ID *int64
+	// Name of the site
+	Name string
+}
+
+type FindMacappsByNameSubset200ApplicationXMLGeneral struct {
+	BundleID string
+	Category *FindMacappsByNameSubset200ApplicationXMLGeneralCategory
+	ID       *int64
+	IsFree   *bool
+	// Name of the application
+	Name    string
+	Site    *FindMacappsByNameSubset200ApplicationXMLGeneralSite
+	URL     string
+	Version string
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeBuildingsBuilding struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeBuildings struct {
+	Building *FindMacappsByNameSubset200ApplicationXMLScopeBuildingsBuilding
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeComputerGroupsComputerGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeComputerGroups struct {
+	ComputerGroup *FindMacappsByNameSubset200ApplicationXMLScopeComputerGroupsComputerGroup
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeComputersComputer struct {
+	ID *int64
+	// Name of the computer
+	Name *string
+	Udid *string
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeComputers struct {
+	Computer *FindMacappsByNameSubset200ApplicationXMLScopeComputersComputer
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeDepartmentsDepartment struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeDepartments struct {
+	Department *FindMacappsByNameSubset200ApplicationXMLScopeDepartmentsDepartment
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeExclusionsBuildingsBuilding struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeExclusionsBuildings struct {
+	Building *FindMacappsByNameSubset200ApplicationXMLScopeExclusionsBuildingsBuilding
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeExclusionsComputerGroupsComputerGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeExclusionsComputerGroups struct {
+	ComputerGroup *FindMacappsByNameSubset200ApplicationXMLScopeExclusionsComputerGroupsComputerGroup
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeExclusionsComputersComputer struct {
+	ID *int64
+	// Name of the computer
+	Name *string
+	Udid *string
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeExclusionsComputers struct {
+	Computer *FindMacappsByNameSubset200ApplicationXMLScopeExclusionsComputersComputer
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeExclusionsDepartmentsDepartment struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeExclusionsDepartments struct {
+	Department *FindMacappsByNameSubset200ApplicationXMLScopeExclusionsDepartmentsDepartment
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeExclusionsJssUserGroupsUserGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeExclusionsJssUserGroups struct {
+	UserGroup *FindMacappsByNameSubset200ApplicationXMLScopeExclusionsJssUserGroupsUserGroup
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeExclusionsJssUsersUser struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeExclusionsJssUsers struct {
+	User *FindMacappsByNameSubset200ApplicationXMLScopeExclusionsJssUsersUser
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeExclusionsNetworkSegmentsNetworkSegment struct {
+	ID *int64
+	// Name of the network segment
+	Name *string
+	UID  *string
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeExclusionsNetworkSegments struct {
+	NetworkSegment *FindMacappsByNameSubset200ApplicationXMLScopeExclusionsNetworkSegmentsNetworkSegment
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeExclusionsUserGroupsUserGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeExclusionsUserGroups struct {
+	UserGroup *FindMacappsByNameSubset200ApplicationXMLScopeExclusionsUserGroupsUserGroup
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeExclusionsUsersUser struct {
+	Name *string
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeExclusionsUsers struct {
+	User *FindMacappsByNameSubset200ApplicationXMLScopeExclusionsUsersUser
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeExclusions struct {
+	Buildings       []FindMacappsByNameSubset200ApplicationXMLScopeExclusionsBuildings
+	ComputerGroups  []FindMacappsByNameSubset200ApplicationXMLScopeExclusionsComputerGroups
+	Computers       []FindMacappsByNameSubset200ApplicationXMLScopeExclusionsComputers
+	Departments     []FindMacappsByNameSubset200ApplicationXMLScopeExclusionsDepartments
+	JssUserGroups   []FindMacappsByNameSubset200ApplicationXMLScopeExclusionsJssUserGroups
+	JssUsers        []FindMacappsByNameSubset200ApplicationXMLScopeExclusionsJssUsers
+	NetworkSegments []FindMacappsByNameSubset200ApplicationXMLScopeExclusionsNetworkSegments
+	UserGroups      []FindMacappsByNameSubset200ApplicationXMLScopeExclusionsUserGroups
+	Users           []FindMacappsByNameSubset200ApplicationXMLScopeExclusionsUsers
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeJssUserGroupsUserGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeJssUserGroups struct {
+	UserGroup *FindMacappsByNameSubset200ApplicationXMLScopeJssUserGroupsUserGroup
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeJssUsersUser struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeJssUsers struct {
+	User *FindMacappsByNameSubset200ApplicationXMLScopeJssUsersUser
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeLimitationsNetworkSegmentsNetworkSegment struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeLimitationsNetworkSegments struct {
+	NetworkSegment *FindMacappsByNameSubset200ApplicationXMLScopeLimitationsNetworkSegmentsNetworkSegment
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeLimitationsUserGroupsUserGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeLimitationsUserGroups struct {
+	UserGroup *FindMacappsByNameSubset200ApplicationXMLScopeLimitationsUserGroupsUserGroup
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeLimitationsUsersUser struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeLimitationsUsers struct {
+	User *FindMacappsByNameSubset200ApplicationXMLScopeLimitationsUsersUser
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScopeLimitations struct {
+	NetworkSegments []FindMacappsByNameSubset200ApplicationXMLScopeLimitationsNetworkSegments
+	UserGroups      []FindMacappsByNameSubset200ApplicationXMLScopeLimitationsUserGroups
+	Users           []FindMacappsByNameSubset200ApplicationXMLScopeLimitationsUsers
+}
+
+type FindMacappsByNameSubset200ApplicationXMLScope struct {
+	AllComputers   *bool
+	AllJssUsers    *bool
+	Buildings      []FindMacappsByNameSubset200ApplicationXMLScopeBuildings
+	ComputerGroups []FindMacappsByNameSubset200ApplicationXMLScopeComputerGroups
+	Computers      []FindMacappsByNameSubset200ApplicationXMLScopeComputers
+	Departments    []FindMacappsByNameSubset200ApplicationXMLScopeDepartments
+	Exclusions     *FindMacappsByNameSubset200ApplicationXMLScopeExclusions
+	JssUserGroups  []FindMacappsByNameSubset200ApplicationXMLScopeJssUserGroups
+	JssUsers       []FindMacappsByNameSubset200ApplicationXMLScopeJssUsers
+	Limitations    *FindMacappsByNameSubset200ApplicationXMLScopeLimitations
+}
+
+type FindMacappsByNameSubset200ApplicationXMLSelfServiceSelfServiceCategoriesCategory struct {
+	DisplayIn *bool
+	FeatureIn *bool
+	ID        *int64
+	Name      *string
+}
+
+type FindMacappsByNameSubset200ApplicationXMLSelfServiceSelfServiceCategories struct {
+	Category *FindMacappsByNameSubset200ApplicationXMLSelfServiceSelfServiceCategoriesCategory
+}
+
+type FindMacappsByNameSubset200ApplicationXMLSelfServiceSelfServiceIcon struct {
+	Data *string
+	ID   *int64
+	URI  *string
+}
+
+type FindMacappsByNameSubset200ApplicationXMLSelfServiceVpp struct {
+	AssignVppDeviceBasedLicenses *bool
+	VppAdminAccountID            *int64
+}
+
+type FindMacappsByNameSubset200ApplicationXMLSelfService struct {
+	FeatureOnMainPage           *bool
+	ForceUsersToViewDescription *bool
+	InstallButtonText           *string
+	Notification                *string
+	NotificationMessage         *string
+	NotificationSubject         *string
+	SelfServiceCategories       []FindMacappsByNameSubset200ApplicationXMLSelfServiceSelfServiceCategories
+	SelfServiceDescription      *string
+	SelfServiceIcon             *FindMacappsByNameSubset200ApplicationXMLSelfServiceSelfServiceIcon
+	Vpp                         *FindMacappsByNameSubset200ApplicationXMLSelfServiceVpp
+}
+
+// FindMacappsByNameSubset200ApplicationXML - OK
+type FindMacappsByNameSubset200ApplicationXML struct {
+	General     *FindMacappsByNameSubset200ApplicationXMLGeneral
+	Scope       *FindMacappsByNameSubset200ApplicationXMLScope
+	SelfService *FindMacappsByNameSubset200ApplicationXMLSelfService
+}
+
+type FindMacappsByNameSubset200ApplicationJSONGeneralCategory struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the category
+	Name string `json:"name"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONGeneralSite struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the site
+	Name string `json:"name"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONGeneral struct {
+	BundleID string                                                    `json:"bundle_id"`
+	Category *FindMacappsByNameSubset200ApplicationJSONGeneralCategory `json:"category,omitempty"`
+	ID       *int64                                                    `json:"id,omitempty"`
+	IsFree   *bool                                                     `json:"is_free,omitempty"`
+	// Name of the application
+	Name    string                                                `json:"name"`
+	Site    *FindMacappsByNameSubset200ApplicationJSONGeneralSite `json:"site,omitempty"`
+	URL     string                                                `json:"url"`
+	Version string                                                `json:"version"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeBuildingsBuilding struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeBuildings struct {
+	Building *FindMacappsByNameSubset200ApplicationJSONScopeBuildingsBuilding `json:"building,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeComputerGroupsComputerGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeComputerGroups struct {
+	ComputerGroup *FindMacappsByNameSubset200ApplicationJSONScopeComputerGroupsComputerGroup `json:"computer_group,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeComputersComputer struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the computer
+	Name *string `json:"name,omitempty"`
+	Udid *string `json:"udid,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeComputers struct {
+	Computer *FindMacappsByNameSubset200ApplicationJSONScopeComputersComputer `json:"computer,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeDepartmentsDepartment struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeDepartments struct {
+	Department *FindMacappsByNameSubset200ApplicationJSONScopeDepartmentsDepartment `json:"department,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeExclusionsBuildingsBuilding struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeExclusionsBuildings struct {
+	Building *FindMacappsByNameSubset200ApplicationJSONScopeExclusionsBuildingsBuilding `json:"building,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeExclusionsComputerGroupsComputerGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeExclusionsComputerGroups struct {
+	ComputerGroup *FindMacappsByNameSubset200ApplicationJSONScopeExclusionsComputerGroupsComputerGroup `json:"computer_group,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeExclusionsComputersComputer struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the computer
+	Name *string `json:"name,omitempty"`
+	Udid *string `json:"udid,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeExclusionsComputers struct {
+	Computer *FindMacappsByNameSubset200ApplicationJSONScopeExclusionsComputersComputer `json:"computer,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeExclusionsDepartmentsDepartment struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeExclusionsDepartments struct {
+	Department *FindMacappsByNameSubset200ApplicationJSONScopeExclusionsDepartmentsDepartment `json:"department,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeExclusionsJssUserGroupsUserGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeExclusionsJssUserGroups struct {
+	UserGroup *FindMacappsByNameSubset200ApplicationJSONScopeExclusionsJssUserGroupsUserGroup `json:"user_group,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeExclusionsJssUsersUser struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeExclusionsJssUsers struct {
+	User *FindMacappsByNameSubset200ApplicationJSONScopeExclusionsJssUsersUser `json:"user,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeExclusionsNetworkSegmentsNetworkSegment struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the network segment
+	Name *string `json:"name,omitempty"`
+	UID  *string `json:"uid,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeExclusionsNetworkSegments struct {
+	NetworkSegment *FindMacappsByNameSubset200ApplicationJSONScopeExclusionsNetworkSegmentsNetworkSegment `json:"network_segment,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeExclusionsUserGroupsUserGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeExclusionsUserGroups struct {
+	UserGroup *FindMacappsByNameSubset200ApplicationJSONScopeExclusionsUserGroupsUserGroup `json:"user_group,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeExclusionsUsersUser struct {
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeExclusionsUsers struct {
+	User *FindMacappsByNameSubset200ApplicationJSONScopeExclusionsUsersUser `json:"user,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeExclusions struct {
+	Buildings       []FindMacappsByNameSubset200ApplicationJSONScopeExclusionsBuildings       `json:"buildings,omitempty"`
+	ComputerGroups  []FindMacappsByNameSubset200ApplicationJSONScopeExclusionsComputerGroups  `json:"computer_groups,omitempty"`
+	Computers       []FindMacappsByNameSubset200ApplicationJSONScopeExclusionsComputers       `json:"computers,omitempty"`
+	Departments     []FindMacappsByNameSubset200ApplicationJSONScopeExclusionsDepartments     `json:"departments,omitempty"`
+	JssUserGroups   []FindMacappsByNameSubset200ApplicationJSONScopeExclusionsJssUserGroups   `json:"jss_user_groups,omitempty"`
+	JssUsers        []FindMacappsByNameSubset200ApplicationJSONScopeExclusionsJssUsers        `json:"jss_users,omitempty"`
+	NetworkSegments []FindMacappsByNameSubset200ApplicationJSONScopeExclusionsNetworkSegments `json:"network_segments,omitempty"`
+	UserGroups      []FindMacappsByNameSubset200ApplicationJSONScopeExclusionsUserGroups      `json:"user_groups,omitempty"`
+	Users           []FindMacappsByNameSubset200ApplicationJSONScopeExclusionsUsers           `json:"users,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeJssUserGroupsUserGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeJssUserGroups struct {
+	UserGroup *FindMacappsByNameSubset200ApplicationJSONScopeJssUserGroupsUserGroup `json:"user_group,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeJssUsersUser struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeJssUsers struct {
+	User *FindMacappsByNameSubset200ApplicationJSONScopeJssUsersUser `json:"user,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeLimitationsNetworkSegmentsNetworkSegment struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeLimitationsNetworkSegments struct {
+	NetworkSegment *FindMacappsByNameSubset200ApplicationJSONScopeLimitationsNetworkSegmentsNetworkSegment `json:"network_segment,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeLimitationsUserGroupsUserGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeLimitationsUserGroups struct {
+	UserGroup *FindMacappsByNameSubset200ApplicationJSONScopeLimitationsUserGroupsUserGroup `json:"user_group,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeLimitationsUsersUser struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeLimitationsUsers struct {
+	User *FindMacappsByNameSubset200ApplicationJSONScopeLimitationsUsersUser `json:"user,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScopeLimitations struct {
+	NetworkSegments []FindMacappsByNameSubset200ApplicationJSONScopeLimitationsNetworkSegments `json:"network_segments,omitempty"`
+	UserGroups      []FindMacappsByNameSubset200ApplicationJSONScopeLimitationsUserGroups      `json:"user_groups,omitempty"`
+	Users           []FindMacappsByNameSubset200ApplicationJSONScopeLimitationsUsers           `json:"users,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONScope struct {
+	AllComputers   *bool                                                          `json:"all_computers,omitempty"`
+	AllJssUsers    *bool                                                          `json:"all_jss_users,omitempty"`
+	Buildings      []FindMacappsByNameSubset200ApplicationJSONScopeBuildings      `json:"buildings,omitempty"`
+	ComputerGroups []FindMacappsByNameSubset200ApplicationJSONScopeComputerGroups `json:"computer_groups,omitempty"`
+	Computers      []FindMacappsByNameSubset200ApplicationJSONScopeComputers      `json:"computers,omitempty"`
+	Departments    []FindMacappsByNameSubset200ApplicationJSONScopeDepartments    `json:"departments,omitempty"`
+	Exclusions     *FindMacappsByNameSubset200ApplicationJSONScopeExclusions      `json:"exclusions,omitempty"`
+	JssUserGroups  []FindMacappsByNameSubset200ApplicationJSONScopeJssUserGroups  `json:"jss_user_groups,omitempty"`
+	JssUsers       []FindMacappsByNameSubset200ApplicationJSONScopeJssUsers       `json:"jss_users,omitempty"`
+	Limitations    *FindMacappsByNameSubset200ApplicationJSONScopeLimitations     `json:"limitations,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONSelfServiceSelfServiceCategoriesCategory struct {
+	DisplayIn *bool   `json:"display_in,omitempty"`
+	FeatureIn *bool   `json:"feature_in,omitempty"`
+	ID        *int64  `json:"id,omitempty"`
+	Name      *string `json:"name,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONSelfServiceSelfServiceCategories struct {
+	Category *FindMacappsByNameSubset200ApplicationJSONSelfServiceSelfServiceCategoriesCategory `json:"category,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONSelfServiceSelfServiceIcon struct {
+	Data *string `json:"data,omitempty"`
+	ID   *int64  `json:"id,omitempty"`
+	URI  *string `json:"uri,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONSelfServiceVpp struct {
+	AssignVppDeviceBasedLicenses *bool  `json:"assign_vpp_device_based_licenses,omitempty"`
+	VppAdminAccountID            *int64 `json:"vpp_admin_account_id,omitempty"`
+}
+
+type FindMacappsByNameSubset200ApplicationJSONSelfService struct {
+	FeatureOnMainPage           *bool                                                                       `json:"feature_on_main_page,omitempty"`
+	ForceUsersToViewDescription *bool                                                                       `json:"force_users_to_view_description,omitempty"`
+	InstallButtonText           *string                                                                     `json:"install_button_text,omitempty"`
+	Notification                *string                                                                     `json:"notification,omitempty"`
+	NotificationMessage         *string                                                                     `json:"notification_message,omitempty"`
+	NotificationSubject         *string                                                                     `json:"notification_subject,omitempty"`
+	SelfServiceCategories       []FindMacappsByNameSubset200ApplicationJSONSelfServiceSelfServiceCategories `json:"self_service_categories,omitempty"`
+	SelfServiceDescription      *string                                                                     `json:"self_service_description,omitempty"`
+	SelfServiceIcon             *FindMacappsByNameSubset200ApplicationJSONSelfServiceSelfServiceIcon        `json:"self_service_icon,omitempty"`
+	Vpp                         *FindMacappsByNameSubset200ApplicationJSONSelfServiceVpp                    `json:"vpp,omitempty"`
+}
+
+// FindMacappsByNameSubset200ApplicationJSON - OK
+type FindMacappsByNameSubset200ApplicationJSON struct {
+	General     *FindMacappsByNameSubset200ApplicationJSONGeneral     `json:"general,omitempty"`
+	Scope       *FindMacappsByNameSubset200ApplicationJSONScope       `json:"scope,omitempty"`
+	SelfService *FindMacappsByNameSubset200ApplicationJSONSelfService `json:"self_service,omitempty"`
+}
+
 type FindMacappsByNameSubsetResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	MacApplication *shared.MacApplication
+	FindMacappsByNameSubset200ApplicationJSONObject *FindMacappsByNameSubset200ApplicationJSON
 }

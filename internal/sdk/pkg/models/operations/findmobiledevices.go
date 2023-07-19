@@ -3,9 +3,48 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindMobileDevices200ApplicationXMLMobileDevice struct {
+	DeviceName      *string
+	ID              *int64
+	Managed         *bool
+	Model           *string
+	ModelDisplay    *string
+	ModelIdentifier *string
+	Name            *string
+	PhoneNumber     *string
+	SerialNumber    *string
+	Supervised      *bool
+	Udid            *string
+	Username        *string
+	WifiMacAddress  *string
+}
+
+type FindMobileDevices200ApplicationXML struct {
+	MobileDevice *FindMobileDevices200ApplicationXMLMobileDevice
+}
+
+type FindMobileDevices200ApplicationJSONMobileDevice struct {
+	DeviceName      *string `json:"device_name,omitempty"`
+	ID              *int64  `json:"id,omitempty"`
+	Managed         *bool   `json:"managed,omitempty"`
+	Model           *string `json:"model,omitempty"`
+	ModelDisplay    *string `json:"model_display,omitempty"`
+	ModelIdentifier *string `json:"model_identifier,omitempty"`
+	Name            *string `json:"name,omitempty"`
+	PhoneNumber     *string `json:"phone_number,omitempty"`
+	SerialNumber    *string `json:"serial_number,omitempty"`
+	Supervised      *bool   `json:"supervised,omitempty"`
+	Udid            *string `json:"udid,omitempty"`
+	Username        *string `json:"username,omitempty"`
+	WifiMacAddress  *string `json:"wifi_mac_address,omitempty"`
+}
+
+type FindMobileDevices200ApplicationJSON struct {
+	MobileDevice *FindMobileDevices200ApplicationJSONMobileDevice `json:"mobile_device,omitempty"`
+}
 
 type FindMobileDevicesResponse struct {
 	Body        []byte
@@ -13,5 +52,5 @@ type FindMobileDevicesResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	MobileDevices []shared.MobileDevices
+	FindMobileDevices200ApplicationJSONObjects []FindMobileDevices200ApplicationJSON
 }

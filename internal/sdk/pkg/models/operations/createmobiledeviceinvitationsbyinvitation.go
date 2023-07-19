@@ -11,6 +11,44 @@ type CreateMobileDeviceInvitationsByInvitationRequest struct {
 	Invitation int64 `pathParam:"style=simple,explode=false,name=invitation"`
 }
 
+type CreateMobileDeviceInvitationsByInvitation201ApplicationXMLEnrolledIntoSite struct {
+	ID   *int64
+	Name *string
+}
+
+type CreateMobileDeviceInvitationsByInvitation201ApplicationXMLSite struct {
+	ID *int64
+	// Name of the site
+	Name string
+}
+
+// CreateMobileDeviceInvitationsByInvitation201ApplicationXML - Created
+type CreateMobileDeviceInvitationsByInvitation201ApplicationXML struct {
+	AllowMultipleUses *bool
+	DateSent          *string
+	DateSentEpoch     *int64
+	DateSentUtc       *string
+	EnrolledIntoSite  *CreateMobileDeviceInvitationsByInvitation201ApplicationXMLEnrolledIntoSite
+	// Use 'Unlimited' to specify no expiration
+	ExpirationDate             *string
+	ExpirationDateEpoch        *int64
+	ExpirationDateUtc          *string
+	ID                         *int64
+	Invitation                 *int64
+	InvitationType             *string
+	KeepExistingSiteMembership *bool
+	LastAction                 *string
+	Message                    *string
+	ReplyTo                    *string
+	RequireLogin               *bool
+	SentFrom                   *string
+	SentTo                     *string
+	Site                       *CreateMobileDeviceInvitationsByInvitation201ApplicationXMLSite
+	Subject                    *string
+	TargetIos                  *string
+	Username                   *string
+}
+
 type CreateMobileDeviceInvitationsByInvitationResponse struct {
 	Body        []byte
 	ContentType string

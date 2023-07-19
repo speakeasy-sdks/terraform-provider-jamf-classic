@@ -3,9 +3,28 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindAdvancedUserSearches200ApplicationXMLAdvancedUserSearch struct {
+	ID   *int64
+	Name *string
+}
+
+type FindAdvancedUserSearches200ApplicationXML struct {
+	AdvancedUserSearch *FindAdvancedUserSearches200ApplicationXMLAdvancedUserSearch
+	Size               *int64
+}
+
+type FindAdvancedUserSearches200ApplicationJSONAdvancedUserSearch struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindAdvancedUserSearches200ApplicationJSON struct {
+	AdvancedUserSearch *FindAdvancedUserSearches200ApplicationJSONAdvancedUserSearch `json:"advanced_user_search,omitempty"`
+	Size               *int64                                                        `json:"size,omitempty"`
+}
 
 type FindAdvancedUserSearchesResponse struct {
 	Body        []byte
@@ -13,5 +32,5 @@ type FindAdvancedUserSearchesResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	AdvancedUserSearches []shared.AdvancedUserSearches
+	FindAdvancedUserSearches200ApplicationJSONObjects []FindAdvancedUserSearches200ApplicationJSON
 }

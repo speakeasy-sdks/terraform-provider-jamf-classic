@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,87 @@ type FindMobileDeviceInvitationsByIDRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+type FindMobileDeviceInvitationsByID200ApplicationXMLEnrolledIntoSite struct {
+	ID   *int64
+	Name *string
+}
+
+type FindMobileDeviceInvitationsByID200ApplicationXMLSite struct {
+	ID *int64
+	// Name of the site
+	Name string
+}
+
+// FindMobileDeviceInvitationsByID200ApplicationXML - OK
+type FindMobileDeviceInvitationsByID200ApplicationXML struct {
+	DateSent         *string
+	DateSentEpoch    *int64
+	DateSentUtc      *string
+	EnrolledIntoSite *FindMobileDeviceInvitationsByID200ApplicationXMLEnrolledIntoSite
+	// Use 'Unlimited' to specify no expiration
+	ExpirationDate             *string
+	ExpirationDateEpoch        *int64
+	ExpirationDateUtc          *string
+	ID                         *int64
+	Invitation                 *int64
+	InvitationType             *string
+	KeepExistingSiteMembership *bool
+	LastAction                 *string
+	LoginRequired              *bool
+	Message                    *string
+	MultipleUsesAllowed        *bool
+	ReplyTo                    *string
+	SentFrom                   *string
+	SentTo                     *string
+	Site                       *FindMobileDeviceInvitationsByID200ApplicationXMLSite
+	Subject                    *string
+	TargetIos                  *string
+	Username                   *string
+}
+
+type FindMobileDeviceInvitationsByID200ApplicationJSONEnrolledIntoSite struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMobileDeviceInvitationsByID200ApplicationJSONSite struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the site
+	Name string `json:"name"`
+}
+
+// FindMobileDeviceInvitationsByID200ApplicationJSON - OK
+type FindMobileDeviceInvitationsByID200ApplicationJSON struct {
+	DateSent         *string                                                            `json:"date_sent,omitempty"`
+	DateSentEpoch    *int64                                                             `json:"date_sent_epoch,omitempty"`
+	DateSentUtc      *string                                                            `json:"date_sent_utc,omitempty"`
+	EnrolledIntoSite *FindMobileDeviceInvitationsByID200ApplicationJSONEnrolledIntoSite `json:"enrolled_into_site,omitempty"`
+	// Use 'Unlimited' to specify no expiration
+	ExpirationDate             *string                                                `json:"expiration_date,omitempty"`
+	ExpirationDateEpoch        *int64                                                 `json:"expiration_date_epoch,omitempty"`
+	ExpirationDateUtc          *string                                                `json:"expiration_date_utc,omitempty"`
+	ID                         *int64                                                 `json:"id,omitempty"`
+	Invitation                 *int64                                                 `json:"invitation,omitempty"`
+	InvitationType             *string                                                `json:"invitation_type,omitempty"`
+	KeepExistingSiteMembership *bool                                                  `json:"keep_existing_site_membership,omitempty"`
+	LastAction                 *string                                                `json:"last_action,omitempty"`
+	LoginRequired              *bool                                                  `json:"login_required,omitempty"`
+	Message                    *string                                                `json:"message,omitempty"`
+	MultipleUsesAllowed        *bool                                                  `json:"multiple_uses_allowed,omitempty"`
+	ReplyTo                    *string                                                `json:"reply_to,omitempty"`
+	SentFrom                   *string                                                `json:"sent_from,omitempty"`
+	SentTo                     *string                                                `json:"sent_to,omitempty"`
+	Site                       *FindMobileDeviceInvitationsByID200ApplicationJSONSite `json:"site,omitempty"`
+	Subject                    *string                                                `json:"subject,omitempty"`
+	TargetIos                  *string                                                `json:"target_ios,omitempty"`
+	Username                   *string                                                `json:"username,omitempty"`
+}
+
 type FindMobileDeviceInvitationsByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	MobileDeviceInvitation *shared.MobileDeviceInvitation
+	FindMobileDeviceInvitationsByID200ApplicationJSONObject *FindMobileDeviceInvitationsByID200ApplicationJSON
 }

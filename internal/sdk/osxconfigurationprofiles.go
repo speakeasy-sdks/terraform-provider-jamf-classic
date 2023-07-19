@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"io"
 	"jamf/internal/sdk/pkg/models/operations"
-	"jamf/internal/sdk/pkg/models/shared"
 	"jamf/internal/sdk/pkg/utils"
 	"net/http"
 	"strings"
@@ -202,12 +201,12 @@ func (s *osxconfigurationprofiles) FindOsxConfigurationProfiles(ctx context.Cont
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.OsXConfigurationProfiles
+			var out []operations.FindOsxConfigurationProfiles200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.OsXConfigurationProfiles = out
+			res.FindOsxConfigurationProfiles200ApplicationJSONObjects = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -259,12 +258,12 @@ func (s *osxconfigurationprofiles) FindOsxConfigurationProfilesByID(ctx context.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.OsXConfigurationProfile
+			var out *operations.FindOsxConfigurationProfilesByID200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.OsXConfigurationProfile = out
+			res.FindOsxConfigurationProfilesByID200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -363,12 +362,12 @@ func (s *osxconfigurationprofiles) FindOsxConfigurationProfilesByName(ctx contex
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.OsXConfigurationProfile
+			var out *operations.FindOsxConfigurationProfilesByName200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.OsXConfigurationProfile = out
+			res.FindOsxConfigurationProfilesByName200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -421,12 +420,12 @@ func (s *osxconfigurationprofiles) FindOsxConfigurationProfilesByNameSubset(ctx 
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.OsXConfigurationProfile
+			var out *operations.FindOsxConfigurationProfilesByNameSubset200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.OsXConfigurationProfile = out
+			res.FindOsxConfigurationProfilesByNameSubset200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}

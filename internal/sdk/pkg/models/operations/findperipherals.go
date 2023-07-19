@@ -3,9 +3,36 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindPeripherals200ApplicationXMLPeripheral struct {
+	BarCode1   *string
+	BarCode2   *string
+	ComputerID *int64
+	ID         *int64
+	Name       *string
+	Type       *string
+}
+
+type FindPeripherals200ApplicationXML struct {
+	Peripheral *FindPeripherals200ApplicationXMLPeripheral
+	Size       *int64
+}
+
+type FindPeripherals200ApplicationJSONPeripheral struct {
+	BarCode1   *string `json:"bar_code_1,omitempty"`
+	BarCode2   *string `json:"bar_code_2,omitempty"`
+	ComputerID *int64  `json:"computer_id,omitempty"`
+	ID         *int64  `json:"id,omitempty"`
+	Name       *string `json:"name,omitempty"`
+	Type       *string `json:"type,omitempty"`
+}
+
+type FindPeripherals200ApplicationJSON struct {
+	Peripheral *FindPeripherals200ApplicationJSONPeripheral `json:"peripheral,omitempty"`
+	Size       *int64                                       `json:"size,omitempty"`
+}
 
 type FindPeripheralsResponse struct {
 	Body        []byte
@@ -13,5 +40,5 @@ type FindPeripheralsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Peripherals []shared.Peripherals
+	FindPeripherals200ApplicationJSONObjects []FindPeripherals200ApplicationJSON
 }

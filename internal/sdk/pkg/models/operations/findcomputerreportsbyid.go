@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,29 @@ type FindComputerReportsByIDRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+type FindComputerReportsByID200ApplicationXMLComputer struct {
+	ComputerName *string
+	ID           *int64
+}
+
+type FindComputerReportsByID200ApplicationXML struct {
+	Computer *FindComputerReportsByID200ApplicationXMLComputer
+}
+
+type FindComputerReportsByID200ApplicationJSONComputer struct {
+	ComputerName *string `json:"Computer_Name,omitempty"`
+	ID           *int64  `json:"id,omitempty"`
+}
+
+type FindComputerReportsByID200ApplicationJSON struct {
+	Computer *FindComputerReportsByID200ApplicationJSONComputer `json:"Computer,omitempty"`
+}
+
 type FindComputerReportsByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ComputerReport []shared.ComputerReport
+	FindComputerReportsByID200ApplicationJSONObjects []FindComputerReportsByID200ApplicationJSON
 }

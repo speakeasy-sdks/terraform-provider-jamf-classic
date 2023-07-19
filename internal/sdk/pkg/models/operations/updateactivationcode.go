@@ -6,6 +6,11 @@ import (
 	"net/http"
 )
 
+type UpdateActivationCodeRequestBody struct {
+	Code             *string
+	OrganizationName *string
+}
+
 type UpdateActivationCodeResponse struct {
 	ContentType string
 	StatusCode  int

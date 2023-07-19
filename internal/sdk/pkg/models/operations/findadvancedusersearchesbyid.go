@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,94 @@ type FindAdvancedUserSearchesByIDRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+type FindAdvancedUserSearchesByIDAdvancedUserSearchCriteriaCriterionAndOr string
+
+const (
+	FindAdvancedUserSearchesByIDAdvancedUserSearchCriteriaCriterionAndOrAnd FindAdvancedUserSearchesByIDAdvancedUserSearchCriteriaCriterionAndOr = "and"
+	FindAdvancedUserSearchesByIDAdvancedUserSearchCriteriaCriterionAndOrOr  FindAdvancedUserSearchesByIDAdvancedUserSearchCriteriaCriterionAndOr = "or"
+)
+
+func (e FindAdvancedUserSearchesByIDAdvancedUserSearchCriteriaCriterionAndOr) ToPointer() *FindAdvancedUserSearchesByIDAdvancedUserSearchCriteriaCriterionAndOr {
+	return &e
+}
+
+func (e *FindAdvancedUserSearchesByIDAdvancedUserSearchCriteriaCriterionAndOr) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "and":
+		fallthrough
+	case "or":
+		*e = FindAdvancedUserSearchesByIDAdvancedUserSearchCriteriaCriterionAndOr(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindAdvancedUserSearchesByIDAdvancedUserSearchCriteriaCriterionAndOr: %v", v)
+	}
+}
+
+type FindAdvancedUserSearchesByIDAdvancedUserSearchCriteriaCriterion struct {
+	AndOr        *FindAdvancedUserSearchesByIDAdvancedUserSearchCriteriaCriterionAndOr `json:"and_or,omitempty"`
+	ClosingParen *bool                                                                 `json:"closing_paren,omitempty"`
+	// Name of the criteria
+	Name         *string `json:"name,omitempty"`
+	OpeningParen *bool   `json:"opening_paren,omitempty"`
+	Priority     *int64  `json:"priority,omitempty"`
+	// Operator
+	SearchType *string `json:"search_type,omitempty"`
+	Value      *string `json:"value,omitempty"`
+}
+
+type FindAdvancedUserSearchesByIDAdvancedUserSearchCriteria struct {
+	Criterion *FindAdvancedUserSearchesByIDAdvancedUserSearchCriteriaCriterion `json:"criterion,omitempty"`
+	Size      *int64                                                           `json:"size,omitempty"`
+}
+
+type FindAdvancedUserSearchesByIDAdvancedUserSearchDisplayFieldsDisplayField struct {
+	// Name of the display field
+	Name *string `json:"name,omitempty"`
+}
+
+type FindAdvancedUserSearchesByIDAdvancedUserSearchDisplayFields struct {
+	DisplayField *FindAdvancedUserSearchesByIDAdvancedUserSearchDisplayFieldsDisplayField `json:"display_field,omitempty"`
+	Size         *int64                                                                   `json:"size,omitempty"`
+}
+
+type FindAdvancedUserSearchesByIDAdvancedUserSearchSite struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the site
+	Name string `json:"name"`
+}
+
+type FindAdvancedUserSearchesByIDAdvancedUserSearchUsersUser struct {
+	Username *string `json:"Username,omitempty"`
+	ID       *int64  `json:"id,omitempty"`
+	// Name of the user
+	Name *string `json:"name,omitempty"`
+}
+
+type FindAdvancedUserSearchesByIDAdvancedUserSearchUsers struct {
+	Size *int64                                                   `json:"size,omitempty"`
+	User *FindAdvancedUserSearchesByIDAdvancedUserSearchUsersUser `json:"user,omitempty"`
+}
+
+// FindAdvancedUserSearchesByIDAdvancedUserSearch - OK
+type FindAdvancedUserSearchesByIDAdvancedUserSearch struct {
+	Criteria      []FindAdvancedUserSearchesByIDAdvancedUserSearchCriteria      `json:"criteria,omitempty"`
+	DisplayFields []FindAdvancedUserSearchesByIDAdvancedUserSearchDisplayFields `json:"display_fields,omitempty"`
+	ID            *int64                                                        `json:"id,omitempty"`
+	// Name of the advanced user search
+	Name  string                                                `json:"name"`
+	Site  *FindAdvancedUserSearchesByIDAdvancedUserSearchSite   `json:"site,omitempty"`
+	Users []FindAdvancedUserSearchesByIDAdvancedUserSearchUsers `json:"users,omitempty"`
+}
+
 type FindAdvancedUserSearchesByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	AdvancedUserSearch *shared.AdvancedUserSearch
+	AdvancedUserSearch *FindAdvancedUserSearchesByIDAdvancedUserSearch
 }

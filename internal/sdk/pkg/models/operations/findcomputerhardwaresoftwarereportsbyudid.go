@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"jamf/internal/sdk/pkg/types"
 	"net/http"
 )
@@ -17,11 +18,289 @@ type FindComputerHardwareSoftwareReportsByUDIDRequest struct {
 	Udid string `pathParam:"style=simple,explode=false,name=udid"`
 }
 
+type FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLFontReportType string
+
+const (
+	FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLFontReportTypeAdded   FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLFontReportType = "Added"
+	FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLFontReportTypeDeleted FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLFontReportType = "Deleted"
+)
+
+func (e FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLFontReportType) ToPointer() *FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLFontReportType {
+	return &e
+}
+
+func (e *FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLFontReportType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Added":
+		fallthrough
+	case "Deleted":
+		*e = FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLFontReportType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLFontReportType: %v", v)
+	}
+}
+
+type FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLFontReport struct {
+	DateTime      *string
+	DateTimeEpoch *string
+	DateTimeUtc   *string
+	Name          *string
+	Path          *string
+	Type          *FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLFontReportType
+	Version       *string
+}
+
+type FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLHardwareReport struct {
+	NICSpeed                 *string
+	BootPartitionUsedPercent *int64
+	CoreCount                *int64
+	DateTime                 *string
+	DateTimeEpoch            *string
+	DateTimeUtc              *string
+	Make                     *string
+	ModelIdentifier          *string
+	OpenRAMSlots             *int64
+	OperatingSystem          *string
+	OpticalDrive             *string
+	ProcessorCount           *int64
+	ProcessorSpeedMhz        *int64
+	SerialNumber             *string
+	ServicePack              *string
+	TotalHarddriveSize       *string
+	TotalRAMMb               *int64
+}
+
+type FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLPluginReportType string
+
+const (
+	FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLPluginReportTypeAdded   FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLPluginReportType = "Added"
+	FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLPluginReportTypeRemoved FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLPluginReportType = "Removed"
+)
+
+func (e FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLPluginReportType) ToPointer() *FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLPluginReportType {
+	return &e
+}
+
+func (e *FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLPluginReportType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Added":
+		fallthrough
+	case "Removed":
+		*e = FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLPluginReportType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLPluginReportType: %v", v)
+	}
+}
+
+type FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLPluginReport struct {
+	DateTime      *string
+	DateTimeEpoch *string
+	DateTimeUtc   *string
+	Name          *string
+	Path          *string
+	Type          *FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLPluginReportType
+	Version       *string
+}
+
+type FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLSoftwareReportType string
+
+const (
+	FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLSoftwareReportTypeAdded   FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLSoftwareReportType = "Added"
+	FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLSoftwareReportTypeDeleted FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLSoftwareReportType = "Deleted"
+)
+
+func (e FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLSoftwareReportType) ToPointer() *FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLSoftwareReportType {
+	return &e
+}
+
+func (e *FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLSoftwareReportType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Added":
+		fallthrough
+	case "Deleted":
+		*e = FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLSoftwareReportType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLSoftwareReportType: %v", v)
+	}
+}
+
+type FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLSoftwareReport struct {
+	DateTime      *string
+	DateTimeEpoch *string
+	DateTimeUtc   *string
+	Name          *string
+	Path          *string
+	Type          *FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLSoftwareReportType
+	Version       *string
+}
+
+// FindComputerHardwareSoftwareReportsByUDID200ApplicationXML - OK
+type FindComputerHardwareSoftwareReportsByUDID200ApplicationXML struct {
+	FontReport     *FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLFontReport
+	HardwareReport *FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLHardwareReport
+	PluginReport   *FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLPluginReport
+	SoftwareReport *FindComputerHardwareSoftwareReportsByUDID200ApplicationXMLSoftwareReport
+}
+
+type FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONFontReportType string
+
+const (
+	FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONFontReportTypeAdded   FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONFontReportType = "Added"
+	FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONFontReportTypeDeleted FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONFontReportType = "Deleted"
+)
+
+func (e FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONFontReportType) ToPointer() *FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONFontReportType {
+	return &e
+}
+
+func (e *FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONFontReportType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Added":
+		fallthrough
+	case "Deleted":
+		*e = FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONFontReportType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONFontReportType: %v", v)
+	}
+}
+
+type FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONFontReport struct {
+	DateTime      *string                                                                    `json:"date_time,omitempty"`
+	DateTimeEpoch *string                                                                    `json:"date_time_epoch,omitempty"`
+	DateTimeUtc   *string                                                                    `json:"date_time_utc,omitempty"`
+	Name          *string                                                                    `json:"name,omitempty"`
+	Path          *string                                                                    `json:"path,omitempty"`
+	Type          *FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONFontReportType `json:"type,omitempty"`
+	Version       *string                                                                    `json:"version,omitempty"`
+}
+
+type FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONHardwareReport struct {
+	NICSpeed                 *string `json:"NIC_speed,omitempty"`
+	BootPartitionUsedPercent *int64  `json:"boot_partition_used_percent,omitempty"`
+	CoreCount                *int64  `json:"core_count,omitempty"`
+	DateTime                 *string `json:"date_time,omitempty"`
+	DateTimeEpoch            *string `json:"date_time_epoch,omitempty"`
+	DateTimeUtc              *string `json:"date_time_utc,omitempty"`
+	Make                     *string `json:"make,omitempty"`
+	ModelIdentifier          *string `json:"model_identifier,omitempty"`
+	OpenRAMSlots             *int64  `json:"open_ram_slots,omitempty"`
+	OperatingSystem          *string `json:"operating_system,omitempty"`
+	OpticalDrive             *string `json:"optical_drive,omitempty"`
+	ProcessorCount           *int64  `json:"processor_count,omitempty"`
+	ProcessorSpeedMhz        *int64  `json:"processor_speed_mhz,omitempty"`
+	SerialNumber             *string `json:"serial_number,omitempty"`
+	ServicePack              *string `json:"service_pack,omitempty"`
+	TotalHarddriveSize       *string `json:"total_harddrive_size,omitempty"`
+	TotalRAMMb               *int64  `json:"total_ram_mb,omitempty"`
+}
+
+type FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONPluginReportType string
+
+const (
+	FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONPluginReportTypeAdded   FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONPluginReportType = "Added"
+	FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONPluginReportTypeRemoved FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONPluginReportType = "Removed"
+)
+
+func (e FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONPluginReportType) ToPointer() *FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONPluginReportType {
+	return &e
+}
+
+func (e *FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONPluginReportType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Added":
+		fallthrough
+	case "Removed":
+		*e = FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONPluginReportType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONPluginReportType: %v", v)
+	}
+}
+
+type FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONPluginReport struct {
+	DateTime      *string                                                                      `json:"date_time,omitempty"`
+	DateTimeEpoch *string                                                                      `json:"date_time_epoch,omitempty"`
+	DateTimeUtc   *string                                                                      `json:"date_time_utc,omitempty"`
+	Name          *string                                                                      `json:"name,omitempty"`
+	Path          *string                                                                      `json:"path,omitempty"`
+	Type          *FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONPluginReportType `json:"type,omitempty"`
+	Version       *string                                                                      `json:"version,omitempty"`
+}
+
+type FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONSoftwareReportType string
+
+const (
+	FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONSoftwareReportTypeAdded   FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONSoftwareReportType = "Added"
+	FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONSoftwareReportTypeDeleted FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONSoftwareReportType = "Deleted"
+)
+
+func (e FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONSoftwareReportType) ToPointer() *FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONSoftwareReportType {
+	return &e
+}
+
+func (e *FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONSoftwareReportType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Added":
+		fallthrough
+	case "Deleted":
+		*e = FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONSoftwareReportType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONSoftwareReportType: %v", v)
+	}
+}
+
+type FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONSoftwareReport struct {
+	DateTime      *string                                                                        `json:"date_time,omitempty"`
+	DateTimeEpoch *string                                                                        `json:"date_time_epoch,omitempty"`
+	DateTimeUtc   *string                                                                        `json:"date_time_utc,omitempty"`
+	Name          *string                                                                        `json:"name,omitempty"`
+	Path          *string                                                                        `json:"path,omitempty"`
+	Type          *FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONSoftwareReportType `json:"type,omitempty"`
+	Version       *string                                                                        `json:"version,omitempty"`
+}
+
+// FindComputerHardwareSoftwareReportsByUDID200ApplicationJSON - OK
+type FindComputerHardwareSoftwareReportsByUDID200ApplicationJSON struct {
+	FontReport     *FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONFontReport     `json:"font_report,omitempty"`
+	HardwareReport *FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONHardwareReport `json:"hardware_report,omitempty"`
+	PluginReport   *FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONPluginReport   `json:"plugin_report,omitempty"`
+	SoftwareReport *FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONSoftwareReport `json:"software_report,omitempty"`
+}
+
 type FindComputerHardwareSoftwareReportsByUDIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ComputerHardwareSoftwareReports *shared.ComputerHardwareSoftwareReports
+	FindComputerHardwareSoftwareReportsByUDID200ApplicationJSONObject *FindComputerHardwareSoftwareReportsByUDID200ApplicationJSON
 }

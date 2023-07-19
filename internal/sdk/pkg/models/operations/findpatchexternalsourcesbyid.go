@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,29 @@ type FindPatchExternalSourcesByIDRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+// FindPatchExternalSourcesByID200ApplicationXML - OK
+type FindPatchExternalSourcesByID200ApplicationXML struct {
+	HostName   *string
+	ID         *int64
+	Name       string
+	Port       *int64
+	SslEnabled *bool
+}
+
+// FindPatchExternalSourcesByID200ApplicationJSON - OK
+type FindPatchExternalSourcesByID200ApplicationJSON struct {
+	HostName   *string `json:"host_name,omitempty"`
+	ID         *int64  `json:"id,omitempty"`
+	Name       string  `json:"name"`
+	Port       *int64  `json:"port,omitempty"`
+	SslEnabled *bool   `json:"ssl_enabled,omitempty"`
+}
+
 type FindPatchExternalSourcesByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	PatchExternalSource *shared.PatchExternalSource
+	FindPatchExternalSourcesByID200ApplicationJSONObject *FindPatchExternalSourcesByID200ApplicationJSON
 }

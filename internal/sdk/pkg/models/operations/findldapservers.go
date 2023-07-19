@@ -3,9 +3,28 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindLDAPServers200ApplicationXMLLDAPServer struct {
+	ID   *int64
+	Name *string
+}
+
+type FindLDAPServers200ApplicationXML struct {
+	LdapServer *FindLDAPServers200ApplicationXMLLDAPServer
+	Size       *int64
+}
+
+type FindLDAPServers200ApplicationJSONLDAPServer struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindLDAPServers200ApplicationJSON struct {
+	LdapServer *FindLDAPServers200ApplicationJSONLDAPServer `json:"ldap_server,omitempty"`
+	Size       *int64                                       `json:"size,omitempty"`
+}
 
 type FindLDAPServersResponse struct {
 	Body        []byte
@@ -13,5 +32,5 @@ type FindLDAPServersResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	LdapServers []shared.LdapServers
+	FindLDAPServers200ApplicationJSONObjects []FindLDAPServers200ApplicationJSON
 }

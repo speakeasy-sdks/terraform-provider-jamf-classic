@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,267 @@ type FindGroupsByNameRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+type FindGroupsByName200ApplicationXMLAccessLevel string
+
+const (
+	FindGroupsByName200ApplicationXMLAccessLevelFullAccess  FindGroupsByName200ApplicationXMLAccessLevel = "Full Access"
+	FindGroupsByName200ApplicationXMLAccessLevelSiteAccess  FindGroupsByName200ApplicationXMLAccessLevel = "Site Access"
+	FindGroupsByName200ApplicationXMLAccessLevelGroupAccess FindGroupsByName200ApplicationXMLAccessLevel = "Group Access"
+)
+
+func (e FindGroupsByName200ApplicationXMLAccessLevel) ToPointer() *FindGroupsByName200ApplicationXMLAccessLevel {
+	return &e
+}
+
+func (e *FindGroupsByName200ApplicationXMLAccessLevel) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Full Access":
+		fallthrough
+	case "Site Access":
+		fallthrough
+	case "Group Access":
+		*e = FindGroupsByName200ApplicationXMLAccessLevel(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindGroupsByName200ApplicationXMLAccessLevel: %v", v)
+	}
+}
+
+type FindGroupsByName200ApplicationXMLMembersUser struct {
+	ID   *int64
+	Name *string
+}
+
+type FindGroupsByName200ApplicationXMLMembers struct {
+	User *FindGroupsByName200ApplicationXMLMembersUser
+}
+
+type FindGroupsByName200ApplicationXMLPrivilegeSet string
+
+const (
+	FindGroupsByName200ApplicationXMLPrivilegeSetAdministrator  FindGroupsByName200ApplicationXMLPrivilegeSet = "Administrator"
+	FindGroupsByName200ApplicationXMLPrivilegeSetAuditor        FindGroupsByName200ApplicationXMLPrivilegeSet = "Auditor"
+	FindGroupsByName200ApplicationXMLPrivilegeSetEnrollmentOnly FindGroupsByName200ApplicationXMLPrivilegeSet = "Enrollment Only"
+	FindGroupsByName200ApplicationXMLPrivilegeSetCustom         FindGroupsByName200ApplicationXMLPrivilegeSet = "Custom"
+)
+
+func (e FindGroupsByName200ApplicationXMLPrivilegeSet) ToPointer() *FindGroupsByName200ApplicationXMLPrivilegeSet {
+	return &e
+}
+
+func (e *FindGroupsByName200ApplicationXMLPrivilegeSet) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Administrator":
+		fallthrough
+	case "Auditor":
+		fallthrough
+	case "Enrollment Only":
+		fallthrough
+	case "Custom":
+		*e = FindGroupsByName200ApplicationXMLPrivilegeSet(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindGroupsByName200ApplicationXMLPrivilegeSet: %v", v)
+	}
+}
+
+type FindGroupsByName200ApplicationXMLPrivilegesCasperAdmin struct {
+	Privilege *string
+}
+
+type FindGroupsByName200ApplicationXMLPrivilegesCasperImaging struct {
+	Privilege *string
+}
+
+type FindGroupsByName200ApplicationXMLPrivilegesCasperRemote struct {
+	Privilege *string
+}
+
+type FindGroupsByName200ApplicationXMLPrivilegesJssActions struct {
+	Privilege *string
+}
+
+type FindGroupsByName200ApplicationXMLPrivilegesJssObjects struct {
+	Privilege *string
+}
+
+type FindGroupsByName200ApplicationXMLPrivilegesJssSettings struct {
+	Privilege *string
+}
+
+type FindGroupsByName200ApplicationXMLPrivilegesRecon struct {
+	Privilege *string
+}
+
+type FindGroupsByName200ApplicationXMLPrivileges struct {
+	CasperAdmin   []FindGroupsByName200ApplicationXMLPrivilegesCasperAdmin
+	CasperImaging []FindGroupsByName200ApplicationXMLPrivilegesCasperImaging
+	CasperRemote  []FindGroupsByName200ApplicationXMLPrivilegesCasperRemote
+	JssActions    []FindGroupsByName200ApplicationXMLPrivilegesJssActions
+	JssObjects    []FindGroupsByName200ApplicationXMLPrivilegesJssObjects
+	JssSettings   []FindGroupsByName200ApplicationXMLPrivilegesJssSettings
+	Recon         []FindGroupsByName200ApplicationXMLPrivilegesRecon
+}
+
+type FindGroupsByName200ApplicationXMLSite struct {
+	ID *int64
+	// Name of the site
+	Name string
+}
+
+// FindGroupsByName200ApplicationXML - OK
+type FindGroupsByName200ApplicationXML struct {
+	AccessLevel *FindGroupsByName200ApplicationXMLAccessLevel
+	ID          *int64
+	Members     []FindGroupsByName200ApplicationXMLMembers
+	// Group name
+	Name         string
+	PrivilegeSet *FindGroupsByName200ApplicationXMLPrivilegeSet
+	Privileges   *FindGroupsByName200ApplicationXMLPrivileges
+	Site         *FindGroupsByName200ApplicationXMLSite
+}
+
+type FindGroupsByName200ApplicationJSONAccessLevel string
+
+const (
+	FindGroupsByName200ApplicationJSONAccessLevelFullAccess  FindGroupsByName200ApplicationJSONAccessLevel = "Full Access"
+	FindGroupsByName200ApplicationJSONAccessLevelSiteAccess  FindGroupsByName200ApplicationJSONAccessLevel = "Site Access"
+	FindGroupsByName200ApplicationJSONAccessLevelGroupAccess FindGroupsByName200ApplicationJSONAccessLevel = "Group Access"
+)
+
+func (e FindGroupsByName200ApplicationJSONAccessLevel) ToPointer() *FindGroupsByName200ApplicationJSONAccessLevel {
+	return &e
+}
+
+func (e *FindGroupsByName200ApplicationJSONAccessLevel) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Full Access":
+		fallthrough
+	case "Site Access":
+		fallthrough
+	case "Group Access":
+		*e = FindGroupsByName200ApplicationJSONAccessLevel(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindGroupsByName200ApplicationJSONAccessLevel: %v", v)
+	}
+}
+
+type FindGroupsByName200ApplicationJSONMembersUser struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindGroupsByName200ApplicationJSONMembers struct {
+	User *FindGroupsByName200ApplicationJSONMembersUser `json:"user,omitempty"`
+}
+
+type FindGroupsByName200ApplicationJSONPrivilegeSet string
+
+const (
+	FindGroupsByName200ApplicationJSONPrivilegeSetAdministrator  FindGroupsByName200ApplicationJSONPrivilegeSet = "Administrator"
+	FindGroupsByName200ApplicationJSONPrivilegeSetAuditor        FindGroupsByName200ApplicationJSONPrivilegeSet = "Auditor"
+	FindGroupsByName200ApplicationJSONPrivilegeSetEnrollmentOnly FindGroupsByName200ApplicationJSONPrivilegeSet = "Enrollment Only"
+	FindGroupsByName200ApplicationJSONPrivilegeSetCustom         FindGroupsByName200ApplicationJSONPrivilegeSet = "Custom"
+)
+
+func (e FindGroupsByName200ApplicationJSONPrivilegeSet) ToPointer() *FindGroupsByName200ApplicationJSONPrivilegeSet {
+	return &e
+}
+
+func (e *FindGroupsByName200ApplicationJSONPrivilegeSet) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Administrator":
+		fallthrough
+	case "Auditor":
+		fallthrough
+	case "Enrollment Only":
+		fallthrough
+	case "Custom":
+		*e = FindGroupsByName200ApplicationJSONPrivilegeSet(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindGroupsByName200ApplicationJSONPrivilegeSet: %v", v)
+	}
+}
+
+type FindGroupsByName200ApplicationJSONPrivilegesCasperAdmin struct {
+	Privilege *string `json:"privilege,omitempty"`
+}
+
+type FindGroupsByName200ApplicationJSONPrivilegesCasperImaging struct {
+	Privilege *string `json:"privilege,omitempty"`
+}
+
+type FindGroupsByName200ApplicationJSONPrivilegesCasperRemote struct {
+	Privilege *string `json:"privilege,omitempty"`
+}
+
+type FindGroupsByName200ApplicationJSONPrivilegesJssActions struct {
+	Privilege *string `json:"privilege,omitempty"`
+}
+
+type FindGroupsByName200ApplicationJSONPrivilegesJssObjects struct {
+	Privilege *string `json:"privilege,omitempty"`
+}
+
+type FindGroupsByName200ApplicationJSONPrivilegesJssSettings struct {
+	Privilege *string `json:"privilege,omitempty"`
+}
+
+type FindGroupsByName200ApplicationJSONPrivilegesRecon struct {
+	Privilege *string `json:"privilege,omitempty"`
+}
+
+type FindGroupsByName200ApplicationJSONPrivileges struct {
+	CasperAdmin   []FindGroupsByName200ApplicationJSONPrivilegesCasperAdmin   `json:"casper_admin,omitempty"`
+	CasperImaging []FindGroupsByName200ApplicationJSONPrivilegesCasperImaging `json:"casper_imaging,omitempty"`
+	CasperRemote  []FindGroupsByName200ApplicationJSONPrivilegesCasperRemote  `json:"casper_remote,omitempty"`
+	JssActions    []FindGroupsByName200ApplicationJSONPrivilegesJssActions    `json:"jss_actions,omitempty"`
+	JssObjects    []FindGroupsByName200ApplicationJSONPrivilegesJssObjects    `json:"jss_objects,omitempty"`
+	JssSettings   []FindGroupsByName200ApplicationJSONPrivilegesJssSettings   `json:"jss_settings,omitempty"`
+	Recon         []FindGroupsByName200ApplicationJSONPrivilegesRecon         `json:"recon,omitempty"`
+}
+
+type FindGroupsByName200ApplicationJSONSite struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the site
+	Name string `json:"name"`
+}
+
+// FindGroupsByName200ApplicationJSON - OK
+type FindGroupsByName200ApplicationJSON struct {
+	AccessLevel *FindGroupsByName200ApplicationJSONAccessLevel `json:"access_level,omitempty"`
+	ID          *int64                                         `json:"id,omitempty"`
+	Members     []FindGroupsByName200ApplicationJSONMembers    `json:"members,omitempty"`
+	// Group name
+	Name         string                                          `json:"name"`
+	PrivilegeSet *FindGroupsByName200ApplicationJSONPrivilegeSet `json:"privilege_set,omitempty"`
+	Privileges   *FindGroupsByName200ApplicationJSONPrivileges   `json:"privileges,omitempty"`
+	Site         *FindGroupsByName200ApplicationJSONSite         `json:"site,omitempty"`
+}
+
 type FindGroupsByNameResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Group *shared.Group
+	FindGroupsByName200ApplicationJSONObject *FindGroupsByName200ApplicationJSON
 }

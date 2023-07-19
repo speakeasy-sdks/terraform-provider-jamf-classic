@@ -3,9 +3,264 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
+
+type FindComputerInventoryCollection200ApplicationXMLApplicationsApplicationPlatform string
+
+const (
+	FindComputerInventoryCollection200ApplicationXMLApplicationsApplicationPlatformMac     FindComputerInventoryCollection200ApplicationXMLApplicationsApplicationPlatform = "Mac"
+	FindComputerInventoryCollection200ApplicationXMLApplicationsApplicationPlatformWindows FindComputerInventoryCollection200ApplicationXMLApplicationsApplicationPlatform = "Windows"
+)
+
+func (e FindComputerInventoryCollection200ApplicationXMLApplicationsApplicationPlatform) ToPointer() *FindComputerInventoryCollection200ApplicationXMLApplicationsApplicationPlatform {
+	return &e
+}
+
+func (e *FindComputerInventoryCollection200ApplicationXMLApplicationsApplicationPlatform) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Mac":
+		fallthrough
+	case "Windows":
+		*e = FindComputerInventoryCollection200ApplicationXMLApplicationsApplicationPlatform(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindComputerInventoryCollection200ApplicationXMLApplicationsApplicationPlatform: %v", v)
+	}
+}
+
+type FindComputerInventoryCollection200ApplicationXMLApplicationsApplication struct {
+	Path     *string
+	Platform *FindComputerInventoryCollection200ApplicationXMLApplicationsApplicationPlatform
+}
+
+type FindComputerInventoryCollection200ApplicationXMLApplications struct {
+	Application *FindComputerInventoryCollection200ApplicationXMLApplicationsApplication
+}
+
+type FindComputerInventoryCollection200ApplicationXMLFontsFontPlatform string
+
+const (
+	FindComputerInventoryCollection200ApplicationXMLFontsFontPlatformMac     FindComputerInventoryCollection200ApplicationXMLFontsFontPlatform = "Mac"
+	FindComputerInventoryCollection200ApplicationXMLFontsFontPlatformWindows FindComputerInventoryCollection200ApplicationXMLFontsFontPlatform = "Windows"
+)
+
+func (e FindComputerInventoryCollection200ApplicationXMLFontsFontPlatform) ToPointer() *FindComputerInventoryCollection200ApplicationXMLFontsFontPlatform {
+	return &e
+}
+
+func (e *FindComputerInventoryCollection200ApplicationXMLFontsFontPlatform) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Mac":
+		fallthrough
+	case "Windows":
+		*e = FindComputerInventoryCollection200ApplicationXMLFontsFontPlatform(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindComputerInventoryCollection200ApplicationXMLFontsFontPlatform: %v", v)
+	}
+}
+
+type FindComputerInventoryCollection200ApplicationXMLFontsFont struct {
+	Path     *string
+	Platform *FindComputerInventoryCollection200ApplicationXMLFontsFontPlatform
+}
+
+type FindComputerInventoryCollection200ApplicationXMLFonts struct {
+	Font *FindComputerInventoryCollection200ApplicationXMLFontsFont
+}
+
+type FindComputerInventoryCollection200ApplicationXMLPluginsPluginPlatform string
+
+const (
+	FindComputerInventoryCollection200ApplicationXMLPluginsPluginPlatformMac     FindComputerInventoryCollection200ApplicationXMLPluginsPluginPlatform = "Mac"
+	FindComputerInventoryCollection200ApplicationXMLPluginsPluginPlatformWindows FindComputerInventoryCollection200ApplicationXMLPluginsPluginPlatform = "Windows"
+)
+
+func (e FindComputerInventoryCollection200ApplicationXMLPluginsPluginPlatform) ToPointer() *FindComputerInventoryCollection200ApplicationXMLPluginsPluginPlatform {
+	return &e
+}
+
+func (e *FindComputerInventoryCollection200ApplicationXMLPluginsPluginPlatform) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Mac":
+		fallthrough
+	case "Windows":
+		*e = FindComputerInventoryCollection200ApplicationXMLPluginsPluginPlatform(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindComputerInventoryCollection200ApplicationXMLPluginsPluginPlatform: %v", v)
+	}
+}
+
+type FindComputerInventoryCollection200ApplicationXMLPluginsPlugin struct {
+	Path     *string
+	Platform *FindComputerInventoryCollection200ApplicationXMLPluginsPluginPlatform
+}
+
+type FindComputerInventoryCollection200ApplicationXMLPlugins struct {
+	Plugin *FindComputerInventoryCollection200ApplicationXMLPluginsPlugin
+}
+
+// FindComputerInventoryCollection200ApplicationXML - OK
+type FindComputerInventoryCollection200ApplicationXML struct {
+	ActiveServices                *bool
+	Applications                  []FindComputerInventoryCollection200ApplicationXMLApplications
+	AvailableSoftwareUpdates      *bool
+	ComputerLocationInformation   *bool
+	Fonts                         []FindComputerInventoryCollection200ApplicationXMLFonts
+	HiddenAccounts                *bool
+	HomeDirectorySizes            *bool
+	InclueApplications            *bool
+	InclueFonts                   *bool
+	IncluePlugins                 *bool
+	LocalUserAccounts             *bool
+	MobileDeviceAppPurchasingInfo *bool
+	PackageReceipts               *bool
+	Plugins                       []FindComputerInventoryCollection200ApplicationXMLPlugins
+	Printers                      *bool
+}
+
+type FindComputerInventoryCollection200ApplicationJSONApplicationsApplicationPlatform string
+
+const (
+	FindComputerInventoryCollection200ApplicationJSONApplicationsApplicationPlatformMac     FindComputerInventoryCollection200ApplicationJSONApplicationsApplicationPlatform = "Mac"
+	FindComputerInventoryCollection200ApplicationJSONApplicationsApplicationPlatformWindows FindComputerInventoryCollection200ApplicationJSONApplicationsApplicationPlatform = "Windows"
+)
+
+func (e FindComputerInventoryCollection200ApplicationJSONApplicationsApplicationPlatform) ToPointer() *FindComputerInventoryCollection200ApplicationJSONApplicationsApplicationPlatform {
+	return &e
+}
+
+func (e *FindComputerInventoryCollection200ApplicationJSONApplicationsApplicationPlatform) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Mac":
+		fallthrough
+	case "Windows":
+		*e = FindComputerInventoryCollection200ApplicationJSONApplicationsApplicationPlatform(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindComputerInventoryCollection200ApplicationJSONApplicationsApplicationPlatform: %v", v)
+	}
+}
+
+type FindComputerInventoryCollection200ApplicationJSONApplicationsApplication struct {
+	Path     *string                                                                           `json:"path,omitempty"`
+	Platform *FindComputerInventoryCollection200ApplicationJSONApplicationsApplicationPlatform `json:"platform,omitempty"`
+}
+
+type FindComputerInventoryCollection200ApplicationJSONApplications struct {
+	Application *FindComputerInventoryCollection200ApplicationJSONApplicationsApplication `json:"application,omitempty"`
+}
+
+type FindComputerInventoryCollection200ApplicationJSONFontsFontPlatform string
+
+const (
+	FindComputerInventoryCollection200ApplicationJSONFontsFontPlatformMac     FindComputerInventoryCollection200ApplicationJSONFontsFontPlatform = "Mac"
+	FindComputerInventoryCollection200ApplicationJSONFontsFontPlatformWindows FindComputerInventoryCollection200ApplicationJSONFontsFontPlatform = "Windows"
+)
+
+func (e FindComputerInventoryCollection200ApplicationJSONFontsFontPlatform) ToPointer() *FindComputerInventoryCollection200ApplicationJSONFontsFontPlatform {
+	return &e
+}
+
+func (e *FindComputerInventoryCollection200ApplicationJSONFontsFontPlatform) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Mac":
+		fallthrough
+	case "Windows":
+		*e = FindComputerInventoryCollection200ApplicationJSONFontsFontPlatform(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindComputerInventoryCollection200ApplicationJSONFontsFontPlatform: %v", v)
+	}
+}
+
+type FindComputerInventoryCollection200ApplicationJSONFontsFont struct {
+	Path     *string                                                             `json:"path,omitempty"`
+	Platform *FindComputerInventoryCollection200ApplicationJSONFontsFontPlatform `json:"platform,omitempty"`
+}
+
+type FindComputerInventoryCollection200ApplicationJSONFonts struct {
+	Font *FindComputerInventoryCollection200ApplicationJSONFontsFont `json:"font,omitempty"`
+}
+
+type FindComputerInventoryCollection200ApplicationJSONPluginsPluginPlatform string
+
+const (
+	FindComputerInventoryCollection200ApplicationJSONPluginsPluginPlatformMac     FindComputerInventoryCollection200ApplicationJSONPluginsPluginPlatform = "Mac"
+	FindComputerInventoryCollection200ApplicationJSONPluginsPluginPlatformWindows FindComputerInventoryCollection200ApplicationJSONPluginsPluginPlatform = "Windows"
+)
+
+func (e FindComputerInventoryCollection200ApplicationJSONPluginsPluginPlatform) ToPointer() *FindComputerInventoryCollection200ApplicationJSONPluginsPluginPlatform {
+	return &e
+}
+
+func (e *FindComputerInventoryCollection200ApplicationJSONPluginsPluginPlatform) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Mac":
+		fallthrough
+	case "Windows":
+		*e = FindComputerInventoryCollection200ApplicationJSONPluginsPluginPlatform(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindComputerInventoryCollection200ApplicationJSONPluginsPluginPlatform: %v", v)
+	}
+}
+
+type FindComputerInventoryCollection200ApplicationJSONPluginsPlugin struct {
+	Path     *string                                                                 `json:"path,omitempty"`
+	Platform *FindComputerInventoryCollection200ApplicationJSONPluginsPluginPlatform `json:"platform,omitempty"`
+}
+
+type FindComputerInventoryCollection200ApplicationJSONPlugins struct {
+	Plugin *FindComputerInventoryCollection200ApplicationJSONPluginsPlugin `json:"plugin,omitempty"`
+}
+
+// FindComputerInventoryCollection200ApplicationJSON - OK
+type FindComputerInventoryCollection200ApplicationJSON struct {
+	ActiveServices                *bool                                                           `json:"active_services,omitempty"`
+	Applications                  []FindComputerInventoryCollection200ApplicationJSONApplications `json:"applications,omitempty"`
+	AvailableSoftwareUpdates      *bool                                                           `json:"available_software_updates,omitempty"`
+	ComputerLocationInformation   *bool                                                           `json:"computer_location_information,omitempty"`
+	Fonts                         []FindComputerInventoryCollection200ApplicationJSONFonts        `json:"fonts,omitempty"`
+	HiddenAccounts                *bool                                                           `json:"hidden_accounts,omitempty"`
+	HomeDirectorySizes            *bool                                                           `json:"home_directory_sizes,omitempty"`
+	InclueApplications            *bool                                                           `json:"inclue_applications,omitempty"`
+	InclueFonts                   *bool                                                           `json:"inclue_fonts,omitempty"`
+	IncluePlugins                 *bool                                                           `json:"inclue_plugins,omitempty"`
+	LocalUserAccounts             *bool                                                           `json:"local_user_accounts,omitempty"`
+	MobileDeviceAppPurchasingInfo *bool                                                           `json:"mobile_device_app_purchasing_info,omitempty"`
+	PackageReceipts               *bool                                                           `json:"package_receipts,omitempty"`
+	Plugins                       []FindComputerInventoryCollection200ApplicationJSONPlugins      `json:"plugins,omitempty"`
+	Printers                      *bool                                                           `json:"printers,omitempty"`
+}
 
 type FindComputerInventoryCollectionResponse struct {
 	Body        []byte
@@ -13,5 +268,5 @@ type FindComputerInventoryCollectionResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ComputerInventoryCollection *shared.ComputerInventoryCollection
+	FindComputerInventoryCollection200ApplicationJSONObject *FindComputerInventoryCollection200ApplicationJSON
 }

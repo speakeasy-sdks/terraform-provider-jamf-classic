@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,109 @@ type FindPeripheralTypesByIDRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+type FindPeripheralTypesByID200ApplicationXMLFieldsFieldChoices struct {
+	Choice *string
+}
+
+type FindPeripheralTypesByID200ApplicationXMLFieldsFieldType string
+
+const (
+	FindPeripheralTypesByID200ApplicationXMLFieldsFieldTypeMenu FindPeripheralTypesByID200ApplicationXMLFieldsFieldType = "menu"
+	FindPeripheralTypesByID200ApplicationXMLFieldsFieldTypeText FindPeripheralTypesByID200ApplicationXMLFieldsFieldType = "text"
+)
+
+func (e FindPeripheralTypesByID200ApplicationXMLFieldsFieldType) ToPointer() *FindPeripheralTypesByID200ApplicationXMLFieldsFieldType {
+	return &e
+}
+
+func (e *FindPeripheralTypesByID200ApplicationXMLFieldsFieldType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "menu":
+		fallthrough
+	case "text":
+		*e = FindPeripheralTypesByID200ApplicationXMLFieldsFieldType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPeripheralTypesByID200ApplicationXMLFieldsFieldType: %v", v)
+	}
+}
+
+type FindPeripheralTypesByID200ApplicationXMLFieldsField struct {
+	Choices []FindPeripheralTypesByID200ApplicationXMLFieldsFieldChoices
+	Name    *string
+	Order   *int64
+	Type    *FindPeripheralTypesByID200ApplicationXMLFieldsFieldType
+}
+
+type FindPeripheralTypesByID200ApplicationXMLFields struct {
+	Field *FindPeripheralTypesByID200ApplicationXMLFieldsField
+}
+
+// FindPeripheralTypesByID200ApplicationXML - OK
+type FindPeripheralTypesByID200ApplicationXML struct {
+	Fields []FindPeripheralTypesByID200ApplicationXMLFields
+	ID     *int64
+	Name   string
+}
+
+type FindPeripheralTypesByID200ApplicationJSONFieldsFieldChoices struct {
+	Choice *string `json:"choice,omitempty"`
+}
+
+type FindPeripheralTypesByID200ApplicationJSONFieldsFieldType string
+
+const (
+	FindPeripheralTypesByID200ApplicationJSONFieldsFieldTypeMenu FindPeripheralTypesByID200ApplicationJSONFieldsFieldType = "menu"
+	FindPeripheralTypesByID200ApplicationJSONFieldsFieldTypeText FindPeripheralTypesByID200ApplicationJSONFieldsFieldType = "text"
+)
+
+func (e FindPeripheralTypesByID200ApplicationJSONFieldsFieldType) ToPointer() *FindPeripheralTypesByID200ApplicationJSONFieldsFieldType {
+	return &e
+}
+
+func (e *FindPeripheralTypesByID200ApplicationJSONFieldsFieldType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "menu":
+		fallthrough
+	case "text":
+		*e = FindPeripheralTypesByID200ApplicationJSONFieldsFieldType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPeripheralTypesByID200ApplicationJSONFieldsFieldType: %v", v)
+	}
+}
+
+type FindPeripheralTypesByID200ApplicationJSONFieldsField struct {
+	Choices []FindPeripheralTypesByID200ApplicationJSONFieldsFieldChoices `json:"choices,omitempty"`
+	Name    *string                                                       `json:"name,omitempty"`
+	Order   *int64                                                        `json:"order,omitempty"`
+	Type    *FindPeripheralTypesByID200ApplicationJSONFieldsFieldType     `json:"type,omitempty"`
+}
+
+type FindPeripheralTypesByID200ApplicationJSONFields struct {
+	Field *FindPeripheralTypesByID200ApplicationJSONFieldsField `json:"field,omitempty"`
+}
+
+// FindPeripheralTypesByID200ApplicationJSON - OK
+type FindPeripheralTypesByID200ApplicationJSON struct {
+	Fields []FindPeripheralTypesByID200ApplicationJSONFields `json:"fields,omitempty"`
+	ID     *int64                                            `json:"id,omitempty"`
+	Name   string                                            `json:"name"`
+}
+
 type FindPeripheralTypesByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	PeripheralType *shared.PeripheralType
+	FindPeripheralTypesByID200ApplicationJSONObject *FindPeripheralTypesByID200ApplicationJSON
 }

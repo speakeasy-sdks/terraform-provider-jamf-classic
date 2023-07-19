@@ -3,9 +3,28 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindEBooks200ApplicationXMLEbook struct {
+	ID   *int64
+	Name *string
+}
+
+type FindEBooks200ApplicationXML struct {
+	Ebook *FindEBooks200ApplicationXMLEbook
+	Size  *int64
+}
+
+type FindEBooks200ApplicationJSONEbook struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindEBooks200ApplicationJSON struct {
+	Ebook *FindEBooks200ApplicationJSONEbook `json:"ebook,omitempty"`
+	Size  *int64                             `json:"size,omitempty"`
+}
 
 type FindEBooksResponse struct {
 	Body        []byte
@@ -13,5 +32,5 @@ type FindEBooksResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Ebooks []shared.Ebooks
+	FindEBooks200ApplicationJSONObjects []FindEBooks200ApplicationJSON
 }

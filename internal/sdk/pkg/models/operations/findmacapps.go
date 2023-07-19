@@ -3,9 +3,28 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindMacapps200ApplicationXMLMacApplication struct {
+	ID *int64
+	// Name of the application
+	Name *string
+}
+
+type FindMacapps200ApplicationXML struct {
+	MacApplication *FindMacapps200ApplicationXMLMacApplication
+}
+
+type FindMacapps200ApplicationJSONMacApplication struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the application
+	Name *string `json:"name,omitempty"`
+}
+
+type FindMacapps200ApplicationJSON struct {
+	MacApplication *FindMacapps200ApplicationJSONMacApplication `json:"mac_application,omitempty"`
+}
 
 type FindMacappsResponse struct {
 	Body        []byte
@@ -13,5 +32,5 @@ type FindMacappsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	MacApplications []shared.MacApplications
+	FindMacapps200ApplicationJSONObjects []FindMacapps200ApplicationJSON
 }

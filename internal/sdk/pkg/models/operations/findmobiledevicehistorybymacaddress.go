@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,547 @@ type FindMobileDeviceHistoryByMacAddressRequest struct {
 	Macaddress string `pathParam:"style=simple,explode=false,name=macaddress"`
 }
 
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsFailedApp struct {
+	ManagementStatus *string
+	Name             *string
+	Version          *string
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsFailed struct {
+	App *FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsFailedApp
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledAppStoreFromMobileDeviceAppCatalogManagementStatus string
+
+const (
+	FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledAppStoreFromMobileDeviceAppCatalogManagementStatusUnmanaged FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledAppStoreFromMobileDeviceAppCatalogManagementStatus = "Unmanaged"
+	FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledAppStoreFromMobileDeviceAppCatalogManagementStatusManaged   FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledAppStoreFromMobileDeviceAppCatalogManagementStatus = "Managed"
+)
+
+func (e FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledAppStoreFromMobileDeviceAppCatalogManagementStatus) ToPointer() *FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledAppStoreFromMobileDeviceAppCatalogManagementStatus {
+	return &e
+}
+
+func (e *FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledAppStoreFromMobileDeviceAppCatalogManagementStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Unmanaged":
+		fallthrough
+	case "Managed":
+		*e = FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledAppStoreFromMobileDeviceAppCatalogManagementStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledAppStoreFromMobileDeviceAppCatalogManagementStatus: %v", v)
+	}
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledAppStoreFromMobileDeviceAppCatalog struct {
+	BundleSize       *string
+	DynamicSize      *string
+	ManagementStatus *FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledAppStoreFromMobileDeviceAppCatalogManagementStatus
+	Name             *string
+	Version          *string
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledInHouseFromMobileDeviceAppCatalogManagementStatus string
+
+const (
+	FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledInHouseFromMobileDeviceAppCatalogManagementStatusUnmanaged FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledInHouseFromMobileDeviceAppCatalogManagementStatus = "Unmanaged"
+	FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledInHouseFromMobileDeviceAppCatalogManagementStatusManaged   FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledInHouseFromMobileDeviceAppCatalogManagementStatus = "Managed"
+)
+
+func (e FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledInHouseFromMobileDeviceAppCatalogManagementStatus) ToPointer() *FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledInHouseFromMobileDeviceAppCatalogManagementStatus {
+	return &e
+}
+
+func (e *FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledInHouseFromMobileDeviceAppCatalogManagementStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Unmanaged":
+		fallthrough
+	case "Managed":
+		*e = FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledInHouseFromMobileDeviceAppCatalogManagementStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledInHouseFromMobileDeviceAppCatalogManagementStatus: %v", v)
+	}
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledInHouseFromMobileDeviceAppCatalog struct {
+	BundleSize       *string
+	DynamicSize      *string
+	ManagementStatus *FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledInHouseFromMobileDeviceAppCatalogManagementStatus
+	Name             *string
+	Version          *string
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledOtherManagementStatus string
+
+const (
+	FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledOtherManagementStatusUnmanaged FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledOtherManagementStatus = "Unmanaged"
+	FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledOtherManagementStatusManaged   FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledOtherManagementStatus = "Managed"
+)
+
+func (e FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledOtherManagementStatus) ToPointer() *FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledOtherManagementStatus {
+	return &e
+}
+
+func (e *FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledOtherManagementStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Unmanaged":
+		fallthrough
+	case "Managed":
+		*e = FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledOtherManagementStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledOtherManagementStatus: %v", v)
+	}
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledOther struct {
+	BundleSize       *string
+	DynamicSize      *string
+	ManagementStatus *FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledOtherManagementStatus
+	Name             *string
+	Version          *string
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalled struct {
+	AppStoreFromMobileDeviceAppCatalog *FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledAppStoreFromMobileDeviceAppCatalog
+	InHouseFromMobileDeviceAppCatalog  *FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledInHouseFromMobileDeviceAppCatalog
+	Other                              *FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalledOther
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsPendingApp struct {
+	ManagementStatus *string
+	Name             *string
+	Version          *string
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsPending struct {
+	App *FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsPendingApp
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplications struct {
+	Failed    []FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsFailed
+	Installed []FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsInstalled
+	Pending   []FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplicationsPending
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLAuditsAudit struct {
+	DateTime      *string
+	DateTimeEpoch *int64
+	Event         *string
+	Username      *string
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLAudits struct {
+	Audit *FindMobileDeviceHistoryByMacAddress200ApplicationXMLAuditsAudit
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLEbooksFailed struct {
+	Author           *string
+	Kind             *string
+	ManagementStatus *string
+	Title            *string
+	Version          *string
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLEbooksInstalledIbookstore struct {
+	Author           *string
+	Kind             *string
+	ManagementStatus *string
+	Title            *string
+	Version          *string
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLEbooksInstalledInhouse struct {
+	Author           *string
+	Kind             *string
+	ManagementStatus *string
+	Title            *string
+	Version          *string
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLEbooksInstalled struct {
+	Ibookstore []FindMobileDeviceHistoryByMacAddress200ApplicationXMLEbooksInstalledIbookstore
+	Inhouse    []FindMobileDeviceHistoryByMacAddress200ApplicationXMLEbooksInstalledInhouse
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLEbooksPending struct {
+	Author           *string
+	Kind             *string
+	ManagementStatus *string
+	Title            *string
+	Version          *string
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLEbooks struct {
+	Failed    []FindMobileDeviceHistoryByMacAddress200ApplicationXMLEbooksFailed
+	Installed *FindMobileDeviceHistoryByMacAddress200ApplicationXMLEbooksInstalled
+	Pending   []FindMobileDeviceHistoryByMacAddress200ApplicationXMLEbooksPending
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLGeneral struct {
+	ID         *int64
+	MacAddress *string
+	// Name of the device
+	Name         *string
+	SerialNumber *string
+	Udid         *string
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLManagementCommandsCompletedCommand struct {
+	DateTimeCompleted      *string
+	DateTimeCompletedEpoch *int64
+	Name                   *string
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLManagementCommandsCompleted struct {
+	Command *FindMobileDeviceHistoryByMacAddress200ApplicationXMLManagementCommandsCompletedCommand
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLManagementCommandsFailedCommand struct {
+	DateTimeFailed      *string
+	DateTimeFailedEpoch *int64
+	DateTimeIssued      *string
+	DateTimeIssuedEpoch *string
+	Error               *string
+	Name                *string
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLManagementCommandsFailed struct {
+	Command *FindMobileDeviceHistoryByMacAddress200ApplicationXMLManagementCommandsFailedCommand
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLManagementCommandsPendingCommand struct {
+	DateTimeFailed      *string
+	DateTimeFailedEpoch *int64
+	DateTimeIssued      *string
+	DateTimeIssuedEpoch *string
+	Name                *string
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLManagementCommandsPending struct {
+	Command *FindMobileDeviceHistoryByMacAddress200ApplicationXMLManagementCommandsPendingCommand
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLManagementCommands struct {
+	Completed []FindMobileDeviceHistoryByMacAddress200ApplicationXMLManagementCommandsCompleted
+	Failed    []FindMobileDeviceHistoryByMacAddress200ApplicationXMLManagementCommandsFailed
+	Pending   []FindMobileDeviceHistoryByMacAddress200ApplicationXMLManagementCommandsPending
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLUserLocationLocation struct {
+	Building      *string
+	DateTime      *string
+	DateTimeEpoch *int64
+	Department    *string
+	EmailAddress  *string
+	FullName      *string
+	PhoneNumber   *string
+	Position      *string
+	Room          *string
+	Username      *string
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationXMLUserLocation struct {
+	Location *FindMobileDeviceHistoryByMacAddress200ApplicationXMLUserLocationLocation
+}
+
+// FindMobileDeviceHistoryByMacAddress200ApplicationXML - OK
+type FindMobileDeviceHistoryByMacAddress200ApplicationXML struct {
+	Applications       *FindMobileDeviceHistoryByMacAddress200ApplicationXMLApplications
+	Audits             []FindMobileDeviceHistoryByMacAddress200ApplicationXMLAudits
+	Ebooks             *FindMobileDeviceHistoryByMacAddress200ApplicationXMLEbooks
+	General            *FindMobileDeviceHistoryByMacAddress200ApplicationXMLGeneral
+	ManagementCommands *FindMobileDeviceHistoryByMacAddress200ApplicationXMLManagementCommands
+	UserLocation       []FindMobileDeviceHistoryByMacAddress200ApplicationXMLUserLocation
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsFailedApp struct {
+	ManagementStatus *string `json:"management_status,omitempty"`
+	Name             *string `json:"name,omitempty"`
+	Version          *string `json:"version,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsFailed struct {
+	App *FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsFailedApp `json:"app,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledAppStoreFromMobileDeviceAppCatalogManagementStatus string
+
+const (
+	FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledAppStoreFromMobileDeviceAppCatalogManagementStatusUnmanaged FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledAppStoreFromMobileDeviceAppCatalogManagementStatus = "Unmanaged"
+	FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledAppStoreFromMobileDeviceAppCatalogManagementStatusManaged   FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledAppStoreFromMobileDeviceAppCatalogManagementStatus = "Managed"
+)
+
+func (e FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledAppStoreFromMobileDeviceAppCatalogManagementStatus) ToPointer() *FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledAppStoreFromMobileDeviceAppCatalogManagementStatus {
+	return &e
+}
+
+func (e *FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledAppStoreFromMobileDeviceAppCatalogManagementStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Unmanaged":
+		fallthrough
+	case "Managed":
+		*e = FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledAppStoreFromMobileDeviceAppCatalogManagementStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledAppStoreFromMobileDeviceAppCatalogManagementStatus: %v", v)
+	}
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledAppStoreFromMobileDeviceAppCatalog struct {
+	BundleSize       *string                                                                                                                       `json:"bundle_size,omitempty"`
+	DynamicSize      *string                                                                                                                       `json:"dynamic_size,omitempty"`
+	ManagementStatus *FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledAppStoreFromMobileDeviceAppCatalogManagementStatus `json:"management_status,omitempty"`
+	Name             *string                                                                                                                       `json:"name,omitempty"`
+	Version          *string                                                                                                                       `json:"version,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledInHouseFromMobileDeviceAppCatalogManagementStatus string
+
+const (
+	FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledInHouseFromMobileDeviceAppCatalogManagementStatusUnmanaged FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledInHouseFromMobileDeviceAppCatalogManagementStatus = "Unmanaged"
+	FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledInHouseFromMobileDeviceAppCatalogManagementStatusManaged   FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledInHouseFromMobileDeviceAppCatalogManagementStatus = "Managed"
+)
+
+func (e FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledInHouseFromMobileDeviceAppCatalogManagementStatus) ToPointer() *FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledInHouseFromMobileDeviceAppCatalogManagementStatus {
+	return &e
+}
+
+func (e *FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledInHouseFromMobileDeviceAppCatalogManagementStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Unmanaged":
+		fallthrough
+	case "Managed":
+		*e = FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledInHouseFromMobileDeviceAppCatalogManagementStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledInHouseFromMobileDeviceAppCatalogManagementStatus: %v", v)
+	}
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledInHouseFromMobileDeviceAppCatalog struct {
+	BundleSize       *string                                                                                                                      `json:"bundle_size,omitempty"`
+	DynamicSize      *string                                                                                                                      `json:"dynamic_size,omitempty"`
+	ManagementStatus *FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledInHouseFromMobileDeviceAppCatalogManagementStatus `json:"management_status,omitempty"`
+	Name             *string                                                                                                                      `json:"name,omitempty"`
+	Version          *string                                                                                                                      `json:"version,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledOtherManagementStatus string
+
+const (
+	FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledOtherManagementStatusUnmanaged FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledOtherManagementStatus = "Unmanaged"
+	FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledOtherManagementStatusManaged   FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledOtherManagementStatus = "Managed"
+)
+
+func (e FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledOtherManagementStatus) ToPointer() *FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledOtherManagementStatus {
+	return &e
+}
+
+func (e *FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledOtherManagementStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Unmanaged":
+		fallthrough
+	case "Managed":
+		*e = FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledOtherManagementStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledOtherManagementStatus: %v", v)
+	}
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledOther struct {
+	BundleSize       *string                                                                                          `json:"bundle_size,omitempty"`
+	DynamicSize      *string                                                                                          `json:"dynamic_size,omitempty"`
+	ManagementStatus *FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledOtherManagementStatus `json:"management_status,omitempty"`
+	Name             *string                                                                                          `json:"name,omitempty"`
+	Version          *string                                                                                          `json:"version,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalled struct {
+	AppStoreFromMobileDeviceAppCatalog *FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledAppStoreFromMobileDeviceAppCatalog `json:"app_store_from_mobile_device_app_catalog,omitempty"`
+	InHouseFromMobileDeviceAppCatalog  *FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledInHouseFromMobileDeviceAppCatalog  `json:"in_house_from_mobile_device_app_catalog,omitempty"`
+	Other                              *FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalledOther                              `json:"other,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsPendingApp struct {
+	ManagementStatus *string `json:"management_status,omitempty"`
+	Name             *string `json:"name,omitempty"`
+	Version          *string `json:"version,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsPending struct {
+	App *FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsPendingApp `json:"app,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplications struct {
+	Failed    []FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsFailed    `json:"failed,omitempty"`
+	Installed []FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsInstalled `json:"installed,omitempty"`
+	Pending   []FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplicationsPending   `json:"pending,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONAuditsAudit struct {
+	DateTime      *string `json:"date_time,omitempty"`
+	DateTimeEpoch *int64  `json:"date_time_epoch,omitempty"`
+	Event         *string `json:"event,omitempty"`
+	Username      *string `json:"username,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONAudits struct {
+	Audit *FindMobileDeviceHistoryByMacAddress200ApplicationJSONAuditsAudit `json:"audit,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONEbooksFailed struct {
+	Author           *string `json:"author,omitempty"`
+	Kind             *string `json:"kind,omitempty"`
+	ManagementStatus *string `json:"management_status,omitempty"`
+	Title            *string `json:"title,omitempty"`
+	Version          *string `json:"version,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONEbooksInstalledIbookstore struct {
+	Author           *string `json:"author,omitempty"`
+	Kind             *string `json:"kind,omitempty"`
+	ManagementStatus *string `json:"management_status,omitempty"`
+	Title            *string `json:"title,omitempty"`
+	Version          *string `json:"version,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONEbooksInstalledInhouse struct {
+	Author           *string `json:"author,omitempty"`
+	Kind             *string `json:"kind,omitempty"`
+	ManagementStatus *string `json:"management_status,omitempty"`
+	Title            *string `json:"title,omitempty"`
+	Version          *string `json:"version,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONEbooksInstalled struct {
+	Ibookstore []FindMobileDeviceHistoryByMacAddress200ApplicationJSONEbooksInstalledIbookstore `json:"ibookstore,omitempty"`
+	Inhouse    []FindMobileDeviceHistoryByMacAddress200ApplicationJSONEbooksInstalledInhouse    `json:"inhouse,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONEbooksPending struct {
+	Author           *string `json:"author,omitempty"`
+	Kind             *string `json:"kind,omitempty"`
+	ManagementStatus *string `json:"management_status,omitempty"`
+	Title            *string `json:"title,omitempty"`
+	Version          *string `json:"version,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONEbooks struct {
+	Failed    []FindMobileDeviceHistoryByMacAddress200ApplicationJSONEbooksFailed   `json:"failed,omitempty"`
+	Installed *FindMobileDeviceHistoryByMacAddress200ApplicationJSONEbooksInstalled `json:"installed,omitempty"`
+	Pending   []FindMobileDeviceHistoryByMacAddress200ApplicationJSONEbooksPending  `json:"pending,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONGeneral struct {
+	ID         *int64  `json:"id,omitempty"`
+	MacAddress *string `json:"mac_address,omitempty"`
+	// Name of the device
+	Name         *string `json:"name,omitempty"`
+	SerialNumber *string `json:"serial_number,omitempty"`
+	Udid         *string `json:"udid,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONManagementCommandsCompletedCommand struct {
+	DateTimeCompleted      *string `json:"date_time_completed,omitempty"`
+	DateTimeCompletedEpoch *int64  `json:"date_time_completed_epoch,omitempty"`
+	Name                   *string `json:"name,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONManagementCommandsCompleted struct {
+	Command *FindMobileDeviceHistoryByMacAddress200ApplicationJSONManagementCommandsCompletedCommand `json:"command,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONManagementCommandsFailedCommand struct {
+	DateTimeFailed      *string `json:"date_time_failed,omitempty"`
+	DateTimeFailedEpoch *int64  `json:"date_time_failed_epoch,omitempty"`
+	DateTimeIssued      *string `json:"date_time_issued,omitempty"`
+	DateTimeIssuedEpoch *string `json:"date_time_issued_epoch,omitempty"`
+	Error               *string `json:"error,omitempty"`
+	Name                *string `json:"name,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONManagementCommandsFailed struct {
+	Command *FindMobileDeviceHistoryByMacAddress200ApplicationJSONManagementCommandsFailedCommand `json:"command,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONManagementCommandsPendingCommand struct {
+	DateTimeFailed      *string `json:"date_time_failed,omitempty"`
+	DateTimeFailedEpoch *int64  `json:"date_time_failed_epoch,omitempty"`
+	DateTimeIssued      *string `json:"date_time_issued,omitempty"`
+	DateTimeIssuedEpoch *string `json:"date_time_issued_epoch,omitempty"`
+	Name                *string `json:"name,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONManagementCommandsPending struct {
+	Command *FindMobileDeviceHistoryByMacAddress200ApplicationJSONManagementCommandsPendingCommand `json:"command,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONManagementCommands struct {
+	Completed []FindMobileDeviceHistoryByMacAddress200ApplicationJSONManagementCommandsCompleted `json:"completed,omitempty"`
+	Failed    []FindMobileDeviceHistoryByMacAddress200ApplicationJSONManagementCommandsFailed    `json:"failed,omitempty"`
+	Pending   []FindMobileDeviceHistoryByMacAddress200ApplicationJSONManagementCommandsPending   `json:"pending,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONUserLocationLocation struct {
+	Building      *string `json:"building,omitempty"`
+	DateTime      *string `json:"date_time,omitempty"`
+	DateTimeEpoch *int64  `json:"date_time_epoch,omitempty"`
+	Department    *string `json:"department,omitempty"`
+	EmailAddress  *string `json:"email_address,omitempty"`
+	FullName      *string `json:"full_name,omitempty"`
+	PhoneNumber   *string `json:"phone_number,omitempty"`
+	Position      *string `json:"position,omitempty"`
+	Room          *string `json:"room,omitempty"`
+	Username      *string `json:"username,omitempty"`
+}
+
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSONUserLocation struct {
+	Location *FindMobileDeviceHistoryByMacAddress200ApplicationJSONUserLocationLocation `json:"location,omitempty"`
+}
+
+// FindMobileDeviceHistoryByMacAddress200ApplicationJSON - OK
+type FindMobileDeviceHistoryByMacAddress200ApplicationJSON struct {
+	Applications       *FindMobileDeviceHistoryByMacAddress200ApplicationJSONApplications       `json:"applications,omitempty"`
+	Audits             []FindMobileDeviceHistoryByMacAddress200ApplicationJSONAudits            `json:"audits,omitempty"`
+	Ebooks             *FindMobileDeviceHistoryByMacAddress200ApplicationJSONEbooks             `json:"ebooks,omitempty"`
+	General            *FindMobileDeviceHistoryByMacAddress200ApplicationJSONGeneral            `json:"general,omitempty"`
+	ManagementCommands *FindMobileDeviceHistoryByMacAddress200ApplicationJSONManagementCommands `json:"management_commands,omitempty"`
+	UserLocation       []FindMobileDeviceHistoryByMacAddress200ApplicationJSONUserLocation      `json:"user_location,omitempty"`
+}
+
 type FindMobileDeviceHistoryByMacAddressResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	MobileDeviceHistory *shared.MobileDeviceHistory
+	FindMobileDeviceHistoryByMacAddress200ApplicationJSONObject *FindMobileDeviceHistoryByMacAddress200ApplicationJSON
 }

@@ -3,9 +3,30 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindSites200ApplicationXMLSite struct {
+	ID *int64
+	// Name of the site
+	Name string
+}
+
+type FindSites200ApplicationXML struct {
+	Site *FindSites200ApplicationXMLSite
+	Size *int64
+}
+
+type FindSites200ApplicationJSONSite struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the site
+	Name string `json:"name"`
+}
+
+type FindSites200ApplicationJSON struct {
+	Site *FindSites200ApplicationJSONSite `json:"site,omitempty"`
+	Size *int64                           `json:"size,omitempty"`
+}
 
 type FindSitesResponse struct {
 	Body        []byte
@@ -13,5 +34,5 @@ type FindSitesResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Sites []shared.Sites
+	FindSites200ApplicationJSONObjects []FindSites200ApplicationJSON
 }

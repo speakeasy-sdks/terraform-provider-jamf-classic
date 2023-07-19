@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -16,11 +15,55 @@ type FindComputerApplicationUsageByMacAddressRequest struct {
 	StartDate string `pathParam:"style=simple,explode=false,name=start_date"`
 }
 
+type FindComputerApplicationUsageByMacAddress200ApplicationXMLUsageAppsApp struct {
+	// Number of minutes application was in the foreground
+	Foreground *int64
+	Name       *string
+	// Number of minutes the application was open
+	Open    *int64
+	Version *string
+}
+
+type FindComputerApplicationUsageByMacAddress200ApplicationXMLUsageApps struct {
+	App *FindComputerApplicationUsageByMacAddress200ApplicationXMLUsageAppsApp
+}
+
+type FindComputerApplicationUsageByMacAddress200ApplicationXMLUsage struct {
+	Apps []FindComputerApplicationUsageByMacAddress200ApplicationXMLUsageApps
+	Date *string
+}
+
+type FindComputerApplicationUsageByMacAddress200ApplicationXML struct {
+	Usage *FindComputerApplicationUsageByMacAddress200ApplicationXMLUsage
+}
+
+type FindComputerApplicationUsageByMacAddress200ApplicationJSONUsageAppsApp struct {
+	// Number of minutes application was in the foreground
+	Foreground *int64  `json:"foreground,omitempty"`
+	Name       *string `json:"name,omitempty"`
+	// Number of minutes the application was open
+	Open    *int64  `json:"open,omitempty"`
+	Version *string `json:"version,omitempty"`
+}
+
+type FindComputerApplicationUsageByMacAddress200ApplicationJSONUsageApps struct {
+	App *FindComputerApplicationUsageByMacAddress200ApplicationJSONUsageAppsApp `json:"app,omitempty"`
+}
+
+type FindComputerApplicationUsageByMacAddress200ApplicationJSONUsage struct {
+	Apps []FindComputerApplicationUsageByMacAddress200ApplicationJSONUsageApps `json:"apps,omitempty"`
+	Date *string                                                               `json:"date,omitempty"`
+}
+
+type FindComputerApplicationUsageByMacAddress200ApplicationJSON struct {
+	Usage *FindComputerApplicationUsageByMacAddress200ApplicationJSONUsage `json:"usage,omitempty"`
+}
+
 type FindComputerApplicationUsageByMacAddressResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ComputerApplicationUsage []shared.ComputerApplicationUsage
+	FindComputerApplicationUsageByMacAddress200ApplicationJSONObjects []FindComputerApplicationUsageByMacAddress200ApplicationJSON
 }

@@ -3,9 +3,34 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindNetworkSegments200ApplicationXMLNetworkSegment struct {
+	EndingAddress *string
+	ID            *int64
+	// Name of the network segment
+	Name            *string
+	StartingAddress *string
+}
+
+type FindNetworkSegments200ApplicationXML struct {
+	NetworkSegment *FindNetworkSegments200ApplicationXMLNetworkSegment
+	Size           *int64
+}
+
+type FindNetworkSegments200ApplicationJSONNetworkSegment struct {
+	EndingAddress *string `json:"ending_address,omitempty"`
+	ID            *int64  `json:"id,omitempty"`
+	// Name of the network segment
+	Name            *string `json:"name,omitempty"`
+	StartingAddress *string `json:"starting_address,omitempty"`
+}
+
+type FindNetworkSegments200ApplicationJSON struct {
+	NetworkSegment *FindNetworkSegments200ApplicationJSONNetworkSegment `json:"network_segment,omitempty"`
+	Size           *int64                                               `json:"size,omitempty"`
+}
 
 type FindNetworkSegmentsResponse struct {
 	Body        []byte
@@ -13,5 +38,5 @@ type FindNetworkSegmentsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	NetworkSegments []shared.NetworkSegments
+	FindNetworkSegments200ApplicationJSONObjects []FindNetworkSegments200ApplicationJSON
 }

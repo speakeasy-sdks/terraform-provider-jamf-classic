@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,27 @@ type FindPatchInternalSourcesByIDRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+// FindPatchInternalSourcesByID200ApplicationXML - OK
+type FindPatchInternalSourcesByID200ApplicationXML struct {
+	Enabled  *bool
+	Endpoint *string
+	ID       *int64
+	Name     *string
+}
+
+// FindPatchInternalSourcesByID200ApplicationJSON - OK
+type FindPatchInternalSourcesByID200ApplicationJSON struct {
+	Enabled  *bool   `json:"enabled,omitempty"`
+	Endpoint *string `json:"endpoint,omitempty"`
+	ID       *int64  `json:"id,omitempty"`
+	Name     *string `json:"name,omitempty"`
+}
+
 type FindPatchInternalSourcesByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	PatchInternalSource *shared.PatchInternalSource
+	FindPatchInternalSourcesByID200ApplicationJSONObject *FindPatchInternalSourcesByID200ApplicationJSON
 }

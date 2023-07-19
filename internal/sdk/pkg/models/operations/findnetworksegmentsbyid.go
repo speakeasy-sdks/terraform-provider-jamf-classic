@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,45 @@ type FindNetworkSegmentsByIDRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+// FindNetworkSegmentsByID200ApplicationXML - OK
+type FindNetworkSegmentsByID200ApplicationXML struct {
+	Building           *string
+	Department         *string
+	DistributionPoint  *string
+	DistributionServer *string
+	EndingAddress      string
+	ID                 *int64
+	// Name of the network segment
+	Name                string
+	OverrideBuildings   *bool
+	OverrideDepartments *bool
+	StartingAddress     string
+	SwuServer           *string
+	URL                 *string
+}
+
+// FindNetworkSegmentsByID200ApplicationJSON - OK
+type FindNetworkSegmentsByID200ApplicationJSON struct {
+	Building           *string `json:"building,omitempty"`
+	Department         *string `json:"department,omitempty"`
+	DistributionPoint  *string `json:"distribution_point,omitempty"`
+	DistributionServer *string `json:"distribution_server,omitempty"`
+	EndingAddress      string  `json:"ending_address"`
+	ID                 *int64  `json:"id,omitempty"`
+	// Name of the network segment
+	Name                string  `json:"name"`
+	OverrideBuildings   *bool   `json:"override_buildings,omitempty"`
+	OverrideDepartments *bool   `json:"override_departments,omitempty"`
+	StartingAddress     string  `json:"starting_address"`
+	SwuServer           *string `json:"swu_server,omitempty"`
+	URL                 *string `json:"url,omitempty"`
+}
+
 type FindNetworkSegmentsByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	NetworkSegment *shared.NetworkSegment
+	FindNetworkSegmentsByID200ApplicationJSONObject *FindNetworkSegmentsByID200ApplicationJSON
 }

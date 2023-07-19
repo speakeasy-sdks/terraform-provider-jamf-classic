@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,681 @@ type FindOsxConfigurationProfilesByNameRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+type FindOsxConfigurationProfilesByName200ApplicationXMLGeneralCategory struct {
+	ID *int64
+	// Name of the category
+	Name string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLGeneralDistributionMethod string
+
+const (
+	FindOsxConfigurationProfilesByName200ApplicationXMLGeneralDistributionMethodInstallAutomatically       FindOsxConfigurationProfilesByName200ApplicationXMLGeneralDistributionMethod = "Install Automatically"
+	FindOsxConfigurationProfilesByName200ApplicationXMLGeneralDistributionMethodMakeAvailableInSelfService FindOsxConfigurationProfilesByName200ApplicationXMLGeneralDistributionMethod = "Make Available in Self Service"
+)
+
+func (e FindOsxConfigurationProfilesByName200ApplicationXMLGeneralDistributionMethod) ToPointer() *FindOsxConfigurationProfilesByName200ApplicationXMLGeneralDistributionMethod {
+	return &e
+}
+
+func (e *FindOsxConfigurationProfilesByName200ApplicationXMLGeneralDistributionMethod) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Install Automatically":
+		fallthrough
+	case "Make Available in Self Service":
+		*e = FindOsxConfigurationProfilesByName200ApplicationXMLGeneralDistributionMethod(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindOsxConfigurationProfilesByName200ApplicationXMLGeneralDistributionMethod: %v", v)
+	}
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLGeneralLevel string
+
+const (
+	FindOsxConfigurationProfilesByName200ApplicationXMLGeneralLevelComputer FindOsxConfigurationProfilesByName200ApplicationXMLGeneralLevel = "computer"
+	FindOsxConfigurationProfilesByName200ApplicationXMLGeneralLevelUser     FindOsxConfigurationProfilesByName200ApplicationXMLGeneralLevel = "user"
+)
+
+func (e FindOsxConfigurationProfilesByName200ApplicationXMLGeneralLevel) ToPointer() *FindOsxConfigurationProfilesByName200ApplicationXMLGeneralLevel {
+	return &e
+}
+
+func (e *FindOsxConfigurationProfilesByName200ApplicationXMLGeneralLevel) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "computer":
+		fallthrough
+	case "user":
+		*e = FindOsxConfigurationProfilesByName200ApplicationXMLGeneralLevel(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindOsxConfigurationProfilesByName200ApplicationXMLGeneralLevel: %v", v)
+	}
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLGeneralSite struct {
+	ID *int64
+	// Name of the site
+	Name string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLGeneral struct {
+	Category           *FindOsxConfigurationProfilesByName200ApplicationXMLGeneralCategory
+	Description        *string
+	DistributionMethod *FindOsxConfigurationProfilesByName200ApplicationXMLGeneralDistributionMethod
+	ID                 *int64
+	Level              *FindOsxConfigurationProfilesByName200ApplicationXMLGeneralLevel
+	// Name of the configuration profile
+	Name             string
+	Payloads         *string
+	RedeployOnUpdate *string
+	Site             *FindOsxConfigurationProfilesByName200ApplicationXMLGeneralSite
+	UserRemovable    *bool
+	UUID             *string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeBuildingsBuilding struct {
+	ID   *int64
+	Name *string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeBuildings struct {
+	Building *FindOsxConfigurationProfilesByName200ApplicationXMLScopeBuildingsBuilding
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeComputerGroupsComputerGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeComputerGroups struct {
+	ComputerGroup *FindOsxConfigurationProfilesByName200ApplicationXMLScopeComputerGroupsComputerGroup
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeComputersComputer struct {
+	ID *int64
+	// Name of the computer
+	Name *string
+	Udid *string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeComputers struct {
+	Computer *FindOsxConfigurationProfilesByName200ApplicationXMLScopeComputersComputer
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeDepartmentsDepartment struct {
+	ID   *int64
+	Name *string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeDepartments struct {
+	Department *FindOsxConfigurationProfilesByName200ApplicationXMLScopeDepartmentsDepartment
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsBuildingsBuilding struct {
+	ID   *int64
+	Name *string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsBuildings struct {
+	Building *FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsBuildingsBuilding
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsComputerGroupsComputerGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsComputerGroups struct {
+	ComputerGroup *FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsComputerGroupsComputerGroup
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsComputersComputer struct {
+	ID *int64
+	// Name of the computer
+	Name *string
+	Udid *string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsComputers struct {
+	Computer *FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsComputersComputer
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsDepartmentsDepartment struct {
+	ID   *int64
+	Name *string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsDepartments struct {
+	Department *FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsDepartmentsDepartment
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsIbeaconsIbeacon struct {
+	ID   *int64
+	Name *string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsIbeacons struct {
+	Ibeacon *FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsIbeaconsIbeacon
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsJssUserGroupsJssUserGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsJssUserGroups struct {
+	JssUserGroup *FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsJssUserGroupsJssUserGroup
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsJssUsersJssUser struct {
+	ID   *int64
+	Name *string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsJssUsers struct {
+	JssUser *FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsJssUsersJssUser
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsNetworkSegmentsNetworkSegment struct {
+	ID *int64
+	// Name of the network segment
+	Name *string
+	UID  *string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsNetworkSegments struct {
+	NetworkSegment *FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsNetworkSegmentsNetworkSegment
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsUserGroupsUserGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsUserGroups struct {
+	UserGroup *FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsUserGroupsUserGroup
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsUsersUser struct {
+	Name *string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsUsers struct {
+	User *FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsUsersUser
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusions struct {
+	Buildings       []FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsBuildings
+	ComputerGroups  []FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsComputerGroups
+	Computers       []FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsComputers
+	Departments     []FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsDepartments
+	Ibeacons        []FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsIbeacons
+	JssUserGroups   []FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsJssUserGroups
+	JssUsers        []FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsJssUsers
+	NetworkSegments []FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsNetworkSegments
+	UserGroups      []FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsUserGroups
+	Users           []FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusionsUsers
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeJssUserGroupsJssUserGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeJssUserGroups struct {
+	JssUserGroup *FindOsxConfigurationProfilesByName200ApplicationXMLScopeJssUserGroupsJssUserGroup
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeJssUsersUsers struct {
+	ID   *int64
+	Name *string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeJssUsers struct {
+	Users *FindOsxConfigurationProfilesByName200ApplicationXMLScopeJssUsersUsers
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeLimitationsIbeaconsIbeacon struct {
+	ID   *int64
+	Name *string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeLimitationsIbeacons struct {
+	Ibeacon *FindOsxConfigurationProfilesByName200ApplicationXMLScopeLimitationsIbeaconsIbeacon
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeLimitationsNetworkSegmentsNetworkSegment struct {
+	ID   *int64
+	Name *string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeLimitationsNetworkSegments struct {
+	NetworkSegment *FindOsxConfigurationProfilesByName200ApplicationXMLScopeLimitationsNetworkSegmentsNetworkSegment
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeLimitationsUserGroupsUserGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeLimitationsUserGroups struct {
+	UserGroup *FindOsxConfigurationProfilesByName200ApplicationXMLScopeLimitationsUserGroupsUserGroup
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeLimitationsUsersUser struct {
+	ID   *int64
+	Name *string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeLimitationsUsers struct {
+	User *FindOsxConfigurationProfilesByName200ApplicationXMLScopeLimitationsUsersUser
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScopeLimitations struct {
+	Ibeacons        []FindOsxConfigurationProfilesByName200ApplicationXMLScopeLimitationsIbeacons
+	NetworkSegments []FindOsxConfigurationProfilesByName200ApplicationXMLScopeLimitationsNetworkSegments
+	UserGroups      []FindOsxConfigurationProfilesByName200ApplicationXMLScopeLimitationsUserGroups
+	Users           []FindOsxConfigurationProfilesByName200ApplicationXMLScopeLimitationsUsers
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLScope struct {
+	AllComputers   *bool
+	AllJssUsers    *bool
+	Buildings      []FindOsxConfigurationProfilesByName200ApplicationXMLScopeBuildings
+	ComputerGroups []FindOsxConfigurationProfilesByName200ApplicationXMLScopeComputerGroups
+	Computers      []FindOsxConfigurationProfilesByName200ApplicationXMLScopeComputers
+	Departments    []FindOsxConfigurationProfilesByName200ApplicationXMLScopeDepartments
+	Exclusions     *FindOsxConfigurationProfilesByName200ApplicationXMLScopeExclusions
+	JssUserGroups  []FindOsxConfigurationProfilesByName200ApplicationXMLScopeJssUserGroups
+	JssUsers       []FindOsxConfigurationProfilesByName200ApplicationXMLScopeJssUsers
+	Limitations    *FindOsxConfigurationProfilesByName200ApplicationXMLScopeLimitations
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLSelfServiceSelfServiceCategoriesCategory struct {
+	DisplayIn *bool
+	FeatureIn *bool
+	ID        *int64
+	Name      *string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLSelfServiceSelfServiceCategories struct {
+	Category *FindOsxConfigurationProfilesByName200ApplicationXMLSelfServiceSelfServiceCategoriesCategory
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLSelfServiceSelfServiceIcon struct {
+	Data *string
+	ID   *int64
+	URI  *string
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationXMLSelfService struct {
+	FeatureOnMainPage           *bool
+	ForceUsersToViewDescription *bool
+	InstallButtonText           *string
+	Notification                *string
+	NotificationMessage         *string
+	NotificationSubject         *string
+	SelfServiceCategories       *FindOsxConfigurationProfilesByName200ApplicationXMLSelfServiceSelfServiceCategories
+	SelfServiceDescription      *string
+	SelfServiceIcon             *FindOsxConfigurationProfilesByName200ApplicationXMLSelfServiceSelfServiceIcon
+}
+
+// FindOsxConfigurationProfilesByName200ApplicationXML - OK
+type FindOsxConfigurationProfilesByName200ApplicationXML struct {
+	General     *FindOsxConfigurationProfilesByName200ApplicationXMLGeneral
+	Scope       *FindOsxConfigurationProfilesByName200ApplicationXMLScope
+	SelfService *FindOsxConfigurationProfilesByName200ApplicationXMLSelfService
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONGeneralCategory struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the category
+	Name string `json:"name"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONGeneralDistributionMethod string
+
+const (
+	FindOsxConfigurationProfilesByName200ApplicationJSONGeneralDistributionMethodInstallAutomatically       FindOsxConfigurationProfilesByName200ApplicationJSONGeneralDistributionMethod = "Install Automatically"
+	FindOsxConfigurationProfilesByName200ApplicationJSONGeneralDistributionMethodMakeAvailableInSelfService FindOsxConfigurationProfilesByName200ApplicationJSONGeneralDistributionMethod = "Make Available in Self Service"
+)
+
+func (e FindOsxConfigurationProfilesByName200ApplicationJSONGeneralDistributionMethod) ToPointer() *FindOsxConfigurationProfilesByName200ApplicationJSONGeneralDistributionMethod {
+	return &e
+}
+
+func (e *FindOsxConfigurationProfilesByName200ApplicationJSONGeneralDistributionMethod) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Install Automatically":
+		fallthrough
+	case "Make Available in Self Service":
+		*e = FindOsxConfigurationProfilesByName200ApplicationJSONGeneralDistributionMethod(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindOsxConfigurationProfilesByName200ApplicationJSONGeneralDistributionMethod: %v", v)
+	}
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONGeneralLevel string
+
+const (
+	FindOsxConfigurationProfilesByName200ApplicationJSONGeneralLevelComputer FindOsxConfigurationProfilesByName200ApplicationJSONGeneralLevel = "computer"
+	FindOsxConfigurationProfilesByName200ApplicationJSONGeneralLevelUser     FindOsxConfigurationProfilesByName200ApplicationJSONGeneralLevel = "user"
+)
+
+func (e FindOsxConfigurationProfilesByName200ApplicationJSONGeneralLevel) ToPointer() *FindOsxConfigurationProfilesByName200ApplicationJSONGeneralLevel {
+	return &e
+}
+
+func (e *FindOsxConfigurationProfilesByName200ApplicationJSONGeneralLevel) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "computer":
+		fallthrough
+	case "user":
+		*e = FindOsxConfigurationProfilesByName200ApplicationJSONGeneralLevel(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindOsxConfigurationProfilesByName200ApplicationJSONGeneralLevel: %v", v)
+	}
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONGeneralSite struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the site
+	Name string `json:"name"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONGeneral struct {
+	Category           *FindOsxConfigurationProfilesByName200ApplicationJSONGeneralCategory           `json:"category,omitempty"`
+	Description        *string                                                                        `json:"description,omitempty"`
+	DistributionMethod *FindOsxConfigurationProfilesByName200ApplicationJSONGeneralDistributionMethod `json:"distribution_method,omitempty"`
+	ID                 *int64                                                                         `json:"id,omitempty"`
+	Level              *FindOsxConfigurationProfilesByName200ApplicationJSONGeneralLevel              `json:"level,omitempty"`
+	// Name of the configuration profile
+	Name             string                                                           `json:"name"`
+	Payloads         *string                                                          `json:"payloads,omitempty"`
+	RedeployOnUpdate *string                                                          `json:"redeploy_on_update,omitempty"`
+	Site             *FindOsxConfigurationProfilesByName200ApplicationJSONGeneralSite `json:"site,omitempty"`
+	UserRemovable    *bool                                                            `json:"user_removable,omitempty"`
+	UUID             *string                                                          `json:"uuid,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeBuildingsBuilding struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeBuildings struct {
+	Building *FindOsxConfigurationProfilesByName200ApplicationJSONScopeBuildingsBuilding `json:"building,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeComputerGroupsComputerGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeComputerGroups struct {
+	ComputerGroup *FindOsxConfigurationProfilesByName200ApplicationJSONScopeComputerGroupsComputerGroup `json:"computer_group,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeComputersComputer struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the computer
+	Name *string `json:"name,omitempty"`
+	Udid *string `json:"udid,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeComputers struct {
+	Computer *FindOsxConfigurationProfilesByName200ApplicationJSONScopeComputersComputer `json:"computer,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeDepartmentsDepartment struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeDepartments struct {
+	Department *FindOsxConfigurationProfilesByName200ApplicationJSONScopeDepartmentsDepartment `json:"department,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsBuildingsBuilding struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsBuildings struct {
+	Building *FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsBuildingsBuilding `json:"building,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsComputerGroupsComputerGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsComputerGroups struct {
+	ComputerGroup *FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsComputerGroupsComputerGroup `json:"computer_group,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsComputersComputer struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the computer
+	Name *string `json:"name,omitempty"`
+	Udid *string `json:"udid,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsComputers struct {
+	Computer *FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsComputersComputer `json:"computer,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsDepartmentsDepartment struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsDepartments struct {
+	Department *FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsDepartmentsDepartment `json:"department,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsIbeaconsIbeacon struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsIbeacons struct {
+	Ibeacon *FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsIbeaconsIbeacon `json:"ibeacon,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsJssUserGroupsJssUserGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsJssUserGroups struct {
+	JssUserGroup *FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsJssUserGroupsJssUserGroup `json:"jss_user_group,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsJssUsersJssUser struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsJssUsers struct {
+	JssUser *FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsJssUsersJssUser `json:"jss_user,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsNetworkSegmentsNetworkSegment struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the network segment
+	Name *string `json:"name,omitempty"`
+	UID  *string `json:"uid,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsNetworkSegments struct {
+	NetworkSegment *FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsNetworkSegmentsNetworkSegment `json:"network_segment,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsUserGroupsUserGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsUserGroups struct {
+	UserGroup *FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsUserGroupsUserGroup `json:"user_group,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsUsersUser struct {
+	Name *string `json:"name,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsUsers struct {
+	User *FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsUsersUser `json:"user,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusions struct {
+	Buildings       []FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsBuildings       `json:"buildings,omitempty"`
+	ComputerGroups  []FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsComputerGroups  `json:"computer_groups,omitempty"`
+	Computers       []FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsComputers       `json:"computers,omitempty"`
+	Departments     []FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsDepartments     `json:"departments,omitempty"`
+	Ibeacons        []FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsIbeacons        `json:"ibeacons,omitempty"`
+	JssUserGroups   []FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsJssUserGroups   `json:"jss_user_groups,omitempty"`
+	JssUsers        []FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsJssUsers        `json:"jss_users,omitempty"`
+	NetworkSegments []FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsNetworkSegments `json:"network_segments,omitempty"`
+	UserGroups      []FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsUserGroups      `json:"user_groups,omitempty"`
+	Users           []FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusionsUsers           `json:"users,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeJssUserGroupsJssUserGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeJssUserGroups struct {
+	JssUserGroup *FindOsxConfigurationProfilesByName200ApplicationJSONScopeJssUserGroupsJssUserGroup `json:"jss_user_group,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeJssUsersUsers struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeJssUsers struct {
+	Users *FindOsxConfigurationProfilesByName200ApplicationJSONScopeJssUsersUsers `json:"users,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeLimitationsIbeaconsIbeacon struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeLimitationsIbeacons struct {
+	Ibeacon *FindOsxConfigurationProfilesByName200ApplicationJSONScopeLimitationsIbeaconsIbeacon `json:"ibeacon,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeLimitationsNetworkSegmentsNetworkSegment struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeLimitationsNetworkSegments struct {
+	NetworkSegment *FindOsxConfigurationProfilesByName200ApplicationJSONScopeLimitationsNetworkSegmentsNetworkSegment `json:"network_segment,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeLimitationsUserGroupsUserGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeLimitationsUserGroups struct {
+	UserGroup *FindOsxConfigurationProfilesByName200ApplicationJSONScopeLimitationsUserGroupsUserGroup `json:"user_group,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeLimitationsUsersUser struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeLimitationsUsers struct {
+	User *FindOsxConfigurationProfilesByName200ApplicationJSONScopeLimitationsUsersUser `json:"user,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScopeLimitations struct {
+	Ibeacons        []FindOsxConfigurationProfilesByName200ApplicationJSONScopeLimitationsIbeacons        `json:"ibeacons,omitempty"`
+	NetworkSegments []FindOsxConfigurationProfilesByName200ApplicationJSONScopeLimitationsNetworkSegments `json:"network_segments,omitempty"`
+	UserGroups      []FindOsxConfigurationProfilesByName200ApplicationJSONScopeLimitationsUserGroups      `json:"user_groups,omitempty"`
+	Users           []FindOsxConfigurationProfilesByName200ApplicationJSONScopeLimitationsUsers           `json:"users,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONScope struct {
+	AllComputers   *bool                                                                     `json:"all_computers,omitempty"`
+	AllJssUsers    *bool                                                                     `json:"all_jss_users,omitempty"`
+	Buildings      []FindOsxConfigurationProfilesByName200ApplicationJSONScopeBuildings      `json:"buildings,omitempty"`
+	ComputerGroups []FindOsxConfigurationProfilesByName200ApplicationJSONScopeComputerGroups `json:"computer_groups,omitempty"`
+	Computers      []FindOsxConfigurationProfilesByName200ApplicationJSONScopeComputers      `json:"computers,omitempty"`
+	Departments    []FindOsxConfigurationProfilesByName200ApplicationJSONScopeDepartments    `json:"departments,omitempty"`
+	Exclusions     *FindOsxConfigurationProfilesByName200ApplicationJSONScopeExclusions      `json:"exclusions,omitempty"`
+	JssUserGroups  []FindOsxConfigurationProfilesByName200ApplicationJSONScopeJssUserGroups  `json:"jss_user_groups,omitempty"`
+	JssUsers       []FindOsxConfigurationProfilesByName200ApplicationJSONScopeJssUsers       `json:"jss_users,omitempty"`
+	Limitations    *FindOsxConfigurationProfilesByName200ApplicationJSONScopeLimitations     `json:"limitations,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONSelfServiceSelfServiceCategoriesCategory struct {
+	DisplayIn *bool   `json:"display_in,omitempty"`
+	FeatureIn *bool   `json:"feature_in,omitempty"`
+	ID        *int64  `json:"id,omitempty"`
+	Name      *string `json:"name,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONSelfServiceSelfServiceCategories struct {
+	Category *FindOsxConfigurationProfilesByName200ApplicationJSONSelfServiceSelfServiceCategoriesCategory `json:"category,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONSelfServiceSelfServiceIcon struct {
+	Data *string `json:"data,omitempty"`
+	ID   *int64  `json:"id,omitempty"`
+	URI  *string `json:"uri,omitempty"`
+}
+
+type FindOsxConfigurationProfilesByName200ApplicationJSONSelfService struct {
+	FeatureOnMainPage           *bool                                                                                 `json:"feature_on_main_page,omitempty"`
+	ForceUsersToViewDescription *bool                                                                                 `json:"force_users_to_view_description,omitempty"`
+	InstallButtonText           *string                                                                               `json:"install_button_text,omitempty"`
+	Notification                *string                                                                               `json:"notification,omitempty"`
+	NotificationMessage         *string                                                                               `json:"notification_message,omitempty"`
+	NotificationSubject         *string                                                                               `json:"notification_subject,omitempty"`
+	SelfServiceCategories       *FindOsxConfigurationProfilesByName200ApplicationJSONSelfServiceSelfServiceCategories `json:"self_service_categories,omitempty"`
+	SelfServiceDescription      *string                                                                               `json:"self_service_description,omitempty"`
+	SelfServiceIcon             *FindOsxConfigurationProfilesByName200ApplicationJSONSelfServiceSelfServiceIcon       `json:"self_service_icon,omitempty"`
+}
+
+// FindOsxConfigurationProfilesByName200ApplicationJSON - OK
+type FindOsxConfigurationProfilesByName200ApplicationJSON struct {
+	General     *FindOsxConfigurationProfilesByName200ApplicationJSONGeneral     `json:"general,omitempty"`
+	Scope       *FindOsxConfigurationProfilesByName200ApplicationJSONScope       `json:"scope,omitempty"`
+	SelfService *FindOsxConfigurationProfilesByName200ApplicationJSONSelfService `json:"self_service,omitempty"`
+}
+
 type FindOsxConfigurationProfilesByNameResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	OsXConfigurationProfile *shared.OsXConfigurationProfile
+	FindOsxConfigurationProfilesByName200ApplicationJSONObject *FindOsxConfigurationProfilesByName200ApplicationJSON
 }

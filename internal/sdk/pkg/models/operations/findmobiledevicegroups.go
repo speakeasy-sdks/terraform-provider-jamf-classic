@@ -3,9 +3,28 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindMobileDeviceGroups200ApplicationXMLMobileDeviceGroup struct {
+	ID      *int64
+	IsSmart *bool
+	Name    *string
+}
+
+type FindMobileDeviceGroups200ApplicationXML struct {
+	MobileDeviceGroup *FindMobileDeviceGroups200ApplicationXMLMobileDeviceGroup
+}
+
+type FindMobileDeviceGroups200ApplicationJSONMobileDeviceGroup struct {
+	ID      *int64  `json:"id,omitempty"`
+	IsSmart *bool   `json:"is_smart,omitempty"`
+	Name    *string `json:"name,omitempty"`
+}
+
+type FindMobileDeviceGroups200ApplicationJSON struct {
+	MobileDeviceGroup *FindMobileDeviceGroups200ApplicationJSONMobileDeviceGroup `json:"mobile_device_group,omitempty"`
+}
 
 type FindMobileDeviceGroupsResponse struct {
 	Body        []byte
@@ -13,5 +32,5 @@ type FindMobileDeviceGroupsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	MobileDeviceGroups []shared.MobileDeviceGroups
+	FindMobileDeviceGroups200ApplicationJSONObjects []FindMobileDeviceGroups200ApplicationJSON
 }

@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,91 @@ type FindDockItemsByIDRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+type FindDockItemsByID200ApplicationXMLType string
+
+const (
+	FindDockItemsByID200ApplicationXMLTypeApp    FindDockItemsByID200ApplicationXMLType = "App"
+	FindDockItemsByID200ApplicationXMLTypeFile   FindDockItemsByID200ApplicationXMLType = "File"
+	FindDockItemsByID200ApplicationXMLTypeFolder FindDockItemsByID200ApplicationXMLType = "Folder"
+)
+
+func (e FindDockItemsByID200ApplicationXMLType) ToPointer() *FindDockItemsByID200ApplicationXMLType {
+	return &e
+}
+
+func (e *FindDockItemsByID200ApplicationXMLType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "App":
+		fallthrough
+	case "File":
+		fallthrough
+	case "Folder":
+		*e = FindDockItemsByID200ApplicationXMLType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindDockItemsByID200ApplicationXMLType: %v", v)
+	}
+}
+
+// FindDockItemsByID200ApplicationXML - OK
+type FindDockItemsByID200ApplicationXML struct {
+	Contents *string
+	ID       *int64
+	// Name of the dock item
+	Name string
+	Path string
+	Type FindDockItemsByID200ApplicationXMLType
+}
+
+type FindDockItemsByID200ApplicationJSONType string
+
+const (
+	FindDockItemsByID200ApplicationJSONTypeApp    FindDockItemsByID200ApplicationJSONType = "App"
+	FindDockItemsByID200ApplicationJSONTypeFile   FindDockItemsByID200ApplicationJSONType = "File"
+	FindDockItemsByID200ApplicationJSONTypeFolder FindDockItemsByID200ApplicationJSONType = "Folder"
+)
+
+func (e FindDockItemsByID200ApplicationJSONType) ToPointer() *FindDockItemsByID200ApplicationJSONType {
+	return &e
+}
+
+func (e *FindDockItemsByID200ApplicationJSONType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "App":
+		fallthrough
+	case "File":
+		fallthrough
+	case "Folder":
+		*e = FindDockItemsByID200ApplicationJSONType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindDockItemsByID200ApplicationJSONType: %v", v)
+	}
+}
+
+// FindDockItemsByID200ApplicationJSON - OK
+type FindDockItemsByID200ApplicationJSON struct {
+	Contents *string `json:"contents,omitempty"`
+	ID       *int64  `json:"id,omitempty"`
+	// Name of the dock item
+	Name string                                  `json:"name"`
+	Path string                                  `json:"path"`
+	Type FindDockItemsByID200ApplicationJSONType `json:"type"`
+}
+
 type FindDockItemsByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	DockItem *shared.DockItem
+	FindDockItemsByID200ApplicationJSONObject *FindDockItemsByID200ApplicationJSON
 }

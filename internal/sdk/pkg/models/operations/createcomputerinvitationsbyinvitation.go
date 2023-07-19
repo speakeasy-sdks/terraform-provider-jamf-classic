@@ -11,6 +11,40 @@ type CreateComputerInvitationsByInvitationRequest struct {
 	Invitation int64 `pathParam:"style=simple,explode=false,name=invitation"`
 }
 
+type CreateComputerInvitationsByInvitation201ApplicationXMLEnrollIntoSite struct {
+	ID   *int64
+	Name *string
+}
+
+type CreateComputerInvitationsByInvitation201ApplicationXMLSite struct {
+	ID *int64
+	// Name of the site
+	Name string
+}
+
+// CreateComputerInvitationsByInvitation201ApplicationXML - Created
+type CreateComputerInvitationsByInvitation201ApplicationXML struct {
+	CreateAccountIfDoesNotExist *bool
+	EnrollIntoSite              *CreateComputerInvitationsByInvitation201ApplicationXMLEnrollIntoSite
+	// Use 'Unlimited' to specify no expiration date
+	ExpirationDate             *string
+	ExpirationDateEpoch        *int64
+	ExpirationDateUtc          *string
+	HideAccount                *bool
+	ID                         *int64
+	Invitation                 *int64
+	InvitationStatus           *string
+	InvitationType             *string
+	InvitedUserUUID            *string
+	KeepExistingSiteMembership *bool
+	LockDownSSH                *bool
+	MultipleUsersAllowed       *bool
+	Site                       *CreateComputerInvitationsByInvitation201ApplicationXMLSite
+	SSHPassword                *string
+	SSHUsername                *string
+	TimesUsed                  *int64
+}
+
 type CreateComputerInvitationsByInvitationResponse struct {
 	Body        []byte
 	ContentType string

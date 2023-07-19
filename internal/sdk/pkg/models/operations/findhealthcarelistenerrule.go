@@ -3,9 +3,188 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
+
+type FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleMdmCommand string
+
+const (
+	FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleMdmCommandEraseDevice     FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleMdmCommand = "EraseDevice"
+	FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleMdmCommandDeviceLock      FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleMdmCommand = "DeviceLock"
+	FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleMdmCommandClearPasscode   FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleMdmCommand = "ClearPasscode"
+	FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleMdmCommandEnableLostMode  FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleMdmCommand = "EnableLostMode"
+	FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleMdmCommandDisableLostMode FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleMdmCommand = "DisableLostMode"
+)
+
+func (e FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleMdmCommand) ToPointer() *FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleMdmCommand {
+	return &e
+}
+
+func (e *FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleMdmCommand) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "EraseDevice":
+		fallthrough
+	case "DeviceLock":
+		fallthrough
+	case "ClearPasscode":
+		fallthrough
+	case "EnableLostMode":
+		fallthrough
+	case "DisableLostMode":
+		*e = FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleMdmCommand(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleMdmCommand: %v", v)
+	}
+}
+
+type FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleNotificationEmails struct {
+	Email *string
+}
+
+type FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleOperatingSystem string
+
+const (
+	FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleOperatingSystemIPhone FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleOperatingSystem = "iPhone"
+	FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleOperatingSystemTv     FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleOperatingSystem = "TV"
+)
+
+func (e FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleOperatingSystem) ToPointer() *FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleOperatingSystem {
+	return &e
+}
+
+func (e *FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleOperatingSystem) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "iPhone":
+		fallthrough
+	case "TV":
+		*e = FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleOperatingSystem(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleOperatingSystem: %v", v)
+	}
+}
+
+type FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRule struct {
+	AdtMessage      string
+	AdtMessageField string
+	// -1 represents the location field 'Room'; any other number is a mobile device extension attribute ID.
+	DeviceInventoryField     *int64
+	HclID                    *int64
+	ID                       *int64
+	MdmCommand               *FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleMdmCommand
+	MdmCommandAdditionalData *string
+	Name                     string
+	NotificationEmails       *FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleNotificationEmails
+	NotificationEnabled      *bool
+	NotificationThreshold    *int64
+	NotifyUnsupportedEnabled *bool
+	OperatingSystem          *FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRuleOperatingSystem
+}
+
+type FindHealthcareListenerRule200ApplicationXML struct {
+	HealthcareListenerRule *FindHealthcareListenerRule200ApplicationXMLHealthcareListenerRule
+	Size                   *int64
+}
+
+type FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleMdmCommand string
+
+const (
+	FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleMdmCommandEraseDevice     FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleMdmCommand = "EraseDevice"
+	FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleMdmCommandDeviceLock      FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleMdmCommand = "DeviceLock"
+	FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleMdmCommandClearPasscode   FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleMdmCommand = "ClearPasscode"
+	FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleMdmCommandEnableLostMode  FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleMdmCommand = "EnableLostMode"
+	FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleMdmCommandDisableLostMode FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleMdmCommand = "DisableLostMode"
+)
+
+func (e FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleMdmCommand) ToPointer() *FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleMdmCommand {
+	return &e
+}
+
+func (e *FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleMdmCommand) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "EraseDevice":
+		fallthrough
+	case "DeviceLock":
+		fallthrough
+	case "ClearPasscode":
+		fallthrough
+	case "EnableLostMode":
+		fallthrough
+	case "DisableLostMode":
+		*e = FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleMdmCommand(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleMdmCommand: %v", v)
+	}
+}
+
+type FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleNotificationEmails struct {
+	Email *string `json:"email,omitempty"`
+}
+
+type FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleOperatingSystem string
+
+const (
+	FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleOperatingSystemIPhone FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleOperatingSystem = "iPhone"
+	FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleOperatingSystemTv     FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleOperatingSystem = "TV"
+)
+
+func (e FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleOperatingSystem) ToPointer() *FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleOperatingSystem {
+	return &e
+}
+
+func (e *FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleOperatingSystem) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "iPhone":
+		fallthrough
+	case "TV":
+		*e = FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleOperatingSystem(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleOperatingSystem: %v", v)
+	}
+}
+
+type FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRule struct {
+	AdtMessage      string `json:"adt_message"`
+	AdtMessageField string `json:"adt_message_field"`
+	// -1 represents the location field 'Room'; any other number is a mobile device extension attribute ID.
+	DeviceInventoryField     *int64                                                                                `json:"device_inventory_field,omitempty"`
+	HclID                    *int64                                                                                `json:"hcl_id,omitempty"`
+	ID                       *int64                                                                                `json:"id,omitempty"`
+	MdmCommand               *FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleMdmCommand         `json:"mdm_command,omitempty"`
+	MdmCommandAdditionalData *string                                                                               `json:"mdm_command_additional_data,omitempty"`
+	Name                     string                                                                                `json:"name"`
+	NotificationEmails       *FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleNotificationEmails `json:"notification_emails,omitempty"`
+	NotificationEnabled      *bool                                                                                 `json:"notification_enabled,omitempty"`
+	NotificationThreshold    *int64                                                                                `json:"notification_threshold,omitempty"`
+	NotifyUnsupportedEnabled *bool                                                                                 `json:"notify_unsupported_enabled,omitempty"`
+	OperatingSystem          *FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRuleOperatingSystem    `json:"operating_system,omitempty"`
+}
+
+type FindHealthcareListenerRule200ApplicationJSON struct {
+	HealthcareListenerRule *FindHealthcareListenerRule200ApplicationJSONHealthcareListenerRule `json:"healthcare_listener_rule,omitempty"`
+	Size                   *int64                                                              `json:"size,omitempty"`
+}
 
 type FindHealthcareListenerRuleResponse struct {
 	Body        []byte
@@ -13,5 +192,5 @@ type FindHealthcareListenerRuleResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	HealthcareListenerRules []shared.HealthcareListenerRules1
+	FindHealthcareListenerRule200ApplicationJSONObjects []FindHealthcareListenerRule200ApplicationJSON
 }

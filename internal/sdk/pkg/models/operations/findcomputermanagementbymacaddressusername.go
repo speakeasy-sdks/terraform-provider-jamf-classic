@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -14,11 +13,243 @@ type FindComputerManagementByMacAddressUsernameRequest struct {
 	Username string `pathParam:"style=simple,explode=false,name=username"`
 }
 
+type FindComputerManagementByMacAddressUsername200ApplicationXMLEbooksEbook struct {
+	ID   *int64
+	Name *string
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationXMLEbooks struct {
+	Ebook *FindComputerManagementByMacAddressUsername200ApplicationXMLEbooksEbook
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationXMLGeneral struct {
+	ID         *int64
+	MacAddress *string
+	// Name of the computer
+	Name         *string
+	SerialNumber *string
+	Udid         *string
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationXMLMacAppStoreAppsMacAppStoreApp struct {
+	ID   *int64
+	Name *string
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationXMLMacAppStoreApps struct {
+	MacAppStoreApp *FindComputerManagementByMacAddressUsername200ApplicationXMLMacAppStoreAppsMacAppStoreApp
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationXMLManagedPreferenceProfilesProfile struct {
+	ID   *int64
+	Name *string
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationXMLManagedPreferenceProfiles struct {
+	Profile *FindComputerManagementByMacAddressUsername200ApplicationXMLManagedPreferenceProfilesProfile
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationXMLOsXConfigurationProfilesProfile struct {
+	ID   *int64
+	Name *string
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationXMLOsXConfigurationProfiles struct {
+	Profile *FindComputerManagementByMacAddressUsername200ApplicationXMLOsXConfigurationProfilesProfile
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationXMLPatchPoliciesPatchPolicy struct {
+	ID   *int64
+	Name *string
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationXMLPatchPolicies struct {
+	PatchPolicy *FindComputerManagementByMacAddressUsername200ApplicationXMLPatchPoliciesPatchPolicy
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationXMLPatchReportingSoftwareTitlesTitle struct {
+	InstalledVersion *string
+	LatestVersion    *string
+	Name             *string
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationXMLPatchReportingSoftwareTitles struct {
+	Title *FindComputerManagementByMacAddressUsername200ApplicationXMLPatchReportingSoftwareTitlesTitle
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationXMLPoliciesPolicy struct {
+	ID      *int64
+	Name    *string
+	Trigger *string
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationXMLPolicies struct {
+	Policy *FindComputerManagementByMacAddressUsername200ApplicationXMLPoliciesPolicy
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationXMLRestrictedSoftwareSoftware struct {
+	ID   *int64
+	Name *string
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationXMLRestrictedSoftware struct {
+	Software *FindComputerManagementByMacAddressUsername200ApplicationXMLRestrictedSoftwareSoftware
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationXMLSmartGroupsGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationXMLSmartGroups struct {
+	Group *FindComputerManagementByMacAddressUsername200ApplicationXMLSmartGroupsGroup
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationXMLStaticGroupsGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationXMLStaticGroups struct {
+	Group *FindComputerManagementByMacAddressUsername200ApplicationXMLStaticGroupsGroup
+}
+
+// FindComputerManagementByMacAddressUsername200ApplicationXML - OK
+type FindComputerManagementByMacAddressUsername200ApplicationXML struct {
+	Ebooks                       []FindComputerManagementByMacAddressUsername200ApplicationXMLEbooks
+	General                      *FindComputerManagementByMacAddressUsername200ApplicationXMLGeneral
+	MacAppStoreApps              []FindComputerManagementByMacAddressUsername200ApplicationXMLMacAppStoreApps
+	ManagedPreferenceProfiles    []FindComputerManagementByMacAddressUsername200ApplicationXMLManagedPreferenceProfiles
+	OsXConfigurationProfiles     []FindComputerManagementByMacAddressUsername200ApplicationXMLOsXConfigurationProfiles
+	PatchPolicies                []FindComputerManagementByMacAddressUsername200ApplicationXMLPatchPolicies
+	PatchReportingSoftwareTitles []FindComputerManagementByMacAddressUsername200ApplicationXMLPatchReportingSoftwareTitles
+	Policies                     []FindComputerManagementByMacAddressUsername200ApplicationXMLPolicies
+	RestrictedSoftware           []FindComputerManagementByMacAddressUsername200ApplicationXMLRestrictedSoftware
+	SmartGroups                  []FindComputerManagementByMacAddressUsername200ApplicationXMLSmartGroups
+	StaticGroups                 []FindComputerManagementByMacAddressUsername200ApplicationXMLStaticGroups
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationJSONEbooksEbook struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationJSONEbooks struct {
+	Ebook *FindComputerManagementByMacAddressUsername200ApplicationJSONEbooksEbook `json:"ebook,omitempty"`
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationJSONGeneral struct {
+	ID         *int64  `json:"id,omitempty"`
+	MacAddress *string `json:"mac_address,omitempty"`
+	// Name of the computer
+	Name         *string `json:"name,omitempty"`
+	SerialNumber *string `json:"serial_number,omitempty"`
+	Udid         *string `json:"udid,omitempty"`
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationJSONMacAppStoreAppsMacAppStoreApp struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationJSONMacAppStoreApps struct {
+	MacAppStoreApp *FindComputerManagementByMacAddressUsername200ApplicationJSONMacAppStoreAppsMacAppStoreApp `json:"mac_app_store_app,omitempty"`
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationJSONManagedPreferenceProfilesProfile struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationJSONManagedPreferenceProfiles struct {
+	Profile *FindComputerManagementByMacAddressUsername200ApplicationJSONManagedPreferenceProfilesProfile `json:"profile,omitempty"`
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationJSONOsXConfigurationProfilesProfile struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationJSONOsXConfigurationProfiles struct {
+	Profile *FindComputerManagementByMacAddressUsername200ApplicationJSONOsXConfigurationProfilesProfile `json:"profile,omitempty"`
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationJSONPatchPoliciesPatchPolicy struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationJSONPatchPolicies struct {
+	PatchPolicy *FindComputerManagementByMacAddressUsername200ApplicationJSONPatchPoliciesPatchPolicy `json:"patch_policy,omitempty"`
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationJSONPatchReportingSoftwareTitlesTitle struct {
+	InstalledVersion *string `json:"installed_version,omitempty"`
+	LatestVersion    *string `json:"latest_version,omitempty"`
+	Name             *string `json:"name,omitempty"`
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationJSONPatchReportingSoftwareTitles struct {
+	Title *FindComputerManagementByMacAddressUsername200ApplicationJSONPatchReportingSoftwareTitlesTitle `json:"title,omitempty"`
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationJSONPoliciesPolicy struct {
+	ID      *int64  `json:"id,omitempty"`
+	Name    *string `json:"name,omitempty"`
+	Trigger *string `json:"trigger,omitempty"`
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationJSONPolicies struct {
+	Policy *FindComputerManagementByMacAddressUsername200ApplicationJSONPoliciesPolicy `json:"policy,omitempty"`
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationJSONRestrictedSoftwareSoftware struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationJSONRestrictedSoftware struct {
+	Software *FindComputerManagementByMacAddressUsername200ApplicationJSONRestrictedSoftwareSoftware `json:"software,omitempty"`
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationJSONSmartGroupsGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationJSONSmartGroups struct {
+	Group *FindComputerManagementByMacAddressUsername200ApplicationJSONSmartGroupsGroup `json:"group,omitempty"`
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationJSONStaticGroupsGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindComputerManagementByMacAddressUsername200ApplicationJSONStaticGroups struct {
+	Group *FindComputerManagementByMacAddressUsername200ApplicationJSONStaticGroupsGroup `json:"group,omitempty"`
+}
+
+// FindComputerManagementByMacAddressUsername200ApplicationJSON - OK
+type FindComputerManagementByMacAddressUsername200ApplicationJSON struct {
+	Ebooks                       []FindComputerManagementByMacAddressUsername200ApplicationJSONEbooks                       `json:"ebooks,omitempty"`
+	General                      *FindComputerManagementByMacAddressUsername200ApplicationJSONGeneral                       `json:"general,omitempty"`
+	MacAppStoreApps              []FindComputerManagementByMacAddressUsername200ApplicationJSONMacAppStoreApps              `json:"mac_app_store_apps,omitempty"`
+	ManagedPreferenceProfiles    []FindComputerManagementByMacAddressUsername200ApplicationJSONManagedPreferenceProfiles    `json:"managed_preference_profiles,omitempty"`
+	OsXConfigurationProfiles     []FindComputerManagementByMacAddressUsername200ApplicationJSONOsXConfigurationProfiles     `json:"os_x_configuration_profiles,omitempty"`
+	PatchPolicies                []FindComputerManagementByMacAddressUsername200ApplicationJSONPatchPolicies                `json:"patch_policies,omitempty"`
+	PatchReportingSoftwareTitles []FindComputerManagementByMacAddressUsername200ApplicationJSONPatchReportingSoftwareTitles `json:"patch_reporting_software_titles,omitempty"`
+	Policies                     []FindComputerManagementByMacAddressUsername200ApplicationJSONPolicies                     `json:"policies,omitempty"`
+	RestrictedSoftware           []FindComputerManagementByMacAddressUsername200ApplicationJSONRestrictedSoftware           `json:"restricted_software,omitempty"`
+	SmartGroups                  []FindComputerManagementByMacAddressUsername200ApplicationJSONSmartGroups                  `json:"smart_groups,omitempty"`
+	StaticGroups                 []FindComputerManagementByMacAddressUsername200ApplicationJSONStaticGroups                 `json:"static_groups,omitempty"`
+}
+
 type FindComputerManagementByMacAddressUsernameResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ComputerManagement *shared.ComputerManagement
+	FindComputerManagementByMacAddressUsername200ApplicationJSONObject *FindComputerManagementByMacAddressUsername200ApplicationJSON
 }

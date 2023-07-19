@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,73 @@ type FindComputerCommandsByNameRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+type FindComputerCommandsByName200ApplicationXMLComputersComputer struct {
+	ID           *int64
+	SerialNumber *string
+	Udid         *string
+}
+
+type FindComputerCommandsByName200ApplicationXMLComputers struct {
+	Computer *FindComputerCommandsByName200ApplicationXMLComputersComputer
+	Size     *int64
+}
+
+type FindComputerCommandsByName200ApplicationXMLGeneral struct {
+	ApnsResultStatus *string
+	// Command type
+	Command       *string
+	DateSent      *string
+	DateSentEpoch *string
+	DateSentUtc   *string
+	ID            *int64
+	ProfileID     *int64
+	ProfileUdid   *string
+	Udid          *string
+	UUID          *string
+}
+
+// FindComputerCommandsByName200ApplicationXML - OK
+type FindComputerCommandsByName200ApplicationXML struct {
+	Computers *FindComputerCommandsByName200ApplicationXMLComputers
+	General   *FindComputerCommandsByName200ApplicationXMLGeneral
+}
+
+type FindComputerCommandsByName200ApplicationJSONComputersComputer struct {
+	ID           *int64  `json:"id,omitempty"`
+	SerialNumber *string `json:"serial_number,omitempty"`
+	Udid         *string `json:"udid,omitempty"`
+}
+
+type FindComputerCommandsByName200ApplicationJSONComputers struct {
+	Computer *FindComputerCommandsByName200ApplicationJSONComputersComputer `json:"computer,omitempty"`
+	Size     *int64                                                         `json:"size,omitempty"`
+}
+
+type FindComputerCommandsByName200ApplicationJSONGeneral struct {
+	ApnsResultStatus *string `json:"apns_result_status,omitempty"`
+	// Command type
+	Command       *string `json:"command,omitempty"`
+	DateSent      *string `json:"date_sent,omitempty"`
+	DateSentEpoch *string `json:"date_sent_epoch,omitempty"`
+	DateSentUtc   *string `json:"date_sent_utc,omitempty"`
+	ID            *int64  `json:"id,omitempty"`
+	ProfileID     *int64  `json:"profile_id,omitempty"`
+	ProfileUdid   *string `json:"profile_udid,omitempty"`
+	Udid          *string `json:"udid,omitempty"`
+	UUID          *string `json:"uuid,omitempty"`
+}
+
+// FindComputerCommandsByName200ApplicationJSON - OK
+type FindComputerCommandsByName200ApplicationJSON struct {
+	Computers *FindComputerCommandsByName200ApplicationJSONComputers `json:"computers,omitempty"`
+	General   *FindComputerCommandsByName200ApplicationJSONGeneral   `json:"general,omitempty"`
+}
+
 type FindComputerCommandsByNameResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ComputerCommand *shared.ComputerCommand
+	FindComputerCommandsByName200ApplicationJSONObject *FindComputerCommandsByName200ApplicationJSON
 }

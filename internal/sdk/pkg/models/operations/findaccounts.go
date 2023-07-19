@@ -3,9 +3,60 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindAccounts200ApplicationXMLGroupsGroup struct {
+	ID *int64
+	// Name of the group
+	Name string
+}
+
+type FindAccounts200ApplicationXMLGroups struct {
+	Group []FindAccounts200ApplicationXMLGroupsGroup
+}
+
+type FindAccounts200ApplicationXMLUsersUser struct {
+	ID *int64
+	// Name of the account
+	Name string
+}
+
+type FindAccounts200ApplicationXMLUsers struct {
+	User []FindAccounts200ApplicationXMLUsersUser
+}
+
+// FindAccounts200ApplicationXML - OK
+type FindAccounts200ApplicationXML struct {
+	Groups *FindAccounts200ApplicationXMLGroups
+	Users  *FindAccounts200ApplicationXMLUsers
+}
+
+type FindAccounts200ApplicationJSONGroupsGroup struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the group
+	Name string `json:"name"`
+}
+
+type FindAccounts200ApplicationJSONGroups struct {
+	Group []FindAccounts200ApplicationJSONGroupsGroup `json:"group,omitempty"`
+}
+
+type FindAccounts200ApplicationJSONUsersUser struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the account
+	Name string `json:"name"`
+}
+
+type FindAccounts200ApplicationJSONUsers struct {
+	User []FindAccounts200ApplicationJSONUsersUser `json:"user,omitempty"`
+}
+
+// FindAccounts200ApplicationJSON - OK
+type FindAccounts200ApplicationJSON struct {
+	Groups *FindAccounts200ApplicationJSONGroups `json:"groups,omitempty"`
+	Users  *FindAccounts200ApplicationJSONUsers  `json:"users,omitempty"`
+}
 
 type FindAccountsResponse struct {
 	Body        []byte
@@ -13,5 +64,5 @@ type FindAccountsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Accounts *shared.Accounts
+	FindAccounts200ApplicationJSONObject *FindAccounts200ApplicationJSON
 }

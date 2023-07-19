@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"io"
 	"jamf/internal/sdk/pkg/models/operations"
-	"jamf/internal/sdk/pkg/models/shared"
 	"jamf/internal/sdk/pkg/utils"
 	"net/http"
 	"strings"
@@ -163,12 +162,12 @@ func (s *jsonwebtokenconfigurations) FindJSONWebTokenConfigurationByID(ctx conte
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.JSONWebTokenConfiguration
+			var out *operations.FindJSONWebTokenConfigurationByID200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.JSONWebTokenConfiguration = out
+			res.FindJSONWebTokenConfigurationByID200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -217,12 +216,12 @@ func (s *jsonwebtokenconfigurations) FindJSONWebTokenConfigurations(ctx context.
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.JSONWebTokenConfigurations
+			var out []operations.FindJSONWebTokenConfigurations200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.JSONWebTokenConfigurations = out
+			res.FindJSONWebTokenConfigurations200ApplicationJSONObjects = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}

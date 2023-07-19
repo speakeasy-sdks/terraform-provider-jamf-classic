@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,43 @@ type FindDirectoryBindingsByNameRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+// FindDirectoryBindingsByName200ApplicationXML - OK
+type FindDirectoryBindingsByName200ApplicationXML struct {
+	// OU to bind computers to
+	ComputerOu *string
+	Domain     *string
+	ID         *int64
+	// Name of the binding
+	Name string
+	// Password for the network administrator account
+	Password *string
+	Priority *int64
+	Type     *string
+	// Network administrator account to bind with
+	Username *string
+}
+
+// FindDirectoryBindingsByName200ApplicationJSON - OK
+type FindDirectoryBindingsByName200ApplicationJSON struct {
+	// OU to bind computers to
+	ComputerOu *string `json:"computer_ou,omitempty"`
+	Domain     *string `json:"domain,omitempty"`
+	ID         *int64  `json:"id,omitempty"`
+	// Name of the binding
+	Name string `json:"name"`
+	// Password for the network administrator account
+	Password *string `json:"password,omitempty"`
+	Priority *int64  `json:"priority,omitempty"`
+	Type     *string `json:"type,omitempty"`
+	// Network administrator account to bind with
+	Username *string `json:"username,omitempty"`
+}
+
 type FindDirectoryBindingsByNameResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	DirectoryBinding *shared.DirectoryBinding
+	FindDirectoryBindingsByName200ApplicationJSONObject *FindDirectoryBindingsByName200ApplicationJSON
 }

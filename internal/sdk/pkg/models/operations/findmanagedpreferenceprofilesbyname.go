@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,35 @@ type FindManagedPreferenceProfilesByNameRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+type FindManagedPreferenceProfilesByName200ApplicationXMLGeneral struct {
+	Enabled *bool
+	ID      *int64
+	Name    string
+	Plist   *string
+}
+
+// FindManagedPreferenceProfilesByName200ApplicationXML - OK
+type FindManagedPreferenceProfilesByName200ApplicationXML struct {
+	General *FindManagedPreferenceProfilesByName200ApplicationXMLGeneral
+}
+
+type FindManagedPreferenceProfilesByName200ApplicationJSONGeneral struct {
+	Enabled *bool   `json:"enabled,omitempty"`
+	ID      *int64  `json:"id,omitempty"`
+	Name    string  `json:"name"`
+	Plist   *string `json:"plist,omitempty"`
+}
+
+// FindManagedPreferenceProfilesByName200ApplicationJSON - OK
+type FindManagedPreferenceProfilesByName200ApplicationJSON struct {
+	General *FindManagedPreferenceProfilesByName200ApplicationJSONGeneral `json:"general,omitempty"`
+}
+
 type FindManagedPreferenceProfilesByNameResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ManagedPreferenceProfile *shared.ManagedPreferenceProfile
+	FindManagedPreferenceProfilesByName200ApplicationJSONObject *FindManagedPreferenceProfilesByName200ApplicationJSON
 }

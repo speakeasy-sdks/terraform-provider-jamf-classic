@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"io"
 	"jamf/internal/sdk/pkg/models/operations"
-	"jamf/internal/sdk/pkg/models/shared"
 	"jamf/internal/sdk/pkg/utils"
 	"net/http"
 )
@@ -68,12 +67,12 @@ func (s *patchreports) PatchreportsPatchsoftwaretitleidByIDGet(ctx context.Conte
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.PatchReport
+			var out *operations.PatchreportsPatchsoftwaretitleidByIDGet200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.PatchReport = out
+			res.PatchreportsPatchsoftwaretitleidByIDGet200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -127,12 +126,12 @@ func (s *patchreports) PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet(
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.PatchReport
+			var out *operations.PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.PatchReport = out
+			res.PatchreportsPatchsoftwaretitleidVersionByIDAndVersionGet200ApplicationJSONObject = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}

@@ -3,9 +3,106 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindHealthcareListener200ApplicationXMLHealthcareListenerRulesRuleMdmCommandAdditionalData struct {
+	LostModeFootnote   *string
+	LostModeMessage    *string
+	LostModeOption     *string
+	LostModePersistent *string
+	LostModePhone      *string
+	LostModeSound      *bool
+}
+
+type FindHealthcareListener200ApplicationXMLHealthcareListenerRulesRuleNotificationEmails struct {
+	Email *string
+}
+
+type FindHealthcareListener200ApplicationXMLHealthcareListenerRulesRule struct {
+	AdtMessage               *string
+	AdtMessageField          *string
+	DeviceInventoryField     *int64
+	HclID                    *int64
+	ID                       *int64
+	MdmCommand               *string
+	MdmCommandAdditionalData *FindHealthcareListener200ApplicationXMLHealthcareListenerRulesRuleMdmCommandAdditionalData
+	Name                     *string
+	NotificationEmails       *FindHealthcareListener200ApplicationXMLHealthcareListenerRulesRuleNotificationEmails
+	NotificationEnabled      *bool
+	NotificationThreshold    *int64
+	NotifyUnsupportedEnabled *bool
+	OperatingSystem          *string
+}
+
+type FindHealthcareListener200ApplicationXMLHealthcareListenerRules struct {
+	Rule *FindHealthcareListener200ApplicationXMLHealthcareListenerRulesRule
+}
+
+type FindHealthcareListener200ApplicationXMLHealthcareListener struct {
+	Enabled                *bool
+	ID                     *int64
+	InfratructureManagerID *int64
+	Name                   *string
+	Port                   *int64
+	RangeIps               *string
+	Rules                  []FindHealthcareListener200ApplicationXMLHealthcareListenerRules
+	SingleIps              *string
+}
+
+type FindHealthcareListener200ApplicationXML struct {
+	HealthcareListener []FindHealthcareListener200ApplicationXMLHealthcareListener
+	Size               *int64
+}
+
+type FindHealthcareListener200ApplicationJSONHealthcareListenerRulesRuleMdmCommandAdditionalData struct {
+	LostModeFootnote   *string `json:"lost_mode_footnote,omitempty"`
+	LostModeMessage    *string `json:"lost_mode_message,omitempty"`
+	LostModeOption     *string `json:"lost_mode_option,omitempty"`
+	LostModePersistent *string `json:"lost_mode_persistent,omitempty"`
+	LostModePhone      *string `json:"lost_mode_phone,omitempty"`
+	LostModeSound      *bool   `json:"lost_mode_sound,omitempty"`
+}
+
+type FindHealthcareListener200ApplicationJSONHealthcareListenerRulesRuleNotificationEmails struct {
+	Email *string `json:"email,omitempty"`
+}
+
+type FindHealthcareListener200ApplicationJSONHealthcareListenerRulesRule struct {
+	AdtMessage               *string                                                                                      `json:"adt_message,omitempty"`
+	AdtMessageField          *string                                                                                      `json:"adt_message_field,omitempty"`
+	DeviceInventoryField     *int64                                                                                       `json:"device_inventory_field,omitempty"`
+	HclID                    *int64                                                                                       `json:"hcl_id,omitempty"`
+	ID                       *int64                                                                                       `json:"id,omitempty"`
+	MdmCommand               *string                                                                                      `json:"mdm_command,omitempty"`
+	MdmCommandAdditionalData *FindHealthcareListener200ApplicationJSONHealthcareListenerRulesRuleMdmCommandAdditionalData `json:"mdm_command_additional_data,omitempty"`
+	Name                     *string                                                                                      `json:"name,omitempty"`
+	NotificationEmails       *FindHealthcareListener200ApplicationJSONHealthcareListenerRulesRuleNotificationEmails       `json:"notification_emails,omitempty"`
+	NotificationEnabled      *bool                                                                                        `json:"notification_enabled,omitempty"`
+	NotificationThreshold    *int64                                                                                       `json:"notification_threshold,omitempty"`
+	NotifyUnsupportedEnabled *bool                                                                                        `json:"notify_unsupported_enabled,omitempty"`
+	OperatingSystem          *string                                                                                      `json:"operating_system,omitempty"`
+}
+
+type FindHealthcareListener200ApplicationJSONHealthcareListenerRules struct {
+	Rule *FindHealthcareListener200ApplicationJSONHealthcareListenerRulesRule `json:"rule,omitempty"`
+}
+
+type FindHealthcareListener200ApplicationJSONHealthcareListener struct {
+	Enabled                *bool                                                             `json:"enabled,omitempty"`
+	ID                     *int64                                                            `json:"id,omitempty"`
+	InfratructureManagerID *int64                                                            `json:"infratructure_manager_id,omitempty"`
+	Name                   *string                                                           `json:"name,omitempty"`
+	Port                   *int64                                                            `json:"port,omitempty"`
+	RangeIps               *string                                                           `json:"range_ips,omitempty"`
+	Rules                  []FindHealthcareListener200ApplicationJSONHealthcareListenerRules `json:"rules,omitempty"`
+	SingleIps              *string                                                           `json:"single_ips,omitempty"`
+}
+
+type FindHealthcareListener200ApplicationJSON struct {
+	HealthcareListener []FindHealthcareListener200ApplicationJSONHealthcareListener `json:"healthcare_listener,omitempty"`
+	Size               *int64                                                       `json:"size,omitempty"`
+}
 
 type FindHealthcareListenerResponse struct {
 	Body        []byte
@@ -13,5 +110,5 @@ type FindHealthcareListenerResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	HealthcareListeners []shared.HealthcareListeners
+	FindHealthcareListener200ApplicationJSONObjects []FindHealthcareListener200ApplicationJSON
 }

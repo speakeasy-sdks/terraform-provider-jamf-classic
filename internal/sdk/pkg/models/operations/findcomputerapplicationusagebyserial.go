@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -16,11 +15,55 @@ type FindComputerApplicationUsageBySerialRequest struct {
 	StartDate string `pathParam:"style=simple,explode=false,name=start_date"`
 }
 
+type FindComputerApplicationUsageBySerial200ApplicationXMLUsageAppsApp struct {
+	// Number of minutes application was in the foreground
+	Foreground *int64
+	Name       *string
+	// Number of minutes the application was open
+	Open    *int64
+	Version *string
+}
+
+type FindComputerApplicationUsageBySerial200ApplicationXMLUsageApps struct {
+	App *FindComputerApplicationUsageBySerial200ApplicationXMLUsageAppsApp
+}
+
+type FindComputerApplicationUsageBySerial200ApplicationXMLUsage struct {
+	Apps []FindComputerApplicationUsageBySerial200ApplicationXMLUsageApps
+	Date *string
+}
+
+type FindComputerApplicationUsageBySerial200ApplicationXML struct {
+	Usage *FindComputerApplicationUsageBySerial200ApplicationXMLUsage
+}
+
+type FindComputerApplicationUsageBySerial200ApplicationJSONUsageAppsApp struct {
+	// Number of minutes application was in the foreground
+	Foreground *int64  `json:"foreground,omitempty"`
+	Name       *string `json:"name,omitempty"`
+	// Number of minutes the application was open
+	Open    *int64  `json:"open,omitempty"`
+	Version *string `json:"version,omitempty"`
+}
+
+type FindComputerApplicationUsageBySerial200ApplicationJSONUsageApps struct {
+	App *FindComputerApplicationUsageBySerial200ApplicationJSONUsageAppsApp `json:"app,omitempty"`
+}
+
+type FindComputerApplicationUsageBySerial200ApplicationJSONUsage struct {
+	Apps []FindComputerApplicationUsageBySerial200ApplicationJSONUsageApps `json:"apps,omitempty"`
+	Date *string                                                           `json:"date,omitempty"`
+}
+
+type FindComputerApplicationUsageBySerial200ApplicationJSON struct {
+	Usage *FindComputerApplicationUsageBySerial200ApplicationJSONUsage `json:"usage,omitempty"`
+}
+
 type FindComputerApplicationUsageBySerialResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	ComputerApplicationUsage []shared.ComputerApplicationUsage
+	FindComputerApplicationUsageBySerial200ApplicationJSONObjects []FindComputerApplicationUsageBySerial200ApplicationJSON
 }

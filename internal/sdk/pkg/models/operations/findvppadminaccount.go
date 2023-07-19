@@ -3,9 +3,28 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindVPPAdminAccount200ApplicationXMLVPPAccount struct {
+	ID   *int64
+	Name *string
+}
+
+type FindVPPAdminAccount200ApplicationXML struct {
+	Size       *int64
+	VppAccount *FindVPPAdminAccount200ApplicationXMLVPPAccount
+}
+
+type FindVPPAdminAccount200ApplicationJSONVPPAccount struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindVPPAdminAccount200ApplicationJSON struct {
+	Size       *int64                                           `json:"size,omitempty"`
+	VppAccount *FindVPPAdminAccount200ApplicationJSONVPPAccount `json:"vpp_account,omitempty"`
+}
 
 type FindVPPAdminAccountResponse struct {
 	Body        []byte
@@ -13,5 +32,5 @@ type FindVPPAdminAccountResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	VppAccounts []shared.VppAccounts
+	FindVPPAdminAccount200ApplicationJSONObjects []FindVPPAdminAccount200ApplicationJSON
 }

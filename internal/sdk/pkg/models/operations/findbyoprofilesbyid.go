@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,51 @@ type FindBYOProfilesByIDRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+type FindBYOProfilesByID200ApplicationXMLGeneralSite struct {
+	ID *int64
+	// Name of the site
+	Name string
+}
+
+type FindBYOProfilesByID200ApplicationXMLGeneral struct {
+	Description *string
+	Enabled     *bool
+	ID          *int64
+	// Name of the BYO profile
+	Name string
+	Site *FindBYOProfilesByID200ApplicationXMLGeneralSite
+}
+
+// FindBYOProfilesByID200ApplicationXML - OK
+type FindBYOProfilesByID200ApplicationXML struct {
+	General *FindBYOProfilesByID200ApplicationXMLGeneral
+}
+
+type FindBYOProfilesByID200ApplicationJSONGeneralSite struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the site
+	Name string `json:"name"`
+}
+
+type FindBYOProfilesByID200ApplicationJSONGeneral struct {
+	Description *string `json:"description,omitempty"`
+	Enabled     *bool   `json:"enabled,omitempty"`
+	ID          *int64  `json:"id,omitempty"`
+	// Name of the BYO profile
+	Name string                                            `json:"name"`
+	Site *FindBYOProfilesByID200ApplicationJSONGeneralSite `json:"site,omitempty"`
+}
+
+// FindBYOProfilesByID200ApplicationJSON - OK
+type FindBYOProfilesByID200ApplicationJSON struct {
+	General *FindBYOProfilesByID200ApplicationJSONGeneral `json:"general,omitempty"`
+}
+
 type FindBYOProfilesByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Byoprofile *shared.Byoprofile
+	FindBYOProfilesByID200ApplicationJSONObject *FindBYOProfilesByID200ApplicationJSON
 }

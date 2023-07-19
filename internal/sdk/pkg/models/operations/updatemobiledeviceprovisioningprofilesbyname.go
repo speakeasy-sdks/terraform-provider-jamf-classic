@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,35 @@ type UpdateMobileDeviceProvisioningProfilesByNameRequest struct {
 	Name string `pathParam:"style=simple,explode=false,name=name"`
 }
 
+type UpdateMobileDeviceProvisioningProfilesByName200ApplicationXMLGeneral struct {
+	DisplayName *string
+	ID          *int64
+	Name        *string
+	UUID        *string
+}
+
+// UpdateMobileDeviceProvisioningProfilesByName200ApplicationXML - OK
+type UpdateMobileDeviceProvisioningProfilesByName200ApplicationXML struct {
+	General *UpdateMobileDeviceProvisioningProfilesByName200ApplicationXMLGeneral
+}
+
+type UpdateMobileDeviceProvisioningProfilesByName200ApplicationJSONGeneral struct {
+	DisplayName *string `json:"display_name,omitempty"`
+	ID          *int64  `json:"id,omitempty"`
+	Name        *string `json:"name,omitempty"`
+	UUID        *string `json:"uuid,omitempty"`
+}
+
+// UpdateMobileDeviceProvisioningProfilesByName200ApplicationJSON - OK
+type UpdateMobileDeviceProvisioningProfilesByName200ApplicationJSON struct {
+	General *UpdateMobileDeviceProvisioningProfilesByName200ApplicationJSONGeneral `json:"general,omitempty"`
+}
+
 type UpdateMobileDeviceProvisioningProfilesByNameResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	MobileDeviceProvisioningProfile *shared.MobileDeviceProvisioningProfile
+	UpdateMobileDeviceProvisioningProfilesByName200ApplicationJSONObject *UpdateMobileDeviceProvisioningProfilesByName200ApplicationJSON
 }

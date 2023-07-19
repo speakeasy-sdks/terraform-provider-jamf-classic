@@ -5,7 +5,6 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -47,11 +46,783 @@ type FindEBooksByNameSubsetRequest struct {
 	Subset FindEBooksByNameSubsetSubset `pathParam:"style=simple,explode=false,name=subset"`
 }
 
+type FindEBooksByNameSubset200ApplicationXMLGeneralCategory struct {
+	ID *int64
+	// Name of the category
+	Name string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLGeneralDeploymentType string
+
+const (
+	FindEBooksByNameSubset200ApplicationXMLGeneralDeploymentTypeMakeAvailableInSelfService               FindEBooksByNameSubset200ApplicationXMLGeneralDeploymentType = "Make Available in Self Service"
+	FindEBooksByNameSubset200ApplicationXMLGeneralDeploymentTypeInstallAutomaticallyPromptUsersToInstall FindEBooksByNameSubset200ApplicationXMLGeneralDeploymentType = "Install Automatically/Prompt Users to Install"
+)
+
+func (e FindEBooksByNameSubset200ApplicationXMLGeneralDeploymentType) ToPointer() *FindEBooksByNameSubset200ApplicationXMLGeneralDeploymentType {
+	return &e
+}
+
+func (e *FindEBooksByNameSubset200ApplicationXMLGeneralDeploymentType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Make Available in Self Service":
+		fallthrough
+	case "Install Automatically/Prompt Users to Install":
+		*e = FindEBooksByNameSubset200ApplicationXMLGeneralDeploymentType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindEBooksByNameSubset200ApplicationXMLGeneralDeploymentType: %v", v)
+	}
+}
+
+type FindEBooksByNameSubset200ApplicationXMLGeneralFileType string
+
+const (
+	FindEBooksByNameSubset200ApplicationXMLGeneralFileTypePdf   FindEBooksByNameSubset200ApplicationXMLGeneralFileType = "PDF"
+	FindEBooksByNameSubset200ApplicationXMLGeneralFileTypeIbook FindEBooksByNameSubset200ApplicationXMLGeneralFileType = "IBOOK"
+	FindEBooksByNameSubset200ApplicationXMLGeneralFileTypeEpub  FindEBooksByNameSubset200ApplicationXMLGeneralFileType = "EPUB"
+)
+
+func (e FindEBooksByNameSubset200ApplicationXMLGeneralFileType) ToPointer() *FindEBooksByNameSubset200ApplicationXMLGeneralFileType {
+	return &e
+}
+
+func (e *FindEBooksByNameSubset200ApplicationXMLGeneralFileType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "PDF":
+		fallthrough
+	case "IBOOK":
+		fallthrough
+	case "EPUB":
+		*e = FindEBooksByNameSubset200ApplicationXMLGeneralFileType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindEBooksByNameSubset200ApplicationXMLGeneralFileType: %v", v)
+	}
+}
+
+type FindEBooksByNameSubset200ApplicationXMLGeneralSelfServiceIcon struct {
+	Data *string
+	ID   *int64
+	URI  *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLGeneralSite struct {
+	ID *int64
+	// Name of the site
+	Name string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLGeneral struct {
+	Author          *string
+	Category        *FindEBooksByNameSubset200ApplicationXMLGeneralCategory
+	DeployAsManaged *bool
+	DeploymentType  *FindEBooksByNameSubset200ApplicationXMLGeneralDeploymentType
+	FileType        *FindEBooksByNameSubset200ApplicationXMLGeneralFileType
+	Free            *bool
+	ID              *int64
+	// Name of the ebook
+	Name            string
+	SelfServiceIcon *FindEBooksByNameSubset200ApplicationXMLGeneralSelfServiceIcon
+	Site            *FindEBooksByNameSubset200ApplicationXMLGeneralSite
+	// Download URL for the ebook
+	URL     *string
+	Version *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeBuildingsBuilding struct {
+	ID   *int64
+	Name *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeBuildings struct {
+	Building *FindEBooksByNameSubset200ApplicationXMLScopeBuildingsBuilding
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeClassesClass struct {
+	ID   *int64
+	Name *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeClasses struct {
+	Class *FindEBooksByNameSubset200ApplicationXMLScopeClassesClass
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeComputerGroupsComputerGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeComputerGroups struct {
+	ComputerGroup *FindEBooksByNameSubset200ApplicationXMLScopeComputerGroupsComputerGroup
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeComputersComputer struct {
+	ID *int64
+	// Name of the computer
+	Name *string
+	Udid *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeComputers struct {
+	Computer *FindEBooksByNameSubset200ApplicationXMLScopeComputersComputer
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeDepartmentsDepartment struct {
+	ID   *int64
+	Name *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeDepartments struct {
+	Department *FindEBooksByNameSubset200ApplicationXMLScopeDepartmentsDepartment
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeExclusionsBuildingsBuilding struct {
+	ID   *int64
+	Name *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeExclusionsBuildings struct {
+	Building *FindEBooksByNameSubset200ApplicationXMLScopeExclusionsBuildingsBuilding
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeExclusionsComputerGroupsComputerGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeExclusionsComputerGroups struct {
+	ComputerGroup *FindEBooksByNameSubset200ApplicationXMLScopeExclusionsComputerGroupsComputerGroup
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeExclusionsComputersComputer struct {
+	ID *int64
+	// Name of the computer
+	Name *string
+	Udid *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeExclusionsComputers struct {
+	Computer *FindEBooksByNameSubset200ApplicationXMLScopeExclusionsComputersComputer
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeExclusionsDepartmentsDepartment struct {
+	ID   *int64
+	Name *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeExclusionsDepartments struct {
+	Department *FindEBooksByNameSubset200ApplicationXMLScopeExclusionsDepartmentsDepartment
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeExclusionsJssUserGroupsUserGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeExclusionsJssUserGroups struct {
+	UserGroup *FindEBooksByNameSubset200ApplicationXMLScopeExclusionsJssUserGroupsUserGroup
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeExclusionsJssUsersUser struct {
+	ID   *int64
+	Name *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeExclusionsJssUsers struct {
+	User *FindEBooksByNameSubset200ApplicationXMLScopeExclusionsJssUsersUser
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeExclusionsMobileDeviceGroupsMobileDeviceGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeExclusionsMobileDeviceGroups struct {
+	MobileDeviceGroup *FindEBooksByNameSubset200ApplicationXMLScopeExclusionsMobileDeviceGroupsMobileDeviceGroup
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeExclusionsMobileDevicesMobileDevice struct {
+	ID *int64
+	// Name of the device
+	Name           *string
+	Udid           *string
+	WifiMacAddress *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeExclusionsMobileDevices struct {
+	MobileDevice *FindEBooksByNameSubset200ApplicationXMLScopeExclusionsMobileDevicesMobileDevice
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeExclusionsNetworkSegmentsNetworkSegment struct {
+	ID *int64
+	// Name of the network segment
+	Name *string
+	UID  *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeExclusionsNetworkSegments struct {
+	NetworkSegment *FindEBooksByNameSubset200ApplicationXMLScopeExclusionsNetworkSegmentsNetworkSegment
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeExclusionsUserGroupsUserGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeExclusionsUserGroups struct {
+	UserGroup *FindEBooksByNameSubset200ApplicationXMLScopeExclusionsUserGroupsUserGroup
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeExclusionsUsersUser struct {
+	Name *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeExclusionsUsers struct {
+	User *FindEBooksByNameSubset200ApplicationXMLScopeExclusionsUsersUser
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeExclusions struct {
+	Buildings          []FindEBooksByNameSubset200ApplicationXMLScopeExclusionsBuildings
+	ComputerGroups     []FindEBooksByNameSubset200ApplicationXMLScopeExclusionsComputerGroups
+	Computers          []FindEBooksByNameSubset200ApplicationXMLScopeExclusionsComputers
+	Departments        []FindEBooksByNameSubset200ApplicationXMLScopeExclusionsDepartments
+	JssUserGroups      []FindEBooksByNameSubset200ApplicationXMLScopeExclusionsJssUserGroups
+	JssUsers           []FindEBooksByNameSubset200ApplicationXMLScopeExclusionsJssUsers
+	MobileDeviceGroups []FindEBooksByNameSubset200ApplicationXMLScopeExclusionsMobileDeviceGroups
+	MobileDevices      []FindEBooksByNameSubset200ApplicationXMLScopeExclusionsMobileDevices
+	NetworkSegments    []FindEBooksByNameSubset200ApplicationXMLScopeExclusionsNetworkSegments
+	UserGroups         []FindEBooksByNameSubset200ApplicationXMLScopeExclusionsUserGroups
+	Users              []FindEBooksByNameSubset200ApplicationXMLScopeExclusionsUsers
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeJssUserGroupsUserGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeJssUserGroups struct {
+	UserGroup *FindEBooksByNameSubset200ApplicationXMLScopeJssUserGroupsUserGroup
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeJssUsersUser struct {
+	ID   *int64
+	Name *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeJssUsers struct {
+	User *FindEBooksByNameSubset200ApplicationXMLScopeJssUsersUser
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeLimitationsNetworkSegmentsNetworkSegment struct {
+	ID   *int64
+	Name *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeLimitationsNetworkSegments struct {
+	NetworkSegment *FindEBooksByNameSubset200ApplicationXMLScopeLimitationsNetworkSegmentsNetworkSegment
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeLimitationsUserGroupsUserGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeLimitationsUserGroups struct {
+	UserGroup *FindEBooksByNameSubset200ApplicationXMLScopeLimitationsUserGroupsUserGroup
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeLimitationsUsersUser struct {
+	ID   *int64
+	Name *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeLimitationsUsers struct {
+	User *FindEBooksByNameSubset200ApplicationXMLScopeLimitationsUsersUser
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeLimitations struct {
+	NetworkSegments []FindEBooksByNameSubset200ApplicationXMLScopeLimitationsNetworkSegments
+	UserGroups      []FindEBooksByNameSubset200ApplicationXMLScopeLimitationsUserGroups
+	Users           []FindEBooksByNameSubset200ApplicationXMLScopeLimitationsUsers
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeMobileDeviceGroupsMobileDeviceGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeMobileDeviceGroups struct {
+	MobileDeviceGroup *FindEBooksByNameSubset200ApplicationXMLScopeMobileDeviceGroupsMobileDeviceGroup
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeMobileDevicesMobileDevice struct {
+	ID *int64
+	// Name of the device
+	Name           *string
+	Udid           *string
+	WifiMacAddress *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScopeMobileDevices struct {
+	MobileDevice *FindEBooksByNameSubset200ApplicationXMLScopeMobileDevicesMobileDevice
+}
+
+type FindEBooksByNameSubset200ApplicationXMLScope struct {
+	AllComputers       *bool
+	AllJssUsers        *bool
+	AllMobileDevices   *bool
+	Buildings          []FindEBooksByNameSubset200ApplicationXMLScopeBuildings
+	Classes            []FindEBooksByNameSubset200ApplicationXMLScopeClasses
+	ComputerGroups     []FindEBooksByNameSubset200ApplicationXMLScopeComputerGroups
+	Computers          []FindEBooksByNameSubset200ApplicationXMLScopeComputers
+	Departments        []FindEBooksByNameSubset200ApplicationXMLScopeDepartments
+	Exclusions         *FindEBooksByNameSubset200ApplicationXMLScopeExclusions
+	JssUserGroups      []FindEBooksByNameSubset200ApplicationXMLScopeJssUserGroups
+	JssUsers           []FindEBooksByNameSubset200ApplicationXMLScopeJssUsers
+	Limitations        *FindEBooksByNameSubset200ApplicationXMLScopeLimitations
+	MobileDeviceGroups []FindEBooksByNameSubset200ApplicationXMLScopeMobileDeviceGroups
+	MobileDevices      []FindEBooksByNameSubset200ApplicationXMLScopeMobileDevices
+}
+
+type FindEBooksByNameSubset200ApplicationXMLSelfServiceSelfServiceCategoriesCategory struct {
+	// Self Service categories to be displayed ebook in
+	DisplayIn *string
+	FeatureIn *bool
+	ID        *int64
+	// Name of the category
+	Name *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLSelfServiceSelfServiceCategories struct {
+	Category *FindEBooksByNameSubset200ApplicationXMLSelfServiceSelfServiceCategoriesCategory
+}
+
+type FindEBooksByNameSubset200ApplicationXMLSelfServiceSelfServiceIcon struct {
+	Data *string
+	ID   *int64
+	URI  *string
+}
+
+type FindEBooksByNameSubset200ApplicationXMLSelfService struct {
+	FeatureOnMainPage           *bool
+	ForceUsersToViewDescription *bool
+	InstallButtonText           *string
+	Notification                *bool
+	NotificationMessage         *string
+	NotificationSubject         *string
+	SelfServiceCategories       *FindEBooksByNameSubset200ApplicationXMLSelfServiceSelfServiceCategories
+	SelfServiceDescription      *string
+	SelfServiceDisplayName      *string
+	SelfServiceIcon             *FindEBooksByNameSubset200ApplicationXMLSelfServiceSelfServiceIcon
+}
+
+// FindEBooksByNameSubset200ApplicationXML - OK
+type FindEBooksByNameSubset200ApplicationXML struct {
+	General     *FindEBooksByNameSubset200ApplicationXMLGeneral
+	Scope       *FindEBooksByNameSubset200ApplicationXMLScope
+	SelfService *FindEBooksByNameSubset200ApplicationXMLSelfService
+}
+
+type FindEBooksByNameSubset200ApplicationJSONGeneralCategory struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the category
+	Name string `json:"name"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONGeneralDeploymentType string
+
+const (
+	FindEBooksByNameSubset200ApplicationJSONGeneralDeploymentTypeMakeAvailableInSelfService               FindEBooksByNameSubset200ApplicationJSONGeneralDeploymentType = "Make Available in Self Service"
+	FindEBooksByNameSubset200ApplicationJSONGeneralDeploymentTypeInstallAutomaticallyPromptUsersToInstall FindEBooksByNameSubset200ApplicationJSONGeneralDeploymentType = "Install Automatically/Prompt Users to Install"
+)
+
+func (e FindEBooksByNameSubset200ApplicationJSONGeneralDeploymentType) ToPointer() *FindEBooksByNameSubset200ApplicationJSONGeneralDeploymentType {
+	return &e
+}
+
+func (e *FindEBooksByNameSubset200ApplicationJSONGeneralDeploymentType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Make Available in Self Service":
+		fallthrough
+	case "Install Automatically/Prompt Users to Install":
+		*e = FindEBooksByNameSubset200ApplicationJSONGeneralDeploymentType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindEBooksByNameSubset200ApplicationJSONGeneralDeploymentType: %v", v)
+	}
+}
+
+type FindEBooksByNameSubset200ApplicationJSONGeneralFileType string
+
+const (
+	FindEBooksByNameSubset200ApplicationJSONGeneralFileTypePdf   FindEBooksByNameSubset200ApplicationJSONGeneralFileType = "PDF"
+	FindEBooksByNameSubset200ApplicationJSONGeneralFileTypeIbook FindEBooksByNameSubset200ApplicationJSONGeneralFileType = "IBOOK"
+	FindEBooksByNameSubset200ApplicationJSONGeneralFileTypeEpub  FindEBooksByNameSubset200ApplicationJSONGeneralFileType = "EPUB"
+)
+
+func (e FindEBooksByNameSubset200ApplicationJSONGeneralFileType) ToPointer() *FindEBooksByNameSubset200ApplicationJSONGeneralFileType {
+	return &e
+}
+
+func (e *FindEBooksByNameSubset200ApplicationJSONGeneralFileType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "PDF":
+		fallthrough
+	case "IBOOK":
+		fallthrough
+	case "EPUB":
+		*e = FindEBooksByNameSubset200ApplicationJSONGeneralFileType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindEBooksByNameSubset200ApplicationJSONGeneralFileType: %v", v)
+	}
+}
+
+type FindEBooksByNameSubset200ApplicationJSONGeneralSelfServiceIcon struct {
+	Data *string `json:"data,omitempty"`
+	ID   *int64  `json:"id,omitempty"`
+	URI  *string `json:"uri,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONGeneralSite struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the site
+	Name string `json:"name"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONGeneral struct {
+	Author          *string                                                        `json:"author,omitempty"`
+	Category        *FindEBooksByNameSubset200ApplicationJSONGeneralCategory       `json:"category,omitempty"`
+	DeployAsManaged *bool                                                          `json:"deploy_as_managed,omitempty"`
+	DeploymentType  *FindEBooksByNameSubset200ApplicationJSONGeneralDeploymentType `json:"deployment_type,omitempty"`
+	FileType        *FindEBooksByNameSubset200ApplicationJSONGeneralFileType       `json:"file_type,omitempty"`
+	Free            *bool                                                          `json:"free,omitempty"`
+	ID              *int64                                                         `json:"id,omitempty"`
+	// Name of the ebook
+	Name            string                                                          `json:"name"`
+	SelfServiceIcon *FindEBooksByNameSubset200ApplicationJSONGeneralSelfServiceIcon `json:"self_service_icon,omitempty"`
+	Site            *FindEBooksByNameSubset200ApplicationJSONGeneralSite            `json:"site,omitempty"`
+	// Download URL for the ebook
+	URL     *string `json:"url,omitempty"`
+	Version *string `json:"version,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeBuildingsBuilding struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeBuildings struct {
+	Building *FindEBooksByNameSubset200ApplicationJSONScopeBuildingsBuilding `json:"building,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeClassesClass struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeClasses struct {
+	Class *FindEBooksByNameSubset200ApplicationJSONScopeClassesClass `json:"class,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeComputerGroupsComputerGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeComputerGroups struct {
+	ComputerGroup *FindEBooksByNameSubset200ApplicationJSONScopeComputerGroupsComputerGroup `json:"computer_group,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeComputersComputer struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the computer
+	Name *string `json:"name,omitempty"`
+	Udid *string `json:"udid,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeComputers struct {
+	Computer *FindEBooksByNameSubset200ApplicationJSONScopeComputersComputer `json:"computer,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeDepartmentsDepartment struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeDepartments struct {
+	Department *FindEBooksByNameSubset200ApplicationJSONScopeDepartmentsDepartment `json:"department,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeExclusionsBuildingsBuilding struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeExclusionsBuildings struct {
+	Building *FindEBooksByNameSubset200ApplicationJSONScopeExclusionsBuildingsBuilding `json:"building,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeExclusionsComputerGroupsComputerGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeExclusionsComputerGroups struct {
+	ComputerGroup *FindEBooksByNameSubset200ApplicationJSONScopeExclusionsComputerGroupsComputerGroup `json:"computer_group,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeExclusionsComputersComputer struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the computer
+	Name *string `json:"name,omitempty"`
+	Udid *string `json:"udid,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeExclusionsComputers struct {
+	Computer *FindEBooksByNameSubset200ApplicationJSONScopeExclusionsComputersComputer `json:"computer,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeExclusionsDepartmentsDepartment struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeExclusionsDepartments struct {
+	Department *FindEBooksByNameSubset200ApplicationJSONScopeExclusionsDepartmentsDepartment `json:"department,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeExclusionsJssUserGroupsUserGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeExclusionsJssUserGroups struct {
+	UserGroup *FindEBooksByNameSubset200ApplicationJSONScopeExclusionsJssUserGroupsUserGroup `json:"user_group,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeExclusionsJssUsersUser struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeExclusionsJssUsers struct {
+	User *FindEBooksByNameSubset200ApplicationJSONScopeExclusionsJssUsersUser `json:"user,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeExclusionsMobileDeviceGroupsMobileDeviceGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeExclusionsMobileDeviceGroups struct {
+	MobileDeviceGroup *FindEBooksByNameSubset200ApplicationJSONScopeExclusionsMobileDeviceGroupsMobileDeviceGroup `json:"mobile_device_group,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeExclusionsMobileDevicesMobileDevice struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the device
+	Name           *string `json:"name,omitempty"`
+	Udid           *string `json:"udid,omitempty"`
+	WifiMacAddress *string `json:"wifi_mac_address,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeExclusionsMobileDevices struct {
+	MobileDevice *FindEBooksByNameSubset200ApplicationJSONScopeExclusionsMobileDevicesMobileDevice `json:"mobile_device,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeExclusionsNetworkSegmentsNetworkSegment struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the network segment
+	Name *string `json:"name,omitempty"`
+	UID  *string `json:"uid,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeExclusionsNetworkSegments struct {
+	NetworkSegment *FindEBooksByNameSubset200ApplicationJSONScopeExclusionsNetworkSegmentsNetworkSegment `json:"network_segment,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeExclusionsUserGroupsUserGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeExclusionsUserGroups struct {
+	UserGroup *FindEBooksByNameSubset200ApplicationJSONScopeExclusionsUserGroupsUserGroup `json:"user_group,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeExclusionsUsersUser struct {
+	Name *string `json:"name,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeExclusionsUsers struct {
+	User *FindEBooksByNameSubset200ApplicationJSONScopeExclusionsUsersUser `json:"user,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeExclusions struct {
+	Buildings          []FindEBooksByNameSubset200ApplicationJSONScopeExclusionsBuildings          `json:"buildings,omitempty"`
+	ComputerGroups     []FindEBooksByNameSubset200ApplicationJSONScopeExclusionsComputerGroups     `json:"computer_groups,omitempty"`
+	Computers          []FindEBooksByNameSubset200ApplicationJSONScopeExclusionsComputers          `json:"computers,omitempty"`
+	Departments        []FindEBooksByNameSubset200ApplicationJSONScopeExclusionsDepartments        `json:"departments,omitempty"`
+	JssUserGroups      []FindEBooksByNameSubset200ApplicationJSONScopeExclusionsJssUserGroups      `json:"jss_user_groups,omitempty"`
+	JssUsers           []FindEBooksByNameSubset200ApplicationJSONScopeExclusionsJssUsers           `json:"jss_users,omitempty"`
+	MobileDeviceGroups []FindEBooksByNameSubset200ApplicationJSONScopeExclusionsMobileDeviceGroups `json:"mobile_device_groups,omitempty"`
+	MobileDevices      []FindEBooksByNameSubset200ApplicationJSONScopeExclusionsMobileDevices      `json:"mobile_devices,omitempty"`
+	NetworkSegments    []FindEBooksByNameSubset200ApplicationJSONScopeExclusionsNetworkSegments    `json:"network_segments,omitempty"`
+	UserGroups         []FindEBooksByNameSubset200ApplicationJSONScopeExclusionsUserGroups         `json:"user_groups,omitempty"`
+	Users              []FindEBooksByNameSubset200ApplicationJSONScopeExclusionsUsers              `json:"users,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeJssUserGroupsUserGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeJssUserGroups struct {
+	UserGroup *FindEBooksByNameSubset200ApplicationJSONScopeJssUserGroupsUserGroup `json:"user_group,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeJssUsersUser struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeJssUsers struct {
+	User *FindEBooksByNameSubset200ApplicationJSONScopeJssUsersUser `json:"user,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeLimitationsNetworkSegmentsNetworkSegment struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeLimitationsNetworkSegments struct {
+	NetworkSegment *FindEBooksByNameSubset200ApplicationJSONScopeLimitationsNetworkSegmentsNetworkSegment `json:"network_segment,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeLimitationsUserGroupsUserGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeLimitationsUserGroups struct {
+	UserGroup *FindEBooksByNameSubset200ApplicationJSONScopeLimitationsUserGroupsUserGroup `json:"user_group,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeLimitationsUsersUser struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeLimitationsUsers struct {
+	User *FindEBooksByNameSubset200ApplicationJSONScopeLimitationsUsersUser `json:"user,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeLimitations struct {
+	NetworkSegments []FindEBooksByNameSubset200ApplicationJSONScopeLimitationsNetworkSegments `json:"network_segments,omitempty"`
+	UserGroups      []FindEBooksByNameSubset200ApplicationJSONScopeLimitationsUserGroups      `json:"user_groups,omitempty"`
+	Users           []FindEBooksByNameSubset200ApplicationJSONScopeLimitationsUsers           `json:"users,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeMobileDeviceGroupsMobileDeviceGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeMobileDeviceGroups struct {
+	MobileDeviceGroup *FindEBooksByNameSubset200ApplicationJSONScopeMobileDeviceGroupsMobileDeviceGroup `json:"mobile_device_group,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeMobileDevicesMobileDevice struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the device
+	Name           *string `json:"name,omitempty"`
+	Udid           *string `json:"udid,omitempty"`
+	WifiMacAddress *string `json:"wifi_mac_address,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScopeMobileDevices struct {
+	MobileDevice *FindEBooksByNameSubset200ApplicationJSONScopeMobileDevicesMobileDevice `json:"mobile_device,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONScope struct {
+	AllComputers       *bool                                                             `json:"all_computers,omitempty"`
+	AllJssUsers        *bool                                                             `json:"all_jss_users,omitempty"`
+	AllMobileDevices   *bool                                                             `json:"all_mobile_devices,omitempty"`
+	Buildings          []FindEBooksByNameSubset200ApplicationJSONScopeBuildings          `json:"buildings,omitempty"`
+	Classes            []FindEBooksByNameSubset200ApplicationJSONScopeClasses            `json:"classes,omitempty"`
+	ComputerGroups     []FindEBooksByNameSubset200ApplicationJSONScopeComputerGroups     `json:"computer_groups,omitempty"`
+	Computers          []FindEBooksByNameSubset200ApplicationJSONScopeComputers          `json:"computers,omitempty"`
+	Departments        []FindEBooksByNameSubset200ApplicationJSONScopeDepartments        `json:"departments,omitempty"`
+	Exclusions         *FindEBooksByNameSubset200ApplicationJSONScopeExclusions          `json:"exclusions,omitempty"`
+	JssUserGroups      []FindEBooksByNameSubset200ApplicationJSONScopeJssUserGroups      `json:"jss_user_groups,omitempty"`
+	JssUsers           []FindEBooksByNameSubset200ApplicationJSONScopeJssUsers           `json:"jss_users,omitempty"`
+	Limitations        *FindEBooksByNameSubset200ApplicationJSONScopeLimitations         `json:"limitations,omitempty"`
+	MobileDeviceGroups []FindEBooksByNameSubset200ApplicationJSONScopeMobileDeviceGroups `json:"mobile_device_groups,omitempty"`
+	MobileDevices      []FindEBooksByNameSubset200ApplicationJSONScopeMobileDevices      `json:"mobile_devices,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONSelfServiceSelfServiceCategoriesCategory struct {
+	// Self Service categories to be displayed ebook in
+	DisplayIn *string `json:"display_in,omitempty"`
+	FeatureIn *bool   `json:"feature_in,omitempty"`
+	ID        *int64  `json:"id,omitempty"`
+	// Name of the category
+	Name *string `json:"name,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONSelfServiceSelfServiceCategories struct {
+	Category *FindEBooksByNameSubset200ApplicationJSONSelfServiceSelfServiceCategoriesCategory `json:"category,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONSelfServiceSelfServiceIcon struct {
+	Data *string `json:"data,omitempty"`
+	ID   *int64  `json:"id,omitempty"`
+	URI  *string `json:"uri,omitempty"`
+}
+
+type FindEBooksByNameSubset200ApplicationJSONSelfService struct {
+	FeatureOnMainPage           *bool                                                                     `json:"feature_on_main_page,omitempty"`
+	ForceUsersToViewDescription *bool                                                                     `json:"force_users_to_view_description,omitempty"`
+	InstallButtonText           *string                                                                   `json:"install_button_text,omitempty"`
+	Notification                *bool                                                                     `json:"notification,omitempty"`
+	NotificationMessage         *string                                                                   `json:"notification_message,omitempty"`
+	NotificationSubject         *string                                                                   `json:"notification_subject,omitempty"`
+	SelfServiceCategories       *FindEBooksByNameSubset200ApplicationJSONSelfServiceSelfServiceCategories `json:"self_service_categories,omitempty"`
+	SelfServiceDescription      *string                                                                   `json:"self_service_description,omitempty"`
+	SelfServiceDisplayName      *string                                                                   `json:"self_service_display_name,omitempty"`
+	SelfServiceIcon             *FindEBooksByNameSubset200ApplicationJSONSelfServiceSelfServiceIcon       `json:"self_service_icon,omitempty"`
+}
+
+// FindEBooksByNameSubset200ApplicationJSON - OK
+type FindEBooksByNameSubset200ApplicationJSON struct {
+	General     *FindEBooksByNameSubset200ApplicationJSONGeneral     `json:"general,omitempty"`
+	Scope       *FindEBooksByNameSubset200ApplicationJSONScope       `json:"scope,omitempty"`
+	SelfService *FindEBooksByNameSubset200ApplicationJSONSelfService `json:"self_service,omitempty"`
+}
+
 type FindEBooksByNameSubsetResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Ebook *shared.Ebook
+	FindEBooksByNameSubset200ApplicationJSONObject *FindEBooksByNameSubset200ApplicationJSON
 }

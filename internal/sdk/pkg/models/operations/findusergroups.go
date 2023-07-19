@@ -3,9 +3,34 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindUserGroups200ApplicationXMLUserGroup struct {
+	ID               *int64
+	IsNotifyOnChange *bool
+	IsSmart          *bool
+	// Name of the user group
+	Name *string
+}
+
+type FindUserGroups200ApplicationXML struct {
+	Size      *int64
+	UserGroup *FindUserGroups200ApplicationXMLUserGroup
+}
+
+type FindUserGroups200ApplicationJSONUserGroup struct {
+	ID               *int64 `json:"id,omitempty"`
+	IsNotifyOnChange *bool  `json:"is_notify_on_change,omitempty"`
+	IsSmart          *bool  `json:"is_smart,omitempty"`
+	// Name of the user group
+	Name *string `json:"name,omitempty"`
+}
+
+type FindUserGroups200ApplicationJSON struct {
+	Size      *int64                                     `json:"size,omitempty"`
+	UserGroup *FindUserGroups200ApplicationJSONUserGroup `json:"user_group,omitempty"`
+}
 
 type FindUserGroupsResponse struct {
 	Body        []byte
@@ -13,5 +38,5 @@ type FindUserGroupsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	UserGroups []shared.UserGroups
+	FindUserGroups200ApplicationJSONObjects []FindUserGroups200ApplicationJSON
 }

@@ -5,7 +5,6 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -77,11 +76,1775 @@ type FindPoliciesByNameSubsetRequest struct {
 	Subset FindPoliciesByNameSubsetSubset `pathParam:"style=simple,explode=false,name=subset"`
 }
 
+type FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceAccountsAccountAction string
+
+const (
+	FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceAccountsAccountActionCreate           FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceAccountsAccountAction = "Create"
+	FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceAccountsAccountActionReset            FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceAccountsAccountAction = "Reset"
+	FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceAccountsAccountActionDelete           FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceAccountsAccountAction = "Delete"
+	FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceAccountsAccountActionDisableFileVault FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceAccountsAccountAction = "DisableFileVault"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceAccountsAccountAction) ToPointer() *FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceAccountsAccountAction {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceAccountsAccountAction) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Create":
+		fallthrough
+	case "Reset":
+		fallthrough
+	case "Delete":
+		fallthrough
+	case "DisableFileVault":
+		*e = FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceAccountsAccountAction(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceAccountsAccountAction: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceAccountsAccount struct {
+	Action                 *FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceAccountsAccountAction
+	Admin                  *bool
+	ArchiveHomeDirectory   *bool
+	ArchiveHomeDirectoryTo *string
+	FilevaultEnabled       *bool
+	Home                   *string
+	Password               *string
+	Picture                *string
+	Realname               *string
+	Username               *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceAccounts struct {
+	Account *FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceAccountsAccount
+	Size    *int64
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceDirectoryBindingsBinding struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceDirectoryBindings struct {
+	Binding *FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceDirectoryBindingsBinding
+	Size    *int64
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceManagementAccountAction string
+
+const (
+	FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceManagementAccountActionSpecified        FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceManagementAccountAction = "specified"
+	FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceManagementAccountActionRandom           FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceManagementAccountAction = "random"
+	FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceManagementAccountActionReset            FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceManagementAccountAction = "reset"
+	FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceManagementAccountActionFileVaultEnable  FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceManagementAccountAction = "fileVaultEnable"
+	FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceManagementAccountActionFileVaultDisable FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceManagementAccountAction = "fileVaultDisable"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceManagementAccountAction) ToPointer() *FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceManagementAccountAction {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceManagementAccountAction) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "specified":
+		fallthrough
+	case "random":
+		fallthrough
+	case "reset":
+		fallthrough
+	case "fileVaultEnable":
+		fallthrough
+	case "fileVaultDisable":
+		*e = FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceManagementAccountAction(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceManagementAccountAction: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceManagementAccount struct {
+	Action          *FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceManagementAccountAction
+	ManagedPassword *string
+	// Only necessary when utilizing the random action
+	ManagedPasswordLength *int64
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceOpenFirmwareEfiPasswordOfMode string
+
+const (
+	FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceOpenFirmwareEfiPasswordOfModeCommand FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceOpenFirmwareEfiPasswordOfMode = "command"
+	FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceOpenFirmwareEfiPasswordOfModeNone    FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceOpenFirmwareEfiPasswordOfMode = "none"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceOpenFirmwareEfiPasswordOfMode) ToPointer() *FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceOpenFirmwareEfiPasswordOfMode {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceOpenFirmwareEfiPasswordOfMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "command":
+		fallthrough
+	case "none":
+		*e = FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceOpenFirmwareEfiPasswordOfMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceOpenFirmwareEfiPasswordOfMode: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceOpenFirmwareEfiPassword struct {
+	OfMode     *FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceOpenFirmwareEfiPasswordOfMode
+	OfPassword *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLAccountMaintenance struct {
+	Accounts                []FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceAccounts
+	DirectoryBindings       []FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceDirectoryBindings
+	ManagementAccount       *FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceManagementAccount
+	OpenFirmwareEfiPassword *FindPoliciesByNameSubset200ApplicationXMLAccountMaintenanceOpenFirmwareEfiPassword
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLDiskEncryptionAction string
+
+const (
+	FindPoliciesByNameSubset200ApplicationXMLDiskEncryptionActionApply     FindPoliciesByNameSubset200ApplicationXMLDiskEncryptionAction = "apply"
+	FindPoliciesByNameSubset200ApplicationXMLDiskEncryptionActionRemediate FindPoliciesByNameSubset200ApplicationXMLDiskEncryptionAction = "remediate"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationXMLDiskEncryptionAction) ToPointer() *FindPoliciesByNameSubset200ApplicationXMLDiskEncryptionAction {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationXMLDiskEncryptionAction) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "apply":
+		fallthrough
+	case "remediate":
+		*e = FindPoliciesByNameSubset200ApplicationXMLDiskEncryptionAction(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationXMLDiskEncryptionAction: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLDiskEncryptionRemediateKeyType string
+
+const (
+	FindPoliciesByNameSubset200ApplicationXMLDiskEncryptionRemediateKeyTypeIndividual                 FindPoliciesByNameSubset200ApplicationXMLDiskEncryptionRemediateKeyType = "Individual"
+	FindPoliciesByNameSubset200ApplicationXMLDiskEncryptionRemediateKeyTypeInstitutional              FindPoliciesByNameSubset200ApplicationXMLDiskEncryptionRemediateKeyType = "Institutional"
+	FindPoliciesByNameSubset200ApplicationXMLDiskEncryptionRemediateKeyTypeIndividualAndInstitutional FindPoliciesByNameSubset200ApplicationXMLDiskEncryptionRemediateKeyType = "Individual And Institutional"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationXMLDiskEncryptionRemediateKeyType) ToPointer() *FindPoliciesByNameSubset200ApplicationXMLDiskEncryptionRemediateKeyType {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationXMLDiskEncryptionRemediateKeyType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Individual":
+		fallthrough
+	case "Institutional":
+		fallthrough
+	case "Individual And Institutional":
+		*e = FindPoliciesByNameSubset200ApplicationXMLDiskEncryptionRemediateKeyType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationXMLDiskEncryptionRemediateKeyType: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLDiskEncryption struct {
+	Action                        *FindPoliciesByNameSubset200ApplicationXMLDiskEncryptionAction
+	AuthRestart                   *bool
+	DiskEncryptionConfigurationID *int64
+	// disk encryption ID to utilize for remediating institutional recovery key types.
+	RemediateDiskEncryptionConfigurationID *int64
+	RemediateKeyType                       *FindPoliciesByNameSubset200ApplicationXMLDiskEncryptionRemediateKeyType
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLDockItemsDockItemAction string
+
+const (
+	FindPoliciesByNameSubset200ApplicationXMLDockItemsDockItemActionAddToBeginning FindPoliciesByNameSubset200ApplicationXMLDockItemsDockItemAction = "Add To Beginning"
+	FindPoliciesByNameSubset200ApplicationXMLDockItemsDockItemActionAddToEnd       FindPoliciesByNameSubset200ApplicationXMLDockItemsDockItemAction = "Add To End"
+	FindPoliciesByNameSubset200ApplicationXMLDockItemsDockItemActionRemove         FindPoliciesByNameSubset200ApplicationXMLDockItemsDockItemAction = "Remove"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationXMLDockItemsDockItemAction) ToPointer() *FindPoliciesByNameSubset200ApplicationXMLDockItemsDockItemAction {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationXMLDockItemsDockItemAction) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Add To Beginning":
+		fallthrough
+	case "Add To End":
+		fallthrough
+	case "Remove":
+		*e = FindPoliciesByNameSubset200ApplicationXMLDockItemsDockItemAction(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationXMLDockItemsDockItemAction: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLDockItemsDockItem struct {
+	Action *FindPoliciesByNameSubset200ApplicationXMLDockItemsDockItemAction
+	ID     *int64
+	Name   *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLDockItems struct {
+	DockItem *FindPoliciesByNameSubset200ApplicationXMLDockItemsDockItem
+	Size     *int64
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLFilesProcesses struct {
+	DeleteFile           *bool
+	KillProcess          *bool
+	LocateFile           *string
+	RunCommand           *string
+	SearchByPath         *string
+	SearchForProcess     *string
+	SpotlightSearch      *string
+	UpdateLocateDatabase *bool
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLGeneralCategory struct {
+	ID *int64
+	// Name of the category
+	Name string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitationsNoExecuteOnDay string
+
+const (
+	FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitationsNoExecuteOnDaySun FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitationsNoExecuteOnDay = "Sun"
+	FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitationsNoExecuteOnDayMon FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitationsNoExecuteOnDay = "Mon"
+	FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitationsNoExecuteOnDayTue FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitationsNoExecuteOnDay = "Tue"
+	FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitationsNoExecuteOnDayWed FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitationsNoExecuteOnDay = "Wed"
+	FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitationsNoExecuteOnDayThu FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitationsNoExecuteOnDay = "Thu"
+	FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitationsNoExecuteOnDayFri FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitationsNoExecuteOnDay = "Fri"
+	FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitationsNoExecuteOnDaySat FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitationsNoExecuteOnDay = "Sat"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitationsNoExecuteOnDay) ToPointer() *FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitationsNoExecuteOnDay {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitationsNoExecuteOnDay) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Sun":
+		fallthrough
+	case "Mon":
+		fallthrough
+	case "Tue":
+		fallthrough
+	case "Wed":
+		fallthrough
+	case "Thu":
+		fallthrough
+	case "Fri":
+		fallthrough
+	case "Sat":
+		*e = FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitationsNoExecuteOnDay(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitationsNoExecuteOnDay: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitationsNoExecuteOn struct {
+	Day *FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitationsNoExecuteOnDay
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitations struct {
+	ActivationDate      *string
+	ActivationDateEpoch *int64
+	ActivationDateUtc   *string
+	ExpirationDate      *string
+	ExpirationDateEpoch *int64
+	ExpirationDateUtc   *string
+	NoExecuteEnd        *string
+	NoExecuteOn         *FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitationsNoExecuteOn
+	NoExecuteStart      *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLGeneralFrequency string
+
+const (
+	FindPoliciesByNameSubset200ApplicationXMLGeneralFrequencyOncePerComputer        FindPoliciesByNameSubset200ApplicationXMLGeneralFrequency = "Once per computer"
+	FindPoliciesByNameSubset200ApplicationXMLGeneralFrequencyOncePerUserPerComputer FindPoliciesByNameSubset200ApplicationXMLGeneralFrequency = "Once per user per computer"
+	FindPoliciesByNameSubset200ApplicationXMLGeneralFrequencyOncePerUser            FindPoliciesByNameSubset200ApplicationXMLGeneralFrequency = "Once per user"
+	FindPoliciesByNameSubset200ApplicationXMLGeneralFrequencyOnceEveryDay           FindPoliciesByNameSubset200ApplicationXMLGeneralFrequency = "Once every day"
+	FindPoliciesByNameSubset200ApplicationXMLGeneralFrequencyOnceEveryWeek          FindPoliciesByNameSubset200ApplicationXMLGeneralFrequency = "Once every week"
+	FindPoliciesByNameSubset200ApplicationXMLGeneralFrequencyOnceEveryMonth         FindPoliciesByNameSubset200ApplicationXMLGeneralFrequency = "Once every month"
+	FindPoliciesByNameSubset200ApplicationXMLGeneralFrequencyOngoing                FindPoliciesByNameSubset200ApplicationXMLGeneralFrequency = "Ongoing"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationXMLGeneralFrequency) ToPointer() *FindPoliciesByNameSubset200ApplicationXMLGeneralFrequency {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationXMLGeneralFrequency) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Once per computer":
+		fallthrough
+	case "Once per user per computer":
+		fallthrough
+	case "Once per user":
+		fallthrough
+	case "Once every day":
+		fallthrough
+	case "Once every week":
+		fallthrough
+	case "Once every month":
+		fallthrough
+	case "Ongoing":
+		*e = FindPoliciesByNameSubset200ApplicationXMLGeneralFrequency(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationXMLGeneralFrequency: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLGeneralNetworkLimitationsMinimumNetworkConnection string
+
+const (
+	FindPoliciesByNameSubset200ApplicationXMLGeneralNetworkLimitationsMinimumNetworkConnectionNoMinimum FindPoliciesByNameSubset200ApplicationXMLGeneralNetworkLimitationsMinimumNetworkConnection = "No Minimum"
+	FindPoliciesByNameSubset200ApplicationXMLGeneralNetworkLimitationsMinimumNetworkConnectionEthernet  FindPoliciesByNameSubset200ApplicationXMLGeneralNetworkLimitationsMinimumNetworkConnection = "Ethernet"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationXMLGeneralNetworkLimitationsMinimumNetworkConnection) ToPointer() *FindPoliciesByNameSubset200ApplicationXMLGeneralNetworkLimitationsMinimumNetworkConnection {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationXMLGeneralNetworkLimitationsMinimumNetworkConnection) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "No Minimum":
+		fallthrough
+	case "Ethernet":
+		*e = FindPoliciesByNameSubset200ApplicationXMLGeneralNetworkLimitationsMinimumNetworkConnection(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationXMLGeneralNetworkLimitationsMinimumNetworkConnection: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLGeneralNetworkLimitations struct {
+	AnyIPAddress             *bool
+	MinimumNetworkConnection *FindPoliciesByNameSubset200ApplicationXMLGeneralNetworkLimitationsMinimumNetworkConnection
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLGeneralNetworkRequirements string
+
+const (
+	FindPoliciesByNameSubset200ApplicationXMLGeneralNetworkRequirementsAny      FindPoliciesByNameSubset200ApplicationXMLGeneralNetworkRequirements = "Any"
+	FindPoliciesByNameSubset200ApplicationXMLGeneralNetworkRequirementsEthernet FindPoliciesByNameSubset200ApplicationXMLGeneralNetworkRequirements = "Ethernet"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationXMLGeneralNetworkRequirements) ToPointer() *FindPoliciesByNameSubset200ApplicationXMLGeneralNetworkRequirements {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationXMLGeneralNetworkRequirements) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Any":
+		fallthrough
+	case "Ethernet":
+		*e = FindPoliciesByNameSubset200ApplicationXMLGeneralNetworkRequirements(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationXMLGeneralNetworkRequirements: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLGeneralOverrideDefaultSettings struct {
+	DistributionPoint *string
+	ForceAfpSmb       *bool
+	Sus               *string
+	TargetDrive       *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLGeneralRetryEvent string
+
+const (
+	FindPoliciesByNameSubset200ApplicationXMLGeneralRetryEventNone    FindPoliciesByNameSubset200ApplicationXMLGeneralRetryEvent = "none"
+	FindPoliciesByNameSubset200ApplicationXMLGeneralRetryEventTrigger FindPoliciesByNameSubset200ApplicationXMLGeneralRetryEvent = "trigger"
+	FindPoliciesByNameSubset200ApplicationXMLGeneralRetryEventCheckIn FindPoliciesByNameSubset200ApplicationXMLGeneralRetryEvent = "check-in"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationXMLGeneralRetryEvent) ToPointer() *FindPoliciesByNameSubset200ApplicationXMLGeneralRetryEvent {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationXMLGeneralRetryEvent) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "none":
+		fallthrough
+	case "trigger":
+		fallthrough
+	case "check-in":
+		*e = FindPoliciesByNameSubset200ApplicationXMLGeneralRetryEvent(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationXMLGeneralRetryEvent: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLGeneralSite struct {
+	ID *int64
+	// Name of the site
+	Name string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLGeneral struct {
+	Category                   *FindPoliciesByNameSubset200ApplicationXMLGeneralCategory
+	DateTimeLimitations        *FindPoliciesByNameSubset200ApplicationXMLGeneralDateTimeLimitations
+	Enabled                    *bool
+	Frequency                  *FindPoliciesByNameSubset200ApplicationXMLGeneralFrequency
+	ID                         *int64
+	LocationUserOnly           *bool
+	Name                       string
+	NetworkLimitations         *FindPoliciesByNameSubset200ApplicationXMLGeneralNetworkLimitations
+	NetworkRequirements        *FindPoliciesByNameSubset200ApplicationXMLGeneralNetworkRequirements
+	NotifyOnEachFailedRetry    *bool
+	Offline                    *bool
+	OverrideDefaultSettings    *FindPoliciesByNameSubset200ApplicationXMLGeneralOverrideDefaultSettings
+	RetryAttempts              *int64
+	RetryEvent                 *FindPoliciesByNameSubset200ApplicationXMLGeneralRetryEvent
+	Site                       *FindPoliciesByNameSubset200ApplicationXMLGeneralSite
+	TargetDrive                *string
+	Trigger                    *string
+	TriggerCheckin             *bool
+	TriggerEnrollmentComplete  *bool
+	TriggerLogin               *bool
+	TriggerLogout              *bool
+	TriggerNetworkStateChanged *bool
+	TriggerOther               *string
+	TriggerStartup             *bool
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLMaintenance struct {
+	Byhost                   *bool
+	Heal                     *bool
+	InstallAllCachedPackages *bool
+	Permissions              *bool
+	Prebindings              *bool
+	Recon                    *bool
+	ResetName                *bool
+	SystemCache              *bool
+	UserCache                *bool
+	Verify                   *bool
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLPackageConfigurationPackagesPackageAction string
+
+const (
+	FindPoliciesByNameSubset200ApplicationXMLPackageConfigurationPackagesPackageActionInstall       FindPoliciesByNameSubset200ApplicationXMLPackageConfigurationPackagesPackageAction = "Install"
+	FindPoliciesByNameSubset200ApplicationXMLPackageConfigurationPackagesPackageActionCache         FindPoliciesByNameSubset200ApplicationXMLPackageConfigurationPackagesPackageAction = "Cache"
+	FindPoliciesByNameSubset200ApplicationXMLPackageConfigurationPackagesPackageActionInstallCached FindPoliciesByNameSubset200ApplicationXMLPackageConfigurationPackagesPackageAction = "Install Cached"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationXMLPackageConfigurationPackagesPackageAction) ToPointer() *FindPoliciesByNameSubset200ApplicationXMLPackageConfigurationPackagesPackageAction {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationXMLPackageConfigurationPackagesPackageAction) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Install":
+		fallthrough
+	case "Cache":
+		fallthrough
+	case "Install Cached":
+		*e = FindPoliciesByNameSubset200ApplicationXMLPackageConfigurationPackagesPackageAction(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationXMLPackageConfigurationPackagesPackageAction: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLPackageConfigurationPackagesPackage struct {
+	Action        *FindPoliciesByNameSubset200ApplicationXMLPackageConfigurationPackagesPackageAction
+	Feu           *bool
+	Fut           *bool
+	ID            *int64
+	Name          *string
+	UpdateAutorun *bool
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLPackageConfigurationPackages struct {
+	Package *FindPoliciesByNameSubset200ApplicationXMLPackageConfigurationPackagesPackage
+	Size    *int64
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLPackageConfiguration struct {
+	Packages []FindPoliciesByNameSubset200ApplicationXMLPackageConfigurationPackages
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLPrintersPrinterAction string
+
+const (
+	FindPoliciesByNameSubset200ApplicationXMLPrintersPrinterActionInstall   FindPoliciesByNameSubset200ApplicationXMLPrintersPrinterAction = "install"
+	FindPoliciesByNameSubset200ApplicationXMLPrintersPrinterActionUninstall FindPoliciesByNameSubset200ApplicationXMLPrintersPrinterAction = "uninstall"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationXMLPrintersPrinterAction) ToPointer() *FindPoliciesByNameSubset200ApplicationXMLPrintersPrinterAction {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationXMLPrintersPrinterAction) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "install":
+		fallthrough
+	case "uninstall":
+		*e = FindPoliciesByNameSubset200ApplicationXMLPrintersPrinterAction(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationXMLPrintersPrinterAction: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLPrintersPrinter struct {
+	Action      *FindPoliciesByNameSubset200ApplicationXMLPrintersPrinterAction
+	ID          *int64
+	MakeDefault *bool
+	Name        *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLPrinters struct {
+	LeaveExistingDefault *string
+	Printer              *FindPoliciesByNameSubset200ApplicationXMLPrintersPrinter
+	Size                 *int64
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeBuildingsBuilding struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeBuildings struct {
+	Building *FindPoliciesByNameSubset200ApplicationXMLScopeBuildingsBuilding
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeComputerGroupsComputerGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeComputerGroups struct {
+	ComputerGroup *FindPoliciesByNameSubset200ApplicationXMLScopeComputerGroupsComputerGroup
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeComputersComputer struct {
+	ID *int64
+	// Name of the computer
+	Name *string
+	Udid *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeComputers struct {
+	Computer *FindPoliciesByNameSubset200ApplicationXMLScopeComputersComputer
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeDepartmentsDepartment struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeDepartments struct {
+	Department *FindPoliciesByNameSubset200ApplicationXMLScopeDepartmentsDepartment
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsBuildingsBuilding struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsBuildings struct {
+	Building *FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsBuildingsBuilding
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsComputerGroupsComputerGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsComputerGroups struct {
+	ComputerGroup *FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsComputerGroupsComputerGroup
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsComputersComputer struct {
+	ID *int64
+	// Name of the computer
+	Name *string
+	Udid *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsComputers struct {
+	Computer *FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsComputersComputer
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsDepartmentsDepartment struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsDepartments struct {
+	Department *FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsDepartmentsDepartment
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsIbeaconsIbeacon struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsIbeacons struct {
+	Ibeacon *FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsIbeaconsIbeacon
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsNetworkSegmentsNetworkSegment struct {
+	ID *int64
+	// Name of the network segment
+	Name *string
+	UID  *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsNetworkSegments struct {
+	NetworkSegment *FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsNetworkSegmentsNetworkSegment
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsUserGroupsUserGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsUserGroups struct {
+	UserGroup *FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsUserGroupsUserGroup
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsUsersUser struct {
+	Name *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsUsers struct {
+	User *FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsUsersUser
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeExclusions struct {
+	Buildings       []FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsBuildings
+	ComputerGroups  []FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsComputerGroups
+	Computers       []FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsComputers
+	Departments     []FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsDepartments
+	Ibeacons        []FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsIbeacons
+	NetworkSegments []FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsNetworkSegments
+	UserGroups      []FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsUserGroups
+	Users           []FindPoliciesByNameSubset200ApplicationXMLScopeExclusionsUsers
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeLimitToUsersUserGroups struct {
+	UserGroup *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeLimitToUsers struct {
+	UserGroups []FindPoliciesByNameSubset200ApplicationXMLScopeLimitToUsersUserGroups
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeLimitationsIbeaconsIbeacon struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeLimitationsIbeacons struct {
+	Ibeacon *FindPoliciesByNameSubset200ApplicationXMLScopeLimitationsIbeaconsIbeacon
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeLimitationsNetworkSegmentsNetworkSegment struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeLimitationsNetworkSegments struct {
+	NetworkSegment *FindPoliciesByNameSubset200ApplicationXMLScopeLimitationsNetworkSegmentsNetworkSegment
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeLimitationsUserGroupsUserGroup struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeLimitationsUserGroups struct {
+	UserGroup *FindPoliciesByNameSubset200ApplicationXMLScopeLimitationsUserGroupsUserGroup
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeLimitationsUsersUser struct {
+	ID   *int64
+	Name *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeLimitationsUsers struct {
+	User *FindPoliciesByNameSubset200ApplicationXMLScopeLimitationsUsersUser
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScopeLimitations struct {
+	Ibeacons        []FindPoliciesByNameSubset200ApplicationXMLScopeLimitationsIbeacons
+	NetworkSegments []FindPoliciesByNameSubset200ApplicationXMLScopeLimitationsNetworkSegments
+	UserGroups      []FindPoliciesByNameSubset200ApplicationXMLScopeLimitationsUserGroups
+	Users           []FindPoliciesByNameSubset200ApplicationXMLScopeLimitationsUsers
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScope struct {
+	AllComputers   *bool
+	Buildings      []FindPoliciesByNameSubset200ApplicationXMLScopeBuildings
+	ComputerGroups []FindPoliciesByNameSubset200ApplicationXMLScopeComputerGroups
+	Computers      []FindPoliciesByNameSubset200ApplicationXMLScopeComputers
+	Departments    []FindPoliciesByNameSubset200ApplicationXMLScopeDepartments
+	Exclusions     *FindPoliciesByNameSubset200ApplicationXMLScopeExclusions
+	LimitToUsers   *FindPoliciesByNameSubset200ApplicationXMLScopeLimitToUsers
+	Limitations    *FindPoliciesByNameSubset200ApplicationXMLScopeLimitations
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScriptsScriptPriority string
+
+const (
+	FindPoliciesByNameSubset200ApplicationXMLScriptsScriptPriorityBefore FindPoliciesByNameSubset200ApplicationXMLScriptsScriptPriority = "Before"
+	FindPoliciesByNameSubset200ApplicationXMLScriptsScriptPriorityAfter  FindPoliciesByNameSubset200ApplicationXMLScriptsScriptPriority = "After"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationXMLScriptsScriptPriority) ToPointer() *FindPoliciesByNameSubset200ApplicationXMLScriptsScriptPriority {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationXMLScriptsScriptPriority) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Before":
+		fallthrough
+	case "After":
+		*e = FindPoliciesByNameSubset200ApplicationXMLScriptsScriptPriority(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationXMLScriptsScriptPriority: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScriptsScript struct {
+	ID          *int64
+	Name        *string
+	Parameter10 *string
+	Parameter11 *string
+	Parameter4  *string
+	Parameter5  *string
+	Parameter6  *string
+	Parameter7  *string
+	Parameter8  *string
+	Parameter9  *string
+	Priority    *FindPoliciesByNameSubset200ApplicationXMLScriptsScriptPriority
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLScripts struct {
+	Script []FindPoliciesByNameSubset200ApplicationXMLScriptsScript
+	Size   *int64
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLSelfServiceSelfServiceCategoriesCategory struct {
+	DisplayIn *bool
+	FeatureIn *bool
+	ID        *int64
+	Name      *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLSelfServiceSelfServiceCategories struct {
+	Category *FindPoliciesByNameSubset200ApplicationXMLSelfServiceSelfServiceCategoriesCategory
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLSelfServiceSelfServiceIcon struct {
+	Filename *string
+	ID       *int64
+	URI      *string
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLSelfService struct {
+	FeatureOnMainPage           *bool
+	ForceUsersToViewDescription *bool
+	InstallButtonText           *string
+	ReInstallButtonText         *string
+	SelfServiceCategories       *FindPoliciesByNameSubset200ApplicationXMLSelfServiceSelfServiceCategories
+	SelfServiceDescription      *string
+	SelfServiceDisplayName      *string
+	SelfServiceIcon             *FindPoliciesByNameSubset200ApplicationXMLSelfServiceSelfServiceIcon
+	UseForSelfService           *bool
+}
+
+type FindPoliciesByNameSubset200ApplicationXMLUserInteraction struct {
+	AllowDeferralMinutes  *int64
+	AllowDeferralUntilUtc *string
+	AllowUserToDefer      *bool
+	MessageFinish         *string
+	MessageStart          *string
+}
+
+// FindPoliciesByNameSubset200ApplicationXML - OK
+type FindPoliciesByNameSubset200ApplicationXML struct {
+	AccountMaintenance   *FindPoliciesByNameSubset200ApplicationXMLAccountMaintenance
+	DiskEncryption       *FindPoliciesByNameSubset200ApplicationXMLDiskEncryption
+	DockItems            []FindPoliciesByNameSubset200ApplicationXMLDockItems
+	FilesProcesses       *FindPoliciesByNameSubset200ApplicationXMLFilesProcesses
+	General              *FindPoliciesByNameSubset200ApplicationXMLGeneral
+	Maintenance          *FindPoliciesByNameSubset200ApplicationXMLMaintenance
+	PackageConfiguration *FindPoliciesByNameSubset200ApplicationXMLPackageConfiguration
+	Printers             []FindPoliciesByNameSubset200ApplicationXMLPrinters
+	Scope                *FindPoliciesByNameSubset200ApplicationXMLScope
+	Scripts              *FindPoliciesByNameSubset200ApplicationXMLScripts
+	SelfService          *FindPoliciesByNameSubset200ApplicationXMLSelfService
+	UserInteraction      *FindPoliciesByNameSubset200ApplicationXMLUserInteraction
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceAccountsAccountAction string
+
+const (
+	FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceAccountsAccountActionCreate           FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceAccountsAccountAction = "Create"
+	FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceAccountsAccountActionReset            FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceAccountsAccountAction = "Reset"
+	FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceAccountsAccountActionDelete           FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceAccountsAccountAction = "Delete"
+	FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceAccountsAccountActionDisableFileVault FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceAccountsAccountAction = "DisableFileVault"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceAccountsAccountAction) ToPointer() *FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceAccountsAccountAction {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceAccountsAccountAction) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Create":
+		fallthrough
+	case "Reset":
+		fallthrough
+	case "Delete":
+		fallthrough
+	case "DisableFileVault":
+		*e = FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceAccountsAccountAction(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceAccountsAccountAction: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceAccountsAccount struct {
+	Action                 *FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceAccountsAccountAction `json:"action,omitempty"`
+	Admin                  *bool                                                                              `json:"admin,omitempty"`
+	ArchiveHomeDirectory   *bool                                                                              `json:"archive_home_directory,omitempty"`
+	ArchiveHomeDirectoryTo *string                                                                            `json:"archive_home_directory_to,omitempty"`
+	FilevaultEnabled       *bool                                                                              `json:"filevault_enabled,omitempty"`
+	Home                   *string                                                                            `json:"home,omitempty"`
+	Password               *string                                                                            `json:"password,omitempty"`
+	Picture                *string                                                                            `json:"picture,omitempty"`
+	Realname               *string                                                                            `json:"realname,omitempty"`
+	Username               *string                                                                            `json:"username,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceAccounts struct {
+	Account *FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceAccountsAccount `json:"account,omitempty"`
+	Size    *int64                                                                       `json:"size,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceDirectoryBindingsBinding struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceDirectoryBindings struct {
+	Binding *FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceDirectoryBindingsBinding `json:"binding,omitempty"`
+	Size    *int64                                                                                `json:"size,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceManagementAccountAction string
+
+const (
+	FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceManagementAccountActionSpecified        FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceManagementAccountAction = "specified"
+	FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceManagementAccountActionRandom           FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceManagementAccountAction = "random"
+	FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceManagementAccountActionReset            FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceManagementAccountAction = "reset"
+	FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceManagementAccountActionFileVaultEnable  FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceManagementAccountAction = "fileVaultEnable"
+	FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceManagementAccountActionFileVaultDisable FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceManagementAccountAction = "fileVaultDisable"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceManagementAccountAction) ToPointer() *FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceManagementAccountAction {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceManagementAccountAction) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "specified":
+		fallthrough
+	case "random":
+		fallthrough
+	case "reset":
+		fallthrough
+	case "fileVaultEnable":
+		fallthrough
+	case "fileVaultDisable":
+		*e = FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceManagementAccountAction(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceManagementAccountAction: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceManagementAccount struct {
+	Action          *FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceManagementAccountAction `json:"action,omitempty"`
+	ManagedPassword *string                                                                              `json:"managed_password,omitempty"`
+	// Only necessary when utilizing the random action
+	ManagedPasswordLength *int64 `json:"managed_password_length,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceOpenFirmwareEfiPasswordOfMode string
+
+const (
+	FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceOpenFirmwareEfiPasswordOfModeCommand FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceOpenFirmwareEfiPasswordOfMode = "command"
+	FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceOpenFirmwareEfiPasswordOfModeNone    FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceOpenFirmwareEfiPasswordOfMode = "none"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceOpenFirmwareEfiPasswordOfMode) ToPointer() *FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceOpenFirmwareEfiPasswordOfMode {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceOpenFirmwareEfiPasswordOfMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "command":
+		fallthrough
+	case "none":
+		*e = FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceOpenFirmwareEfiPasswordOfMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceOpenFirmwareEfiPasswordOfMode: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceOpenFirmwareEfiPassword struct {
+	OfMode     *FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceOpenFirmwareEfiPasswordOfMode `json:"of_mode,omitempty"`
+	OfPassword *string                                                                                    `json:"of_password,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONAccountMaintenance struct {
+	Accounts                []FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceAccounts               `json:"accounts,omitempty"`
+	DirectoryBindings       []FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceDirectoryBindings      `json:"directory_bindings,omitempty"`
+	ManagementAccount       *FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceManagementAccount       `json:"management_account,omitempty"`
+	OpenFirmwareEfiPassword *FindPoliciesByNameSubset200ApplicationJSONAccountMaintenanceOpenFirmwareEfiPassword `json:"open_firmware_efi_password,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONDiskEncryptionAction string
+
+const (
+	FindPoliciesByNameSubset200ApplicationJSONDiskEncryptionActionApply     FindPoliciesByNameSubset200ApplicationJSONDiskEncryptionAction = "apply"
+	FindPoliciesByNameSubset200ApplicationJSONDiskEncryptionActionRemediate FindPoliciesByNameSubset200ApplicationJSONDiskEncryptionAction = "remediate"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationJSONDiskEncryptionAction) ToPointer() *FindPoliciesByNameSubset200ApplicationJSONDiskEncryptionAction {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationJSONDiskEncryptionAction) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "apply":
+		fallthrough
+	case "remediate":
+		*e = FindPoliciesByNameSubset200ApplicationJSONDiskEncryptionAction(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationJSONDiskEncryptionAction: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONDiskEncryptionRemediateKeyType string
+
+const (
+	FindPoliciesByNameSubset200ApplicationJSONDiskEncryptionRemediateKeyTypeIndividual                 FindPoliciesByNameSubset200ApplicationJSONDiskEncryptionRemediateKeyType = "Individual"
+	FindPoliciesByNameSubset200ApplicationJSONDiskEncryptionRemediateKeyTypeInstitutional              FindPoliciesByNameSubset200ApplicationJSONDiskEncryptionRemediateKeyType = "Institutional"
+	FindPoliciesByNameSubset200ApplicationJSONDiskEncryptionRemediateKeyTypeIndividualAndInstitutional FindPoliciesByNameSubset200ApplicationJSONDiskEncryptionRemediateKeyType = "Individual And Institutional"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationJSONDiskEncryptionRemediateKeyType) ToPointer() *FindPoliciesByNameSubset200ApplicationJSONDiskEncryptionRemediateKeyType {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationJSONDiskEncryptionRemediateKeyType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Individual":
+		fallthrough
+	case "Institutional":
+		fallthrough
+	case "Individual And Institutional":
+		*e = FindPoliciesByNameSubset200ApplicationJSONDiskEncryptionRemediateKeyType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationJSONDiskEncryptionRemediateKeyType: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONDiskEncryption struct {
+	Action                        *FindPoliciesByNameSubset200ApplicationJSONDiskEncryptionAction `json:"action,omitempty"`
+	AuthRestart                   *bool                                                           `json:"auth_restart,omitempty"`
+	DiskEncryptionConfigurationID *int64                                                          `json:"disk_encryption_configuration_id,omitempty"`
+	// disk encryption ID to utilize for remediating institutional recovery key types.
+	RemediateDiskEncryptionConfigurationID *int64                                                                    `json:"remediate_disk_encryption_configuration_id,omitempty"`
+	RemediateKeyType                       *FindPoliciesByNameSubset200ApplicationJSONDiskEncryptionRemediateKeyType `json:"remediate_key_type,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONDockItemsDockItemAction string
+
+const (
+	FindPoliciesByNameSubset200ApplicationJSONDockItemsDockItemActionAddToBeginning FindPoliciesByNameSubset200ApplicationJSONDockItemsDockItemAction = "Add To Beginning"
+	FindPoliciesByNameSubset200ApplicationJSONDockItemsDockItemActionAddToEnd       FindPoliciesByNameSubset200ApplicationJSONDockItemsDockItemAction = "Add To End"
+	FindPoliciesByNameSubset200ApplicationJSONDockItemsDockItemActionRemove         FindPoliciesByNameSubset200ApplicationJSONDockItemsDockItemAction = "Remove"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationJSONDockItemsDockItemAction) ToPointer() *FindPoliciesByNameSubset200ApplicationJSONDockItemsDockItemAction {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationJSONDockItemsDockItemAction) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Add To Beginning":
+		fallthrough
+	case "Add To End":
+		fallthrough
+	case "Remove":
+		*e = FindPoliciesByNameSubset200ApplicationJSONDockItemsDockItemAction(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationJSONDockItemsDockItemAction: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONDockItemsDockItem struct {
+	Action *FindPoliciesByNameSubset200ApplicationJSONDockItemsDockItemAction `json:"action,omitempty"`
+	ID     *int64                                                             `json:"id,omitempty"`
+	Name   *string                                                            `json:"name,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONDockItems struct {
+	DockItem *FindPoliciesByNameSubset200ApplicationJSONDockItemsDockItem `json:"dock_item,omitempty"`
+	Size     *int64                                                       `json:"size,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONFilesProcesses struct {
+	DeleteFile           *bool   `json:"delete_file,omitempty"`
+	KillProcess          *bool   `json:"kill_process,omitempty"`
+	LocateFile           *string `json:"locate_file,omitempty"`
+	RunCommand           *string `json:"run_command,omitempty"`
+	SearchByPath         *string `json:"search_by_path,omitempty"`
+	SearchForProcess     *string `json:"search_for_process,omitempty"`
+	SpotlightSearch      *string `json:"spotlight_search,omitempty"`
+	UpdateLocateDatabase *bool   `json:"update_locate_database,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONGeneralCategory struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the category
+	Name string `json:"name"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitationsNoExecuteOnDay string
+
+const (
+	FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitationsNoExecuteOnDaySun FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitationsNoExecuteOnDay = "Sun"
+	FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitationsNoExecuteOnDayMon FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitationsNoExecuteOnDay = "Mon"
+	FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitationsNoExecuteOnDayTue FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitationsNoExecuteOnDay = "Tue"
+	FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitationsNoExecuteOnDayWed FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitationsNoExecuteOnDay = "Wed"
+	FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitationsNoExecuteOnDayThu FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitationsNoExecuteOnDay = "Thu"
+	FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitationsNoExecuteOnDayFri FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitationsNoExecuteOnDay = "Fri"
+	FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitationsNoExecuteOnDaySat FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitationsNoExecuteOnDay = "Sat"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitationsNoExecuteOnDay) ToPointer() *FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitationsNoExecuteOnDay {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitationsNoExecuteOnDay) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Sun":
+		fallthrough
+	case "Mon":
+		fallthrough
+	case "Tue":
+		fallthrough
+	case "Wed":
+		fallthrough
+	case "Thu":
+		fallthrough
+	case "Fri":
+		fallthrough
+	case "Sat":
+		*e = FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitationsNoExecuteOnDay(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitationsNoExecuteOnDay: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitationsNoExecuteOn struct {
+	Day *FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitationsNoExecuteOnDay `json:"day,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitations struct {
+	ActivationDate      *string                                                                          `json:"activation_date,omitempty"`
+	ActivationDateEpoch *int64                                                                           `json:"activation_date_epoch,omitempty"`
+	ActivationDateUtc   *string                                                                          `json:"activation_date_utc,omitempty"`
+	ExpirationDate      *string                                                                          `json:"expiration_date,omitempty"`
+	ExpirationDateEpoch *int64                                                                           `json:"expiration_date_epoch,omitempty"`
+	ExpirationDateUtc   *string                                                                          `json:"expiration_date_utc,omitempty"`
+	NoExecuteEnd        *string                                                                          `json:"no_execute_end,omitempty"`
+	NoExecuteOn         *FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitationsNoExecuteOn `json:"no_execute_on,omitempty"`
+	NoExecuteStart      *string                                                                          `json:"no_execute_start,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONGeneralFrequency string
+
+const (
+	FindPoliciesByNameSubset200ApplicationJSONGeneralFrequencyOncePerComputer        FindPoliciesByNameSubset200ApplicationJSONGeneralFrequency = "Once per computer"
+	FindPoliciesByNameSubset200ApplicationJSONGeneralFrequencyOncePerUserPerComputer FindPoliciesByNameSubset200ApplicationJSONGeneralFrequency = "Once per user per computer"
+	FindPoliciesByNameSubset200ApplicationJSONGeneralFrequencyOncePerUser            FindPoliciesByNameSubset200ApplicationJSONGeneralFrequency = "Once per user"
+	FindPoliciesByNameSubset200ApplicationJSONGeneralFrequencyOnceEveryDay           FindPoliciesByNameSubset200ApplicationJSONGeneralFrequency = "Once every day"
+	FindPoliciesByNameSubset200ApplicationJSONGeneralFrequencyOnceEveryWeek          FindPoliciesByNameSubset200ApplicationJSONGeneralFrequency = "Once every week"
+	FindPoliciesByNameSubset200ApplicationJSONGeneralFrequencyOnceEveryMonth         FindPoliciesByNameSubset200ApplicationJSONGeneralFrequency = "Once every month"
+	FindPoliciesByNameSubset200ApplicationJSONGeneralFrequencyOngoing                FindPoliciesByNameSubset200ApplicationJSONGeneralFrequency = "Ongoing"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationJSONGeneralFrequency) ToPointer() *FindPoliciesByNameSubset200ApplicationJSONGeneralFrequency {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationJSONGeneralFrequency) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Once per computer":
+		fallthrough
+	case "Once per user per computer":
+		fallthrough
+	case "Once per user":
+		fallthrough
+	case "Once every day":
+		fallthrough
+	case "Once every week":
+		fallthrough
+	case "Once every month":
+		fallthrough
+	case "Ongoing":
+		*e = FindPoliciesByNameSubset200ApplicationJSONGeneralFrequency(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationJSONGeneralFrequency: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONGeneralNetworkLimitationsMinimumNetworkConnection string
+
+const (
+	FindPoliciesByNameSubset200ApplicationJSONGeneralNetworkLimitationsMinimumNetworkConnectionNoMinimum FindPoliciesByNameSubset200ApplicationJSONGeneralNetworkLimitationsMinimumNetworkConnection = "No Minimum"
+	FindPoliciesByNameSubset200ApplicationJSONGeneralNetworkLimitationsMinimumNetworkConnectionEthernet  FindPoliciesByNameSubset200ApplicationJSONGeneralNetworkLimitationsMinimumNetworkConnection = "Ethernet"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationJSONGeneralNetworkLimitationsMinimumNetworkConnection) ToPointer() *FindPoliciesByNameSubset200ApplicationJSONGeneralNetworkLimitationsMinimumNetworkConnection {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationJSONGeneralNetworkLimitationsMinimumNetworkConnection) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "No Minimum":
+		fallthrough
+	case "Ethernet":
+		*e = FindPoliciesByNameSubset200ApplicationJSONGeneralNetworkLimitationsMinimumNetworkConnection(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationJSONGeneralNetworkLimitationsMinimumNetworkConnection: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONGeneralNetworkLimitations struct {
+	AnyIPAddress             *bool                                                                                        `json:"any_ip_address,omitempty"`
+	MinimumNetworkConnection *FindPoliciesByNameSubset200ApplicationJSONGeneralNetworkLimitationsMinimumNetworkConnection `json:"minimum_network_connection,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONGeneralNetworkRequirements string
+
+const (
+	FindPoliciesByNameSubset200ApplicationJSONGeneralNetworkRequirementsAny      FindPoliciesByNameSubset200ApplicationJSONGeneralNetworkRequirements = "Any"
+	FindPoliciesByNameSubset200ApplicationJSONGeneralNetworkRequirementsEthernet FindPoliciesByNameSubset200ApplicationJSONGeneralNetworkRequirements = "Ethernet"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationJSONGeneralNetworkRequirements) ToPointer() *FindPoliciesByNameSubset200ApplicationJSONGeneralNetworkRequirements {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationJSONGeneralNetworkRequirements) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Any":
+		fallthrough
+	case "Ethernet":
+		*e = FindPoliciesByNameSubset200ApplicationJSONGeneralNetworkRequirements(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationJSONGeneralNetworkRequirements: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONGeneralOverrideDefaultSettings struct {
+	DistributionPoint *string `json:"distribution_point,omitempty"`
+	ForceAfpSmb       *bool   `json:"force_afp_smb,omitempty"`
+	Sus               *string `json:"sus,omitempty"`
+	TargetDrive       *string `json:"target_drive,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONGeneralRetryEvent string
+
+const (
+	FindPoliciesByNameSubset200ApplicationJSONGeneralRetryEventNone    FindPoliciesByNameSubset200ApplicationJSONGeneralRetryEvent = "none"
+	FindPoliciesByNameSubset200ApplicationJSONGeneralRetryEventTrigger FindPoliciesByNameSubset200ApplicationJSONGeneralRetryEvent = "trigger"
+	FindPoliciesByNameSubset200ApplicationJSONGeneralRetryEventCheckIn FindPoliciesByNameSubset200ApplicationJSONGeneralRetryEvent = "check-in"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationJSONGeneralRetryEvent) ToPointer() *FindPoliciesByNameSubset200ApplicationJSONGeneralRetryEvent {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationJSONGeneralRetryEvent) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "none":
+		fallthrough
+	case "trigger":
+		fallthrough
+	case "check-in":
+		*e = FindPoliciesByNameSubset200ApplicationJSONGeneralRetryEvent(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationJSONGeneralRetryEvent: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONGeneralSite struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the site
+	Name string `json:"name"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONGeneral struct {
+	Category                   *FindPoliciesByNameSubset200ApplicationJSONGeneralCategory                `json:"category,omitempty"`
+	DateTimeLimitations        *FindPoliciesByNameSubset200ApplicationJSONGeneralDateTimeLimitations     `json:"date_time_limitations,omitempty"`
+	Enabled                    *bool                                                                     `json:"enabled,omitempty"`
+	Frequency                  *FindPoliciesByNameSubset200ApplicationJSONGeneralFrequency               `json:"frequency,omitempty"`
+	ID                         *int64                                                                    `json:"id,omitempty"`
+	LocationUserOnly           *bool                                                                     `json:"location_user_only,omitempty"`
+	Name                       string                                                                    `json:"name"`
+	NetworkLimitations         *FindPoliciesByNameSubset200ApplicationJSONGeneralNetworkLimitations      `json:"network_limitations,omitempty"`
+	NetworkRequirements        *FindPoliciesByNameSubset200ApplicationJSONGeneralNetworkRequirements     `json:"network_requirements,omitempty"`
+	NotifyOnEachFailedRetry    *bool                                                                     `json:"notify_on_each_failed_retry,omitempty"`
+	Offline                    *bool                                                                     `json:"offline,omitempty"`
+	OverrideDefaultSettings    *FindPoliciesByNameSubset200ApplicationJSONGeneralOverrideDefaultSettings `json:"override_default_settings,omitempty"`
+	RetryAttempts              *int64                                                                    `json:"retry_attempts,omitempty"`
+	RetryEvent                 *FindPoliciesByNameSubset200ApplicationJSONGeneralRetryEvent              `json:"retry_event,omitempty"`
+	Site                       *FindPoliciesByNameSubset200ApplicationJSONGeneralSite                    `json:"site,omitempty"`
+	TargetDrive                *string                                                                   `json:"target_drive,omitempty"`
+	Trigger                    *string                                                                   `json:"trigger,omitempty"`
+	TriggerCheckin             *bool                                                                     `json:"trigger_checkin,omitempty"`
+	TriggerEnrollmentComplete  *bool                                                                     `json:"trigger_enrollment_complete,omitempty"`
+	TriggerLogin               *bool                                                                     `json:"trigger_login,omitempty"`
+	TriggerLogout              *bool                                                                     `json:"trigger_logout,omitempty"`
+	TriggerNetworkStateChanged *bool                                                                     `json:"trigger_network_state_changed,omitempty"`
+	TriggerOther               *string                                                                   `json:"trigger_other,omitempty"`
+	TriggerStartup             *bool                                                                     `json:"trigger_startup,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONMaintenance struct {
+	Byhost                   *bool `json:"byhost,omitempty"`
+	Heal                     *bool `json:"heal,omitempty"`
+	InstallAllCachedPackages *bool `json:"install_all_cached_packages,omitempty"`
+	Permissions              *bool `json:"permissions,omitempty"`
+	Prebindings              *bool `json:"prebindings,omitempty"`
+	Recon                    *bool `json:"recon,omitempty"`
+	ResetName                *bool `json:"reset_name,omitempty"`
+	SystemCache              *bool `json:"system_cache,omitempty"`
+	UserCache                *bool `json:"user_cache,omitempty"`
+	Verify                   *bool `json:"verify,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONPackageConfigurationPackagesPackageAction string
+
+const (
+	FindPoliciesByNameSubset200ApplicationJSONPackageConfigurationPackagesPackageActionInstall       FindPoliciesByNameSubset200ApplicationJSONPackageConfigurationPackagesPackageAction = "Install"
+	FindPoliciesByNameSubset200ApplicationJSONPackageConfigurationPackagesPackageActionCache         FindPoliciesByNameSubset200ApplicationJSONPackageConfigurationPackagesPackageAction = "Cache"
+	FindPoliciesByNameSubset200ApplicationJSONPackageConfigurationPackagesPackageActionInstallCached FindPoliciesByNameSubset200ApplicationJSONPackageConfigurationPackagesPackageAction = "Install Cached"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationJSONPackageConfigurationPackagesPackageAction) ToPointer() *FindPoliciesByNameSubset200ApplicationJSONPackageConfigurationPackagesPackageAction {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationJSONPackageConfigurationPackagesPackageAction) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Install":
+		fallthrough
+	case "Cache":
+		fallthrough
+	case "Install Cached":
+		*e = FindPoliciesByNameSubset200ApplicationJSONPackageConfigurationPackagesPackageAction(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationJSONPackageConfigurationPackagesPackageAction: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONPackageConfigurationPackagesPackage struct {
+	Action        *FindPoliciesByNameSubset200ApplicationJSONPackageConfigurationPackagesPackageAction `json:"action,omitempty"`
+	Feu           *bool                                                                                `json:"feu,omitempty"`
+	Fut           *bool                                                                                `json:"fut,omitempty"`
+	ID            *int64                                                                               `json:"id,omitempty"`
+	Name          *string                                                                              `json:"name,omitempty"`
+	UpdateAutorun *bool                                                                                `json:"update_autorun,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONPackageConfigurationPackages struct {
+	Package *FindPoliciesByNameSubset200ApplicationJSONPackageConfigurationPackagesPackage `json:"package,omitempty"`
+	Size    *int64                                                                         `json:"size,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONPackageConfiguration struct {
+	Packages []FindPoliciesByNameSubset200ApplicationJSONPackageConfigurationPackages `json:"packages,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONPrintersPrinterAction string
+
+const (
+	FindPoliciesByNameSubset200ApplicationJSONPrintersPrinterActionInstall   FindPoliciesByNameSubset200ApplicationJSONPrintersPrinterAction = "install"
+	FindPoliciesByNameSubset200ApplicationJSONPrintersPrinterActionUninstall FindPoliciesByNameSubset200ApplicationJSONPrintersPrinterAction = "uninstall"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationJSONPrintersPrinterAction) ToPointer() *FindPoliciesByNameSubset200ApplicationJSONPrintersPrinterAction {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationJSONPrintersPrinterAction) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "install":
+		fallthrough
+	case "uninstall":
+		*e = FindPoliciesByNameSubset200ApplicationJSONPrintersPrinterAction(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationJSONPrintersPrinterAction: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONPrintersPrinter struct {
+	Action      *FindPoliciesByNameSubset200ApplicationJSONPrintersPrinterAction `json:"action,omitempty"`
+	ID          *int64                                                           `json:"id,omitempty"`
+	MakeDefault *bool                                                            `json:"make_default,omitempty"`
+	Name        *string                                                          `json:"name,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONPrinters struct {
+	LeaveExistingDefault *string                                                    `json:"leave_existing_default,omitempty"`
+	Printer              *FindPoliciesByNameSubset200ApplicationJSONPrintersPrinter `json:"printer,omitempty"`
+	Size                 *int64                                                     `json:"size,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeBuildingsBuilding struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeBuildings struct {
+	Building *FindPoliciesByNameSubset200ApplicationJSONScopeBuildingsBuilding `json:"building,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeComputerGroupsComputerGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeComputerGroups struct {
+	ComputerGroup *FindPoliciesByNameSubset200ApplicationJSONScopeComputerGroupsComputerGroup `json:"computer_group,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeComputersComputer struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the computer
+	Name *string `json:"name,omitempty"`
+	Udid *string `json:"udid,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeComputers struct {
+	Computer *FindPoliciesByNameSubset200ApplicationJSONScopeComputersComputer `json:"computer,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeDepartmentsDepartment struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeDepartments struct {
+	Department *FindPoliciesByNameSubset200ApplicationJSONScopeDepartmentsDepartment `json:"department,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsBuildingsBuilding struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsBuildings struct {
+	Building *FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsBuildingsBuilding `json:"building,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsComputerGroupsComputerGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsComputerGroups struct {
+	ComputerGroup *FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsComputerGroupsComputerGroup `json:"computer_group,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsComputersComputer struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the computer
+	Name *string `json:"name,omitempty"`
+	Udid *string `json:"udid,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsComputers struct {
+	Computer *FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsComputersComputer `json:"computer,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsDepartmentsDepartment struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsDepartments struct {
+	Department *FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsDepartmentsDepartment `json:"department,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsIbeaconsIbeacon struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsIbeacons struct {
+	Ibeacon *FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsIbeaconsIbeacon `json:"ibeacon,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsNetworkSegmentsNetworkSegment struct {
+	ID *int64 `json:"id,omitempty"`
+	// Name of the network segment
+	Name *string `json:"name,omitempty"`
+	UID  *string `json:"uid,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsNetworkSegments struct {
+	NetworkSegment *FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsNetworkSegmentsNetworkSegment `json:"network_segment,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsUserGroupsUserGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsUserGroups struct {
+	UserGroup *FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsUserGroupsUserGroup `json:"user_group,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsUsersUser struct {
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsUsers struct {
+	User *FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsUsersUser `json:"user,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeExclusions struct {
+	Buildings       []FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsBuildings       `json:"buildings,omitempty"`
+	ComputerGroups  []FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsComputerGroups  `json:"computer_groups,omitempty"`
+	Computers       []FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsComputers       `json:"computers,omitempty"`
+	Departments     []FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsDepartments     `json:"departments,omitempty"`
+	Ibeacons        []FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsIbeacons        `json:"ibeacons,omitempty"`
+	NetworkSegments []FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsNetworkSegments `json:"network_segments,omitempty"`
+	UserGroups      []FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsUserGroups      `json:"user_groups,omitempty"`
+	Users           []FindPoliciesByNameSubset200ApplicationJSONScopeExclusionsUsers           `json:"users,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeLimitToUsersUserGroups struct {
+	UserGroup *string `json:"user_group,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeLimitToUsers struct {
+	UserGroups []FindPoliciesByNameSubset200ApplicationJSONScopeLimitToUsersUserGroups `json:"user_groups,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeLimitationsIbeaconsIbeacon struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeLimitationsIbeacons struct {
+	Ibeacon *FindPoliciesByNameSubset200ApplicationJSONScopeLimitationsIbeaconsIbeacon `json:"ibeacon,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeLimitationsNetworkSegmentsNetworkSegment struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeLimitationsNetworkSegments struct {
+	NetworkSegment *FindPoliciesByNameSubset200ApplicationJSONScopeLimitationsNetworkSegmentsNetworkSegment `json:"network_segment,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeLimitationsUserGroupsUserGroup struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeLimitationsUserGroups struct {
+	UserGroup *FindPoliciesByNameSubset200ApplicationJSONScopeLimitationsUserGroupsUserGroup `json:"user_group,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeLimitationsUsersUser struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeLimitationsUsers struct {
+	User *FindPoliciesByNameSubset200ApplicationJSONScopeLimitationsUsersUser `json:"user,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScopeLimitations struct {
+	Ibeacons        []FindPoliciesByNameSubset200ApplicationJSONScopeLimitationsIbeacons        `json:"ibeacons,omitempty"`
+	NetworkSegments []FindPoliciesByNameSubset200ApplicationJSONScopeLimitationsNetworkSegments `json:"network_segments,omitempty"`
+	UserGroups      []FindPoliciesByNameSubset200ApplicationJSONScopeLimitationsUserGroups      `json:"user_groups,omitempty"`
+	Users           []FindPoliciesByNameSubset200ApplicationJSONScopeLimitationsUsers           `json:"users,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScope struct {
+	AllComputers   *bool                                                           `json:"all_computers,omitempty"`
+	Buildings      []FindPoliciesByNameSubset200ApplicationJSONScopeBuildings      `json:"buildings,omitempty"`
+	ComputerGroups []FindPoliciesByNameSubset200ApplicationJSONScopeComputerGroups `json:"computer_groups,omitempty"`
+	Computers      []FindPoliciesByNameSubset200ApplicationJSONScopeComputers      `json:"computers,omitempty"`
+	Departments    []FindPoliciesByNameSubset200ApplicationJSONScopeDepartments    `json:"departments,omitempty"`
+	Exclusions     *FindPoliciesByNameSubset200ApplicationJSONScopeExclusions      `json:"exclusions,omitempty"`
+	LimitToUsers   *FindPoliciesByNameSubset200ApplicationJSONScopeLimitToUsers    `json:"limit_to_users,omitempty"`
+	Limitations    *FindPoliciesByNameSubset200ApplicationJSONScopeLimitations     `json:"limitations,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScriptsScriptPriority string
+
+const (
+	FindPoliciesByNameSubset200ApplicationJSONScriptsScriptPriorityBefore FindPoliciesByNameSubset200ApplicationJSONScriptsScriptPriority = "Before"
+	FindPoliciesByNameSubset200ApplicationJSONScriptsScriptPriorityAfter  FindPoliciesByNameSubset200ApplicationJSONScriptsScriptPriority = "After"
+)
+
+func (e FindPoliciesByNameSubset200ApplicationJSONScriptsScriptPriority) ToPointer() *FindPoliciesByNameSubset200ApplicationJSONScriptsScriptPriority {
+	return &e
+}
+
+func (e *FindPoliciesByNameSubset200ApplicationJSONScriptsScriptPriority) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Before":
+		fallthrough
+	case "After":
+		*e = FindPoliciesByNameSubset200ApplicationJSONScriptsScriptPriority(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindPoliciesByNameSubset200ApplicationJSONScriptsScriptPriority: %v", v)
+	}
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScriptsScript struct {
+	ID          *int64                                                           `json:"id,omitempty"`
+	Name        *string                                                          `json:"name,omitempty"`
+	Parameter10 *string                                                          `json:"parameter10,omitempty"`
+	Parameter11 *string                                                          `json:"parameter11,omitempty"`
+	Parameter4  *string                                                          `json:"parameter4,omitempty"`
+	Parameter5  *string                                                          `json:"parameter5,omitempty"`
+	Parameter6  *string                                                          `json:"parameter6,omitempty"`
+	Parameter7  *string                                                          `json:"parameter7,omitempty"`
+	Parameter8  *string                                                          `json:"parameter8,omitempty"`
+	Parameter9  *string                                                          `json:"parameter9,omitempty"`
+	Priority    *FindPoliciesByNameSubset200ApplicationJSONScriptsScriptPriority `json:"priority,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONScripts struct {
+	Script []FindPoliciesByNameSubset200ApplicationJSONScriptsScript `json:"script,omitempty"`
+	Size   *int64                                                    `json:"size,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONSelfServiceSelfServiceCategoriesCategory struct {
+	DisplayIn *bool   `json:"display_in,omitempty"`
+	FeatureIn *bool   `json:"feature_in,omitempty"`
+	ID        *int64  `json:"id,omitempty"`
+	Name      *string `json:"name,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONSelfServiceSelfServiceCategories struct {
+	Category *FindPoliciesByNameSubset200ApplicationJSONSelfServiceSelfServiceCategoriesCategory `json:"category,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONSelfServiceSelfServiceIcon struct {
+	Filename *string `json:"filename,omitempty"`
+	ID       *int64  `json:"id,omitempty"`
+	URI      *string `json:"uri,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONSelfService struct {
+	FeatureOnMainPage           *bool                                                                       `json:"feature_on_main_page,omitempty"`
+	ForceUsersToViewDescription *bool                                                                       `json:"force_users_to_view_description,omitempty"`
+	InstallButtonText           *string                                                                     `json:"install_button_text,omitempty"`
+	ReInstallButtonText         *string                                                                     `json:"re-install_button_text,omitempty"`
+	SelfServiceCategories       *FindPoliciesByNameSubset200ApplicationJSONSelfServiceSelfServiceCategories `json:"self_service_categories,omitempty"`
+	SelfServiceDescription      *string                                                                     `json:"self_service_description,omitempty"`
+	SelfServiceDisplayName      *string                                                                     `json:"self_service_display_name,omitempty"`
+	SelfServiceIcon             *FindPoliciesByNameSubset200ApplicationJSONSelfServiceSelfServiceIcon       `json:"self_service_icon,omitempty"`
+	UseForSelfService           *bool                                                                       `json:"use_for_self_service,omitempty"`
+}
+
+type FindPoliciesByNameSubset200ApplicationJSONUserInteraction struct {
+	AllowDeferralMinutes  *int64  `json:"allow_deferral_minutes,omitempty"`
+	AllowDeferralUntilUtc *string `json:"allow_deferral_until_utc,omitempty"`
+	AllowUserToDefer      *bool   `json:"allow_user_to_defer,omitempty"`
+	MessageFinish         *string `json:"message_finish,omitempty"`
+	MessageStart          *string `json:"message_start,omitempty"`
+}
+
+// FindPoliciesByNameSubset200ApplicationJSON - OK
+type FindPoliciesByNameSubset200ApplicationJSON struct {
+	AccountMaintenance   *FindPoliciesByNameSubset200ApplicationJSONAccountMaintenance   `json:"account_maintenance,omitempty"`
+	DiskEncryption       *FindPoliciesByNameSubset200ApplicationJSONDiskEncryption       `json:"disk_encryption,omitempty"`
+	DockItems            []FindPoliciesByNameSubset200ApplicationJSONDockItems           `json:"dock_items,omitempty"`
+	FilesProcesses       *FindPoliciesByNameSubset200ApplicationJSONFilesProcesses       `json:"files_processes,omitempty"`
+	General              *FindPoliciesByNameSubset200ApplicationJSONGeneral              `json:"general,omitempty"`
+	Maintenance          *FindPoliciesByNameSubset200ApplicationJSONMaintenance          `json:"maintenance,omitempty"`
+	PackageConfiguration *FindPoliciesByNameSubset200ApplicationJSONPackageConfiguration `json:"package_configuration,omitempty"`
+	Printers             []FindPoliciesByNameSubset200ApplicationJSONPrinters            `json:"printers,omitempty"`
+	Scope                *FindPoliciesByNameSubset200ApplicationJSONScope                `json:"scope,omitempty"`
+	Scripts              *FindPoliciesByNameSubset200ApplicationJSONScripts              `json:"scripts,omitempty"`
+	SelfService          *FindPoliciesByNameSubset200ApplicationJSONSelfService          `json:"self_service,omitempty"`
+	UserInteraction      *FindPoliciesByNameSubset200ApplicationJSONUserInteraction      `json:"user_interaction,omitempty"`
+}
+
 type FindPoliciesByNameSubsetResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	Policy *shared.Policy
+	FindPoliciesByNameSubset200ApplicationJSONObject *FindPoliciesByNameSubset200ApplicationJSON
 }

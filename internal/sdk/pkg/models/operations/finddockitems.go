@@ -3,9 +3,28 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindDockItems200ApplicationXMLDockItem struct {
+	ID   *int64
+	Name *string
+}
+
+type FindDockItems200ApplicationXML struct {
+	DockItem *FindDockItems200ApplicationXMLDockItem
+	Size     *int64
+}
+
+type FindDockItems200ApplicationJSONDockItem struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindDockItems200ApplicationJSON struct {
+	DockItem *FindDockItems200ApplicationJSONDockItem `json:"dock_item,omitempty"`
+	Size     *int64                                   `json:"size,omitempty"`
+}
 
 type FindDockItemsResponse struct {
 	Body        []byte
@@ -13,5 +32,5 @@ type FindDockItemsResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	DockItems []shared.DockItems
+	FindDockItems200ApplicationJSONObjects []FindDockItems200ApplicationJSON
 }

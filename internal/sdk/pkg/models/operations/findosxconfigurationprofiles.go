@@ -3,9 +3,28 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
+
+type FindOsxConfigurationProfiles200ApplicationXMLOsXConfigurationProfile struct {
+	ID   *int64
+	Name *string
+}
+
+type FindOsxConfigurationProfiles200ApplicationXML struct {
+	OsXConfigurationProfile *FindOsxConfigurationProfiles200ApplicationXMLOsXConfigurationProfile
+	Size                    *int64
+}
+
+type FindOsxConfigurationProfiles200ApplicationJSONOsXConfigurationProfile struct {
+	ID   *int64  `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+type FindOsxConfigurationProfiles200ApplicationJSON struct {
+	OsXConfigurationProfile *FindOsxConfigurationProfiles200ApplicationJSONOsXConfigurationProfile `json:"os_x_configuration_profile,omitempty"`
+	Size                    *int64                                                                 `json:"size,omitempty"`
+}
 
 type FindOsxConfigurationProfilesResponse struct {
 	Body        []byte
@@ -13,5 +32,5 @@ type FindOsxConfigurationProfilesResponse struct {
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	OsXConfigurationProfiles []shared.OsXConfigurationProfiles
+	FindOsxConfigurationProfiles200ApplicationJSONObjects []FindOsxConfigurationProfiles200ApplicationJSON
 }

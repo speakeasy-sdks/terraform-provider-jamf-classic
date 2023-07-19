@@ -3,7 +3,8 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,11 +13,737 @@ type FindLDAPServersByIDRequest struct {
 	ID int64 `pathParam:"style=simple,explode=false,name=id"`
 }
 
+type FindLDAPServersByID200ApplicationXMLConnectionAccount struct {
+	DistinguishedUsername *string
+	Password              *string
+}
+
+type FindLDAPServersByID200ApplicationXMLConnectionAuthenticationType string
+
+const (
+	FindLDAPServersByID200ApplicationXMLConnectionAuthenticationTypeSimple    FindLDAPServersByID200ApplicationXMLConnectionAuthenticationType = "simple"
+	FindLDAPServersByID200ApplicationXMLConnectionAuthenticationTypeCramMd5   FindLDAPServersByID200ApplicationXMLConnectionAuthenticationType = "CRAM-MD5"
+	FindLDAPServersByID200ApplicationXMLConnectionAuthenticationTypeDigestMd5 FindLDAPServersByID200ApplicationXMLConnectionAuthenticationType = "DIGEST-MD5"
+	FindLDAPServersByID200ApplicationXMLConnectionAuthenticationTypeNone      FindLDAPServersByID200ApplicationXMLConnectionAuthenticationType = "none"
+)
+
+func (e FindLDAPServersByID200ApplicationXMLConnectionAuthenticationType) ToPointer() *FindLDAPServersByID200ApplicationXMLConnectionAuthenticationType {
+	return &e
+}
+
+func (e *FindLDAPServersByID200ApplicationXMLConnectionAuthenticationType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "simple":
+		fallthrough
+	case "CRAM-MD5":
+		fallthrough
+	case "DIGEST-MD5":
+		fallthrough
+	case "none":
+		*e = FindLDAPServersByID200ApplicationXMLConnectionAuthenticationType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLDAPServersByID200ApplicationXMLConnectionAuthenticationType: %v", v)
+	}
+}
+
+type FindLDAPServersByID200ApplicationXMLConnectionReferralResponse string
+
+const (
+	FindLDAPServersByID200ApplicationXMLConnectionReferralResponseIgnore FindLDAPServersByID200ApplicationXMLConnectionReferralResponse = "ignore"
+	FindLDAPServersByID200ApplicationXMLConnectionReferralResponseFollow FindLDAPServersByID200ApplicationXMLConnectionReferralResponse = "follow"
+)
+
+func (e FindLDAPServersByID200ApplicationXMLConnectionReferralResponse) ToPointer() *FindLDAPServersByID200ApplicationXMLConnectionReferralResponse {
+	return &e
+}
+
+func (e *FindLDAPServersByID200ApplicationXMLConnectionReferralResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "ignore":
+		fallthrough
+	case "follow":
+		*e = FindLDAPServersByID200ApplicationXMLConnectionReferralResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLDAPServersByID200ApplicationXMLConnectionReferralResponse: %v", v)
+	}
+}
+
+type FindLDAPServersByID200ApplicationXMLConnectionServerType string
+
+const (
+	FindLDAPServersByID200ApplicationXMLConnectionServerTypeActiveDirectory FindLDAPServersByID200ApplicationXMLConnectionServerType = "Active Directory"
+	FindLDAPServersByID200ApplicationXMLConnectionServerTypeOpenDirectory   FindLDAPServersByID200ApplicationXMLConnectionServerType = "Open Directory"
+	FindLDAPServersByID200ApplicationXMLConnectionServerTypeEDirectory      FindLDAPServersByID200ApplicationXMLConnectionServerType = "eDirectory"
+	FindLDAPServersByID200ApplicationXMLConnectionServerTypeCustom          FindLDAPServersByID200ApplicationXMLConnectionServerType = "Custom"
+)
+
+func (e FindLDAPServersByID200ApplicationXMLConnectionServerType) ToPointer() *FindLDAPServersByID200ApplicationXMLConnectionServerType {
+	return &e
+}
+
+func (e *FindLDAPServersByID200ApplicationXMLConnectionServerType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Active Directory":
+		fallthrough
+	case "Open Directory":
+		fallthrough
+	case "eDirectory":
+		fallthrough
+	case "Custom":
+		*e = FindLDAPServersByID200ApplicationXMLConnectionServerType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLDAPServersByID200ApplicationXMLConnectionServerType: %v", v)
+	}
+}
+
+type FindLDAPServersByID200ApplicationXMLConnection struct {
+	Account            *FindLDAPServersByID200ApplicationXMLConnectionAccount
+	AuthenticationType *FindLDAPServersByID200ApplicationXMLConnectionAuthenticationType
+	// Hostname or IP address of the server
+	Hostname *string
+	ID       *int64
+	// Name of the LDAP server
+	Name string
+	// Timeout in seconds
+	OpenCloseTimeout *int64
+	Port             *int64
+	ReferralResponse *FindLDAPServersByID200ApplicationXMLConnectionReferralResponse
+	// Timeout in seconds
+	SearchTimeout *int64
+	ServerType    *FindLDAPServersByID200ApplicationXMLConnectionServerType
+	UseSsl        *bool
+	UseWildcards  *bool
+}
+
+type FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMappingsMapObjectClassToAnyOrAll string
+
+const (
+	FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMappingsMapObjectClassToAnyOrAllAll FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMappingsMapObjectClassToAnyOrAll = "all"
+	FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMappingsMapObjectClassToAnyOrAllAny FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMappingsMapObjectClassToAnyOrAll = "any"
+)
+
+func (e FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMappingsMapObjectClassToAnyOrAll) ToPointer() *FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMappingsMapObjectClassToAnyOrAll {
+	return &e
+}
+
+func (e *FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMappingsMapObjectClassToAnyOrAll) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "all":
+		fallthrough
+	case "any":
+		*e = FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMappingsMapObjectClassToAnyOrAll(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMappingsMapObjectClassToAnyOrAll: %v", v)
+	}
+}
+
+type FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMappingsSearchScope string
+
+const (
+	FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMappingsSearchScopeAllSubtrees    FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMappingsSearchScope = "All Subtrees"
+	FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMappingsSearchScopeFirstLevelOnly FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMappingsSearchScope = "First Level Only"
+)
+
+func (e FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMappingsSearchScope) ToPointer() *FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMappingsSearchScope {
+	return &e
+}
+
+func (e *FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMappingsSearchScope) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "All Subtrees":
+		fallthrough
+	case "First Level Only":
+		*e = FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMappingsSearchScope(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMappingsSearchScope: %v", v)
+	}
+}
+
+type FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMappings struct {
+	MapGroupID               *string
+	MapGroupName             *string
+	MapGroupUUID             *string
+	MapObjectClassToAnyOrAll *FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMappingsMapObjectClassToAnyOrAll
+	ObjectClasses            *string
+	SearchBase               *string
+	SearchScope              *FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMappingsSearchScope
+}
+
+type FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsMapObjectClassToAnyOrAll string
+
+const (
+	FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsMapObjectClassToAnyOrAllAll FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsMapObjectClassToAnyOrAll = "all"
+	FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsMapObjectClassToAnyOrAllAny FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsMapObjectClassToAnyOrAll = "any"
+)
+
+func (e FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsMapObjectClassToAnyOrAll) ToPointer() *FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsMapObjectClassToAnyOrAll {
+	return &e
+}
+
+func (e *FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsMapObjectClassToAnyOrAll) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "all":
+		fallthrough
+	case "any":
+		*e = FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsMapObjectClassToAnyOrAll(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsMapObjectClassToAnyOrAll: %v", v)
+	}
+}
+
+type FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsSearchScope string
+
+const (
+	FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsSearchScopeAllSubtrees    FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsSearchScope = "All Subtrees"
+	FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsSearchScopeFirstLevelOnly FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsSearchScope = "First Level Only"
+)
+
+func (e FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsSearchScope) ToPointer() *FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsSearchScope {
+	return &e
+}
+
+func (e *FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsSearchScope) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "All Subtrees":
+		fallthrough
+	case "First Level Only":
+		*e = FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsSearchScope(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsSearchScope: %v", v)
+	}
+}
+
+type FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsUserGroupMembershipStoredIn string
+
+const (
+	FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsUserGroupMembershipStoredInUserObject  FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsUserGroupMembershipStoredIn = "user object"
+	FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsUserGroupMembershipStoredInGroupObject FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsUserGroupMembershipStoredIn = "group object"
+)
+
+func (e FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsUserGroupMembershipStoredIn) ToPointer() *FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsUserGroupMembershipStoredIn {
+	return &e
+}
+
+func (e *FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsUserGroupMembershipStoredIn) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "user object":
+		fallthrough
+	case "group object":
+		*e = FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsUserGroupMembershipStoredIn(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsUserGroupMembershipStoredIn: %v", v)
+	}
+}
+
+type FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappings struct {
+	AppendToUsername                  *string
+	GroupID                           *string
+	MapGroupMembershipToUserField     *string
+	MapObjectClassToAnyOrAll          *FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsMapObjectClassToAnyOrAll
+	MapUserMembershipToGroupField     *bool
+	MapUserMembershipUseDn            *bool
+	ObjectClasses                     *string
+	RecursiveLookups                  *bool
+	SearchBase                        *string
+	SearchScope                       *FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsSearchScope
+	UseDn                             *bool
+	UserGroupMembershipStoredIn       *FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappingsUserGroupMembershipStoredIn
+	UserGroupMembershipUseLdapCompare *bool
+	Username                          *string
+}
+
+type FindLDAPServersByID200ApplicationXMLMappingsForUsersUserMappingsMapObjectClassToAnyOrAll string
+
+const (
+	FindLDAPServersByID200ApplicationXMLMappingsForUsersUserMappingsMapObjectClassToAnyOrAllAll FindLDAPServersByID200ApplicationXMLMappingsForUsersUserMappingsMapObjectClassToAnyOrAll = "all"
+	FindLDAPServersByID200ApplicationXMLMappingsForUsersUserMappingsMapObjectClassToAnyOrAllAny FindLDAPServersByID200ApplicationXMLMappingsForUsersUserMappingsMapObjectClassToAnyOrAll = "any"
+)
+
+func (e FindLDAPServersByID200ApplicationXMLMappingsForUsersUserMappingsMapObjectClassToAnyOrAll) ToPointer() *FindLDAPServersByID200ApplicationXMLMappingsForUsersUserMappingsMapObjectClassToAnyOrAll {
+	return &e
+}
+
+func (e *FindLDAPServersByID200ApplicationXMLMappingsForUsersUserMappingsMapObjectClassToAnyOrAll) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "all":
+		fallthrough
+	case "any":
+		*e = FindLDAPServersByID200ApplicationXMLMappingsForUsersUserMappingsMapObjectClassToAnyOrAll(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLDAPServersByID200ApplicationXMLMappingsForUsersUserMappingsMapObjectClassToAnyOrAll: %v", v)
+	}
+}
+
+type FindLDAPServersByID200ApplicationXMLMappingsForUsersUserMappingsSearchScope string
+
+const (
+	FindLDAPServersByID200ApplicationXMLMappingsForUsersUserMappingsSearchScopeAllSubtrees    FindLDAPServersByID200ApplicationXMLMappingsForUsersUserMappingsSearchScope = "All Subtrees"
+	FindLDAPServersByID200ApplicationXMLMappingsForUsersUserMappingsSearchScopeFirstLevelOnly FindLDAPServersByID200ApplicationXMLMappingsForUsersUserMappingsSearchScope = "First Level Only"
+)
+
+func (e FindLDAPServersByID200ApplicationXMLMappingsForUsersUserMappingsSearchScope) ToPointer() *FindLDAPServersByID200ApplicationXMLMappingsForUsersUserMappingsSearchScope {
+	return &e
+}
+
+func (e *FindLDAPServersByID200ApplicationXMLMappingsForUsersUserMappingsSearchScope) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "All Subtrees":
+		fallthrough
+	case "First Level Only":
+		*e = FindLDAPServersByID200ApplicationXMLMappingsForUsersUserMappingsSearchScope(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLDAPServersByID200ApplicationXMLMappingsForUsersUserMappingsSearchScope: %v", v)
+	}
+}
+
+type FindLDAPServersByID200ApplicationXMLMappingsForUsersUserMappings struct {
+	AppendToEmailResults     *string
+	MapBuilding              *string
+	MapDepartment            *string
+	MapEmailAddress          *string
+	MapObjectClassToAnyOrAll *FindLDAPServersByID200ApplicationXMLMappingsForUsersUserMappingsMapObjectClassToAnyOrAll
+	MapPosition              *string
+	MapRealname              *string
+	MapRoom                  *string
+	MapTelephone             *string
+	MapUserID                *string
+	MapUserUUID              *string
+	MapUsername              *string
+	ObjectClasses            *string
+	SearchBase               *string
+	SearchScope              *FindLDAPServersByID200ApplicationXMLMappingsForUsersUserMappingsSearchScope
+}
+
+type FindLDAPServersByID200ApplicationXMLMappingsForUsers struct {
+	UserGroupMappings           *FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMappings
+	UserGroupMembershipMappings *FindLDAPServersByID200ApplicationXMLMappingsForUsersUserGroupMembershipMappings
+	UserMappings                *FindLDAPServersByID200ApplicationXMLMappingsForUsersUserMappings
+}
+
+// FindLDAPServersByID200ApplicationXML - OK
+type FindLDAPServersByID200ApplicationXML struct {
+	Connection       *FindLDAPServersByID200ApplicationXMLConnection
+	MappingsForUsers *FindLDAPServersByID200ApplicationXMLMappingsForUsers
+}
+
+type FindLDAPServersByID200ApplicationJSONConnectionAccount struct {
+	DistinguishedUsername *string `json:"distinguished_username,omitempty"`
+	Password              *string `json:"password,omitempty"`
+}
+
+type FindLDAPServersByID200ApplicationJSONConnectionAuthenticationType string
+
+const (
+	FindLDAPServersByID200ApplicationJSONConnectionAuthenticationTypeSimple    FindLDAPServersByID200ApplicationJSONConnectionAuthenticationType = "simple"
+	FindLDAPServersByID200ApplicationJSONConnectionAuthenticationTypeCramMd5   FindLDAPServersByID200ApplicationJSONConnectionAuthenticationType = "CRAM-MD5"
+	FindLDAPServersByID200ApplicationJSONConnectionAuthenticationTypeDigestMd5 FindLDAPServersByID200ApplicationJSONConnectionAuthenticationType = "DIGEST-MD5"
+	FindLDAPServersByID200ApplicationJSONConnectionAuthenticationTypeNone      FindLDAPServersByID200ApplicationJSONConnectionAuthenticationType = "none"
+)
+
+func (e FindLDAPServersByID200ApplicationJSONConnectionAuthenticationType) ToPointer() *FindLDAPServersByID200ApplicationJSONConnectionAuthenticationType {
+	return &e
+}
+
+func (e *FindLDAPServersByID200ApplicationJSONConnectionAuthenticationType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "simple":
+		fallthrough
+	case "CRAM-MD5":
+		fallthrough
+	case "DIGEST-MD5":
+		fallthrough
+	case "none":
+		*e = FindLDAPServersByID200ApplicationJSONConnectionAuthenticationType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLDAPServersByID200ApplicationJSONConnectionAuthenticationType: %v", v)
+	}
+}
+
+type FindLDAPServersByID200ApplicationJSONConnectionReferralResponse string
+
+const (
+	FindLDAPServersByID200ApplicationJSONConnectionReferralResponseIgnore FindLDAPServersByID200ApplicationJSONConnectionReferralResponse = "ignore"
+	FindLDAPServersByID200ApplicationJSONConnectionReferralResponseFollow FindLDAPServersByID200ApplicationJSONConnectionReferralResponse = "follow"
+)
+
+func (e FindLDAPServersByID200ApplicationJSONConnectionReferralResponse) ToPointer() *FindLDAPServersByID200ApplicationJSONConnectionReferralResponse {
+	return &e
+}
+
+func (e *FindLDAPServersByID200ApplicationJSONConnectionReferralResponse) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "ignore":
+		fallthrough
+	case "follow":
+		*e = FindLDAPServersByID200ApplicationJSONConnectionReferralResponse(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLDAPServersByID200ApplicationJSONConnectionReferralResponse: %v", v)
+	}
+}
+
+type FindLDAPServersByID200ApplicationJSONConnectionServerType string
+
+const (
+	FindLDAPServersByID200ApplicationJSONConnectionServerTypeActiveDirectory FindLDAPServersByID200ApplicationJSONConnectionServerType = "Active Directory"
+	FindLDAPServersByID200ApplicationJSONConnectionServerTypeOpenDirectory   FindLDAPServersByID200ApplicationJSONConnectionServerType = "Open Directory"
+	FindLDAPServersByID200ApplicationJSONConnectionServerTypeEDirectory      FindLDAPServersByID200ApplicationJSONConnectionServerType = "eDirectory"
+	FindLDAPServersByID200ApplicationJSONConnectionServerTypeCustom          FindLDAPServersByID200ApplicationJSONConnectionServerType = "Custom"
+)
+
+func (e FindLDAPServersByID200ApplicationJSONConnectionServerType) ToPointer() *FindLDAPServersByID200ApplicationJSONConnectionServerType {
+	return &e
+}
+
+func (e *FindLDAPServersByID200ApplicationJSONConnectionServerType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Active Directory":
+		fallthrough
+	case "Open Directory":
+		fallthrough
+	case "eDirectory":
+		fallthrough
+	case "Custom":
+		*e = FindLDAPServersByID200ApplicationJSONConnectionServerType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLDAPServersByID200ApplicationJSONConnectionServerType: %v", v)
+	}
+}
+
+type FindLDAPServersByID200ApplicationJSONConnection struct {
+	Account            *FindLDAPServersByID200ApplicationJSONConnectionAccount            `json:"account,omitempty"`
+	AuthenticationType *FindLDAPServersByID200ApplicationJSONConnectionAuthenticationType `json:"authentication_type,omitempty"`
+	// Hostname or IP address of the server
+	Hostname *string `json:"hostname,omitempty"`
+	ID       *int64  `json:"id,omitempty"`
+	// Name of the LDAP server
+	Name string `json:"name"`
+	// Timeout in seconds
+	OpenCloseTimeout *int64                                                           `json:"open_close_timeout,omitempty"`
+	Port             *int64                                                           `json:"port,omitempty"`
+	ReferralResponse *FindLDAPServersByID200ApplicationJSONConnectionReferralResponse `json:"referral_response,omitempty"`
+	// Timeout in seconds
+	SearchTimeout *int64                                                     `json:"search_timeout,omitempty"`
+	ServerType    *FindLDAPServersByID200ApplicationJSONConnectionServerType `json:"server_type,omitempty"`
+	UseSsl        *bool                                                      `json:"use_ssl,omitempty"`
+	UseWildcards  *bool                                                      `json:"use_wildcards,omitempty"`
+}
+
+type FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMappingsMapObjectClassToAnyOrAll string
+
+const (
+	FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMappingsMapObjectClassToAnyOrAllAll FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMappingsMapObjectClassToAnyOrAll = "all"
+	FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMappingsMapObjectClassToAnyOrAllAny FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMappingsMapObjectClassToAnyOrAll = "any"
+)
+
+func (e FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMappingsMapObjectClassToAnyOrAll) ToPointer() *FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMappingsMapObjectClassToAnyOrAll {
+	return &e
+}
+
+func (e *FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMappingsMapObjectClassToAnyOrAll) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "all":
+		fallthrough
+	case "any":
+		*e = FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMappingsMapObjectClassToAnyOrAll(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMappingsMapObjectClassToAnyOrAll: %v", v)
+	}
+}
+
+type FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMappingsSearchScope string
+
+const (
+	FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMappingsSearchScopeAllSubtrees    FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMappingsSearchScope = "All Subtrees"
+	FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMappingsSearchScopeFirstLevelOnly FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMappingsSearchScope = "First Level Only"
+)
+
+func (e FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMappingsSearchScope) ToPointer() *FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMappingsSearchScope {
+	return &e
+}
+
+func (e *FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMappingsSearchScope) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "All Subtrees":
+		fallthrough
+	case "First Level Only":
+		*e = FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMappingsSearchScope(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMappingsSearchScope: %v", v)
+	}
+}
+
+type FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMappings struct {
+	MapGroupID               *string                                                                                         `json:"map_group_id,omitempty"`
+	MapGroupName             *string                                                                                         `json:"map_group_name,omitempty"`
+	MapGroupUUID             *string                                                                                         `json:"map_group_uuid,omitempty"`
+	MapObjectClassToAnyOrAll *FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMappingsMapObjectClassToAnyOrAll `json:"map_object_class_to_any_or_all,omitempty"`
+	ObjectClasses            *string                                                                                         `json:"object_classes,omitempty"`
+	SearchBase               *string                                                                                         `json:"search_base,omitempty"`
+	SearchScope              *FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMappingsSearchScope              `json:"search_scope,omitempty"`
+}
+
+type FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsMapObjectClassToAnyOrAll string
+
+const (
+	FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsMapObjectClassToAnyOrAllAll FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsMapObjectClassToAnyOrAll = "all"
+	FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsMapObjectClassToAnyOrAllAny FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsMapObjectClassToAnyOrAll = "any"
+)
+
+func (e FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsMapObjectClassToAnyOrAll) ToPointer() *FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsMapObjectClassToAnyOrAll {
+	return &e
+}
+
+func (e *FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsMapObjectClassToAnyOrAll) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "all":
+		fallthrough
+	case "any":
+		*e = FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsMapObjectClassToAnyOrAll(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsMapObjectClassToAnyOrAll: %v", v)
+	}
+}
+
+type FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsSearchScope string
+
+const (
+	FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsSearchScopeAllSubtrees    FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsSearchScope = "All Subtrees"
+	FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsSearchScopeFirstLevelOnly FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsSearchScope = "First Level Only"
+)
+
+func (e FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsSearchScope) ToPointer() *FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsSearchScope {
+	return &e
+}
+
+func (e *FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsSearchScope) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "All Subtrees":
+		fallthrough
+	case "First Level Only":
+		*e = FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsSearchScope(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsSearchScope: %v", v)
+	}
+}
+
+type FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsUserGroupMembershipStoredIn string
+
+const (
+	FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsUserGroupMembershipStoredInUserObject  FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsUserGroupMembershipStoredIn = "user object"
+	FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsUserGroupMembershipStoredInGroupObject FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsUserGroupMembershipStoredIn = "group object"
+)
+
+func (e FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsUserGroupMembershipStoredIn) ToPointer() *FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsUserGroupMembershipStoredIn {
+	return &e
+}
+
+func (e *FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsUserGroupMembershipStoredIn) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "user object":
+		fallthrough
+	case "group object":
+		*e = FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsUserGroupMembershipStoredIn(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsUserGroupMembershipStoredIn: %v", v)
+	}
+}
+
+type FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappings struct {
+	AppendToUsername                  *string                                                                                                      `json:"append_to_username,omitempty"`
+	GroupID                           *string                                                                                                      `json:"group_id,omitempty"`
+	MapGroupMembershipToUserField     *string                                                                                                      `json:"map_group_membership_to_user_field,omitempty"`
+	MapObjectClassToAnyOrAll          *FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsMapObjectClassToAnyOrAll    `json:"map_object_class_to_any_or_all,omitempty"`
+	MapUserMembershipToGroupField     *bool                                                                                                        `json:"map_user_membership_to_group_field,omitempty"`
+	MapUserMembershipUseDn            *bool                                                                                                        `json:"map_user_membership_use_dn,omitempty"`
+	ObjectClasses                     *string                                                                                                      `json:"object_classes,omitempty"`
+	RecursiveLookups                  *bool                                                                                                        `json:"recursive_lookups,omitempty"`
+	SearchBase                        *string                                                                                                      `json:"search_base,omitempty"`
+	SearchScope                       *FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsSearchScope                 `json:"search_scope,omitempty"`
+	UseDn                             *bool                                                                                                        `json:"use_dn,omitempty"`
+	UserGroupMembershipStoredIn       *FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappingsUserGroupMembershipStoredIn `json:"user_group_membership_stored_in,omitempty"`
+	UserGroupMembershipUseLdapCompare *bool                                                                                                        `json:"user_group_membership_use_ldap_compare,omitempty"`
+	Username                          *string                                                                                                      `json:"username,omitempty"`
+}
+
+type FindLDAPServersByID200ApplicationJSONMappingsForUsersUserMappingsMapObjectClassToAnyOrAll string
+
+const (
+	FindLDAPServersByID200ApplicationJSONMappingsForUsersUserMappingsMapObjectClassToAnyOrAllAll FindLDAPServersByID200ApplicationJSONMappingsForUsersUserMappingsMapObjectClassToAnyOrAll = "all"
+	FindLDAPServersByID200ApplicationJSONMappingsForUsersUserMappingsMapObjectClassToAnyOrAllAny FindLDAPServersByID200ApplicationJSONMappingsForUsersUserMappingsMapObjectClassToAnyOrAll = "any"
+)
+
+func (e FindLDAPServersByID200ApplicationJSONMappingsForUsersUserMappingsMapObjectClassToAnyOrAll) ToPointer() *FindLDAPServersByID200ApplicationJSONMappingsForUsersUserMappingsMapObjectClassToAnyOrAll {
+	return &e
+}
+
+func (e *FindLDAPServersByID200ApplicationJSONMappingsForUsersUserMappingsMapObjectClassToAnyOrAll) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "all":
+		fallthrough
+	case "any":
+		*e = FindLDAPServersByID200ApplicationJSONMappingsForUsersUserMappingsMapObjectClassToAnyOrAll(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLDAPServersByID200ApplicationJSONMappingsForUsersUserMappingsMapObjectClassToAnyOrAll: %v", v)
+	}
+}
+
+type FindLDAPServersByID200ApplicationJSONMappingsForUsersUserMappingsSearchScope string
+
+const (
+	FindLDAPServersByID200ApplicationJSONMappingsForUsersUserMappingsSearchScopeAllSubtrees    FindLDAPServersByID200ApplicationJSONMappingsForUsersUserMappingsSearchScope = "All Subtrees"
+	FindLDAPServersByID200ApplicationJSONMappingsForUsersUserMappingsSearchScopeFirstLevelOnly FindLDAPServersByID200ApplicationJSONMappingsForUsersUserMappingsSearchScope = "First Level Only"
+)
+
+func (e FindLDAPServersByID200ApplicationJSONMappingsForUsersUserMappingsSearchScope) ToPointer() *FindLDAPServersByID200ApplicationJSONMappingsForUsersUserMappingsSearchScope {
+	return &e
+}
+
+func (e *FindLDAPServersByID200ApplicationJSONMappingsForUsersUserMappingsSearchScope) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "All Subtrees":
+		fallthrough
+	case "First Level Only":
+		*e = FindLDAPServersByID200ApplicationJSONMappingsForUsersUserMappingsSearchScope(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FindLDAPServersByID200ApplicationJSONMappingsForUsersUserMappingsSearchScope: %v", v)
+	}
+}
+
+type FindLDAPServersByID200ApplicationJSONMappingsForUsersUserMappings struct {
+	AppendToEmailResults     *string                                                                                    `json:"append_to_email_results,omitempty"`
+	MapBuilding              *string                                                                                    `json:"map_building,omitempty"`
+	MapDepartment            *string                                                                                    `json:"map_department,omitempty"`
+	MapEmailAddress          *string                                                                                    `json:"map_email_address,omitempty"`
+	MapObjectClassToAnyOrAll *FindLDAPServersByID200ApplicationJSONMappingsForUsersUserMappingsMapObjectClassToAnyOrAll `json:"map_object_class_to_any_or_all,omitempty"`
+	MapPosition              *string                                                                                    `json:"map_position,omitempty"`
+	MapRealname              *string                                                                                    `json:"map_realname,omitempty"`
+	MapRoom                  *string                                                                                    `json:"map_room,omitempty"`
+	MapTelephone             *string                                                                                    `json:"map_telephone,omitempty"`
+	MapUserID                *string                                                                                    `json:"map_user_id,omitempty"`
+	MapUserUUID              *string                                                                                    `json:"map_user_uuid,omitempty"`
+	MapUsername              *string                                                                                    `json:"map_username,omitempty"`
+	ObjectClasses            *string                                                                                    `json:"object_classes,omitempty"`
+	SearchBase               *string                                                                                    `json:"search_base,omitempty"`
+	SearchScope              *FindLDAPServersByID200ApplicationJSONMappingsForUsersUserMappingsSearchScope              `json:"search_scope,omitempty"`
+}
+
+type FindLDAPServersByID200ApplicationJSONMappingsForUsers struct {
+	UserGroupMappings           *FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMappings           `json:"user_group_mappings,omitempty"`
+	UserGroupMembershipMappings *FindLDAPServersByID200ApplicationJSONMappingsForUsersUserGroupMembershipMappings `json:"user_group_membership_mappings,omitempty"`
+	UserMappings                *FindLDAPServersByID200ApplicationJSONMappingsForUsersUserMappings                `json:"user_mappings,omitempty"`
+}
+
+// FindLDAPServersByID200ApplicationJSON - OK
+type FindLDAPServersByID200ApplicationJSON struct {
+	Connection       *FindLDAPServersByID200ApplicationJSONConnection       `json:"connection,omitempty"`
+	MappingsForUsers *FindLDAPServersByID200ApplicationJSONMappingsForUsers `json:"mappings_for_users,omitempty"`
+}
+
 type FindLDAPServersByIDResponse struct {
 	Body        []byte
 	ContentType string
 	StatusCode  int
 	RawResponse *http.Response
 	// OK
-	LdapServer *shared.LdapServer
+	FindLDAPServersByID200ApplicationJSONObject *FindLDAPServersByID200ApplicationJSON
 }

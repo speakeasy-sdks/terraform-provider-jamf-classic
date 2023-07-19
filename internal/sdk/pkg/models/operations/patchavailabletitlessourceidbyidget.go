@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"jamf/internal/sdk/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,11 +11,47 @@ type PatchavailabletitlesSourceidByIDGetRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+type PatchavailabletitlesSourceidByIDGet200ApplicationXMLAvailableTitlesAvailableTitle struct {
+	AppName        *string
+	CurrentVersion *string
+	LastModified   *string
+	NameID         *string
+	Publisher      *string
+}
+
+type PatchavailabletitlesSourceidByIDGet200ApplicationXMLAvailableTitles struct {
+	AvailableTitle *PatchavailabletitlesSourceidByIDGet200ApplicationXMLAvailableTitlesAvailableTitle
+}
+
+// PatchavailabletitlesSourceidByIDGet200ApplicationXML - OK
+type PatchavailabletitlesSourceidByIDGet200ApplicationXML struct {
+	AvailableTitles []PatchavailabletitlesSourceidByIDGet200ApplicationXMLAvailableTitles
+	Size            *int64
+}
+
+type PatchavailabletitlesSourceidByIDGet200ApplicationJSONAvailableTitlesAvailableTitle struct {
+	AppName        *string `json:"app_name,omitempty"`
+	CurrentVersion *string `json:"current_version,omitempty"`
+	LastModified   *string `json:"last_modified,omitempty"`
+	NameID         *string `json:"name_id,omitempty"`
+	Publisher      *string `json:"publisher,omitempty"`
+}
+
+type PatchavailabletitlesSourceidByIDGet200ApplicationJSONAvailableTitles struct {
+	AvailableTitle *PatchavailabletitlesSourceidByIDGet200ApplicationJSONAvailableTitlesAvailableTitle `json:"available_title,omitempty"`
+}
+
+// PatchavailabletitlesSourceidByIDGet200ApplicationJSON - OK
+type PatchavailabletitlesSourceidByIDGet200ApplicationJSON struct {
+	AvailableTitles []PatchavailabletitlesSourceidByIDGet200ApplicationJSONAvailableTitles `json:"available_titles,omitempty"`
+	Size            *int64                                                                 `json:"size,omitempty"`
+}
+
 type PatchavailabletitlesSourceidByIDGetResponse struct {
 	Body        []byte
 	ContentType string
-	StatusCode  int
-	RawResponse *http.Response
 	// OK
-	PatchAvailableTitles *shared.PatchAvailableTitles
+	PatchavailabletitlesSourceidByIDGet200ApplicationJSONObject *PatchavailabletitlesSourceidByIDGet200ApplicationJSON
+	StatusCode                                                  int
+	RawResponse                                                 *http.Response
 }

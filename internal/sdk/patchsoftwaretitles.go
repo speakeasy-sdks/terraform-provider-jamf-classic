@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"io"
 	"jamf/internal/sdk/pkg/models/operations"
-	"jamf/internal/sdk/pkg/models/shared"
 	"jamf/internal/sdk/pkg/utils"
 	"net/http"
 	"strings"
@@ -66,12 +65,12 @@ func (s *patchsoftwaretitles) PatchsoftwaretitlesGet(ctx context.Context) (*oper
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.PatchSoftwareTitles
+			var out []operations.PatchsoftwaretitlesGet200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.PatchSoftwareTitles = out
+			res.PatchsoftwaretitlesGet200ApplicationJSONObjects = out
 		case utils.MatchContentType(contentType, `application/xml`):
 			res.Body = rawBody
 		}
@@ -173,12 +172,12 @@ func (s *patchsoftwaretitles) PatchsoftwaretitlesIDByIDGet(ctx context.Context, 
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.PatchSoftwareTitle
+			var out *operations.PatchsoftwaretitlesIDByIDGet200ApplicationJSON
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
-			res.PatchSoftwareTitle = out
+			res.PatchsoftwaretitlesIDByIDGet200ApplicationJSONObject = out
 		}
 	}
 
